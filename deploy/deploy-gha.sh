@@ -116,7 +116,6 @@ Group=${SSH_USER}
 WorkingDirectory=${APP_DIR}
 ExecStart=/usr/bin/dotnet ${APP_DIR}/${DLL_NAME}
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=ASPNETCORE_URLS=http://0.0.0.0:${LISTEN_PORT}
 EnvironmentFile=-${APP_DIR}/app.env
 Restart=always
 RestartSec=5

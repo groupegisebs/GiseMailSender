@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using SecureMailGateway.Configuration;
 using SecureMailGateway.Data;
 using SecureMailGateway.Middleware;
 using SecureMailGateway.Models.Dtos;
@@ -34,9 +36,10 @@ public class MailController(IEmailQueueService emailQueueService) : ControllerBa
 
 [ApiController]
 [Route("api/health")]
-public class HealthController(ApplicationDbContext db) : ControllerBase
+public class HealthController(ApplicationDbContext db, IOptions<DeploymentSettings> deployment) : ControllerBase
 {
     private readonly ApplicationDbContext _db = db;
+    private readonly DeploymentSettings _deployment = deployment.Value;
 
     [HttpGet("")]
     [Route("/health")]
@@ -45,7 +48,14 @@ public class HealthController(ApplicationDbContext db) : ControllerBase
         try
         {
             await _db.Database.CanConnectAsync(ct);
-            return Ok(new { status = "Healthy", timestamp = DateTimeOffset.UtcNow });
+            return Ok(new
+            {
+                status = "Healthy",
+                timestamp = DateTimeOffset.UtcNow,
+                service = _deployment.ServiceName,
+                appRoot = _deployment.AppRoot,
+                listenPort = _deployment.ListenPort
+            });
         }
         catch
         {

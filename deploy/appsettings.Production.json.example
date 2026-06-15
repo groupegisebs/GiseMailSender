@@ -1,8 +1,14 @@
 {
   "_comment": "Copiez vers /opt/apps/securemail-gateway/app/appsettings.Production.json au premier déploiement. deploy.sh préserve ce fichier ensuite.",
   "ConnectionStrings": {
-    "_comment": "Mot de passe BD : injecté via app.env (deploy-all.ps1 / deploy-gha.sh) depuis appsettings.json ou user-secrets.",
+    "_comment": "En production : UBUNTU1_CONNECTION_STRING via app.env (prioritaire sur ce fichier).",
     "DefaultConnection": "Host=51.79.53.197;Port=5432;Database=GiseMailSenderService;Username=gisedocuser;Password=CHANGE_ME"
+  },
+  "Deployment": {
+    "AppName": "SecureMail Gateway",
+    "ServiceName": "securemail-gateway",
+    "AppRoot": "/opt/apps/securemail-gateway",
+    "ListenPort": 5060
   },
   "Seed": {
     "AdminEmail": "admin@securemail.local",

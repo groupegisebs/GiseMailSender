@@ -254,6 +254,9 @@ function New-SystemdServiceContent {
     )
 
     $connEscaped = $ConnString -replace '\\', '\\' -replace '"', '\"'
+    $appRootEscaped = $Project.AppRoot -replace '\\', '\\' -replace '"', '\"'
+    $serviceEscaped = $Project.ServiceName -replace '\\', '\\' -replace '"', '\"'
+    $appNameEscaped = $Project.AppName -replace '\\', '\\' -replace '"', '\"'
 
     @"
 [Unit]
@@ -267,8 +270,11 @@ Group=$SshUser
 WorkingDirectory=$($Project.AppPath)
 ExecStart=/usr/bin/dotnet $($Project.AppPath)/$($Project.DllName)
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=ASPNETCORE_URLS=http://0.0.0.0:$($Project.ListenPort)
-Environment="ConnectionStrings__DefaultConnection=$connEscaped"
+Environment="UBUNTU1_CONNECTION_STRING=$connEscaped"
+Environment="UBUNTU1_APP_ROOT=$appRootEscaped"
+Environment="UBUNTU1_SERVICE_NAME=$serviceEscaped"
+Environment="UBUNTU1_LISTEN_PORT=$($Project.ListenPort)"
+Environment="UBUNTU1_APP_NAME=$appNameEscaped"
 Restart=always
 RestartSec=5
 TimeoutStartSec=120

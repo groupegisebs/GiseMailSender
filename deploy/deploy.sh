@@ -171,7 +171,13 @@ PY
 )"
 
   log "Configuration systemd ${SERVICE_NAME}..."
-  printf 'ConnectionStrings__DefaultConnection=%s\n' "${DB_CONN}" | sudo tee "${APP_DIR}/app.env" >/dev/null
+  {
+    printf 'UBUNTU1_CONNECTION_STRING=%s\n' "${DB_CONN}"
+    printf 'UBUNTU1_APP_ROOT=%s\n' "${APP_ROOT}"
+    printf 'UBUNTU1_SERVICE_NAME=%s\n' "${SERVICE_NAME}"
+    printf 'UBUNTU1_LISTEN_PORT=%s\n' "${LISTEN_PORT}"
+    printf 'UBUNTU1_APP_NAME=%s\n' "${APP_NAME}"
+  } | sudo tee "${APP_DIR}/app.env" >/dev/null
   sudo chmod 600 "${APP_DIR}/app.env"
   sudo chown ubuntu:ubuntu "${APP_DIR}/app.env" 2>/dev/null || true
 
@@ -187,7 +193,6 @@ Group=ubuntu
 WorkingDirectory=${APP_DIR}
 ExecStart=/usr/bin/dotnet ${APP_DIR}/${DLL_NAME}
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=ASPNETCORE_URLS=http://0.0.0.0:${LISTEN_PORT}
 EnvironmentFile=-${APP_DIR}/app.env
 Restart=always
 RestartSec=5
