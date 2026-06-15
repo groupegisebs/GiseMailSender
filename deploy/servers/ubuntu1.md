@@ -1,6 +1,32 @@
-# Serveur UBUNTU1 — configuration GitHub (SecureMail Gateway)
+# Serveur UBUNTU1 — configuration GitHub (`groupegisebs/GiseMailSender`)
 
-Convention : **`SSH_*_UBUNTU1`** à l’organisation, **`UBUNTU1_*`** au dépôt.
+Convention : **`SSH_*_UBUNTU1`** à l’**organisation**, **`UBUNTU1_*`** au **dépôt**.
+
+| Serveur | ID | IP |
+|---------|-----|-----|
+| Ubuntu principal | `ubuntu1` | `51.79.53.197` |
+
+---
+
+## ⚠️ Erreur « secret manquant » alors qu’il existe à l’org ?
+
+Les secrets **organisation** ne sont pas automatiquement visibles par tous les dépôts.
+
+**À faire une fois** pour chaque secret org (`SSH_PRIVATE_KEY_UBUNTU1`, `SSH_HOST_UBUNTU1`, etc.) :
+
+1. Ouvrir : **https://github.com/organizations/groupegisebs/settings/secrets/actions**
+2. Cliquer sur le secret (ex. `SSH_PRIVATE_KEY_UBUNTU1`)
+3. Section **Repository access** → **Selected repositories**
+4. **Ajouter `GiseMailSender`**
+
+Même procédure pour les **variables** org :  
+**https://github.com/organizations/groupegisebs/settings/variables/actions**
+
+Le workflow affiche une étape **Diagnose secret availability** : les lignes `--` indiquent ce qui n’est pas accessible au dépôt.
+
+---
+
+## Organisation `groupegisebs`
 
 | Serveur | ID | IP |
 |---------|-----|-----|
