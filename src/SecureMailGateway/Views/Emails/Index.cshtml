@@ -1,0 +1,50 @@
+@model IEnumerable<EmailMessage>
+@{ ViewData["Title"] = "Historique des e-mails"; }
+
+<h1 class="mb-4"><i class="bi bi-envelope"></i> Historique des e-mails</h1>
+
+<form class="row g-2 mb-4" method="get">
+    <div class="col-md-3">
+        <select name="status" class="form-select">
+            <option value="">Tous les statuts</option>
+            @foreach (EmailStatus s in Enum.GetValues<EmailStatus>())
+            {
+                <option value="@s" selected="@(ViewBag.Status as string == s.ToString())">@s</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <input name="search" class="form-control" placeholder="Rechercher par mailCode ou sujet" value="@ViewBag.Search" />
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" type="submit">Filtrer</button>
+    </div>
+</form>
+
+<table class="table table-hover bg-white rounded shadow-sm table-sm">
+    <thead class="table-light">
+        <tr>
+            <th>MailCode</th>
+            <th>Sujet</th>
+            <th>Application</th>
+            <th>Template</th>
+            <th>Statut</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td><code>@m.MailCode</code></td>
+                <td class="text-truncate" style="max-width:200px">@m.Subject</td>
+                <td>@m.ClientApplication?.Name</td>
+                <td>@(m.TemplateCode ?? "—")</td>
+                <td><span class="badge badge-status-@m.Status">@m.Status</span></td>
+                <td class="small">@m.QueuedAt.LocalDateTime.ToString("g")</td>
+                <td><a asp-action="Details" asp-route-id="@m.Id" class="btn btn-sm btn-outline-primary">Détails</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

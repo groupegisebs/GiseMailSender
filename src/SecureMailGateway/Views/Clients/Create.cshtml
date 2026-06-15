@@ -1,0 +1,51 @@
+@model ClientApplicationViewModel
+@{ ViewData["Title"] = Model.Id.HasValue ? "Modifier l'application" : "Nouvelle application"; }
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<form asp-action="@(Model.Id.HasValue ? "Edit" : "Create")" method="post">
+    @Html.AntiForgeryToken()
+    @if (Model.Id.HasValue) { <input type="hidden" asp-for="Id" /> }
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ClientCode" class="form-label"></label>
+            <input asp-for="ClientCode" class="form-control" readonly="@(Model.Id.HasValue)" />
+            <span asp-validation-for="ClientCode" class="text-danger"></span>
+        </div>
+        <div class="col-md-3">
+            <label asp-for="DailyQuota" class="form-label"></label>
+            <input asp-for="DailyQuota" class="form-control" type="number" />
+        </div>
+        <div class="col-md-3">
+            <label asp-for="MonthlyQuota" class="form-label"></label>
+            <input asp-for="MonthlyQuota" class="form-control" type="number" />
+        </div>
+        <div class="col-md-6">
+            <div class="form-check mt-4">
+                <input asp-for="IsActive" class="form-check-input" />
+                <label asp-for="IsActive" class="form-check-label">Application active</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <label asp-for="AllowedDomains" class="form-label">Domaines autorisés (séparés par virgule)</label>
+            <input asp-for="AllowedDomains" class="form-control" placeholder="example.com,monentreprise.fr" />
+        </div>
+        <div class="col-12">
+            <label asp-for="AllowedIpAddresses" class="form-label">IPs autorisées (optionnel)</label>
+            <input asp-for="AllowedIpAddresses" class="form-control" placeholder="192.168.1.1,10.0.0.5" />
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Annuler</a>
+    </div>
+</form>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

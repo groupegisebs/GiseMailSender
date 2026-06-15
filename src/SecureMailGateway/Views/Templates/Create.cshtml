@@ -1,0 +1,169 @@
+@model EmailTemplateViewModel
+@{ ViewData["Title"] = Model.Id.HasValue ? "Éditer le template" : "Nouveau template"; }
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<form asp-action="@(Model.Id.HasValue ? "Edit" : "Create")" method="post" id="templateForm">
+    @Html.AntiForgeryToken()
+    @if (Model.Id.HasValue) { <input type="hidden" asp-for="Id" /> }
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-3">
+            <label asp-for="TemplateCode" class="form-label">Code template</label>
+            <input asp-for="TemplateCode" class="form-control" readonly="@(Model.Id.HasValue)" />
+        </div>
+        <div class="col-md-5">
+            <label asp-for="Name" class="form-label">Nom</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="Language" class="form-label">Langue</label>
+            <input asp-for="Language" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <div class="form-check mt-4">
+                <input asp-for="IsActive" class="form-check-input" />
+                <label asp-for="IsActive" class="form-check-label">Actif</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <label asp-for="SubjectTemplate" class="form-label">Sujet (variables {{Nom}})</label>
+            <input asp-for="SubjectTemplate" class="form-control" id="subjectTemplate" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label asp-for="HtmlBody" class="form-label">Corps HTML</label>
+            <textarea asp-for="HtmlBody" class="form-control template-editor" id="htmlBody" rows="18"></textarea>
+            <label asp-for="TextBody" class="form-label mt-2">Corps texte (optionnel)</label>
+            <textarea asp-for="TextBody" class="form-control" rows="4" id="textBody"></textarea>
+        </div>
+        <div class="col-lg-6">
+            <label class="form-label">Aperçu en temps réel</label>
+            <div class="preview-pane p-3" id="previewPane"></div>
+            <div class="mt-2">
+                <h6>Variables disponibles</h6>
+                <div id="variableList">
+                    @foreach (var v in Model.Variables)
+                    {
+                        <span class="badge bg-primary variable-badge me-1" data-var="{{@v}}">{{@v}}</span>
+                    }
+                    <span class="badge bg-secondary variable-badge me-1" data-var="{{FirstName}}">{{FirstName}}</span>
+                    <span class="badge bg-secondary variable-badge me-1" data-var="{{CompanyName}}">{{CompanyName}}</span>
+                </div>
+            </div>
+            <div class="mt-3">
+                <h6>Données de test</h6>
+                <div class="row g-2" id="sampleDataFields">
+                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="FirstName" placeholder="FirstName" value="Jean" /></div>
+                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="CompanyName" placeholder="CompanyName" value="Acme Corp" /></div>
+                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="Title" placeholder="Title" value="Bienvenue" /></div>
+                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="Message" placeholder="Message" value="Votre compte est prêt." /></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2 flex-wrap">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        @if (Model.Id.HasValue)
+        {
+            <button type="button" class="btn btn-outline-info" id="btnPreview">Actualiser l'aperçu</button>
+            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#testModal">Envoyer un test</button>
+            <form class="d-inline" asp-action="Duplicate" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button class="btn btn-outline-secondary" type="submit">Dupliquer</button>
+            </form>
+            <a asp-action="Versions" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Historique versions</a>
+        }
+        <a asp-action="Index" class="btn btn-link">Retour</a>
+    </div>
+</form>
+
+@if (Model.Id.HasValue)
+{
+    <div class="modal fade" id="testModal" tabindex="-1">
+        <div class="modal-dialog">
+            <form asp-action="SendTest" method="post" class="modal-content">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="TemplateId" value="@Model.Id" />
+                <input type="hidden" name="SubjectTemplate" id="testSubject" />
+                <input type="hidden" name="HtmlBody" id="testHtml" />
+                <input type="hidden" name="TextBody" id="testText" />
+                <div class="modal-header"><h5 class="modal-title">Envoyer un e-mail test</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <label class="form-label">Destinataire</label>
+                    <input name="TestEmail" class="form-control" type="email" required placeholder="vous@example.com" />
+                    <div id="testSampleData"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        function getSampleData() {
+            const data = {};
+            document.querySelectorAll('.sample-field').forEach(el => {
+                data[el.dataset.key] = el.value;
+            });
+            return data;
+        }
+
+        async function updatePreview() {
+            const res = await fetch('@Url.Action("Preview")', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value },
+                body: JSON.stringify({
+                    subjectTemplate: document.getElementById('subjectTemplate').value,
+                    htmlBody: tinymce.get('htmlBody')?.getContent() || document.getElementById('htmlBody').value,
+                    textBody: document.getElementById('textBody').value,
+                    sampleData: getSampleData()
+                })
+            });
+            const data = await res.json();
+            document.getElementById('previewPane').innerHTML = '<h5>' + data.subject + '</h5>' + data.html;
+        }
+
+        document.getElementById('btnPreview')?.addEventListener('click', updatePreview);
+        document.querySelectorAll('.sample-field').forEach(el => el.addEventListener('input', updatePreview));
+
+        document.querySelectorAll('.variable-badge').forEach(b => {
+            b.addEventListener('click', () => {
+                const v = b.dataset.var;
+                if (tinymce.get('htmlBody')) tinymce.get('htmlBody').insertContent(v);
+            });
+        });
+
+        tinymce.init({
+            selector: '#htmlBody',
+            height: 400,
+            menubar: false,
+            plugins: 'lists link image code',
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | link image | code',
+            setup: function (editor) {
+                editor.on('change keyup', () => updatePreview());
+            }
+        });
+
+        updatePreview();
+
+        document.getElementById('testModal')?.addEventListener('show.bs.modal', function () {
+            document.getElementById('testSubject').value = document.getElementById('subjectTemplate').value;
+            document.getElementById('testHtml').value = tinymce.get('htmlBody')?.getContent() || '';
+            document.getElementById('testText').value = document.getElementById('textBody').value;
+            const container = document.getElementById('testSampleData');
+            container.innerHTML = '';
+            Object.entries(getSampleData()).forEach(([k, v]) => {
+                container.innerHTML += `<input type="hidden" name="SampleData[${k}]" value="${v}" />`;
+            });
+        });
+    </script>
+}

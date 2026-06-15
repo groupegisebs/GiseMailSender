@@ -1,0 +1,23 @@
+@model IEnumerable<EmailTemplateVersion>
+@{ ViewData["Title"] = "Versions du template"; var templateId = ViewBag.TemplateId; }
+
+<h1 class="mb-4">Historique des versions</h1>
+
+<table class="table table-hover bg-white rounded shadow-sm">
+    <thead class="table-light">
+        <tr><th>Version</th><th>Sujet</th><th>Créé par</th><th>Date</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>v@v.Version</td>
+                <td>@v.SubjectTemplate</td>
+                <td>@(v.CreatedBy ?? "—")</td>
+                <td>@v.CreatedAt.LocalDateTime.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Edit" asp-route-id="@templateId" class="btn btn-outline-primary">Retour à l'éditeur</a>

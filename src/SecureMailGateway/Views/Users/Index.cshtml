@@ -1,0 +1,48 @@
+@model IEnumerable<UserRoleViewModel>
+@{ ViewData["Title"] = "Utilisateurs et rôles"; var allRoles = ViewBag.AllRoles as string[] ?? []; }
+
+<h1 class="mb-4"><i class="bi bi-people"></i> Utilisateurs et rôles</h1>
+
+<table class="table table-hover bg-white rounded shadow-sm">
+    <thead class="table-light">
+        <tr><th>Email</th><th>Nom</th><th>Rôles</th><th>MFA</th><th>Statut</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Email</td>
+                <td>@(u.DisplayName ?? "—")</td>
+                <td>@string.Join(", ", u.Roles)</td>
+                <td>@(u.MfaEnabled ? "Activé" : "—")</td>
+                <td>
+                    @if (u.IsLocked) { <span class="badge bg-danger">Verrouillé</span> }
+                    else { <span class="badge bg-success">Actif</span> }
+                </td>
+                <td>
+                    <form asp-action="SetRole" method="post" class="d-inline-flex gap-1">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="userId" value="@u.Id" />
+                        <select name="role" class="form-select form-select-sm">
+                            @foreach (var r in allRoles)
+                            {
+                                <option value="@r" selected="@u.Roles.Contains(r)">@r</option>
+                            }
+                        </select>
+                        <button class="btn btn-sm btn-primary" type="submit">Appliquer</button>
+                    </form>
+                    @if (u.IsLocked)
+                    {
+                        <form asp-action="Unlock" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="userId" value="@u.Id" />
+                            <button class="btn btn-sm btn-warning" type="submit">Déverrouiller</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p class="text-muted small">MFA optionnelle : activez <code>MfaEnabled</code> sur l'utilisateur Admin pour une couche supplémentaire (TOTP à configurer).</p>

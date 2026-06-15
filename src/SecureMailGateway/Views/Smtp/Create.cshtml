@@ -1,0 +1,29 @@
+@model SmtpConfigViewModel
+@{ ViewData["Title"] = Model.Id.HasValue ? "Modifier SMTP" : "Nouveau SMTP"; }
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<form asp-action="@(Model.Id.HasValue ? "Edit" : "Create")" method="post">
+    @Html.AntiForgeryToken()
+    @if (Model.Id.HasValue) { <input type="hidden" asp-for="Id" /> }
+
+    <div class="row g-3">
+        <div class="col-md-4"><label asp-for="ProviderName" class="form-label"></label><input asp-for="ProviderName" class="form-control" /></div>
+        <div class="col-md-4"><label asp-for="Host" class="form-label"></label><input asp-for="Host" class="form-control" /></div>
+        <div class="col-md-4"><label asp-for="Port" class="form-label"></label><input asp-for="Port" class="form-control" type="number" /></div>
+        <div class="col-md-4"><label asp-for="Username" class="form-label"></label><input asp-for="Username" class="form-control" /></div>
+        <div class="col-md-4"><label asp-for="Password" class="form-label">Mot de passe @(Model.Id.HasValue ? "(laisser vide pour conserver)" : "")</label><input asp-for="Password" class="form-control" type="password" /></div>
+        <div class="col-md-4"><label asp-for="FromEmail" class="form-label"></label><input asp-for="FromEmail" class="form-control" /></div>
+        <div class="col-md-4"><label asp-for="FromName" class="form-label"></label><input asp-for="FromName" class="form-control" /></div>
+        <div class="col-md-4">
+            <div class="form-check mt-4"><input asp-for="UseSsl" class="form-check-input" /><label asp-for="UseSsl" class="form-check-label">SSL/TLS</label></div>
+            <div class="form-check"><input asp-for="IsDefault" class="form-check-input" /><label asp-for="IsDefault" class="form-check-label">Configuration par défaut</label></div>
+            <div class="form-check"><input asp-for="IsActive" class="form-check-input" /><label asp-for="IsActive" class="form-check-label">Active</label></div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Annuler</a>
+    </div>
+</form>

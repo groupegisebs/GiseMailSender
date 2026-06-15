@@ -1,0 +1,24 @@
+{
+  "_comment": "Copiez vers /opt/apps/securemail-gateway/app/appsettings.Production.json au premier déploiement. deploy.sh préserve ce fichier ensuite.",
+  "ConnectionStrings": {
+    "_comment": "Mot de passe BD : injecté via app.env (deploy-all.ps1 / deploy-gha.sh) depuis appsettings.json ou user-secrets.",
+    "DefaultConnection": "Host=51.79.53.197;Port=5432;Database=GiseMailSenderService;Username=gisedocuser;Password=CHANGE_ME"
+  },
+  "Seed": {
+    "AdminEmail": "admin@securemail.local",
+    "AdminPassword": "CHANGE_ME_STRONG_PASSWORD"
+  },
+  "DataProtection": {
+    "KeysPath": "./keys"
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft.AspNetCore": "Warning",
+        "Hangfire": "Information"
+      }
+    }
+  },
+  "AllowedHosts": "*"
+}

@@ -1,0 +1,73 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    var stats = ViewBag.Stats as DashboardStats;
+}
+
+<h1 class="mb-4"><i class="bi bi-speedometer2"></i> Dashboard</h1>
+
+@if (stats is not null)
+{
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card stat-card p-3">
+                <div class="text-muted small">En file</div>
+                <div class="stat-value">@stats.Queued</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card p-3">
+                <div class="text-muted small">En cours</div>
+                <div class="stat-value text-info">@stats.Sending</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card p-3">
+                <div class="text-muted small">Envoyés aujourd'hui</div>
+                <div class="stat-value text-success">@stats.SentToday</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card p-3">
+                <div class="text-muted small">Échecs aujourd'hui</div>
+                <div class="stat-value text-danger">@stats.FailedToday</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5>Résumé</h5>
+                <ul class="list-unstyled mb-0">
+                    <li><strong>@stats.TotalClients</strong> applications clientes</li>
+                    <li><strong>@stats.ActiveTemplates</strong> templates actifs</li>
+                    <li>Temps moyen d'envoi : <strong>@stats.AvgSendTimeMs.ToString("F0")</strong> ms</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5>Appels API aujourd'hui</h5>
+                @if (stats.ApiCallsByClient.Count == 0)
+                {
+                    <p class="text-muted mb-0">Aucun appel API aujourd'hui.</p>
+                }
+                else
+                {
+                    <table class="table table-sm mb-0">
+                        @foreach (var c in stats.ApiCallsByClient)
+                        {
+                            <tr><td>@c.Name <code>@c.ClientCode</code></td><td class="text-end">@c.CallCount</td></tr>
+                        }
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="mt-4">
+    <a class="btn btn-primary" asp-controller="Emails" asp-action="Index">Voir l'historique</a>
+    <a class="btn btn-outline-secondary" href="/metrics" target="_blank">Métriques Prometheus</a>
+    <a class="btn btn-outline-secondary" href="/health" target="_blank">Health Check</a>
+</div>

@@ -1,0 +1,11 @@
+{
+  "_comment": "Copiez ce fichier vers deploy/project.config.json et adaptez-le (ne pas committer project.config.json).",
+  "appName": "SecureMail Gateway",
+  "serviceName": "securemail-gateway",
+  "appRoot": "/opt/apps/securemail-gateway",
+  "dllName": "SecureMailGateway.dll",
+  "projectPath": "src/SecureMailGateway/SecureMailGateway.csproj",
+  "healthCheckUrl": "http://localhost:5060/health",
+  "listenPort": 5060,
+  "sshIdentityKey": "cognidoc_deploy"
+}

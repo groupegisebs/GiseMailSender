@@ -1,0 +1,39 @@
+@model IEnumerable<SmtpConfiguration>
+@{ ViewData["Title"] = "Configuration SMTP"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-hdd-network"></i> Configuration SMTP</h1>
+    <a class="btn btn-primary" asp-action="Create">Ajouter</a>
+</div>
+
+<table class="table table-hover bg-white rounded shadow-sm">
+    <thead class="table-light">
+        <tr>
+            <th>Fournisseur</th>
+            <th>Host</th>
+            <th>Port</th>
+            <th>From</th>
+            <th>SSL</th>
+            <th>Défaut</th>
+            <th>Actif</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.ProviderName</td>
+                <td>@s.Host</td>
+                <td>@s.Port</td>
+                <td>@s.FromEmail</td>
+                <td>@(s.UseSsl ? "Oui" : "Non")</td>
+                <td>@(s.IsDefault ? "✓" : "")</td>
+                <td>@(s.IsActive ? "Oui" : "Non")</td>
+                <td><a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-sm btn-outline-primary">Modifier</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p class="text-muted small">Extensible vers SendGrid, Amazon SES, Mailgun, Microsoft Graph via l'interface <code>IEmailProvider</code>.</p>

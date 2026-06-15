@@ -1,0 +1,25 @@
+# Build
+bin/
+obj/
+logs/
+keys/
+
+# Secrets
+appsettings.Production.json
+*.pfx
+.env
+
+# Deploy (configs locales)
+deploy/project.config.json
+deploy/deploy-all.config.json
+deploy/deploy.local.ps1
+publish/
+
+# IDE
+.vs/
+.idea/
+*.user
+
+# OS
+Thumbs.db
+.DS_Store

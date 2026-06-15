@@ -1,0 +1,53 @@
+:root {
+    --sm-primary: #1e40af;
+    --sm-accent: #3b82f6;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: #fff !important;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+}
+
+.stat-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.15s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--sm-primary);
+}
+
+.template-editor {
+    min-height: 400px;
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+}
+
+.preview-pane {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    min-height: 400px;
+    background: #fff;
+    overflow: auto;
+}
+
+.variable-badge {
+    cursor: pointer;
+    user-select: none;
+}
+
+.badge-status-Queued { background: #6c757d; }
+.badge-status-Sending { background: #0dcaf0; }
+.badge-status-Sent { background: #198754; }
+.badge-status-Failed { background: #dc3545; }
+.badge-status-Cancelled { background: #ffc107; color: #000; }

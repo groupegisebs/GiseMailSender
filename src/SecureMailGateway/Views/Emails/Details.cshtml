@@ -1,0 +1,62 @@
+@model EmailMessage
+@using System.Text.Json
+@{ ViewData["Title"] = $"E-mail {Model.MailCode}"; }
+
+<h1 class="mb-2"><code>@Model.MailCode</code></h1>
+<p class="text-muted">Tracking ID: @Model.Id</p>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card p-3">
+            <h5>Informations</h5>
+            <dl class="row mb-0">
+                <dt class="col-4">Statut</dt>
+                <dd class="col-8"><span class="badge badge-status-@Model.Status">@Model.Status</span></dd>
+                <dt class="col-4">Application</dt>
+                <dd class="col-8">@Model.ClientApplication?.Name</dd>
+                <dt class="col-4">Template</dt>
+                <dd class="col-8">@(Model.TemplateCode ?? "—")</dd>
+                <dt class="col-4">Sujet</dt>
+                <dd class="col-8">@Model.Subject</dd>
+                <dt class="col-4">À</dt>
+                <dd class="col-8">@string.Join(", ", JsonSerializer.Deserialize<List<string>>(Model.ToAddresses) ?? [])</dd>
+                <dt class="col-4">Priorité</dt>
+                <dd class="col-8">@Model.Priority</dd>
+                <dt class="col-4">File</dt>
+                <dd class="col-8">@Model.QueuedAt.LocalDateTime.ToString("g")</dd>
+                @if (Model.SentAt.HasValue)
+                {
+                    <dt class="col-4">Envoyé</dt>
+                    <dd class="col-8">@Model.SentAt.Value.LocalDateTime.ToString("g")</dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <dt class="col-4">Erreur</dt>
+                    <dd class="col-8 text-danger">@Model.ErrorMessage</dd>
+                }
+            </dl>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3">
+            <h5>Journal d'envoi</h5>
+            <ul class="list-group list-group-flush">
+                @foreach (var log in Model.SendLogs)
+                {
+                    <li class="list-group-item px-0">
+                        <strong>@log.EventType</strong> — @log.CreatedAt.LocalDateTime.ToString("g")
+                        @if (!string.IsNullOrEmpty(log.Message)) { <br /><span class="small text-muted">@log.Message</span> }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card p-3">
+            <h5>Aperçu HTML</h5>
+            <div class="border rounded p-3 bg-white">@Html.Raw(Model.HtmlBody)</div>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-primary mt-3">Retour</a>

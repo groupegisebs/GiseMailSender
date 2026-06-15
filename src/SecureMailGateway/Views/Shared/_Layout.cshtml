@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SecureMail Gateway</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-light">
+    <div class="d-flex">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <nav class="sidebar bg-dark text-white p-3 d-none d-md-block" style="min-width:240px;min-height:100vh;">
+                <a class="text-white text-decoration-none fw-bold d-block mb-4" asp-controller="Dashboard" asp-action="Index">
+                    <i class="bi bi-shield-lock"></i> SecureMail
+                </a>
+                <ul class="nav flex-column gap-1">
+                    <li><a class="nav-link text-white-50" asp-controller="Dashboard" asp-action="Index"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                    <li><a class="nav-link text-white-50" asp-controller="Emails" asp-action="Index"><i class="bi bi-envelope"></i> E-mails</a></li>
+                    <li><a class="nav-link text-white-50" asp-controller="Templates" asp-action="Index"><i class="bi bi-file-earmark-richtext"></i> Templates</a></li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Developer"))
+                    {
+                        <li><a class="nav-link text-white-50" asp-controller="Clients" asp-action="Index"><i class="bi bi-app"></i> Applications</a></li>
+                        <li><a class="nav-link text-white-50" asp-controller="Tokens" asp-action="Index"><i class="bi bi-key"></i> Tokens API</a></li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li><a class="nav-link text-white-50" asp-controller="Smtp" asp-action="Index"><i class="bi bi-hdd-network"></i> SMTP</a></li>
+                        <li><a class="nav-link text-white-50" asp-controller="Users" asp-action="Index"><i class="bi bi-people"></i> Utilisateurs</a></li>
+                    }
+                    <li><a class="nav-link text-white-50" asp-controller="Audit" asp-action="Index"><i class="bi bi-journal-text"></i> Audit</a></li>
+                </ul>
+            </nav>
+        }
+        <div class="flex-grow-1">
+            <header class="bg-white border-bottom px-4 py-2 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Passerelle d'e-mails transactionnels sécurisée</span>
+                <partial name="_LoginPartial" />
+            </header>
+            <main class="p-4">
+                @if (TempData["TestResult"] is string testMsg)
+                {
+                    <div class="alert alert-success alert-dismissible fade show">@testMsg<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+                }
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

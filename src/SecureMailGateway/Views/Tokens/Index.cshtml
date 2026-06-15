@@ -1,0 +1,81 @@
+@model IEnumerable<ApiToken>
+@{
+    ViewData["Title"] = "Tokens API";
+    var clients = ViewBag.Clients as IEnumerable<ClientApplication> ?? [];
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-key"></i> Tokens API</h1>
+</div>
+
+<div class="card p-3 mb-4">
+    <h5>Générer un nouveau token</h5>
+    <form asp-action="Create" method="post" class="row g-2 align-items-end">
+        @Html.AntiForgeryToken()
+        <div class="col-md-4">
+            <label class="form-label">Application</label>
+            <select name="ClientApplicationId" class="form-select" required>
+                @foreach (var c in clients)
+                {
+                    <option value="@c.Id">@c.Name (@c.ClientCode)</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Nom</label>
+            <input name="Name" class="form-control" value="Production" required />
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Expiration (optionnel)</label>
+            <input name="ExpiresAt" class="form-control" type="datetime-local" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Générer</button>
+        </div>
+    </form>
+</div>
+
+<table class="table table-hover bg-white rounded shadow-sm">
+    <thead class="table-light">
+        <tr>
+            <th>Préfixe</th>
+            <th>Nom</th>
+            <th>Application</th>
+            <th>Créé</th>
+            <th>Dernière utilisation</th>
+            <th>Statut</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td><code>@t.TokenPrefix…</code></td>
+                <td>@t.Name</td>
+                <td>@t.ClientApplication.Name</td>
+                <td class="small">@t.CreatedAt.LocalDateTime.ToString("g")</td>
+                <td class="small">@(t.LastUsedAt?.LocalDateTime.ToString("g") ?? "—")</td>
+                <td>
+                    @if (t.IsActive) { <span class="badge bg-success">Actif</span> }
+                    else { <span class="badge bg-secondary">Révoqué</span> }
+                </td>
+                <td class="text-end">
+                    @if (t.IsActive)
+                    {
+                        <form class="d-inline" asp-action="Rotate" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@t.Id" />
+                            <button class="btn btn-sm btn-warning" type="submit">Rotation</button>
+                        </form>
+                        <form class="d-inline" asp-action="Revoke" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@t.Id" />
+                            <button class="btn btn-sm btn-outline-danger" type="submit">Révoquer</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
