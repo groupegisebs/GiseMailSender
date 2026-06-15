@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Prometheus;
+using SecureMailGateway.Configuration;
 using SecureMailGateway.Authorization;
 using SecureMailGateway.Data;
 using SecureMailGateway.Middleware;
@@ -21,6 +22,12 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Configuration.AddUbuntu1Overrides();
+    builder.ApplyListenUrl();
+
+    builder.Services.Configure<DeploymentSettings>(
+        builder.Configuration.GetSection(DeploymentSettings.SectionName));
+
     builder.Host.UseSerilog((ctx, services, config) => config
         .ReadFrom.Configuration(ctx.Configuration)
         .ReadFrom.Services(services)
@@ -29,7 +36,9 @@ try
         .WriteTo.File("logs/securemail-.log", rollingInterval: RollingInterval.Day));
 
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+        ?? builder.Configuration[$"{DeploymentSettings.SectionName}:ConnectionString"]
+        ?? throw new InvalidOperationException(
+            "Connection string introuvable. Définissez UBUNTU1_CONNECTION_STRING ou ConnectionStrings:DefaultConnection.");
 
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(connectionString));

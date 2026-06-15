@@ -64,7 +64,13 @@ ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" "mkdir -p '${STAGING_REMOTE}'"
 scp "${SCP_OPTS[@]}" -r "${PUBLISH_DIR}/." "${SSH_TARGET}:${STAGING_REMOTE}/"
 
 ENV_FILE="$(mktemp)"
-printf 'ConnectionStrings__DefaultConnection=%s\n' "${CONNECTION_STRING}" > "${ENV_FILE}"
+{
+  printf 'UBUNTU1_CONNECTION_STRING=%s\n' "${CONNECTION_STRING}"
+  printf 'UBUNTU1_APP_ROOT=%s\n' "${APP_ROOT}"
+  printf 'UBUNTU1_SERVICE_NAME=%s\n' "${SERVICE_NAME}"
+  printf 'UBUNTU1_LISTEN_PORT=%s\n' "${LISTEN_PORT}"
+  printf 'UBUNTU1_APP_NAME=%s\n' "${APP_NAME}"
+} > "${ENV_FILE}"
 scp "${SCP_OPTS[@]}" "${ENV_FILE}" "${SSH_TARGET}:/tmp/${SERVICE_NAME}.app.env"
 rm -f "${ENV_FILE}"
 
