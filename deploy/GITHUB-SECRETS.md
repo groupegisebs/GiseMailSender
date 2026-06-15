@@ -57,4 +57,8 @@ L’étape **Diagnose secrets** doit afficher `OK` pour la clé et la connection
 - [ ] `GISEMAIL_CONNECTION_STRING` créé au **dépôt**
 - [ ] Push sur `main` ou re-run workflow
 - [ ] Serveur : `sudo mkdir -p /opt/apps/securemail-gateway && sudo chown ubuntu:ubuntu /opt/apps/securemail-gateway`
-- [ ] BD : `dotnet ef database update` (une fois)
+- [ ] BD : créée automatiquement au déploiement, ou manuellement :
+  ```bash
+  ssh ubuntu@51.79.53.197
+  sudo -u postgres psql -c 'CREATE DATABASE "GiseMailSenderService" OWNER gisedocuser;'
+  ```

@@ -134,6 +134,27 @@ scp "${SCP_OPTS[@]}" "${SERVICE_FILE}" "${SSH_TARGET}:/tmp/${SERVICE_NAME}.servi
 rm -f "${SERVICE_FILE}"
 
 ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" "sudo cp '/tmp/${SERVICE_NAME}.service' '/etc/systemd/system/${SERVICE_NAME}.service' && rm -f '/tmp/${SERVICE_NAME}.service'"
+
+# Extraire le nom de base depuis la connection string
+DB_NAME="$(printf '%s' "${CONNECTION_STRING}" | sed -n 's/.*[Dd]atabase=\([^;]*\).*/\1/p')"
+DB_NAME="${DB_NAME:-GiseMailSenderService}"
+DB_OWNER="$(printf '%s' "${CONNECTION_STRING}" | sed -n 's/.*[Uu]sername=\([^;]*\).*/\1/p')"
+DB_OWNER="${DB_OWNER:-gisedocuser}"
+
+echo "Vérification base PostgreSQL '${DB_NAME}'..."
+ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" bash -s <<REMOTE_DB
+set -eu
+DB_NAME='${DB_NAME}'
+DB_OWNER='${DB_OWNER}'
+if sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='\${DB_NAME}'" | grep -q 1; then
+  echo "Base \${DB_NAME} déjà existante."
+else
+  echo "Création de la base \${DB_NAME} (owner \${DB_OWNER})..."
+  sudo -u postgres psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE \"\${DB_NAME}\" OWNER \${DB_OWNER};"
+fi
+sudo -u postgres psql -d "\${DB_NAME}" -v ON_ERROR_STOP=1 -c "GRANT ALL ON SCHEMA public TO \${DB_OWNER};" 2>/dev/null || true
+REMOTE_DB
+
 ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" "sudo systemctl daemon-reload && sudo systemctl enable ${SERVICE_NAME} && sudo systemctl start ${SERVICE_NAME}"
 
 echo "Attente démarrage ${SERVICE_NAME} (migrations EF au boot)..."

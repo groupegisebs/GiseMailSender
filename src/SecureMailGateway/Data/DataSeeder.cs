@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using SecureMailGateway.Authorization;
 using SecureMailGateway.Data;
 using SecureMailGateway.Models.Entities;
@@ -17,8 +18,18 @@ public static class DataSeeder
         var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<ApplicationDbContext>>();
 
-        // Schéma géré par EF Core : exécuter `dotnet ef database update` avant le premier démarrage.
-        await db.Database.MigrateAsync();
+        // Schéma géré par EF Core — la base doit exister (créée par deploy-gha.sh ou manuellement).
+        try
+        {
+            await db.Database.MigrateAsync();
+        }
+        catch (PostgresException ex) when (ex.SqlState == "42501" && ex.MessageText.Contains("create database", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException(
+                "La base PostgreSQL n'existe pas et l'utilisateur applicatif ne peut pas la créer (CREATEDB). " +
+                "Sur le serveur, exécutez : sudo -u postgres psql -c \"CREATE DATABASE \\\"GiseMailSenderService\\\" OWNER gisedocuser;\" " +
+                "ou relancez le déploiement (deploy-gha.sh crée la base automatiquement).", ex);
+        }
 
         foreach (var role in AppRoles.All)
         {
