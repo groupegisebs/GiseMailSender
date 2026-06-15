@@ -4,17 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-    inputs:
-      server:
-        description: Serveur cible
-        required: true
-        default: ubuntu1
-        type: choice
-        options:
-          - ubuntu1
 
 concurrency:
-  group: deploy-${{ github.event.inputs.server || 'ubuntu1' }}
+  group: deploy-ubuntu1
   cancel-in-progress: true
 
 permissions:
@@ -24,13 +16,18 @@ env:
   DOTNET_VERSION: "10.0.x"
   PROJECT_PATH: src/SecureMailGateway/SecureMailGateway.csproj
   DLL_NAME: SecureMailGateway.dll
-  TARGET_SERVER: ${{ github.event.inputs.server || 'ubuntu1' }}
+  # Valeurs serveur UBUNTU1 (non sensibles — utilisées si secrets host/user absents)
+  DEFAULT_SSH_HOST: "51.79.53.197"
+  DEFAULT_SSH_USER: "ubuntu"
+  DEFAULT_SSH_PORT: "22"
+  DEFAULT_APP_ROOT: "/opt/apps/securemail-gateway"
+  DEFAULT_SERVICE_NAME: "securemail-gateway"
+  DEFAULT_LISTEN_PORT: "5060"
+  DEFAULT_APP_NAME: "SecureMail Gateway"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # Pas de "environment:" ici — les secrets org ne sont visibles que si le dépôt
-    # GiseMailSender est autorisé dans Organisation → Secrets → Repository access.
 
     steps:
       - name: Checkout
@@ -50,41 +47,39 @@ jobs:
       - name: Prepare deploy scripts
         run: chmod +x deploy/deploy-gha.sh deploy/gha-env.sh
 
-      - name: Diagnose secret availability
+      - name: Diagnose secrets (noms acceptés)
         run: |
-          echo "Organisation : ${{ github.repository_owner }}"
-          echo "Dépôt        : ${{ github.repository }}"
-          check() { if [ -n "$2" ]; then echo "  OK  $1"; else echo "  --  $1 (absent pour ce dépôt)"; fi; }
-          check "SSH_PRIVATE_KEY_UBUNTU1 (org/repo secret)" "${{ secrets.SSH_PRIVATE_KEY_UBUNTU1 }}"
-          check "SSH_HOST_UBUNTU1 (org variable)"         "${{ vars.SSH_HOST_UBUNTU1 }}"
-          check "SSH_HOST_UBUNTU1 (org/repo secret)"      "${{ secrets.SSH_HOST_UBUNTU1 }}"
-          check "SSH_USER_UBUNTU1 (org variable)"         "${{ vars.SSH_USER_UBUNTU1 }}"
-          check "SSH_USER_UBUNTU1 (org/repo secret)"      "${{ secrets.SSH_USER_UBUNTU1 }}"
-          check "UBUNTU1_CONNECTION_STRING (repo secret)" "${{ secrets.UBUNTU1_CONNECTION_STRING }}"
-          check "UBUNTU1_APP_ROOT (repo var/secret)"    "${{ vars.UBUNTU1_APP_ROOT }}${{ secrets.UBUNTU1_APP_ROOT }}"
+          echo "Dépôt : ${{ github.repository }}"
           echo ""
-          echo "Si des lignes '--' apparaissent pour les secrets SSH org :"
-          echo "  https://github.com/organizations/${{ github.repository_owner }}/settings/secrets/actions"
-          echo "  → chaque secret → Repository access → cocher GiseMailSender"
+          echo "Secrets SSH (un seul suffit) :"
+          echo "  SSH_PRIVATE_KEY_UBUNTU1  → ${{ secrets.SSH_PRIVATE_KEY_UBUNTU1 != '' && 'OK' || 'manquant' }}"
+          echo "  GISEMAIL_SSH_PRIVATE_KEY → ${{ secrets.GISEMAIL_SSH_PRIVATE_KEY != '' && 'OK' || 'manquant' }}"
+          echo ""
+          echo "Connection string (un seul suffit) :"
+          echo "  UBUNTU1_CONNECTION_STRING  → ${{ secrets.UBUNTU1_CONNECTION_STRING != '' && 'OK' || 'manquant' }}"
+          echo "  GISEMAIL_CONNECTION_STRING → ${{ secrets.GISEMAIL_CONNECTION_STRING != '' && 'OK' || 'manquant' }}"
+          echo ""
+          echo "Host/User : secret, variable, ou défaut workflow (51.79.53.197 / ubuntu)"
+          echo "Guide : https://github.com/${{ github.repository }}/blob/main/deploy/GITHUB-SECRETS.md"
 
       - name: Load configuration
         env:
-          SSH_PRIVATE_KEY_ORG: ${{ secrets.SSH_PRIVATE_KEY_UBUNTU1 }}
-          SSH_HOST_VAR: ${{ vars.SSH_HOST_UBUNTU1 }}
-          SSH_HOST_SECRET: ${{ secrets.SSH_HOST_UBUNTU1 }}
-          SSH_USER_VAR: ${{ vars.SSH_USER_UBUNTU1 }}
-          SSH_USER_SECRET: ${{ secrets.SSH_USER_UBUNTU1 }}
-          SSH_PORT_VAR: ${{ vars.SSH_PORT_UBUNTU1 }}
-          SSH_PORT_SECRET: ${{ secrets.SSH_PORT_UBUNTU1 }}
+          KEY_UBUNTU1: ${{ secrets.SSH_PRIVATE_KEY_UBUNTU1 }}
+          KEY_GISEMAIL: ${{ secrets.GISEMAIL_SSH_PRIVATE_KEY }}
+          HOST_VAR: ${{ vars.SSH_HOST_UBUNTU1 }}
+          HOST_SECRET: ${{ secrets.SSH_HOST_UBUNTU1 }}
+          USER_VAR: ${{ vars.SSH_USER_UBUNTU1 }}
+          USER_SECRET: ${{ secrets.SSH_USER_UBUNTU1 }}
+          PORT_VAR: ${{ vars.SSH_PORT_UBUNTU1 }}
+          PORT_SECRET: ${{ secrets.SSH_PORT_UBUNTU1 }}
+          CONN_UBUNTU1: ${{ secrets.UBUNTU1_CONNECTION_STRING }}
+          CONN_GISEMAIL: ${{ secrets.GISEMAIL_CONNECTION_STRING }}
           APP_ROOT_VAR: ${{ vars.UBUNTU1_APP_ROOT }}
           APP_ROOT_SECRET: ${{ secrets.UBUNTU1_APP_ROOT }}
-          SERVICE_NAME_VAR: ${{ vars.UBUNTU1_SERVICE_NAME }}
-          SERVICE_NAME_SECRET: ${{ secrets.UBUNTU1_SERVICE_NAME }}
-          APP_NAME_VAR: ${{ vars.UBUNTU1_APP_NAME }}
-          APP_NAME_SECRET: ${{ secrets.UBUNTU1_APP_NAME }}
-          LISTEN_PORT_VAR: ${{ vars.UBUNTU1_LISTEN_PORT }}
-          LISTEN_PORT_SECRET: ${{ secrets.UBUNTU1_LISTEN_PORT }}
-          CONNECTION_STRING_SECRET: ${{ secrets.UBUNTU1_CONNECTION_STRING }}
+          SERVICE_VAR: ${{ vars.UBUNTU1_SERVICE_NAME }}
+          SERVICE_SECRET: ${{ secrets.UBUNTU1_SERVICE_NAME }}
+          PORT_APP_VAR: ${{ vars.UBUNTU1_LISTEN_PORT }}
+          PORT_APP_SECRET: ${{ secrets.UBUNTU1_LISTEN_PORT }}
         run: |
           source deploy/gha-env.sh
 
@@ -98,31 +93,22 @@ jobs:
             return 1
           }
 
-          SSH_PRIVATE_KEY="$SSH_PRIVATE_KEY_ORG"
-          SSH_HOST_RAW=$(pick_first "$SSH_HOST_VAR" "$SSH_HOST_SECRET") || true
-          SSH_USER_RAW=$(pick_first "$SSH_USER_VAR" "$SSH_USER_SECRET") || true
-          SSH_PORT_RAW=$(pick_first "$SSH_PORT_VAR" "$SSH_PORT_SECRET" "22") || true
-          APP_ROOT_RAW=$(pick_first "$APP_ROOT_VAR" "$APP_ROOT_SECRET" "/opt/apps/securemail-gateway") || true
-          SERVICE_NAME_RAW=$(pick_first "$SERVICE_NAME_VAR" "$SERVICE_NAME_SECRET" "securemail-gateway") || true
-          APP_NAME_RAW=$(pick_first "$APP_NAME_VAR" "$APP_NAME_SECRET" "SecureMail Gateway") || true
-          LISTEN_PORT_RAW=$(pick_first "$LISTEN_PORT_VAR" "$LISTEN_PORT_SECRET" "5060") || true
-          CONNECTION_STRING_RAW="$CONNECTION_STRING_SECRET"
+          SSH_PRIVATE_KEY=$(pick_first "$KEY_GISEMAIL" "$KEY_UBUNTU1") || true
+          SSH_HOST_RAW=$(pick_first "$HOST_VAR" "$HOST_SECRET" "$DEFAULT_SSH_HOST") || true
+          SSH_USER_RAW=$(pick_first "$USER_VAR" "$USER_SECRET" "$DEFAULT_SSH_USER") || true
+          SSH_PORT_RAW=$(pick_first "$PORT_VAR" "$PORT_SECRET" "$DEFAULT_SSH_PORT") || true
+          CONNECTION_STRING_RAW=$(pick_first "$CONN_GISEMAIL" "$CONN_UBUNTU1") || true
+          APP_ROOT_RAW=$(pick_first "$APP_ROOT_VAR" "$APP_ROOT_SECRET" "$DEFAULT_APP_ROOT") || true
+          SERVICE_NAME_RAW=$(pick_first "$SERVICE_VAR" "$SERVICE_SECRET" "$DEFAULT_SERVICE_NAME") || true
+          LISTEN_PORT_RAW=$(pick_first "$PORT_APP_VAR" "$PORT_APP_SECRET" "$DEFAULT_LISTEN_PORT") || true
 
           missing=0
           if [ -z "$SSH_PRIVATE_KEY" ]; then
-            echo "::error::SSH_PRIVATE_KEY_UBUNTU1 inaccessible. Org ${{ github.repository_owner }} → Settings → Secrets → Repository access → ajouter GiseMailSender"
-            missing=1
-          fi
-          if [ -z "$SSH_HOST_RAW" ]; then
-            echo "::error::SSH_HOST_UBUNTU1 inaccessible (variable ou secret org). Vérifier Repository access pour GiseMailSender."
-            missing=1
-          fi
-          if [ -z "$SSH_USER_RAW" ]; then
-            echo "::error::SSH_USER_UBUNTU1 inaccessible (variable ou secret org). Vérifier Repository access pour GiseMailSender."
+            echo "::error::Clé SSH manquante. Ajoutez le secret GISEMAIL_SSH_PRIVATE_KEY ou SSH_PRIVATE_KEY_UBUNTU1 au dépôt."
             missing=1
           fi
           if [ -z "$CONNECTION_STRING_RAW" ]; then
-            echo "::error::UBUNTU1_CONNECTION_STRING manquant — secret au niveau du dépôt GiseMailSender"
+            echo "::error::Connection string manquante. Ajoutez GISEMAIL_CONNECTION_STRING ou UBUNTU1_CONNECTION_STRING au dépôt."
             missing=1
           fi
           [ "$missing" -eq 0 ] || exit 1
@@ -132,9 +118,7 @@ jobs:
           SSH_PORT=$(gha_sanitize "$SSH_PORT_RAW")
           APP_ROOT=$(gha_sanitize "$APP_ROOT_RAW")
           SERVICE_NAME=$(gha_sanitize "$SERVICE_NAME_RAW")
-          APP_NAME=$(gha_sanitize "$APP_NAME_RAW")
           LISTEN_PORT=$(gha_sanitize "$LISTEN_PORT_RAW")
-          CONNECTION_STRING=$(gha_sanitize "$CONNECTION_STRING_RAW")
 
           gha_write_env SSH_PRIVATE_KEY "$SSH_PRIVATE_KEY"
           gha_write_env SSH_HOST "$SSH_HOST"
@@ -142,28 +126,27 @@ jobs:
           gha_write_env SSH_PORT "$SSH_PORT"
           gha_write_env APP_ROOT "$APP_ROOT"
           gha_write_env SERVICE_NAME "$SERVICE_NAME"
-          gha_write_env APP_NAME "$APP_NAME"
+          gha_write_env APP_NAME "$DEFAULT_APP_NAME"
           gha_write_env LISTEN_PORT "$LISTEN_PORT"
-          gha_write_env CONNECTION_STRING "$CONNECTION_STRING"
-          echo "Configuration OK (host=${SSH_HOST}, user=${SSH_USER}, service=${SERVICE_NAME})"
+          gha_write_env CONNECTION_STRING "$(gha_sanitize "$CONNECTION_STRING_RAW")"
+          echo "OK → ${SSH_USER}@${SSH_HOST}:${SSH_PORT} service=${SERVICE_NAME}"
 
       - name: Setup SSH key
         id: ssh
         run: |
-          mkdir -p "$HOME/.ssh"
-          chmod 700 "$HOME/.ssh"
+          mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
           printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/deploy_key"
           chmod 600 "$HOME/.ssh/deploy_key"
-          if ! ssh-keygen -y -f "$HOME/.ssh/deploy_key" > /dev/null 2>&1; then
-            echo "::error::SSH_PRIVATE_KEY_UBUNTU1 invalide (format clé incorrect)."
+          ssh-keygen -y -f "$HOME/.ssh/deploy_key" > /dev/null 2>&1 || {
+            echo "::error::Clé SSH invalide — vérifiez le format multiligne (BEGIN/END OPENSSH PRIVATE KEY)"
             exit 1
-          fi
+          }
           echo "SSH_KEY_PATH=$HOME/.ssh/deploy_key" >> "$GITHUB_ENV"
 
       - name: Add server to known_hosts
         run: ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> "$HOME/.ssh/known_hosts"
 
-      - name: Deploy to ${{ env.TARGET_SERVER }}
+      - name: Deploy
         env:
           SSH_KEY_PATH: ${{ env.SSH_KEY_PATH }}
           DLL_NAME: ${{ env.DLL_NAME }}
@@ -171,14 +154,7 @@ jobs:
         run: bash deploy/deploy-gha.sh
 
       - name: Service status
-        if: success() || failure()
-        env:
-          SSH_KEY_PATH: ${{ env.SSH_KEY_PATH }}
+        if: always() && steps.ssh.outcome == 'success'
         run: |
-          if [ "${{ steps.ssh.outcome }}" != "success" ]; then
-            echo "SSH non configuré — étape ignorée."
-            exit 0
-          fi
-          ssh -i "$SSH_KEY_PATH" -p "$SSH_PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes \
-            "${SSH_USER}@${SSH_HOST}" \
+          ssh -i "$SSH_KEY_PATH" -p "$SSH_PORT" -o BatchMode=yes "${SSH_USER}@${SSH_HOST}" \
             "sudo systemctl status ${SERVICE_NAME} --no-pager || true"
