@@ -32,11 +32,15 @@ public class DashboardService(ApplicationDbContext db) : IDashboardService
         var sentToday = await db.EmailMessages.CountAsync(m => m.Status == EmailStatus.Sent && m.SentAt >= today, ct);
         var failedToday = await db.EmailMessages.CountAsync(m => m.Status == EmailStatus.Failed && m.FailedAt >= today, ct);
 
-        var avgSend = await db.EmailMessages
+        var sentDurations = await db.EmailMessages
+            .AsNoTracking()
             .Where(m => m.Status == EmailStatus.Sent && m.SentAt != null && m.SendingAt != null)
-            .Select(m => (m.SentAt!.Value - m.SendingAt!.Value).TotalMilliseconds)
-            .DefaultIfEmpty(0)
-            .AverageAsync(ct);
+            .Select(m => new { m.SentAt, m.SendingAt })
+            .ToListAsync(ct);
+
+        var avgSend = sentDurations.Count == 0
+            ? 0
+            : sentDurations.Average(m => (m.SentAt!.Value - m.SendingAt!.Value).TotalMilliseconds);
 
         var apiCalls = await db.ApiCallLogs
             .Where(l => l.CreatedAt >= today && l.ClientApplicationId != null)
