@@ -2,10 +2,10 @@
     'use strict';
 
     const htmlBodyEl = document.getElementById('htmlBody');
-    if (!htmlBodyEl || typeof jQuery === 'undefined' || !jQuery.fn.summernote) return;
-
-    const $htmlBody = jQuery('#htmlBody');
+    const rteEditor = document.getElementById('rteEditor');
     const variableListEl = document.getElementById('variableList');
+    if (!htmlBodyEl || !rteEditor || !variableListEl) return;
+
     const previewUrl = htmlBodyEl.dataset.previewUrl;
     const defaultVariables = (htmlBodyEl.dataset.variables || 'FirstName,CompanyName,Title,Message')
         .split(',').map(v => v.trim()).filter(Boolean);
@@ -56,7 +56,8 @@
         }
     };
 
-    const knownVariables = new Set(defaultVariables);
+    const knownVariables = new Set();
+    let htmlMode = false;
 
     function normalizeVariableName(name) {
         return name.trim().replace(/\s+/g, '');
@@ -85,7 +86,7 @@
         const select = document.getElementById('variableInsertSelect');
         if (!select) return;
         const current = select.value;
-        select.innerHTML = '<option value="">— Choisir une variable —</option>';
+        select.innerHTML = '<option value="">— Choisir —</option>';
         [...knownVariables].sort().forEach(name => {
             const opt = document.createElement('option');
             opt.value = name;
@@ -122,19 +123,38 @@
         });
     }
 
-    function insertVariable(name) {
-        const token = variableToken(name);
-        $htmlBody.summernote('focus');
-        $htmlBody.summernote('insertText', token);
+    function syncHtmlFromEditor() {
+        htmlBodyEl.value = rteEditor.innerHTML;
+    }
+
+    function syncEditorFromHtml() {
+        rteEditor.innerHTML = htmlBodyEl.value || '<p><br></p>';
     }
 
     function getHtmlBody() {
-        return $htmlBody.summernote('code') || htmlBodyEl.value;
+        return htmlMode ? htmlBodyEl.value : rteEditor.innerHTML;
     }
 
     function setHtmlBody(html) {
-        $htmlBody.summernote('code', html);
         htmlBodyEl.value = html;
+        if (!htmlMode) rteEditor.innerHTML = html || '<p><br></p>';
+    }
+
+    function insertVariable(name) {
+        const token = variableToken(name);
+        if (htmlMode) {
+            const start = htmlBodyEl.selectionStart ?? htmlBodyEl.value.length;
+            const end = htmlBodyEl.selectionEnd ?? htmlBodyEl.value.length;
+            htmlBodyEl.value = htmlBodyEl.value.slice(0, start) + token + htmlBodyEl.value.slice(end);
+            htmlBodyEl.focus();
+            htmlBodyEl.selectionStart = htmlBodyEl.selectionEnd = start + token.length;
+        } else {
+            rteEditor.focus();
+            document.execCommand('insertText', false, token);
+            syncHtmlFromEditor();
+        }
+        extractVariablesFromContent();
+        updatePreview();
     }
 
     function getSampleData() {
@@ -204,36 +224,80 @@
         syncSampleFieldsFromVariables();
     }
 
+    function runCommand(cmd, value) {
+        if (htmlMode) return;
+        rteEditor.focus();
+        document.execCommand(cmd, false, value ?? null);
+        syncHtmlFromEditor();
+        extractVariablesFromContent();
+        updatePreview();
+    }
+
+    function toggleHtmlMode() {
+        const btn = document.getElementById('btnToggleHtml');
+        if (!htmlMode) {
+            syncHtmlFromEditor();
+            rteEditor.classList.add('d-none');
+            htmlBodyEl.classList.remove('d-none');
+            htmlBodyEl.classList.add('mail-editor-html');
+            htmlMode = true;
+            btn.innerHTML = '<i class="bi bi-eye"></i> Visuel';
+            btn.classList.replace('btn-outline-secondary', 'btn-secondary');
+        } else {
+            htmlBodyEl.classList.add('d-none');
+            htmlBodyEl.classList.remove('mail-editor-html');
+            rteEditor.classList.remove('d-none');
+            syncEditorFromHtml();
+            htmlMode = false;
+            btn.innerHTML = '<i class="bi bi-code-slash"></i> HTML';
+            btn.classList.replace('btn-secondary', 'btn-outline-secondary');
+            extractVariablesFromContent();
+            updatePreview();
+        }
+    }
+
     bindExistingVariableBadges();
     defaultVariables.forEach(v => addVariable(v, true));
     syncSampleFieldsFromVariables();
     refreshVariableSelect();
 
-    $htmlBody.summernote({
-        height: 380,
-        lang: 'fr-FR',
-        placeholder: 'Rédigez votre e-mail ici…',
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'italic', 'underline', 'clear']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['insert', ['link']],
-            ['view', ['codeview', 'fullscreen']]
-        ],
-        styleTags: ['p', 'h1', 'h2', 'h3'],
-        callbacks: {
-            onInit: function () {
-                extractVariablesFromContent();
-                updatePreview();
-            },
-            onChange: function () {
-                extractVariablesFromContent();
-                updatePreview();
-            },
-            onBlur: function () {
-                htmlBodyEl.value = getHtmlBody();
+    syncEditorFromHtml();
+    if (!htmlBodyEl.value.trim()) rteEditor.innerHTML = '<p><br></p>';
+
+    document.querySelectorAll('[data-rte-cmd]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const cmd = btn.dataset.rteCmd;
+            if (cmd === 'createLink') {
+                const url = prompt('Adresse du lien (https://...)');
+                if (url) runCommand('createLink', url);
+                return;
             }
+            if (cmd === 'formatBlock') {
+                runCommand('formatBlock', btn.dataset.rteValue);
+                return;
+            }
+            runCommand(cmd);
+        });
+    });
+
+    document.getElementById('rteHeading')?.addEventListener('change', e => {
+        runCommand('formatBlock', e.target.value);
+        e.target.value = '';
+    });
+
+    document.getElementById('rteColor')?.addEventListener('input', e => runCommand('foreColor', e.target.value));
+    document.getElementById('btnToggleHtml')?.addEventListener('click', toggleHtmlMode);
+
+    rteEditor.addEventListener('input', () => {
+        syncHtmlFromEditor();
+        extractVariablesFromContent();
+        updatePreview();
+    });
+
+    htmlBodyEl.addEventListener('input', () => {
+        if (htmlMode) {
+            extractVariablesFromContent();
+            updatePreview();
         }
     });
 
@@ -277,10 +341,11 @@
     document.querySelectorAll('.sample-field').forEach(el => el.addEventListener('input', updatePreview));
 
     document.getElementById('templateForm')?.addEventListener('submit', () => {
-        htmlBodyEl.value = getHtmlBody();
+        if (!htmlMode) syncHtmlFromEditor();
     });
 
     document.getElementById('testModal')?.addEventListener('show.bs.modal', function () {
+        if (!htmlMode) syncHtmlFromEditor();
         document.getElementById('testSubject').value = document.getElementById('subjectTemplate').value;
         document.getElementById('testHtml').value = getHtmlBody();
         document.getElementById('testText').value = document.getElementById('textBody').value;
@@ -290,4 +355,7 @@
             container.innerHTML += `<input type="hidden" name="SampleData[${k}]" value="${v.replace(/"/g, '&quot;')}" />`;
         });
     });
+
+    extractVariablesFromContent();
+    updatePreview();
 })();
