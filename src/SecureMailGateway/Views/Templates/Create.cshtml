@@ -35,6 +35,7 @@
     <div class="row">
         <div class="col-lg-6">
             <label asp-for="HtmlBody" class="form-label">Corps HTML</label>
+            <div class="form-text mb-1">Saisissez le HTML directement (ex. <code>&lt;p&gt;Bonjour {{FirstName}}&lt;/p&gt;</code>). L'aperçu se met à jour automatiquement.</div>
             <textarea asp-for="HtmlBody" class="form-control template-editor" id="htmlBody" rows="18"></textarea>
             <label asp-for="TextBody" class="form-label mt-2">Corps texte (optionnel)</label>
             <textarea asp-for="TextBody" class="form-control" rows="4" id="textBody"></textarea>
@@ -107,8 +108,9 @@
 }
 
 @section Scripts {
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
+        const htmlBodyEl = document.getElementById('htmlBody');
+
         function getSampleData() {
             const data = {};
             document.querySelectorAll('.sample-field').forEach(el => {
@@ -117,13 +119,22 @@
             return data;
         }
 
+        function insertAtCursor(textarea, text) {
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const value = textarea.value;
+            textarea.value = value.slice(0, start) + text + value.slice(end);
+            textarea.selectionStart = textarea.selectionEnd = start + text.length;
+            textarea.focus();
+        }
+
         async function updatePreview() {
             const res = await fetch('@Url.Action("Preview")', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value },
                 body: JSON.stringify({
                     subjectTemplate: document.getElementById('subjectTemplate').value,
-                    htmlBody: tinymce.get('htmlBody')?.getContent() || document.getElementById('htmlBody').value,
+                    htmlBody: htmlBodyEl.value,
                     textBody: document.getElementById('textBody').value,
                     sampleData: getSampleData()
                 })
@@ -133,31 +144,20 @@
         }
 
         document.getElementById('btnPreview')?.addEventListener('click', updatePreview);
+        document.getElementById('subjectTemplate').addEventListener('input', updatePreview);
+        htmlBodyEl.addEventListener('input', updatePreview);
+        document.getElementById('textBody').addEventListener('input', updatePreview);
         document.querySelectorAll('.sample-field').forEach(el => el.addEventListener('input', updatePreview));
 
         document.querySelectorAll('.variable-badge').forEach(b => {
-            b.addEventListener('click', () => {
-                const v = b.dataset.var;
-                if (tinymce.get('htmlBody')) tinymce.get('htmlBody').insertContent(v);
-            });
-        });
-
-        tinymce.init({
-            selector: '#htmlBody',
-            height: 400,
-            menubar: false,
-            plugins: 'lists link image code',
-            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | link image | code',
-            setup: function (editor) {
-                editor.on('change keyup', () => updatePreview());
-            }
+            b.addEventListener('click', () => insertAtCursor(htmlBodyEl, b.dataset.var));
         });
 
         updatePreview();
 
         document.getElementById('testModal')?.addEventListener('show.bs.modal', function () {
             document.getElementById('testSubject').value = document.getElementById('subjectTemplate').value;
-            document.getElementById('testHtml').value = tinymce.get('htmlBody')?.getContent() || '';
+            document.getElementById('testHtml').value = htmlBodyEl.value;
             document.getElementById('testText').value = document.getElementById('textBody').value;
             const container = document.getElementById('testSampleData');
             container.innerHTML = '';

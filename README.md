@@ -8,7 +8,7 @@ Passerelle sécurisée d'envoi d'e-mails transactionnels pour applications SaaS.
 - PostgreSQL + Entity Framework Core
 - Hangfire (file d'attente d'envoi)
 - Serilog (logs)
-- Bootstrap 5 + TinyMCE (éditeur WYSIWYG)
+- Bootstrap 5 (éditeur HTML simple + aperçu en temps réel)
 - Identity (rôles Admin / Developer / Viewer)
 - API Key / Bearer Token
 - Prometheus (`/metrics`) + Health (`/health`)
