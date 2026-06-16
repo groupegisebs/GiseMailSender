@@ -51,3 +51,93 @@
 .badge-status-Sent { background: #198754; }
 .badge-status-Failed { background: #dc3545; }
 .badge-status-Cancelled { background: #ffc107; color: #000; }
+
+/* --- Page de connexion --- */
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%);
+}
+
+.login-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+    padding: 2.5rem 2rem;
+}
+
+.login-brand {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-brand h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sm-primary);
+    margin: 0.75rem 0 0.25rem;
+}
+
+.login-logo {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--sm-primary), var(--sm-accent));
+    border-radius: 16px;
+    color: #fff;
+    font-size: 1.75rem;
+}
+
+.login-logo--warning {
+    background: linear-gradient(135deg, #b45309, #f59e0b);
+}
+
+.login-form .input-group-text {
+    background: #f8fafc;
+    border-right: none;
+    color: #64748b;
+}
+
+.login-form .form-control {
+    border-left: none;
+}
+
+.login-form .form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.login-form .input-group:focus-within .input-group-text,
+.login-form .input-group:focus-within .form-control {
+    border-color: var(--sm-accent);
+}
+
+.login-submit {
+    padding: 0.65rem;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.login-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 1.5rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.login-form .alert-danger:empty {
+    display: none;
+}
