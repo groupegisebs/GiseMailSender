@@ -42,7 +42,6 @@ public class HealthController(ApplicationDbContext db, IOptions<DeploymentSettin
     private readonly DeploymentSettings _deployment = deployment.Value;
 
     [HttpGet("")]
-    [Route("/health")]
     public async Task<IActionResult> Get(CancellationToken ct)
     {
         try

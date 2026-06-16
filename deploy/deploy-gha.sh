@@ -146,13 +146,18 @@ ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" bash -s <<REMOTE_DB
 set -eu
 DB_NAME='${DB_NAME}'
 DB_OWNER='${DB_OWNER}'
-if sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='\${DB_NAME}'" | grep -q 1; then
-  echo "Base \${DB_NAME} déjà existante."
-else
+if ! command -v psql >/dev/null 2>&1; then
+  echo "::error::psql introuvable sur le serveur — installez postgresql-client"
+  exit 1
+fi
+if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='\${DB_NAME}'" | grep -q 1; then
   echo "Création de la base \${DB_NAME} (owner \${DB_OWNER})..."
   sudo -u postgres psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE \"\${DB_NAME}\" OWNER \${DB_OWNER};"
+else
+  echo "Base \${DB_NAME} déjà existante."
 fi
-sudo -u postgres psql -d "\${DB_NAME}" -v ON_ERROR_STOP=1 -c "GRANT ALL ON SCHEMA public TO \${DB_OWNER};" 2>/dev/null || true
+sudo -u postgres psql -d "\${DB_NAME}" -v ON_ERROR_STOP=1 -c "GRANT ALL ON SCHEMA public TO \${DB_OWNER};"
+echo "Base \${DB_NAME} prête."
 REMOTE_DB
 
 ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" "sudo systemctl daemon-reload && sudo systemctl enable ${SERVICE_NAME} && sudo systemctl start ${SERVICE_NAME}"
@@ -162,12 +167,16 @@ ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" bash -s <<REMOTE_HEALTH
 set -eu
 PORT='${LISTEN_PORT}'
 for i in \$(seq 1 45); do
-  if curl -fsS -o /dev/null "http://127.0.0.1:\${PORT}/health" 2>/dev/null; then
-    echo "Healthcheck /health OK après \${i} tentative(s)"
+  HTTP_CODE=\$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:\${PORT}/health" 2>/dev/null || echo "000")
+  if [ "\${HTTP_CODE}" = "200" ]; then
+    echo "Healthcheck /health OK (HTTP 200) après \${i} tentative(s)"
     exit 0
   fi
   if ! systemctl is-active --quiet '${SERVICE_NAME}'; then
+    echo "Service inactif (tentative \${i}, HTTP \${HTTP_CODE})"
     journalctl -u '${SERVICE_NAME}' -n 15 --no-pager || true
+  elif [ "\${HTTP_CODE}" != "000" ] && [ "\${i}" -ge 3 ]; then
+    echo "Healthcheck HTTP \${HTTP_CODE} (tentative \${i})"
   fi
   sleep 2
 done
