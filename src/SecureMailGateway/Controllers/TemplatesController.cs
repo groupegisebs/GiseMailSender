@@ -24,10 +24,7 @@ public class TemplatesController(
         return View(templates);
     }
 
-    public IActionResult Create() => View(new EmailTemplateViewModel
-    {
-        HtmlBody = """<div style="font-family:Arial,sans-serif;padding:20px;"><h1>{{Title}}</h1><p>Bonjour {{FirstName}},</p><p>{{Message}}</p></div>"""
-    });
+    public IActionResult Create() => View(new EmailTemplateViewModel());
 
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(EmailTemplateViewModel model, CancellationToken ct)

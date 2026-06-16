@@ -1,5 +1,10 @@
 @model EmailTemplateViewModel
-@{ ViewData["Title"] = Model.Id.HasValue ? "Éditer le template" : "Nouveau template"; }
+@{
+    ViewData["Title"] = Model.Id.HasValue ? "Éditer le template" : "Nouveau template";
+    var variableNames = Model.Variables.Count > 0
+        ? Model.Variables
+        : ["FirstName", "CompanyName", "Title", "Message"];
+}
 
 <h1 class="mb-4">@ViewData["Title"]</h1>
 
@@ -27,40 +32,96 @@
             </div>
         </div>
         <div class="col-12">
-            <label asp-for="SubjectTemplate" class="form-label">Sujet (variables {{Nom}})</label>
-            <input asp-for="SubjectTemplate" class="form-control" id="subjectTemplate" />
+            <label asp-for="SubjectTemplate" class="form-label">Sujet</label>
+            <div class="input-group">
+                <input asp-for="SubjectTemplate" class="form-control" id="subjectTemplate" placeholder="Ex. Bienvenue {{FirstName}} chez {{CompanyName}}" />
+                <button type="button" class="btn btn-outline-secondary btn-insert-var" data-target="subjectTemplate" title="Insérer une variable dans le sujet">
+                    <i class="bi bi-braces"></i> Variable
+                </button>
+            </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-6">
-            <label asp-for="HtmlBody" class="form-label">Corps HTML</label>
-            <div class="form-text mb-1">Saisissez le HTML directement (ex. <code>&lt;p&gt;Bonjour {{FirstName}}&lt;/p&gt;</code>). L'aperçu se met à jour automatiquement.</div>
-            <textarea asp-for="HtmlBody" class="form-control template-editor" id="htmlBody" rows="18"></textarea>
+            <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                <label asp-for="HtmlBody" class="form-label mb-0">Corps du message</label>
+                <div class="d-flex gap-2 align-items-center flex-wrap">
+                    <select class="form-select form-select-sm" id="presetSelect" style="width:auto;">
+                        <option value="">— Modèle de départ —</option>
+                        <option value="welcome">Bienvenue</option>
+                        <option value="notification">Notification</option>
+                        <option value="alert">Alerte</option>
+                        <option value="action">Bouton d'action</option>
+                    </select>
+                    <button type="button" class="btn btn-sm btn-outline-primary" id="btnApplyPreset">Appliquer</button>
+                </div>
+            </div>
+
+            <div class="card p-3 mb-3 bg-white border">
+                <h6 class="mb-2"><i class="bi bi-braces"></i> Variables du template</h6>
+                <p class="form-text mb-2">Définissez les variables à insérer dans le sujet et le corps. Syntaxe : <code>{{NomVariable}}</code></p>
+                <div class="row g-2 align-items-end mb-2">
+                    <div class="col-sm-5">
+                        <label class="form-label small mb-1" for="newVariableName">Nouvelle variable</label>
+                        <input class="form-control form-control-sm" id="newVariableName" placeholder="Ex. OrderId, ResetLink" />
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-sm btn-primary w-100" id="btnAddVariable">
+                            <i class="bi bi-plus-lg"></i> Ajouter
+                        </button>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label small mb-1" for="variableInsertSelect">Insérer dans le message</label>
+                        <div class="input-group input-group-sm">
+                            <select class="form-select" id="variableInsertSelect"></select>
+                            <button type="button" class="btn btn-outline-primary" id="btnInsertVariable" title="Insérer">
+                                <i class="bi bi-cursor-text"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="variableList">
+                    @foreach (var v in variableNames)
+                    {
+                        <span class="badge bg-primary variable-badge me-1 mb-1" data-var="{{@v}}" data-name="@v">{{@v}}</span>
+                    }
+                </div>
+            </div>
+
+            <div class="template-editor-wrap">
+                <textarea asp-for="HtmlBody"
+                          class="form-control template-editor"
+                          id="htmlBody"
+                          rows="18"
+                          data-preview-url="@Url.Action("Preview")"
+                          data-variables="@string.Join(",", variableNames)"></textarea>
+            </div>
+
             <label asp-for="TextBody" class="form-label mt-2">Corps texte (optionnel)</label>
             <textarea asp-for="TextBody" class="form-control" rows="4" id="textBody"></textarea>
         </div>
+
         <div class="col-lg-6">
             <label class="form-label">Aperçu en temps réel</label>
             <div class="preview-pane p-3" id="previewPane"></div>
-            <div class="mt-2">
-                <h6>Variables disponibles</h6>
-                <div id="variableList">
-                    @foreach (var v in Model.Variables)
-                    {
-                        <span class="badge bg-primary variable-badge me-1" data-var="{{@v}}">{{@v}}</span>
-                    }
-                    <span class="badge bg-secondary variable-badge me-1" data-var="{{FirstName}}">{{FirstName}}</span>
-                    <span class="badge bg-secondary variable-badge me-1" data-var="{{CompanyName}}">{{CompanyName}}</span>
-                </div>
-            </div>
             <div class="mt-3">
-                <h6>Données de test</h6>
+                <h6>Données de test <span class="text-muted fw-normal small">(pour l'aperçu)</span></h6>
                 <div class="row g-2" id="sampleDataFields">
-                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="FirstName" placeholder="FirstName" value="Jean" /></div>
-                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="CompanyName" placeholder="CompanyName" value="Acme Corp" /></div>
-                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="Title" placeholder="Title" value="Bienvenue" /></div>
-                    <div class="col-6"><input class="form-control form-control-sm sample-field" data-key="Message" placeholder="Message" value="Votre compte est prêt." /></div>
+                    @foreach (var v in variableNames)
+                    {
+                        var sampleValue = v switch
+                        {
+                            "FirstName" => "Jean",
+                            "CompanyName" => "Acme Corp",
+                            "Title" => "Bienvenue",
+                            "Message" => "Votre compte est prêt.",
+                            _ => ""
+                        };
+                        <div class="col-6">
+                            <input class="form-control form-control-sm sample-field" data-key="@v" placeholder="@v" value="@sampleValue" />
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -107,62 +168,29 @@
     </div>
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/lib/summernote/summernote-lite.min.css" asp-append-version="true" />
+}
+
 @section Scripts {
+    <script src="~/lib/summernote/summernote-lite.min.js" asp-append-version="true"></script>
+    <script src="~/lib/summernote/summernote-fr-FR.min.js" asp-append-version="true"></script>
+    <script src="~/js/template-editor.js" asp-append-version="true"></script>
     <script>
-        const htmlBodyEl = document.getElementById('htmlBody');
-
-        function getSampleData() {
-            const data = {};
-            document.querySelectorAll('.sample-field').forEach(el => {
-                data[el.dataset.key] = el.value;
-            });
-            return data;
-        }
-
-        function insertAtCursor(textarea, text) {
-            const start = textarea.selectionStart;
-            const end = textarea.selectionEnd;
-            const value = textarea.value;
-            textarea.value = value.slice(0, start) + text + value.slice(end);
-            textarea.selectionStart = textarea.selectionEnd = start + text.length;
-            textarea.focus();
-        }
-
-        async function updatePreview() {
-            const res = await fetch('@Url.Action("Preview")', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value },
-                body: JSON.stringify({
-                    subjectTemplate: document.getElementById('subjectTemplate').value,
-                    htmlBody: htmlBodyEl.value,
-                    textBody: document.getElementById('textBody').value,
-                    sampleData: getSampleData()
-                })
-            });
-            const data = await res.json();
-            document.getElementById('previewPane').innerHTML = '<h5>' + data.subject + '</h5>' + data.html;
-        }
-
-        document.getElementById('btnPreview')?.addEventListener('click', updatePreview);
-        document.getElementById('subjectTemplate').addEventListener('input', updatePreview);
-        htmlBodyEl.addEventListener('input', updatePreview);
-        document.getElementById('textBody').addEventListener('input', updatePreview);
-        document.querySelectorAll('.sample-field').forEach(el => el.addEventListener('input', updatePreview));
-
-        document.querySelectorAll('.variable-badge').forEach(b => {
-            b.addEventListener('click', () => insertAtCursor(htmlBodyEl, b.dataset.var));
-        });
-
-        updatePreview();
-
-        document.getElementById('testModal')?.addEventListener('show.bs.modal', function () {
-            document.getElementById('testSubject').value = document.getElementById('subjectTemplate').value;
-            document.getElementById('testHtml').value = htmlBodyEl.value;
-            document.getElementById('testText').value = document.getElementById('textBody').value;
-            const container = document.getElementById('testSampleData');
-            container.innerHTML = '';
-            Object.entries(getSampleData()).forEach(([k, v]) => {
-                container.innerHTML += `<input type="hidden" name="SampleData[${k}]" value="${v}" />`;
+        document.querySelectorAll('.btn-insert-var').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const select = document.getElementById('variableInsertSelect');
+                const name = select?.value;
+                if (!name || !targetId) return;
+                const input = document.getElementById(targetId);
+                const token = '{{' + name + '}}';
+                const start = input.selectionStart ?? input.value.length;
+                const end = input.selectionEnd ?? input.value.length;
+                input.value = input.value.slice(0, start) + token + input.value.slice(end);
+                input.focus();
+                input.selectionStart = input.selectionEnd = start + token.length;
+                input.dispatchEvent(new Event('input'));
             });
         });
     </script>
