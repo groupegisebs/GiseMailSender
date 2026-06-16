@@ -1,0 +1,254 @@
+@{
+    ViewData["Title"] = "Guide d'utilisation";
+    var isAdmin = User.IsInRole("Admin");
+    var isDeveloper = User.IsInRole("Developer");
+    var canManageClients = isAdmin || isDeveloper;
+}
+
+<h1 class="mb-4"><i class="bi bi-book"></i> Guide d'utilisation</h1>
+
+<p class="lead text-muted mb-4">
+    SecureMail est une passerelle d'e-mails transactionnels. Vos applications envoient des messages via l'API REST ;
+    l'interface d'administration permet de configurer les templates, les applications clientes et de suivre les envois.
+</p>
+
+<div class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card h-100 p-3">
+            <h5 class="card-title"><i class="bi bi-diagram-3 text-primary"></i> Parcours type</h5>
+            <ol class="mb-0 ps-3">
+                @if (canManageClients)
+                {
+                    <li class="mb-2">Créer une <strong>application cliente</strong> (<a asp-controller="Clients" asp-action="Index">Applications</a>) avec un code unique (ex. <code>DEMO</code>).</li>
+                    <li class="mb-2">Générer un <strong>token API</strong> (<a asp-controller="Tokens" asp-action="Index">Tokens API</a>) pour cette application. Copiez-le immédiatement : il n'est affiché qu'une seule fois.</li>
+                }
+                else
+                {
+                    <li class="mb-2">Demandez à un administrateur de créer l'application cliente et le token API.</li>
+                }
+                <li class="mb-2">Créer ou modifier un <strong>template</strong> (<a asp-controller="Templates" asp-action="Index">Templates</a>) avec sujet et corps HTML (variables <code>{{NomVariable}}</code>).</li>
+                @if (isAdmin)
+                {
+                    <li class="mb-2">Configurer le serveur <strong>SMTP</strong> (<a asp-controller="Smtp" asp-action="Index">SMTP</a>) utilisé pour l'envoi réel.</li>
+                }
+                <li class="mb-2">Appeler l'API <code>POST /api/mail/send</code> depuis votre application.</li>
+                <li>Suivre les envois dans <a asp-controller="Emails" asp-action="Index">E-mails</a> et le <a asp-controller="Dashboard" asp-action="Index">Dashboard</a>.</li>
+            </ol>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100 p-3">
+            <h5 class="card-title"><i class="bi bi-person-badge text-primary"></i> Rôles</h5>
+            <table class="table table-sm mb-0">
+                <thead>
+                    <tr><th>Rôle</th><th>Accès</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge bg-danger">Admin</span></td>
+                        <td>Tout : SMTP, utilisateurs, applications, tokens, templates, audit.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">Developer</span></td>
+                        <td>Applications, tokens, templates, e-mails, audit (lecture).</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-secondary">Viewer</span></td>
+                        <td>Consultation : dashboard, e-mails, templates, audit.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="accordion mb-4" id="guideAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sectionDashboard">
+                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+            </button>
+        </h2>
+        <div id="sectionDashboard" class="accordion-collapse collapse show" data-bs-parent="#guideAccordion">
+            <div class="accordion-body">
+                Vue d'ensemble en temps réel : e-mails en file, en cours, envoyés et échoués aujourd'hui,
+                nombre d'applications et de templates actifs, temps moyen d'envoi et appels API par client.
+                Liens rapides vers l'historique, les métriques Prometheus (<code>/metrics</code>) et le health check.
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sectionEmails">
+                <i class="bi bi-envelope me-2"></i> E-mails
+            </button>
+        </h2>
+        <div id="sectionEmails" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+            <div class="accordion-body">
+                Historique de tous les envois avec code unique <code>MAIL-AAAA-NNNNNN</code>, statut
+                (En file, En cours, Envoyé, Échec), destinataires et horodatage.
+                Cliquez sur un e-mail pour voir le détail complet (corps rendu, erreurs SMTP, callback).
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sectionTemplates">
+                <i class="bi bi-file-earmark-richtext me-2"></i> Templates
+            </button>
+        </h2>
+        <div id="sectionTemplates" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+            <div class="accordion-body">
+                Chaque template possède un <strong>code</strong> (ex. <code>WELCOME</code>), un sujet et un corps HTML.
+                Insérez des variables avec la syntaxe <code>{{FirstName}}</code> ; elles sont remplacées par les données
+                envoyées dans <code>subjectData</code> et <code>bodyData</code> de l'API.
+                L'éditeur propose un aperçu en temps réel et un envoi de test.
+                Les versions antérieures sont conservées (<em>Versions</em>).
+            </div>
+        </div>
+    </div>
+
+    @if (canManageClients)
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sectionClients">
+                    <i class="bi bi-app me-2"></i> Applications
+                </button>
+            </h2>
+            <div id="sectionClients" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+                <div class="accordion-body">
+                    Une application cliente représente un système consommateur (SaaS, batch, etc.).
+                    Définissez le <strong>code client</strong>, les quotas journaliers/mensuels, les domaines d'e-mail autorisés
+                    et éventuellement les adresses IP autorisées pour restreindre les appels API.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sectionTokens">
+                    <i class="bi bi-key me-2"></i> Tokens API
+                </button>
+            </h2>
+            <div id="sectionTokens" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+                <div class="accordion-body">
+                    Générez un token par environnement (Production, Staging…). Le token complet n'est montré qu'à la création :
+                    stockez-le dans un gestionnaire de secrets.
+                    Utilisez <strong>Rotation</strong> pour en émettre un nouveau sans coupure immédiate, ou <strong>Révoquer</strong>
+                    pour désactiver définitivement un token compromis. Toutes les opérations sont tracées dans l'audit.
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (isAdmin)
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sectionSmtp">
+                    <i class="bi bi-hdd-network me-2"></i> SMTP
+                </button>
+            </h2>
+            <div id="sectionSmtp" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+                <div class="accordion-body">
+                    Configurez un ou plusieurs relais SMTP (hôte, port, identifiants chiffrés, expéditeur par défaut).
+                    Un seul profil peut être actif à la fois. Testez la connexion avant de passer en production.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sectionUsers">
+                    <i class="bi bi-people me-2"></i> Utilisateurs
+                </button>
+            </h2>
+            <div id="sectionUsers" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+                <div class="accordion-body">
+                    Gérez les comptes d'accès à cette interface et leurs rôles (Admin, Developer, Viewer).
+                    Après 5 tentatives de connexion échouées, le compte est verrouillé 15 minutes.
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sectionAudit">
+                <i class="bi bi-journal-text me-2"></i> Audit
+            </button>
+        </h2>
+        <div id="sectionAudit" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+            <div class="accordion-body">
+                Journal de toutes les actions sensibles : création de tokens, rotation, modifications de templates,
+                changements SMTP, etc. Filtrez par type d'action pour investiguer un incident.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4 mb-4">
+    <h5 class="mb-3"><i class="bi bi-code-slash text-primary"></i> API — Envoyer un e-mail</h5>
+
+    <p class="mb-2"><strong>Endpoint :</strong> <code>POST /api/mail/send</code></p>
+    <p class="mb-3"><strong>Authentification :</strong> en-tête <code>Authorization: Bearer VOTRE_TOKEN</code> ou <code>X-Api-Key: VOTRE_TOKEN</code></p>
+
+    <pre class="bg-dark text-light p-3 rounded small mb-3"><code>curl -X POST "@($"{Context.Request.Scheme}://{Context.Request.Host}/api/mail/send")" \
+  -H "Authorization: Bearer VOTRE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientCode": "DEMO",
+    "templateCode": "WELCOME",
+    "to": ["client@example.com"],
+    "cc": [],
+    "bcc": [],
+    "subjectData": { "FirstName": "Jean", "CompanyName": "Acme" },
+    "bodyData": { "FirstName": "Jean", "CompanyName": "Acme" },
+    "priority": 1,
+    "callbackUrl": "https://votre-app.com/webhooks/mail"
+  }'</code></pre>
+
+    <p class="mb-2"><strong>Réponse (succès) :</strong></p>
+    <pre class="bg-light p-3 rounded small mb-3"><code>{
+  "success": true,
+  "mailCode": "MAIL-2026-000001",
+  "trackingId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "status": "Queued"
+}</code></pre>
+
+    <p class="text-muted small mb-0">
+        Limite : 60 requêtes/minute sur <code>/api/*</code>.
+        Le champ <code>callbackUrl</code> est optionnel : votre application recevra une notification HTTP lorsque l'e-mail sera envoyé ou en échec.
+        Les pièces jointes se transmettent en base64 via le tableau <code>attachments</code>.
+    </p>
+</div>
+
+<div class="card p-3">
+    <h5 class="mb-3"><i class="bi bi-activity text-primary"></i> Monitoring</h5>
+    <div class="row g-2">
+        <div class="col-md-4">
+            <a class="btn btn-outline-secondary w-100" href="/health" target="_blank">
+                <i class="bi bi-heart-pulse"></i> /health
+            </a>
+            <div class="small text-muted mt-1 text-center">Santé app + base de données</div>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-outline-secondary w-100" href="/metrics" target="_blank">
+                <i class="bi bi-graph-up"></i> /metrics
+            </a>
+            <div class="small text-muted mt-1 text-center">Métriques Prometheus</div>
+        </div>
+        @if (isAdmin)
+        {
+            <div class="col-md-4">
+                <a class="btn btn-outline-secondary w-100" href="/hangfire" target="_blank">
+                    <i class="bi bi-list-task"></i> /hangfire
+                </a>
+                <div class="small text-muted mt-1 text-center">File d'attente Hangfire</div>
+            </div>
+        }
+    </div>
+</div>
