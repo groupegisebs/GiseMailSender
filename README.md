@@ -74,10 +74,15 @@ dotnet ef migrations list
 dotnet run --no-launch-profile
 ```
 
-Interface : `https://localhost:5001`  
+Interface admin : [https://gisemailsender.gisebs.com](https://gisemailsender.gisebs.com)  
+Développement local : `https://localhost:5001`  
 Compte admin par défaut : `admin@securemail.local` / `ChangeMe!SecureMail2026` (à changer immédiatement)
 
 ## API — Envoi d'e-mail
+
+Documentation complète pour les applications externes : **[`docs/API-CONSOMMATION.md`](docs/API-CONSOMMATION.md)**
+
+Intégration BoutiqueGise (Agentia Market) : **[`docs/INTEGRATION-BOUTIQUEGISE.md`](docs/INTEGRATION-BOUTIQUEGISE.md)**
 
 ### Endpoint
 
@@ -98,7 +103,7 @@ X-Api-Key: VOTRE_API_KEY
 ### Exemple curl
 
 ```bash
-curl -X POST "https://votre-serveur/api/mail/send" \
+curl -X POST "https://gisemailsender.gisebs.com/api/mail/send" \
   -H "Authorization: Bearer VOTRE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{

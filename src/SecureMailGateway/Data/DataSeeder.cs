@@ -71,26 +71,43 @@ public static class DataSeeder
             await db.SaveChangesAsync();
         }
 
-        if (!await db.EmailTemplates.AnyAsync())
+        if (!await db.ClientApplications.AnyAsync(c => c.ClientCode == "BOUTIQUEGISE"))
         {
-            db.EmailTemplates.Add(new EmailTemplate
+            db.ClientApplications.Add(new ClientApplication
             {
-                TemplateCode = "WELCOME",
-                Name = "Bienvenue",
-                SubjectTemplate = "Bienvenue {{FirstName}} chez {{CompanyName}}",
-                HtmlBody = """
-                    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;">
-                      <h1 style="color:#2563eb;">Bienvenue {{FirstName}} !</h1>
-                      <p>Nous sommes ravis de vous accueillir chez <strong>{{CompanyName}}</strong>.</p>
-                      <p>Votre compte est maintenant actif.</p>
-                    </div>
-                    """,
-                TextBody = "Bienvenue {{FirstName}} chez {{CompanyName}}. Votre compte est actif.",
-                Language = "fr",
-                Version = 1,
-                IsActive = true
+                Name = "BoutiqueGise — Agentia Market",
+                ClientCode = "BOUTIQUEGISE",
+                DailyQuota = 2000,
+                MonthlyQuota = 50000,
+                AllowedDomains = "agentiamarket.com,gmail.com,outlook.com,yahoo.com,hotmail.com"
             });
             await db.SaveChangesAsync();
+            logger.LogInformation("Client application BOUTIQUEGISE seeded.");
+        }
+
+        await SeedTemplatesAsync(db, logger);
+    }
+
+    private static async Task SeedTemplatesAsync(ApplicationDbContext db, ILogger logger)
+    {
+        var existingCodes = await db.EmailTemplates
+            .Select(t => t.TemplateCode)
+            .ToListAsync();
+
+        var added = 0;
+        foreach (var definition in BoutiqueGiseTemplates.Definitions)
+        {
+            if (existingCodes.Contains(definition.TemplateCode, StringComparer.OrdinalIgnoreCase))
+                continue;
+
+            db.EmailTemplates.Add(definition.ToEntity());
+            added++;
+        }
+
+        if (added > 0)
+        {
+            await db.SaveChangesAsync();
+            logger.LogInformation("Seeded {Count} email template(s) for BoutiqueGise / Agentia Market.", added);
         }
     }
 }
