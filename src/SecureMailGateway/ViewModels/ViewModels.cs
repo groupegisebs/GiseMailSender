@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using SecureMailGateway.Configuration;
 
 namespace SecureMailGateway.ViewModels;
 
@@ -78,25 +79,53 @@ public class SmtpConfigViewModel
 {
     public Guid? Id { get; set; }
 
+    /// <summary>Clé du fournisseur prédéfini (<see cref="SmtpProviderPresets"/>) ou <c>custom</c>.</summary>
+    [Display(Name = "Fournisseur")]
+    public string SelectedProviderKey { get; set; } = SmtpProviderPresets.All[0].Key;
+
     [Required, MaxLength(100)]
-    public string ProviderName { get; set; } = "Default";
+    [Display(Name = "Nom du profil")]
+    public string ProviderName { get; set; } = SmtpProviderPresets.All[0].ProviderName;
 
     [Required]
-    public string Host { get; set; } = string.Empty;
+    [Display(Name = "Serveur (host)")]
+    public string Host { get; set; } = SmtpProviderPresets.All[0].Host;
 
     [Range(1, 65535)]
+    [Display(Name = "Port")]
     public int Port { get; set; } = 587;
 
+    [Display(Name = "Identifiant")]
     public string? Username { get; set; }
     public string? Password { get; set; }
 
     [Required, EmailAddress]
+    [Display(Name = "E-mail expéditeur")]
     public string FromEmail { get; set; } = string.Empty;
 
+    [Display(Name = "Nom expéditeur")]
     public string? FromName { get; set; }
+
+    [Display(Name = "SSL/TLS")]
     public bool UseSsl { get; set; } = true;
     public bool IsDefault { get; set; }
     public bool IsActive { get; set; } = true;
+
+    public void ApplySelectedProvider()
+    {
+        var preset = SmtpProviderPresets.FindByKey(SelectedProviderKey);
+        if (preset is null) return;
+
+        ProviderName = preset.ProviderName;
+        Host = preset.Host;
+        Port = preset.Port;
+        UseSsl = preset.UseSsl;
+    }
+
+    public void ResolveProviderKeyFromHost()
+    {
+        SelectedProviderKey = SmtpProviderPresets.FindKeyByHost(Host) ?? SmtpProviderPresets.CustomKey;
+    }
 }
 
 public class CreateTokenViewModel

@@ -30,6 +30,7 @@ public class SmtpController(
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(SmtpConfigViewModel model, CancellationToken ct)
     {
+        model.ApplySelectedProvider();
         if (!ModelState.IsValid) return View(model);
 
         if (model.IsDefault)
@@ -62,7 +63,7 @@ public class SmtpController(
         var entity = await db.SmtpConfigurations.FindAsync([id], ct);
         if (entity is null) return NotFound();
 
-        return View(new SmtpConfigViewModel
+        var model = new SmtpConfigViewModel
         {
             Id = entity.Id,
             ProviderName = entity.ProviderName,
@@ -74,12 +75,15 @@ public class SmtpController(
             UseSsl = entity.UseSsl,
             IsDefault = entity.IsDefault,
             IsActive = entity.IsActive
-        });
+        };
+        model.ResolveProviderKeyFromHost();
+        return View(model);
     }
 
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Guid id, SmtpConfigViewModel model, CancellationToken ct)
     {
+        model.ApplySelectedProvider();
         if (!ModelState.IsValid) return View(model);
 
         var entity = await db.SmtpConfigurations.FindAsync([id], ct);
