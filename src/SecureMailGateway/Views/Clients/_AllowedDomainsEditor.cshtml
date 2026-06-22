@@ -1,0 +1,13 @@
+@model ClientApplicationViewModel
+
+<div class="col-12">
+    <div class="form-check mb-2">
+        <input asp-for="AllowAllDomains" class="form-check-input" id="allowAllDomains" />
+        <label asp-for="AllowAllDomains" class="form-check-label"></label>
+    </div>
+    <div id="allowedDomainsWrap">
+        <label asp-for="AllowedDomains" class="form-label"></label>
+        <input asp-for="AllowedDomains" class="form-control" id="allowedDomainsInput" placeholder="example.com,monentreprise.fr" />
+        <div class="form-text">Liste blanche : seuls ces domaines pourront recevoir des e-mails.</div>
+    </div>
+</div>

@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using SecureMailGateway.Configuration;
+using SecureMailGateway.Models.Entities;
+using SecureMailGateway.Services;
 
 namespace SecureMailGateway.ViewModels;
 
@@ -22,10 +24,31 @@ public class ClientApplicationViewModel
     public int MonthlyQuota { get; set; } = 30000;
 
     [MaxLength(2000)]
+    [Display(Name = "Domaines autorisés")]
     public string? AllowedDomains { get; set; }
 
+    [Display(Name = "Autoriser tous les domaines destinataires")]
+    public bool AllowAllDomains { get; set; } = true;
+
     [MaxLength(2000)]
+    [Display(Name = "IPs autorisées")]
     public string? AllowedIpAddresses { get; set; }
+
+    public void ApplyDomainRestrictions() =>
+        AllowedDomains = AllowAllDomains ? null : AllowedDomains?.Trim();
+
+    public static ClientApplicationViewModel FromEntity(ClientApplication entity) => new()
+    {
+        Id = entity.Id,
+        Name = entity.Name,
+        ClientCode = entity.ClientCode,
+        IsActive = entity.IsActive,
+        DailyQuota = entity.DailyQuota,
+        MonthlyQuota = entity.MonthlyQuota,
+        AllowAllDomains = ClientApplicationDomainRules.AllowsAllDomains(entity.AllowedDomains),
+        AllowedDomains = entity.AllowedDomains,
+        AllowedIpAddresses = entity.AllowedIpAddresses
+    };
 }
 
 public class EmailTemplateViewModel

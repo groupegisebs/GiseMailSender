@@ -33,8 +33,7 @@
             </div>
         </div>
         <div class="col-12">
-            <label asp-for="AllowedDomains" class="form-label">Domaines autorisés (séparés par virgule)</label>
-            <input asp-for="AllowedDomains" class="form-control" placeholder="example.com,monentreprise.fr" />
+            <partial name="_AllowedDomainsEditor" />
         </div>
         <div class="col-12">
             <label asp-for="AllowedIpAddresses" class="form-label">IPs autorisées (optionnel)</label>
@@ -48,4 +47,7 @@
     </div>
 </form>
 
-@section Scripts { <partial name="_ValidationScriptsPartial" /> }
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/client-application-form.js" asp-append-version="true"></script>
+}

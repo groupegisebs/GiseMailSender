@@ -140,15 +140,13 @@ public partial class EmailQueueService(
     {
         if (recipients.Count == 0) return false;
 
-        var allowedDomains = (client.AllowedDomains ?? "")
-            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Select(d => d.ToLowerInvariant())
-            .ToHashSet();
+        var allowAll = ClientApplicationDomainRules.AllowsAllDomains(client.AllowedDomains);
+        var allowedDomains = ClientApplicationDomainRules.ParseAllowedDomains(client.AllowedDomains);
 
         foreach (var email in recipients)
         {
             if (!EmailRegex().IsMatch(email)) return false;
-            if (allowedDomains.Count == 0) continue;
+            if (allowAll) continue;
 
             var domain = email.Split('@').Last().ToLowerInvariant();
             if (!allowedDomains.Contains(domain)) return false;

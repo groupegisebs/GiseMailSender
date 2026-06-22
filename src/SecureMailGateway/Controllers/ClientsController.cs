@@ -26,6 +26,7 @@ public class ClientsController(
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(ClientApplicationViewModel model, CancellationToken ct)
     {
+        model.ApplyDomainRestrictions();
         if (!ModelState.IsValid) return View(model);
 
         if (await db.ClientApplications.AnyAsync(c => c.ClientCode == model.ClientCode, ct))
@@ -58,22 +59,13 @@ public class ClientsController(
         var entity = await db.ClientApplications.FindAsync([id], ct);
         if (entity is null) return NotFound();
 
-        return View(new ClientApplicationViewModel
-        {
-            Id = entity.Id,
-            Name = entity.Name,
-            ClientCode = entity.ClientCode,
-            IsActive = entity.IsActive,
-            DailyQuota = entity.DailyQuota,
-            MonthlyQuota = entity.MonthlyQuota,
-            AllowedDomains = entity.AllowedDomains,
-            AllowedIpAddresses = entity.AllowedIpAddresses
-        });
+        return View(ClientApplicationViewModel.FromEntity(entity));
     }
 
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Guid id, ClientApplicationViewModel model, CancellationToken ct)
     {
+        model.ApplyDomainRestrictions();
         if (!ModelState.IsValid) return View(model);
 
         var entity = await db.ClientApplications.FindAsync([id], ct);
