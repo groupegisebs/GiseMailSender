@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
@@ -7,8 +8,10 @@ using SecureMailGateway.Models.Entities;
 
 namespace SecureMailGateway.Data;
 
-public static class DataSeeder
+public static partial class DataSeeder
 {
+    [GeneratedRegex(@"<!--\s*boutiquegise-seed:(\d+)\s*-->", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+    private static partial Regex SeedRevisionRegex();
     public static async Task SeedAsync(IServiceProvider services)
     {
         using var scope = services.CreateScope();
@@ -90,24 +93,49 @@ public static class DataSeeder
 
     private static async Task SeedTemplatesAsync(ApplicationDbContext db, ILogger logger)
     {
-        var existingCodes = await db.EmailTemplates
-            .Select(t => t.TemplateCode)
-            .ToListAsync();
+        var existing = await db.EmailTemplates.ToListAsync();
+        var byCode = existing.ToDictionary(t => t.TemplateCode, StringComparer.OrdinalIgnoreCase);
 
         var added = 0;
+        var updated = 0;
         foreach (var definition in BoutiqueGiseTemplates.Definitions)
         {
-            if (existingCodes.Contains(definition.TemplateCode, StringComparer.OrdinalIgnoreCase))
+            if (!byCode.TryGetValue(definition.TemplateCode, out var entity))
+            {
+                db.EmailTemplates.Add(definition.ToEntity());
+                added++;
+                continue;
+            }
+
+            var currentRevision = GetSeedRevision(entity.HtmlBody);
+            if (definition.SeedRevision <= currentRevision)
                 continue;
 
-            db.EmailTemplates.Add(definition.ToEntity());
-            added++;
+            entity.Name = definition.Name;
+            entity.SubjectTemplate = definition.SubjectTemplate;
+            entity.HtmlBody = definition.HtmlBody;
+            entity.TextBody = definition.TextBody;
+            entity.Language = definition.Language;
+            entity.IsActive = definition.IsActive;
+            entity.Version++;
+            entity.UpdatedAt = DateTimeOffset.UtcNow;
+            updated++;
         }
 
-        if (added > 0)
+        if (added > 0 || updated > 0)
         {
             await db.SaveChangesAsync();
-            logger.LogInformation("Seeded {Count} email template(s) for BoutiqueGise / Agentia Market.", added);
+            logger.LogInformation(
+                "BoutiqueGise templates: {Added} created, {Updated} updated.",
+                added, updated);
         }
+    }
+
+    private static int GetSeedRevision(string html)
+    {
+        var match = SeedRevisionRegex().Match(html);
+        return match.Success && int.TryParse(match.Groups[1].Value, out var revision)
+            ? revision
+            : 0;
     }
 }

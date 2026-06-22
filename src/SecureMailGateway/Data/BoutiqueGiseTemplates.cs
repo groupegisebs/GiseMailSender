@@ -12,7 +12,8 @@ public sealed record EmailTemplateSeed(
     string HtmlBody,
     string? TextBody,
     string Language = "fr",
-    bool IsActive = true)
+    bool IsActive = true,
+    int SeedRevision = 1)
 {
     public EmailTemplate ToEntity() => new()
     {
@@ -44,12 +45,13 @@ public static class BoutiqueGiseTemplates
         </p>
         """;
 
-    private static string Wrap(string body) => $"""
+    private static string Wrap(string body, int seedRevision = 1) => $"""
         <div style="font-family:Arial,sans-serif;line-height:1.5;color:#222;max-width:600px;margin:0 auto;padding:24px;">
           {BrandHeader}
           {body}
           {BrandFooter}
         </div>
+        <!-- boutiquegise-seed:{seedRevision} -->
         """;
 
     public static IReadOnlyList<EmailTemplateSeed> Definitions { get; } =
@@ -183,8 +185,10 @@ public static class BoutiqueGiseTemplates
                 <p style="text-align:center;margin:28px 0;">
                   <a href="{{OrderLink}}" style="background:#2563eb;color:#fff;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;">Suivre ma commande</a>
                 </p>
-                """),
-            TextBody: "Commande {{OrderNumber}} confirmée. Total : {{OrderTotal}}. {{OrderLink}}"),
+                {{DigitalDeliveryHtml}}
+                """, seedRevision: 2),
+            TextBody: "Commande {{OrderNumber}} confirmée. Total : {{OrderTotal}}. {{OrderLink}}",
+            SeedRevision: 2),
         new(
             TemplateCode: "SELLER_SALE_NOTIFICATION",
             Name: "Agentia — Nouvelle vente vendeur",
@@ -208,6 +212,72 @@ public static class BoutiqueGiseTemplates
                   <a href="{{ReviewLink}}" style="background:#b45309;color:#fff;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;">Examiner la candidature</a>
                 </p>
                 """),
-            TextBody: "Candidature vendeur {{SellerName}} / {{ShopName}} — {{ReviewLink}}")
+            TextBody: "Candidature vendeur {{SellerName}} / {{ShopName}} — {{ReviewLink}}"),
+        new(
+            TemplateCode: "SELLER_REVISION_REQUESTED",
+            Name: "Agentia — Candidature vendeur à réviser",
+            SubjectTemplate: "Révision demandée — candidature {{ShopName}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#b45309;margin:0 0 16px;">Révision de votre candidature</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Votre candidature pour <strong>{{ShopName}}</strong> nécessite des modifications avant validation.</p>
+                <p><strong>Instructions :</strong> {{Reason}}</p>
+                <p style="text-align:center;margin:28px 0;">
+                  <a href="{{DashboardLink}}" style="background:#b45309;color:#fff;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;">Mettre à jour ma candidature</a>
+                </p>
+                """),
+            TextBody: "Révision demandée pour {{ShopName}}. {{Reason}} — {{DashboardLink}}"),
+        new(
+            TemplateCode: "PRODUCT_WITHDRAWN",
+            Name: "Agentia — Produit retiré par l'administration",
+            SubjectTemplate: "Produit retiré — {{ProductName}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#dc2626;margin:0 0 16px;">Produit retiré de la marketplace</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Votre produit <strong>{{ProductName}}</strong> a été retiré de la vente par l'équipe Agentia Market.</p>
+                <p><strong>Motif :</strong> {{Reason}}</p>
+                <p>Contactez le support si vous avez des questions.</p>
+                """),
+            TextBody: "Produit {{ProductName}} retiré. Motif : {{Reason}}"),
+        new(
+            TemplateCode: "PRODUCT_REPUBLISHED",
+            Name: "Agentia — Produit republié",
+            SubjectTemplate: "Produit de nouveau en ligne — {{ProductName}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#16a34a;margin:0 0 16px;">Produit republié</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Votre produit <strong>{{ProductName}}</strong> est de nouveau visible sur la marketplace.</p>
+                <p style="text-align:center;margin:28px 0;">
+                  <a href="{{ProductLink}}" style="background:#2563eb;color:#fff;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;">Voir le produit</a>
+                </p>
+                """),
+            TextBody: "Produit {{ProductName}} republié : {{ProductLink}}"),
+        new(
+            TemplateCode: "SELLER_TAX_UPDATE",
+            Name: "Agentia — Modification informations fiscales",
+            SubjectTemplate: "Mise à jour fiscale enregistrée — {{ShopName}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#1e40af;margin:0 0 16px;">Informations fiscales mises à jour</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Les informations fiscales de votre boutique <strong>{{ShopName}}</strong> ont été mises à jour.</p>
+                <p><strong>Résumé :</strong> {{Summary}}</p>
+                <p style="text-align:center;margin:28px 0;">
+                  <a href="{{DashboardLink}}" style="background:#2563eb;color:#fff;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;">Consulter mon espace vendeur</a>
+                </p>
+                """),
+            TextBody: "Informations fiscales mises à jour pour {{ShopName}}. {{Summary}}"),
+        new(
+            TemplateCode: "SELLER_PAYOUT",
+            Name: "Agentia — Versement vendeur",
+            SubjectTemplate: "Versement effectué — {{PayoutAmount}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#16a34a;margin:0 0 16px;">Versement effectué</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Un versement de <strong>{{PayoutAmount}}</strong> a été initié pour votre boutique <strong>{{ShopName}}</strong>.</p>
+                <p><strong>Référence :</strong> {{PayoutReference}}</p>
+                <p><strong>Période :</strong> {{PayoutPeriod}}</p>
+                <p style="font-size:13px;color:#64748b;">Le délai de réception dépend de votre établissement bancaire.</p>
+                """),
+            TextBody: "Versement {{PayoutAmount}} pour {{ShopName}}. Réf. {{PayoutReference}} — période {{PayoutPeriod}}")
     ];
 }
