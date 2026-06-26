@@ -88,6 +88,20 @@ public static partial class DataSeeder
             logger.LogInformation("Client application BOUTIQUEGISE seeded.");
         }
 
+        if (!await db.ClientApplications.AnyAsync(c => c.ClientCode == "TUTORSPHERE"))
+        {
+            db.ClientApplications.Add(new ClientApplication
+            {
+                Name = "TutorSphere",
+                ClientCode = "TUTORSPHERE",
+                DailyQuota = 5000,
+                MonthlyQuota = 100000,
+                AllowedDomains = "tutorsphere.gisebs.com,gmail.com,outlook.com,yahoo.com,hotmail.com"
+            });
+            await db.SaveChangesAsync();
+            logger.LogInformation("Client application TUTORSPHERE seeded.");
+        }
+
         await SeedTemplatesAsync(db, logger);
     }
 
@@ -98,35 +112,40 @@ public static partial class DataSeeder
 
         var added = 0;
         var updated = 0;
-        foreach (var definition in BoutiqueGiseTemplates.Definitions)
+
+        foreach (var definitions in new IReadOnlyList<EmailTemplateSeed>[]
+            { BoutiqueGiseTemplates.Definitions, TutorSphereTemplates.Definitions })
         {
-            if (!byCode.TryGetValue(definition.TemplateCode, out var entity))
+            foreach (var definition in definitions)
             {
-                db.EmailTemplates.Add(definition.ToEntity());
-                added++;
-                continue;
+                if (!byCode.TryGetValue(definition.TemplateCode, out var entity))
+                {
+                    db.EmailTemplates.Add(definition.ToEntity());
+                    added++;
+                    continue;
+                }
+
+                var currentRevision = GetSeedRevision(entity.HtmlBody);
+                if (definition.SeedRevision <= currentRevision)
+                    continue;
+
+                entity.Name = definition.Name;
+                entity.SubjectTemplate = definition.SubjectTemplate;
+                entity.HtmlBody = definition.HtmlBody;
+                entity.TextBody = definition.TextBody;
+                entity.Language = definition.Language;
+                entity.IsActive = definition.IsActive;
+                entity.Version++;
+                entity.UpdatedAt = DateTimeOffset.UtcNow;
+                updated++;
             }
-
-            var currentRevision = GetSeedRevision(entity.HtmlBody);
-            if (definition.SeedRevision <= currentRevision)
-                continue;
-
-            entity.Name = definition.Name;
-            entity.SubjectTemplate = definition.SubjectTemplate;
-            entity.HtmlBody = definition.HtmlBody;
-            entity.TextBody = definition.TextBody;
-            entity.Language = definition.Language;
-            entity.IsActive = definition.IsActive;
-            entity.Version++;
-            entity.UpdatedAt = DateTimeOffset.UtcNow;
-            updated++;
         }
 
         if (added > 0 || updated > 0)
         {
             await db.SaveChangesAsync();
             logger.LogInformation(
-                "BoutiqueGise templates: {Added} created, {Updated} updated.",
+                "Templates: {Added} created, {Updated} updated.",
                 added, updated);
         }
     }
