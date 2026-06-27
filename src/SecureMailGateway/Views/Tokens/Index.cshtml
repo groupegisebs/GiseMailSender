@@ -8,6 +8,18 @@
     <h1><i class="bi bi-key"></i> Tokens API</h1>
 </div>
 
+<div class="alert alert-warning mb-4">
+    <h5 class="alert-heading mb-2"><i class="bi bi-exclamation-triangle"></i> Attention rotation de token</h5>
+    <p class="mb-2">
+        La rotation remplace immédiatement l'ancien secret. Toute application qui utilise encore l'ancien token recevra une erreur
+        <code>401</code> tant qu'elle n'aura pas été mise à jour.
+    </p>
+    <p class="mb-0">
+        Action recommandée : copiez le nouveau token, mettez à jour vos variables d'environnement, redéployez/restart les applications,
+        testez un envoi, puis révoquez les anciens tokens inutilisés.
+    </p>
+</div>
+
 <div class="card p-3 mb-4">
     <h5>Générer un nouveau token</h5>
     <form asp-action="Create" method="post" class="row g-2 align-items-end">
@@ -66,7 +78,10 @@
                         <form class="d-inline" asp-action="Rotate" method="post">
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="id" value="@t.Id" />
-                            <button class="btn btn-sm btn-warning" type="submit">Rotation</button>
+                            <button class="btn btn-sm btn-warning" type="submit"
+                                    onclick="return confirm('La rotation va invalider l\\'ancien token pour ce client.\\n\\nAction a faire ensuite :\\n1) Copier le nouveau token\\n2) Mettre a jour vos variables d\\'environnement\\n3) Redemarrer/deployer les applications\\n4) Tester un envoi\\n\\nContinuer ?');">
+                                Rotation
+                            </button>
                         </form>
                         <form class="d-inline" asp-action="Revoke" method="post">
                             @Html.AntiForgeryToken()

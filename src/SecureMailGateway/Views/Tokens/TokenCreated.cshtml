@@ -13,7 +13,13 @@
         <input type="text" class="form-control font-monospace" id="tokenValue" value="@Model.PlainToken" readonly />
         <button class="btn btn-outline-primary" type="button" onclick="navigator.clipboard.writeText(document.getElementById('tokenValue').value)">Copier</button>
     </div>
-    <p class="small text-muted mb-0">Utilisez <code>Authorization: Bearer &lt;token&gt;</code> ou l'en-tête <code>X-Api-Key</code>.</p>
+    <p class="small text-muted mb-3">Utilisez <code>Authorization: Bearer &lt;token&gt;</code> ou l'en-tête <code>X-Api-Key</code>.</p>
+
+    <div class="alert alert-info mb-0">
+        <strong>Si ce token remplace un ancien token :</strong>
+        mettez a jour les variables d'environnement de vos applications, redemarrez/deployez, testez un envoi,
+        puis revoquez l'ancien token.
+    </div>
 </div>
 
 <a asp-action="Index" class="btn btn-primary mt-3">Retour aux tokens</a>
