@@ -2,7 +2,10 @@
     'use strict';
 
     const config = window.secureMailTemplateEditorConfig || {};
-    const allowedVariables = Array.isArray(config.allowedVariables) ? config.allowedVariables : [];
+    const initialAllowedVariables = Array.isArray(config.allowedVariables) ? config.allowedVariables : [];
+    const testDataDefaults = config.testDataDefaults && typeof config.testDataDefaults === 'object'
+        ? config.testDataDefaults
+        : {};
     const form = document.getElementById('templateForm');
     const editorRoot = document.getElementById('SecureMailTemplateEditor');
     const visualEditor = document.getElementById('visualEditor');
@@ -20,6 +23,8 @@
     const activeHidden = document.getElementById('Active');
     const templateCodeInput = document.getElementById('TemplateCode');
     const isActiveInput = document.getElementById('IsActive');
+    const variablePalette = document.getElementById('variablePalette');
+    const sampleDataFields = document.getElementById('sampleDataFields');
 
     if (!form || !visualEditor || !htmlSourceEditor || !previewPane || !subjectTemplate) {
         return;
@@ -28,6 +33,10 @@
     let htmlMode = false;
     let previewAbortController = null;
     let previewDebounce = null;
+    let unknownPromptDebounce = null;
+    let unknownPromptInProgress = false;
+    let lastUnknownPromptSignature = '';
+    const allowedVariables = [];
 
     const quickBlocks = {
         'header-logo': '<div style="padding:16px;background:#6D5DF6;color:#ffffff;font-weight:700;border-radius:12px;">SecureMail</div><p><br></p>',
@@ -39,6 +48,180 @@
         'legal-footer': '<hr><p style="font-size:12px;color:#6B7280;">Vous recevez cet e-mail car vous utilisez SecureMail. Ce message est confidentiel.</p>',
         'team-signature': '<p>Cordialement,<br><strong>L\'equipe SecureMail</strong></p>'
     };
+
+    function normalizeVariableName(value) {
+        if (!value || typeof value !== 'string') return '';
+        let cleaned = value.trim().replace(/[^A-Za-z0-9_]/g, '');
+        if (!cleaned) return '';
+        if (!/^[A-Za-z]/.test(cleaned)) {
+            cleaned = 'Var' + cleaned;
+        }
+        return cleaned;
+    }
+
+    function isVariableAlreadyAllowed(variableName) {
+        return allowedVariables.some(function (existing) {
+            return existing.toLowerCase() === variableName.toLowerCase();
+        });
+    }
+
+    function bindVariableButton(button) {
+        if (!button || button.dataset.bound === 'true') return;
+        button.dataset.bound = 'true';
+        button.addEventListener('click', function () {
+            insertVariable(button.dataset.variable);
+        });
+    }
+
+    function bindSampleFieldInput(input) {
+        if (!input || input.dataset.bound === 'true') return;
+        input.dataset.bound = 'true';
+        input.addEventListener('input', schedulePreview);
+    }
+
+    function addVariableToPalette(variableName) {
+        if (!variablePalette) return;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'securemail-pill-btn';
+        button.dataset.variable = variableName;
+        button.textContent = '{{' + variableName + '}}';
+        bindVariableButton(button);
+        variablePalette.appendChild(button);
+    }
+
+    function addSampleField(variableName) {
+        if (!sampleDataFields) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'securemail-field';
+
+        const label = document.createElement('label');
+        label.setAttribute('for', 'sample_' + variableName);
+        label.textContent = variableName;
+
+        const input = document.createElement('input');
+        input.id = 'sample_' + variableName;
+        input.className = 'form-control sample-field';
+        input.dataset.key = variableName;
+        input.value = testDataDefaults[variableName] || '';
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        sampleDataFields.appendChild(wrapper);
+        bindSampleFieldInput(input);
+    }
+
+    function addAllowedVariable(variableName) {
+        const normalizedName = normalizeVariableName(variableName);
+        if (!normalizedName || isVariableAlreadyAllowed(normalizedName)) return false;
+        allowedVariables.push(normalizedName);
+        addVariableToPalette(normalizedName);
+        addSampleField(normalizedName);
+        return true;
+    }
+
+    function initializeAllowedVariables() {
+        initialAllowedVariables.forEach(function (variableName) {
+            const normalizedName = normalizeVariableName(variableName);
+            if (normalizedName && !isVariableAlreadyAllowed(normalizedName)) {
+                allowedVariables.push(normalizedName);
+            }
+        });
+
+        document.querySelectorAll('.securemail-pill-btn[data-variable]').forEach(function (button) {
+            bindVariableButton(button);
+        });
+        document.querySelectorAll('.sample-field').forEach(function (input) {
+            bindSampleFieldInput(input);
+        });
+    }
+
+    function findUnknownVariables() {
+        const fullText = [subjectTemplate.value, getEditorHtml()].join(' ');
+        const matches = fullText.match(/\{\{\s*([A-Za-z][A-Za-z0-9_]*)\s*\}\}/g) || [];
+        const unknown = [];
+
+        matches.forEach(function (token) {
+            const rawName = token.replace(/\{\{|\}\}/g, '').trim();
+            const varName = normalizeVariableName(rawName);
+            if (!varName) return;
+            if (!isVariableAlreadyAllowed(varName) && unknown.indexOf(varName) === -1) {
+                unknown.push(varName);
+            }
+        });
+
+        return unknown;
+    }
+
+    function escapeRegExp(value) {
+        return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function removeUnknownVariablesFromContent(variablesToRemove) {
+        if (!Array.isArray(variablesToRemove) || variablesToRemove.length === 0) return;
+        const pattern = variablesToRemove.map(escapeRegExp).join('|');
+        const tokenRegex = new RegExp('\\{\\{\\s*(' + pattern + ')\\s*\\}\\}', 'g');
+
+        subjectTemplate.value = (subjectTemplate.value || '').replace(tokenRegex, '');
+        const cleanedHtml = getEditorHtml().replace(tokenRegex, '');
+        setEditorHtml(cleanedHtml);
+    }
+
+    function promptUnknownVariables(unknownVariables) {
+        if (!Array.isArray(unknownVariables) || unknownVariables.length === 0) return true;
+
+        const signature = unknownVariables.join('|');
+        if (unknownPromptInProgress || signature === lastUnknownPromptSignature) return false;
+
+        unknownPromptInProgress = true;
+        lastUnknownPromptSignature = signature;
+
+        const message = [
+            'Variables inconnues detectees: ' + unknownVariables.join(', '),
+            '',
+            'OK: ajouter ces variables au template (palette + donnees de test).',
+            'Annuler: supprimer ces tokens du sujet et du contenu.'
+        ].join('\n');
+
+        const shouldAdd = window.confirm(message);
+        if (shouldAdd) {
+            unknownVariables.forEach(function (variableName) {
+                addAllowedVariable(variableName);
+            });
+        } else {
+            removeUnknownVariablesFromContent(unknownVariables);
+        }
+
+        unknownPromptInProgress = false;
+        schedulePreview();
+        return true;
+    }
+
+    function scheduleUnknownPrompt(forceImmediate) {
+        if (unknownPromptDebounce) {
+            clearTimeout(unknownPromptDebounce);
+            unknownPromptDebounce = null;
+        }
+
+        const run = function () {
+            const unknown = findUnknownVariables();
+            if (unknown.length === 0) {
+                lastUnknownPromptSignature = '';
+                return;
+            }
+            promptUnknownVariables(unknown);
+        };
+
+        if (forceImmediate) {
+            run();
+            return;
+        }
+
+        unknownPromptDebounce = setTimeout(function () {
+            unknownPromptDebounce = null;
+            run();
+        }, 450);
+    }
 
     function getEditorHtml() {
         return htmlMode ? htmlSourceEditor.value : visualEditor.innerHTML;
@@ -170,21 +353,15 @@
     }
 
     function validateVariables(showSuccessMessage) {
-        const allowedSet = new Set(allowedVariables);
-        const fullText = [subjectTemplate.value, getEditorHtml()].join(' ');
-        const matches = fullText.match(/\{\{([A-Za-z][A-Za-z0-9_]*)\}\}/g) || [];
-        const unknown = [];
-
-        matches.forEach(function (token) {
-            const varName = token.replace('{{', '').replace('}}', '');
-            if (!allowedSet.has(varName) && unknown.indexOf(varName) === -1) {
-                unknown.push(varName);
-            }
-        });
+        const unknown = findUnknownVariables();
 
         if (unknown.length > 0) {
-            window.alert('Variables non autorisees: ' + unknown.join(', '));
-            return false;
+            promptUnknownVariables(unknown);
+            const remainingUnknown = findUnknownVariables();
+            if (remainingUnknown.length > 0) {
+                window.alert('Variables non autorisees: ' + remainingUnknown.join(', '));
+                return false;
+            }
         }
 
         if (showSuccessMessage) {
@@ -269,12 +446,6 @@
         });
     });
 
-    document.querySelectorAll('.securemail-pill-btn[data-variable]').forEach(function (button) {
-        button.addEventListener('click', function () {
-            insertVariable(button.dataset.variable);
-        });
-    });
-
     document.querySelectorAll('.securemail-quick-block-btn[data-block]').forEach(function (button) {
         button.addEventListener('click', function () {
             insertQuickBlock(button.dataset.block);
@@ -333,13 +504,17 @@
     });
 
     subjectTemplate.addEventListener('input', schedulePreview);
+    subjectTemplate.addEventListener('input', function () {
+        scheduleUnknownPrompt(false);
+    });
     visualEditor.addEventListener('input', function () {
         syncSourceFromVisual();
         schedulePreview();
+        scheduleUnknownPrompt(false);
     });
-    htmlSourceEditor.addEventListener('input', schedulePreview);
-    document.querySelectorAll('.sample-field').forEach(function (input) {
-        input.addEventListener('input', schedulePreview);
+    htmlSourceEditor.addEventListener('input', function () {
+        schedulePreview();
+        scheduleUnknownPrompt(false);
     });
 
     const validateButton = document.getElementById('btnValidateVariables');
@@ -357,8 +532,10 @@
         saveEditorContent();
     });
 
+    initializeAllowedVariables();
     setEditorHtml(htmlBodyHidden ? htmlBodyHidden.value : visualEditor.innerHTML);
     schedulePreview();
+    scheduleUnknownPrompt(true);
 
     window.execCommand = execCommand;
     window.insertVariable = insertVariable;
