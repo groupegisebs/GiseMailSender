@@ -9,6 +9,8 @@ namespace SecureMailGateway.Areas.Identity.Pages.Account;
 
 public class LoginModel(
     SignInManager<ApplicationUser> signInManager,
+    UserManager<ApplicationUser> userManager,
+    IConfiguration configuration,
     ILogger<LoginModel> logger) : PageModel
 {
     [BindProperty]
@@ -61,6 +63,22 @@ public class LoginModel(
         if (result.Succeeded)
         {
             logger.LogInformation("Connexion réussie pour {Email}.", Input.Email);
+
+            var seedEmail = configuration["Seed:AdminEmail"];
+            var seedPassword = configuration["Seed:AdminPassword"];
+            if (!string.IsNullOrWhiteSpace(seedEmail) &&
+                !string.IsNullOrWhiteSpace(seedPassword) &&
+                string.Equals(Input.Email, seedEmail, StringComparison.OrdinalIgnoreCase))
+            {
+                var user = await userManager.FindByEmailAsync(Input.Email);
+                if (user is not null)
+                {
+                    var stillUsingSeedPassword = await userManager.CheckPasswordAsync(user, seedPassword);
+                    if (stillUsingSeedPassword)
+                        return Redirect("/Identity/Account/Manage/ChangePassword");
+                }
+            }
+
             return LocalRedirect(returnUrl);
         }
 
