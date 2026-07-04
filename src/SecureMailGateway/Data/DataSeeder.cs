@@ -43,9 +43,10 @@ public static partial class DataSeeder
         var adminEmail = config["Seed:AdminEmail"] ?? "bediga.jean@gisebs.com";
         var adminPassword = config["Seed:AdminPassword"] ?? "Mcd!35578";
 
-        if (await userManager.FindByEmailAsync(adminEmail) is null)
+        var admin = await userManager.FindByEmailAsync(adminEmail);
+        if (admin is null)
         {
-            var admin = new ApplicationUser
+            admin = new ApplicationUser
             {
                 UserName = adminEmail,
                 Email = adminEmail,
@@ -59,6 +60,61 @@ public static partial class DataSeeder
                 await userManager.AddToRoleAsync(admin, AppRoles.Admin);
                 logger.LogInformation("Admin user created: {Email}", adminEmail);
             }
+            else
+            {
+                logger.LogWarning(
+                    "Failed to create admin user {Email}: {Errors}",
+                    adminEmail,
+                    string.Join("; ", result.Errors.Select(e => e.Description)));
+            }
+        }
+        else
+        {
+            admin.UserName = adminEmail;
+            admin.Email = adminEmail;
+            admin.EmailConfirmed = true;
+            admin.AccessFailedCount = 0;
+            admin.LockoutEnabled = true;
+            admin.LockoutEnd = null;
+            if (string.IsNullOrWhiteSpace(admin.DisplayName))
+                admin.DisplayName = "Administrator";
+
+            var updateResult = await userManager.UpdateAsync(admin);
+            if (!updateResult.Succeeded)
+            {
+                logger.LogWarning(
+                    "Failed to update admin user {Email}: {Errors}",
+                    adminEmail,
+                    string.Join("; ", updateResult.Errors.Select(e => e.Description)));
+            }
+
+            var hasExpectedPassword = await userManager.CheckPasswordAsync(admin, adminPassword);
+            if (!hasExpectedPassword)
+            {
+                var resetToken = await userManager.GeneratePasswordResetTokenAsync(admin);
+                var passwordResetResult = await userManager.ResetPasswordAsync(admin, resetToken, adminPassword);
+                if (!passwordResetResult.Succeeded)
+                {
+                    logger.LogWarning(
+                        "Failed to reset admin password for {Email}: {Errors}",
+                        adminEmail,
+                        string.Join("; ", passwordResetResult.Errors.Select(e => e.Description)));
+                }
+            }
+
+            if (!await userManager.IsInRoleAsync(admin, AppRoles.Admin))
+            {
+                var addRoleResult = await userManager.AddToRoleAsync(admin, AppRoles.Admin);
+                if (!addRoleResult.Succeeded)
+                {
+                    logger.LogWarning(
+                        "Failed to assign Admin role to {Email}: {Errors}",
+                        adminEmail,
+                        string.Join("; ", addRoleResult.Errors.Select(e => e.Description)));
+                }
+            }
+
+            logger.LogInformation("Admin user reset on seed: {Email}", adminEmail);
         }
 
         if (!await db.ClientApplications.AnyAsync())
