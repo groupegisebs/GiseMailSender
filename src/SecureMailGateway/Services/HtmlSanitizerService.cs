@@ -13,10 +13,11 @@ public interface IHtmlSanitizerService
 
 public partial class HtmlSanitizerService : IHtmlSanitizerService
 {
-    private static readonly HashSet<string> AllowedVariableSet = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "FirstName", "LastName", "CompanyName", "Email", "ResetLink", "OrderId", "Amount", "InvoiceDate", "Message"
-    };
+    // Single source of truth: the comprehensive variable catalog. Adding variables
+    // there automatically keeps the sanitizer whitelist, controller normalization,
+    // AI prompt allowed list and editor palette in sync.
+    private static readonly HashSet<string> AllowedVariableSet =
+        new(TemplateVariableCatalog.NameSet, StringComparer.OrdinalIgnoreCase);
 
     private static readonly HtmlSanitizer Sanitizer = CreateSanitizer();
 

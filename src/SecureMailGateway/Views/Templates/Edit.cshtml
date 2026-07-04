@@ -2,23 +2,9 @@
 @model EmailTemplateViewModel
 @{
     ViewData["Title"] = "Editeur de template SecureMail";
-    var allowedVariables = new[]
-    {
-        "FirstName", "LastName", "CompanyName", "Email", "ResetLink", "OrderId", "Amount", "InvoiceDate", "Message"
-    };
-    var testDataDefaults = new Dictionary<string, string>
-    {
-        ["FirstName"] = "Jean",
-        ["CompanyName"] = "Acme Corp",
-        ["Title"] = "Bienvenue",
-        ["Message"] = "Votre compte est pret.",
-        ["Amount"] = "29,00 $",
-        ["OrderId"] = "ORD-2026-001",
-        ["LastName"] = "",
-        ["Email"] = "",
-        ["ResetLink"] = "",
-        ["InvoiceDate"] = ""
-    };
+    var variableGroups = TemplateVariableCatalog.Groups;
+    var allowedVariables = TemplateVariableCatalog.Names;
+    var testDataDefaults = TemplateVariableCatalog.BuildSampleData();
     var variableListJson = JsonSerializer.Serialize(allowedVariables);
     var testDataJson = JsonSerializer.Serialize(testDataDefaults);
 }
@@ -70,13 +56,17 @@
                 <section class="securemail-sidebar-section">
                     <h4>Variables</h4>
                     <div class="securemail-variable-list" id="variablePalette">
-                        @foreach (var variableName in allowedVariables)
+                        @foreach (var group in variableGroups)
                         {
-                            <button type="button"
-                                    class="securemail-pill-btn"
-                                    data-variable="@variableName">
-                                {{@variableName}}
-                            </button>
+                            <div class="securemail-variable-group-label">@group.Label</div>
+                            @foreach (var variable in group.Variables)
+                            {
+                                <button type="button"
+                                        class="securemail-pill-btn"
+                                        data-variable="@variable.Name">
+                                    {{@variable.Name}}
+                                </button>
+                            }
                         }
                     </div>
                 </section>

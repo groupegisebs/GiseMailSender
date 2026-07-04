@@ -83,6 +83,21 @@
     gap: 8px;
 }
 
+.securemail-variable-group-label {
+    flex-basis: 100%;
+    width: 100%;
+    margin-top: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: rgba(229, 231, 235, 0.55);
+}
+
+.securemail-variable-group-label:first-child {
+    margin-top: 0;
+}
+
 .securemail-pill-btn,
 .securemail-quick-block-btn {
     border: 1px solid rgba(229, 231, 235, 0.22);

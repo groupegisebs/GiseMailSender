@@ -3,7 +3,7 @@
     ViewData["Title"] = Model.Id.HasValue ? "Éditer le template" : "Nouveau template";
     var variableNames = Model.Variables.Count > 0
         ? Model.Variables
-        : ["FirstName", "CompanyName", "Title", "Message"];
+        : TemplateVariableCatalog.Names;
 }
 
 <h1 class="mb-4">@ViewData["Title"]</h1>
@@ -114,14 +114,7 @@
                 <div class="row g-2" id="sampleDataFields">
                     @foreach (var v in variableNames)
                     {
-                        var sampleValue = v switch
-                        {
-                            "FirstName" => "Jean",
-                            "CompanyName" => "Acme Corp",
-                            "Title" => "Bienvenue",
-                            "Message" => "Votre compte est prêt.",
-                            _ => ""
-                        };
+                        var sampleValue = TemplateVariableCatalog.GetSampleValue(v);
                         <div class="col-6">
                             <input class="form-control form-control-sm sample-field" data-key="@v" placeholder="@v" value="@sampleValue" />
                         </div>

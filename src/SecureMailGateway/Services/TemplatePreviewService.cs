@@ -19,21 +19,13 @@ public class TemplatePreviewService(
     ITemplateRenderer templateRenderer,
     IHtmlSanitizerService htmlSanitizerService) : ITemplatePreviewService
 {
-    private static readonly Dictionary<string, string> DefaultSampleData = new(StringComparer.OrdinalIgnoreCase)
-    {
-        ["FirstName"] = "Jean",
-        ["CompanyName"] = "Acme Corp",
-        ["Title"] = "Bienvenue",
-        ["Message"] = "Votre compte est pret.",
-        ["Amount"] = "29,00 $",
-        ["OrderId"] = "ORD-2026-001"
-    };
-
     public TemplatePreviewResult BuildPreview(TemplatePreviewRequest request)
     {
         var unknownVariables = htmlSanitizerService.GetUnknownVariables(request.SubjectTemplate, request.HtmlBody, request.TextBody);
 
-        var mergedData = new Dictionary<string, string>(DefaultSampleData, StringComparer.OrdinalIgnoreCase);
+        // Default sample values come from the central catalog so every known variable
+        // renders in the preview even when the user leaves a test-data field blank.
+        var mergedData = TemplateVariableCatalog.BuildSampleData();
         foreach (var pair in request.SampleData)
         {
             mergedData[pair.Key] = pair.Value;

@@ -65,6 +65,32 @@ Si le `templateCode` n'existe pas encore, le service crée automatiquement un te
 
 ---
 
+## 3bis) Variables disponibles dans les templates
+
+Les templates acceptent un catalogue riche de variables couvrant les cas d'usage
+transactionnels courants (inscription, mot de passe oublié, abonnement, commande,
+livraison, facture, etc.). Insérez-les avec la syntaxe `{{NomVariable}}` puis fournissez
+la valeur dans `subjectData` / `bodyData` lors de l'appel API.
+
+| Catégorie | Variables |
+|-----------|-----------|
+| Identité / Compte | `FirstName`, `LastName`, `FullName`, `UserName`, `Email`, `PhoneNumber`, `AccountId`, `CompanyName` |
+| Authentification / Sécurité | `ResetLink`, `ConfirmLink`, `VerificationCode`, `LoginLink`, `ExpiryTime`, `IpAddress`, `DeviceInfo`, `SupportEmail` |
+| Abonnement | `SubscriptionName`, `PlanName`, `TrialEndDate`, `RenewalDate`, `SubscriptionStatus`, `BillingCycle`, `ManageSubscriptionLink`, `CancelLink` |
+| Commandes (e-commerce) | `OrderId`, `OrderNumber`, `OrderDate`, `OrderStatus`, `OrderLink`, `OrderTotal`, `Currency`, `Subtotal`, `ShippingCost`, `TaxAmount`, `DiscountAmount`, `PromoCode` |
+| Produits / Article | `ProductName`, `ProductLink`, `Quantity` |
+| Livraison | `TrackingNumber`, `TrackingLink`, `Carrier`, `EstimatedDelivery`, `ShippingAddress`, `DeliveryDate` |
+| Facturation / Facture | `InvoiceId`, `InvoiceNumber`, `InvoiceDate`, `InvoiceLink`, `Amount`, `DueDate`, `PaymentMethod`, `PaymentStatus`, `ReceiptLink` |
+| Boutique / Marque / Générique | `StoreName`, `StoreLink`, `WebsiteUrl`, `LogoUrl`, `UnsubscribeLink`, `PrivacyPolicyLink`, `Year`, `Message`, `Title`, `CtaLink`, `CtaLabel` |
+
+Points importants :
+
+- Seules ces variables sont autorisées : toute variable hors catalogue est retirée du template à l'enregistrement.
+- Il n'existe **pas** de syntaxe de boucle/liste. Pour lister plusieurs articles, composez le HTML directement dans le template ou envoyez des valeurs déjà formatées.
+- Les noms existants (`FirstName`, `LastName`, `CompanyName`, `Email`, `ResetLink`, `OrderId`, `Amount`, `InvoiceDate`, `Message`) restent valides : les anciens templates continuent de fonctionner.
+
+---
+
 ## 4) Checklist d'onboarding (équipe cliente)
 
 ## Etape A - Authentification

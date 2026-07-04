@@ -136,6 +136,28 @@ Exemple de template `WELCOME` :
 > `subjectData` et `bodyData` sont fusionnés. En cas de clé identique, `bodyData` l'emporte.
 > Toutes les variables utilisees dans le template (sujet + html + texte) sont obligatoires avec une valeur non vide. Sinon l'API retourne `400`.
 
+#### Catalogue des variables disponibles
+
+Seules les variables de ce catalogue sont autorisées dans un template. Toute variable
+hors catalogue est retirée à l'enregistrement (et lors de la génération IA). Les noms
+sont **sensibles à la casse recommandée** (PascalCase) et s'écrivent `{{NomVariable}}`.
+
+| Catégorie | Variables |
+|-----------|-----------|
+| Identité / Compte | `FirstName`, `LastName`, `FullName`, `UserName`, `Email`, `PhoneNumber`, `AccountId`, `CompanyName` |
+| Authentification / Sécurité | `ResetLink`, `ConfirmLink`, `VerificationCode`, `LoginLink`, `ExpiryTime`, `IpAddress`, `DeviceInfo`, `SupportEmail` |
+| Abonnement | `SubscriptionName`, `PlanName`, `TrialEndDate`, `RenewalDate`, `SubscriptionStatus`, `BillingCycle`, `ManageSubscriptionLink`, `CancelLink` |
+| Commandes (e-commerce) | `OrderId`, `OrderNumber`, `OrderDate`, `OrderStatus`, `OrderLink`, `OrderTotal`, `Currency`, `Subtotal`, `ShippingCost`, `TaxAmount`, `DiscountAmount`, `PromoCode` |
+| Produits / Article | `ProductName`, `ProductLink`, `Quantity` |
+| Livraison | `TrackingNumber`, `TrackingLink`, `Carrier`, `EstimatedDelivery`, `ShippingAddress`, `DeliveryDate` |
+| Facturation / Facture | `InvoiceId`, `InvoiceNumber`, `InvoiceDate`, `InvoiceLink`, `Amount`, `DueDate`, `PaymentMethod`, `PaymentStatus`, `ReceiptLink` |
+| Boutique / Marque / Générique | `StoreName`, `StoreLink`, `WebsiteUrl`, `LogoUrl`, `UnsubscribeLink`, `PrivacyPolicyLink`, `Year`, `Message`, `Title`, `CtaLink`, `CtaLabel` |
+
+> Le moteur de rendu remplace chaque `{{NomVariable}}` par la valeur fournie dans
+> `subjectData` / `bodyData`. Il n'y a pas de syntaxe de boucle/liste : pour plusieurs
+> articles, composez le HTML côté template ou envoyez des valeurs déjà mises en forme
+> (ex. `Quantity`, `ProductName` pour un article principal).
+
 ### Exemple complet (curl)
 
 ```bash

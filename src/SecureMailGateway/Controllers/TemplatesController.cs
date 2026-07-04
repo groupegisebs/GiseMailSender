@@ -463,18 +463,7 @@ public class TemplatesController(
         return cleaned;
     }
 
-    private static string CreateFallbackSampleValue(string variableName) => variableName switch
-    {
-        "FirstName" => "Jean",
-        "LastName" => "Dupont",
-        "CompanyName" => "GiseDoc",
-        "Email" => "client@example.com",
-        "ResetLink" => "https://example.com/reset",
-        "OrderId" => "ORD-2026-001",
-        "Amount" => "29,00 $",
-        "InvoiceDate" => DateTime.UtcNow.ToString("yyyy-MM-dd"),
-        "Message" => "Votre demande a bien été prise en compte.",
-        _ => "Exemple"
-    };
+    private static string CreateFallbackSampleValue(string variableName) =>
+        TemplateVariableCatalog.GetSampleValue(variableName);
 
 }
