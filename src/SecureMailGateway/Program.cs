@@ -120,7 +120,6 @@ try
     app.UseIpRateLimiting();
     app.UseRouting();
     app.UseAuthentication();
-    app.UseMiddleware<RequireSeedPasswordChangeMiddleware>();
     app.UseAuthorization();
 
     app.UseMiddleware<ApiKeyAuthenticationMiddleware>();

@@ -1,0 +1,11 @@
+@{
+    Layout = "/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="login-shell">
+    <div class="login-card" style="max-width: 560px;">
+        @RenderBody()
+    </div>
+</div>
+
+@await RenderSectionAsync("Scripts", required: false)
