@@ -35,18 +35,50 @@ public partial class EmailQueueService(
         if (!string.Equals(client.ClientCode, request.ClientCode, StringComparison.OrdinalIgnoreCase))
             return Fail("Client code mismatch.");
 
+        var requestedTemplateCode = request.TemplateCode.Trim().ToUpperInvariant();
+        var template = await db.EmailTemplates
+            .FirstOrDefaultAsync(t => t.TemplateCode == requestedTemplateCode, ct);
+
+        if (template is null)
+        {
+            template = CreateAutoTemplate(requestedTemplateCode, client.ClientCode);
+            db.EmailTemplates.Add(template);
+            db.EmailTemplateVersions.Add(new EmailTemplateVersion
+            {
+                EmailTemplateId = template.Id,
+                Version = 1,
+                SubjectTemplate = template.SubjectTemplate,
+                HtmlBody = template.HtmlBody,
+                TextBody = template.TextBody,
+                CreatedBy = "system:auto"
+            });
+
+            await db.SaveChangesAsync(ct);
+            await auditService.LogAsync(
+                AuditAction.TemplateCreated,
+                userId: "system:auto",
+                clientId: clientId,
+                entityType: nameof(EmailTemplate),
+                entityId: template.Id.ToString(),
+                ipAddress: ip,
+                details: new
+                {
+                    template.TemplateCode,
+                    Reason = "Auto-created from first API send call"
+                },
+                ct: ct);
+        }
+        else if (!template.IsActive)
+        {
+            return Fail($"Template '{requestedTemplateCode}' is inactive.");
+        }
+
         if (!await CheckQuotaAsync(client, ct))
             return Fail("Quota exceeded.");
 
         var allRecipients = request.To.Concat(request.Cc ?? []).Concat(request.Bcc ?? []).ToList();
         if (!ValidateRecipients(allRecipients, client))
             return Fail("Invalid or unauthorized recipient domain.");
-
-        var template = await db.EmailTemplates
-            .FirstOrDefaultAsync(t => t.TemplateCode == request.TemplateCode && t.IsActive, ct);
-
-        if (template is null)
-            return Fail($"Template '{request.TemplateCode}' not found or inactive.");
 
         var subjectData = request.SubjectData ?? new Dictionary<string, string>();
         var bodyData = request.BodyData ?? new Dictionary<string, string>();
@@ -154,6 +186,23 @@ public partial class EmailQueueService(
 
         return true;
     }
+
+    private static EmailTemplate CreateAutoTemplate(string templateCode, string clientCode) => new()
+    {
+        TemplateCode = templateCode,
+        Name = $"AUTO - {clientCode} - {templateCode}",
+        SubjectTemplate = $"[{clientCode}] Notification {templateCode}",
+        HtmlBody = $"""
+            <div style="font-family:Arial,sans-serif;line-height:1.5;color:#222;">
+              <h2>Template auto-cree: {templateCode}</h2>
+              <p>Ce template a ete cree automatiquement lors du premier appel API.</p>
+              <p>Editez-le dans l'interface d'administration (menu Templates) pour definir le contenu final.</p>
+            </div>
+            """,
+        TextBody = $"Template auto-cree: {templateCode}. Editez ce template dans l'interface d'administration.",
+        Language = "fr",
+        IsActive = true
+    };
 
     private static SendMailResponse Fail(string error) => new() { Success = false, Error = error };
 }

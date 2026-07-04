@@ -177,6 +177,12 @@ curl -X POST "https://gisemailsender.gisebs.com/api/mail/send" \
 | `trackingId` | GUID interne pour le suivi |
 | `status` | `Queued` = mis en file d'attente (envoi asynchrone) |
 
+### Comportement si le template n'existe pas
+
+Si `templateCode` n'existe pas encore, SecureMail crée automatiquement un template actif avec un contenu brouillon, puis traite l'envoi.
+
+Le template auto-créé doit ensuite être édité dans l'interface d'administration (*Templates*).
+
 ### Réponse erreur (`400 Bad Request`)
 
 ```json
@@ -194,7 +200,7 @@ Erreurs fréquentes :
 | `Client application is disabled.` | Application désactivée dans l'admin |
 | `Quota exceeded.` | Quota journalier ou mensuel dépassé |
 | `Invalid or unauthorized recipient domain.` | E-mail invalide ou domaine non autorisé |
-| `Template 'XXX' not found or inactive.` | Template inexistant ou inactif |
+| `Template 'XXX' is inactive.` | Template existant mais inactif |
 | `Attachment exceeds 10 MB limit.` | Pièce jointe trop volumineuse |
 
 ---

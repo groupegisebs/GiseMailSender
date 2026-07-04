@@ -82,6 +82,8 @@ Compte admin par défaut : `admin@securemail.local` / `ChangeMe!SecureMail2026` 
 
 Documentation complète pour les applications externes : **[`docs/API-CONSOMMATION.md`](docs/API-CONSOMMATION.md)**
 
+Guide opérationnel équipes clientes : **[`docs/GUIDE-APPLICATIONS-CLIENTES.md`](docs/GUIDE-APPLICATIONS-CLIENTES.md)**
+
 Intégration BoutiqueGise (Agentia Market) : **[`docs/INTEGRATION-BOUTIQUEGISE.md`](docs/INTEGRATION-BOUTIQUEGISE.md)**
 
 ### Endpoint

@@ -18,10 +18,65 @@ public class TemplatesController(
     IEmailSenderService emailSender,
     IMailCodeGenerator mailCodeGenerator) : Controller
 {
-    public async Task<IActionResult> Index(CancellationToken ct)
+    public async Task<IActionResult> Index(string? clientCode, int page = 1, CancellationToken ct = default)
     {
-        var templates = await db.EmailTemplates.OrderBy(t => t.Name).ToListAsync(ct);
-        return View(templates);
+        const int pageSize = 20;
+        page = Math.Max(1, page);
+
+        var clientApplications = await db.ClientApplications
+            .OrderBy(c => c.Name)
+            .Select(c => new { c.ClientCode, c.Name })
+            .ToListAsync(ct);
+
+        var selectedClientCode = string.IsNullOrWhiteSpace(clientCode) ? null : clientCode.Trim().ToUpperInvariant();
+
+        var query = db.EmailTemplates.AsNoTracking();
+        if (!string.IsNullOrWhiteSpace(selectedClientCode))
+        {
+            query = selectedClientCode switch
+            {
+                "BOUTIQUEGISE" => query.Where(t =>
+                    EF.Functions.ILike(t.TemplateCode, $"%{selectedClientCode}%") ||
+                    EF.Functions.ILike(t.Name, $"%{selectedClientCode}%") ||
+                    EF.Functions.ILike(t.Name, "%Agentia%") ||
+                    EF.Functions.ILike(t.Name, "%Market%")),
+                "TUTORSPHERE" => query.Where(t =>
+                    EF.Functions.ILike(t.TemplateCode, $"%{selectedClientCode}%") ||
+                    EF.Functions.ILike(t.Name, $"%{selectedClientCode}%")),
+                "HOLOTUTO" => query.Where(t =>
+                    EF.Functions.ILike(t.TemplateCode, $"%{selectedClientCode}%") ||
+                    EF.Functions.ILike(t.Name, $"%{selectedClientCode}%")),
+                _ => query.Where(t =>
+                    EF.Functions.ILike(t.TemplateCode, $"%{selectedClientCode}%") ||
+                    EF.Functions.ILike(t.Name, $"%{selectedClientCode}%"))
+            };
+        }
+
+        var totalItems = await query.CountAsync(ct);
+
+        var templates = await query
+            .OrderBy(t => t.Name)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+
+        var vm = new TemplatesIndexViewModel
+        {
+            Templates = templates,
+            ApplicationFilters = clientApplications
+                .Select(c => new TemplateApplicationFilterOption
+                {
+                    ClientCode = c.ClientCode,
+                    DisplayName = $"{c.Name} ({c.ClientCode})"
+                })
+                .ToList(),
+            SelectedClientCode = selectedClientCode,
+            CurrentPage = page,
+            PageSize = pageSize,
+            TotalItems = totalItems
+        };
+
+        return View(vm);
     }
 
     public IActionResult Create() => View(new EmailTemplateViewModel());
@@ -223,4 +278,5 @@ public class TemplatesController(
         Language = e.Language,
         IsActive = e.IsActive
     };
+
 }

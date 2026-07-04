@@ -77,6 +77,23 @@ public class EmailTemplateViewModel
     public List<string> Variables { get; set; } = [];
 }
 
+public class TemplateApplicationFilterOption
+{
+    public string ClientCode { get; set; } = string.Empty;
+    public string DisplayName { get; set; } = string.Empty;
+}
+
+public class TemplatesIndexViewModel
+{
+    public IReadOnlyList<EmailTemplate> Templates { get; set; } = [];
+    public IReadOnlyList<TemplateApplicationFilterOption> ApplicationFilters { get; set; } = [];
+    public string? SelectedClientCode { get; set; }
+    public int CurrentPage { get; set; } = 1;
+    public int PageSize { get; set; } = 20;
+    public int TotalItems { get; set; }
+    public int TotalPages => Math.Max(1, (int)Math.Ceiling(TotalItems / (double)PageSize));
+}
+
 public class TemplatePreviewRequest
 {
     public string SubjectTemplate { get; set; } = string.Empty;
