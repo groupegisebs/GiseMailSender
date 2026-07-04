@@ -98,6 +98,14 @@ public partial class EmailQueueService(
             ? templateRenderer.Render(template.TextBody, mergedData)
             : null;
 
+        // Ne jamais persister du HTML dans TextBody : la partie text/plain doit rester du texte brut.
+        // Si le rendu ressemble à du HTML (ex. template passe-plat), on le dérive du HTML assaini ;
+        // s'il est vide/blanc, on laisse null (l'envoi générera un repli texte à partir du HTML).
+        if (PlainTextConverter.LooksLikeHtml(text))
+            text = PlainTextConverter.FromHtml(html);
+        else if (string.IsNullOrWhiteSpace(text))
+            text = null;
+
         var mailCode = await mailCodeGenerator.GenerateAsync(ct);
         var message = new EmailMessage
         {

@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text.Json;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
@@ -108,13 +109,34 @@ public class EmailSenderService(
         var mail = new MailMessage
         {
             From = new MailAddress(smtp.FromEmail, smtp.FromName ?? smtp.FromEmail),
-            Subject = msg.Subject,
-            Body = msg.HtmlBody,
-            IsBodyHtml = true
+            Subject = msg.Subject
         };
 
-        if (!string.IsNullOrEmpty(msg.TextBody))
-            mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(msg.TextBody, null, "text/plain"));
+        var html = msg.HtmlBody ?? string.Empty;
+
+        // La partie text/plain doit être du VRAI texte brut. Si le TextBody stocké est vide
+        // ou ressemble à du HTML (source d'un ancien bug où le code HTML s'affichait tel quel),
+        // on la régénère à partir du HTML assaini pour ne jamais expédier de source HTML.
+        var text = msg.TextBody;
+        if (string.IsNullOrWhiteSpace(text) || PlainTextConverter.LooksLikeHtml(text))
+            text = PlainTextConverter.FromHtml(html);
+
+        // Repli : garantir qu'il existe toujours une partie HTML et une partie texte non vides.
+        if (string.IsNullOrWhiteSpace(html))
+            html = string.IsNullOrWhiteSpace(text) ? " " : WebUtility.HtmlEncode(text);
+        if (string.IsNullOrWhiteSpace(text))
+            text = " ";
+
+        // multipart/alternative : la partie la MOINS riche (text/plain) doit venir en premier
+        // et la partie préférée (text/html) en dernier. Les clients (Gmail) affichent la
+        // dernière partie qu'ils savent rendre — donc le HTML — au lieu de la source brute.
+        // On construit les vues explicitement plutôt que via Body + IsBodyHtml, car lorsqu'une
+        // AlternateView est présente, System.Net.Mail place le Body en tête (partie non préférée),
+        // ce qui laissait le text/plain « gagner » et exposait le HTML brut.
+        mail.AlternateViews.Add(
+            AlternateView.CreateAlternateViewFromString(text, System.Text.Encoding.UTF8, MediaTypeNames.Text.Plain));
+        mail.AlternateViews.Add(
+            AlternateView.CreateAlternateViewFromString(html, System.Text.Encoding.UTF8, MediaTypeNames.Text.Html));
 
         AddAddresses(mail.To, msg.ToAddresses);
         if (msg.CcAddresses is not null) AddAddresses(mail.CC, msg.CcAddresses);

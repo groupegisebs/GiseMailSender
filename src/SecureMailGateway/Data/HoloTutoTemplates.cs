@@ -122,10 +122,13 @@ public static class HoloTutoTemplates
             TemplateCode: "RAW",
             Name: "HoloTuto — HTML brut (passe-plat)",
             SubjectTemplate: "{{Subject}}",
-            HtmlBody: "{{Body}}<!-- holotuto-seed:2 -->",
-            TextBody: "{{Body}}",
+            HtmlBody: "{{Body}}<!-- holotuto-seed:3 -->",
+            // TextBody null volontairement : {{Body}} contient du HTML fourni par l'appelant.
+            // Le générer ici copierait la source HTML dans la partie text/plain, qui s'affichait
+            // alors telle quelle. La version texte brut est dérivée du HTML au moment de l'envoi.
+            TextBody: null,
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INTERNAL_ALERT",
