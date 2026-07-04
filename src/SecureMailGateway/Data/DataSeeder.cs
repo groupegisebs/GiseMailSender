@@ -16,9 +16,7 @@ public static partial class DataSeeder
     {
         using var scope = services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<ApplicationDbContext>>();
 
         // Schéma géré par EF Core — la base doit exister (créée par deploy-gha.sh ou manuellement).
@@ -38,83 +36,6 @@ public static partial class DataSeeder
         {
             if (!await roleManager.RoleExistsAsync(role))
                 await roleManager.CreateAsync(new IdentityRole(role));
-        }
-
-        var adminEmail = config["Seed:AdminEmail"] ?? "bediga.jean@gisebs.com";
-        var adminPassword = config["Seed:AdminPassword"] ?? "Goodeeg!123456789";
-
-        var admin = await userManager.FindByEmailAsync(adminEmail);
-        if (admin is null)
-        {
-            admin = new ApplicationUser
-            {
-                UserName = adminEmail,
-                Email = adminEmail,
-                EmailConfirmed = true,
-                DisplayName = "Administrator"
-            };
-
-            var result = await userManager.CreateAsync(admin, adminPassword);
-            if (result.Succeeded)
-            {
-                await userManager.AddToRoleAsync(admin, AppRoles.Admin);
-                logger.LogInformation("Admin user created: {Email}", adminEmail);
-            }
-            else
-            {
-                logger.LogWarning(
-                    "Failed to create admin user {Email}: {Errors}",
-                    adminEmail,
-                    string.Join("; ", result.Errors.Select(e => e.Description)));
-            }
-        }
-        else
-        {
-            admin.UserName = adminEmail;
-            admin.Email = adminEmail;
-            admin.EmailConfirmed = true;
-            admin.AccessFailedCount = 0;
-            admin.LockoutEnabled = true;
-            admin.LockoutEnd = null;
-            if (string.IsNullOrWhiteSpace(admin.DisplayName))
-                admin.DisplayName = "Administrator";
-
-            var updateResult = await userManager.UpdateAsync(admin);
-            if (!updateResult.Succeeded)
-            {
-                logger.LogWarning(
-                    "Failed to update admin user {Email}: {Errors}",
-                    adminEmail,
-                    string.Join("; ", updateResult.Errors.Select(e => e.Description)));
-            }
-
-            var hasExpectedPassword = await userManager.CheckPasswordAsync(admin, adminPassword);
-            if (!hasExpectedPassword)
-            {
-                var resetToken = await userManager.GeneratePasswordResetTokenAsync(admin);
-                var passwordResetResult = await userManager.ResetPasswordAsync(admin, resetToken, adminPassword);
-                if (!passwordResetResult.Succeeded)
-                {
-                    logger.LogWarning(
-                        "Failed to reset admin password for {Email}: {Errors}",
-                        adminEmail,
-                        string.Join("; ", passwordResetResult.Errors.Select(e => e.Description)));
-                }
-            }
-
-            if (!await userManager.IsInRoleAsync(admin, AppRoles.Admin))
-            {
-                var addRoleResult = await userManager.AddToRoleAsync(admin, AppRoles.Admin);
-                if (!addRoleResult.Succeeded)
-                {
-                    logger.LogWarning(
-                        "Failed to assign Admin role to {Email}: {Errors}",
-                        adminEmail,
-                        string.Join("; ", addRoleResult.Errors.Select(e => e.Description)));
-                }
-            }
-
-            logger.LogInformation("Admin user reset on seed: {Email}", adminEmail);
         }
 
         if (!await db.ClientApplications.AnyAsync())

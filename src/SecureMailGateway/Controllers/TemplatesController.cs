@@ -18,7 +18,7 @@ public class TemplatesController(
     IEmailSenderService emailSender,
     IMailCodeGenerator mailCodeGenerator) : Controller
 {
-    public async Task<IActionResult> Index(string? clientCode, int page = 1, CancellationToken ct = default)
+    public async Task<IActionResult> Index(string? clientCode, string? q, int page = 1, CancellationToken ct = default)
     {
         const int pageSize = 20;
         page = Math.Max(1, page);
@@ -29,8 +29,12 @@ public class TemplatesController(
             .ToListAsync(ct);
 
         var selectedClientCode = string.IsNullOrWhiteSpace(clientCode) ? null : clientCode.Trim().ToUpperInvariant();
+        var searchTerm = string.IsNullOrWhiteSpace(q) ? null : q.Trim();
 
         var query = db.EmailTemplates.AsNoTracking();
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+            query = query.Where(t => EF.Functions.ILike(t.TemplateCode, $"%{searchTerm}%") || EF.Functions.ILike(t.Name, $"%{searchTerm}%"));
+
         if (!string.IsNullOrWhiteSpace(selectedClientCode))
         {
             query = selectedClientCode switch
@@ -71,6 +75,7 @@ public class TemplatesController(
                 })
                 .ToList(),
             SelectedClientCode = selectedClientCode,
+            SearchTerm = searchTerm,
             CurrentPage = page,
             PageSize = pageSize,
             TotalItems = totalItems

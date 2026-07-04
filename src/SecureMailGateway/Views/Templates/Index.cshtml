@@ -9,6 +9,10 @@
 <form method="get" asp-action="Index" class="card p-3 mb-3">
     <div class="row g-2 align-items-end">
         <div class="col-md-5">
+            <label class="form-label mb-1">Recherche (code ou nom)</label>
+            <input type="text" name="q" class="form-control" value="@Model.SearchTerm" placeholder="Ex: WELCOME, RESET, AUTO..." />
+        </div>
+        <div class="col-md-5">
             <label class="form-label mb-1">Filtrer par application</label>
             <select name="clientCode" class="form-select">
                 <option value="">Toutes les applications</option>
@@ -25,8 +29,9 @@
                 }
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 d-flex gap-2">
             <button type="submit" class="btn btn-outline-primary w-100">Filtrer</button>
+            <a class="btn btn-outline-secondary w-100" asp-action="Index">Reset</a>
         </div>
     </div>
 </form>
@@ -78,16 +83,16 @@
     <nav>
         <ul class="pagination mb-0">
             <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
-                <a class="page-link" asp-action="Index" asp-route-clientCode="@Model.SelectedClientCode" asp-route-page="@(Model.CurrentPage - 1)">Precedent</a>
+                <a class="page-link" asp-action="Index" asp-route-clientCode="@Model.SelectedClientCode" asp-route-q="@Model.SearchTerm" asp-route-page="@(Model.CurrentPage - 1)">Precedent</a>
             </li>
             @for (var p = 1; p <= Model.TotalPages; p++)
             {
                 <li class="page-item @(p == Model.CurrentPage ? "active" : "")">
-                    <a class="page-link" asp-action="Index" asp-route-clientCode="@Model.SelectedClientCode" asp-route-page="@p">@p</a>
+                    <a class="page-link" asp-action="Index" asp-route-clientCode="@Model.SelectedClientCode" asp-route-q="@Model.SearchTerm" asp-route-page="@p">@p</a>
                 </li>
             }
             <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
-                <a class="page-link" asp-action="Index" asp-route-clientCode="@Model.SelectedClientCode" asp-route-page="@(Model.CurrentPage + 1)">Suivant</a>
+                <a class="page-link" asp-action="Index" asp-route-clientCode="@Model.SelectedClientCode" asp-route-q="@Model.SearchTerm" asp-route-page="@(Model.CurrentPage + 1)">Suivant</a>
             </li>
         </ul>
     </nav>

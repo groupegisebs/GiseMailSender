@@ -88,6 +88,7 @@ public class TemplatesIndexViewModel
     public IReadOnlyList<EmailTemplate> Templates { get; set; } = [];
     public IReadOnlyList<TemplateApplicationFilterOption> ApplicationFilters { get; set; } = [];
     public string? SelectedClientCode { get; set; }
+    public string? SearchTerm { get; set; }
     public int CurrentPage { get; set; } = 1;
     public int PageSize { get; set; } = 20;
     public int TotalItems { get; set; }
