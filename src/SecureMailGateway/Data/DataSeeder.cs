@@ -40,8 +40,8 @@ public static partial class DataSeeder
                 await roleManager.CreateAsync(new IdentityRole(role));
         }
 
-        var adminEmail = config["Seed:AdminEmail"] ?? "admin@securemail.local";
-        var adminPassword = config["Seed:AdminPassword"] ?? "ChangeMe!SecureMail2026";
+        var adminEmail = config["Seed:AdminEmail"] ?? "bediga.jean@gisebs.com";
+        var adminPassword = config["Seed:AdminPassword"] ?? "Mcd!35578";
 
         if (await userManager.FindByEmailAsync(adminEmail) is null)
         {
@@ -102,6 +102,20 @@ public static partial class DataSeeder
             logger.LogInformation("Client application TUTORSPHERE seeded.");
         }
 
+        if (!await db.ClientApplications.AnyAsync(c => c.ClientCode == "HOLOTUTO"))
+        {
+            db.ClientApplications.Add(new ClientApplication
+            {
+                Name = "HoloTuto — API & portails",
+                ClientCode = "HOLOTUTO",
+                DailyQuota = 5000,
+                MonthlyQuota = 100000,
+                AllowedDomains = "holotuto.com,gisebs.com,gmail.com,outlook.com,yahoo.com,hotmail.com,icloud.com"
+            });
+            await db.SaveChangesAsync();
+            logger.LogInformation("Client application HOLOTUTO seeded.");
+        }
+
         await SeedTemplatesAsync(db, logger);
     }
 
@@ -114,7 +128,7 @@ public static partial class DataSeeder
         var updated = 0;
 
         foreach (var definitions in new IReadOnlyList<EmailTemplateSeed>[]
-            { BoutiqueGiseTemplates.Definitions, TutorSphereTemplates.Definitions })
+            { BoutiqueGiseTemplates.Definitions, TutorSphereTemplates.Definitions, HoloTutoTemplates.Definitions })
         {
             foreach (var definition in definitions)
             {
