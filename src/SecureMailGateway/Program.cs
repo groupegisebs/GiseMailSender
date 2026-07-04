@@ -29,6 +29,18 @@ try
         builder.Configuration.GetSection(DeploymentSettings.SectionName));
     builder.Services.Configure<OpenAiOptions>(
         builder.Configuration.GetSection(OpenAiOptions.SectionName));
+    // Honor the plain OPENAI_API_KEY / OPENAI_MODEL env vars in addition to the ASP.NET-mapped
+    // OpenAI__ApiKey / OpenAI__Model. The key never appears in appsettings.json.
+    builder.Services.PostConfigure<OpenAiOptions>(opt =>
+    {
+        var envApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
+        if (string.IsNullOrWhiteSpace(opt.ApiKey) && !string.IsNullOrWhiteSpace(envApiKey))
+            opt.ApiKey = envApiKey;
+
+        var envModel = Environment.GetEnvironmentVariable("OPENAI_MODEL");
+        if (!string.IsNullOrWhiteSpace(envModel))
+            opt.Model = envModel;
+    });
 
     builder.Host.UseSerilog((ctx, services, config) => config
         .ReadFrom.Configuration(ctx.Configuration)
@@ -79,13 +91,12 @@ try
 
     builder.Services.AddHttpContextAccessor();
     builder.Services.AddHttpClient("callback", c => c.Timeout = TimeSpan.FromSeconds(10));
-    builder.Services.AddHttpClient(nameof(OpenAiTemplateAiService));
+    builder.Services.AddHttpClient<OpenAiTemplateService>();
 
     builder.Services.AddScoped<ITokenHashService, TokenHashService>();
     builder.Services.AddScoped<ITemplateRenderer, TemplateRenderer>();
     builder.Services.AddScoped<IHtmlSanitizerService, HtmlSanitizerService>();
     builder.Services.AddScoped<ITemplatePreviewService, TemplatePreviewService>();
-    builder.Services.AddScoped<ITemplateAiService, OpenAiTemplateAiService>();
     builder.Services.AddScoped<IMailCodeGenerator, MailCodeGenerator>();
     builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
     builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();

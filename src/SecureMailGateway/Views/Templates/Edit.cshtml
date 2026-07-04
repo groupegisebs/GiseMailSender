@@ -219,12 +219,21 @@
                         <label class="form-label" for="aiCta">CTA</label>
                         <input class="form-control" id="aiCta" placeholder="Ex: Voir ma facture" />
                     </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="aiPrimaryColor">Couleur principale</label>
+                        <input type="color" class="form-control form-control-color" id="aiPrimaryColor" value="#2563eb" title="Couleur principale (en-tête / CTA)" />
+                    </div>
+                    <div class="col-md-8">
+                        <label class="form-label" for="aiDesiredVariables">Variables souhaitées (optionnel)</label>
+                        <input class="form-control" id="aiDesiredVariables" placeholder="Ex: FirstName, Amount, InvoiceDate" />
+                    </div>
                     <div class="col-12">
-                        <label class="form-label" for="aiOptionalVariables">Variables souhaitées (optionnel)</label>
-                        <input class="form-control" id="aiOptionalVariables" placeholder="Ex: FirstName, Amount, InvoiceDate" />
+                        <label class="form-label" for="aiAdditionalInstructions">Instructions supplémentaires (optionnel)</label>
+                        <textarea class="form-control" id="aiAdditionalInstructions" rows="2" placeholder="Ex: Inclure un bloc récapitulatif de commande et un ton chaleureux"></textarea>
                     </div>
                 </div>
                 <div id="aiGenerateStatus" class="small mt-3"></div>
+                <div id="aiGenerateVariables" class="small mt-2"></div>
                 <ul id="aiGenerateWarnings" class="small text-warning ps-3 mb-0"></ul>
             </div>
             <div class="modal-footer">
