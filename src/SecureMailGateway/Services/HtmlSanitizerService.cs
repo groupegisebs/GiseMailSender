@@ -55,34 +55,62 @@ public partial class HtmlSanitizerService : IHtmlSanitizerService
     {
         var sanitizer = new HtmlSanitizer();
 
+        // Email-grade markup: table-based layouts with inline styles must survive.
         sanitizer.AllowedTags.Clear();
         sanitizer.AllowedTags.UnionWith(
         [
-            "div", "table", "tr", "td", "p", "span", "strong", "em", "u", "a", "img",
-            "h1", "h2", "h3", "ul", "ol", "li", "br", "hr", "button"
+            "div", "span", "p", "center", "font",
+            "table", "thead", "tbody", "tfoot", "tr", "td", "th",
+            "a", "img",
+            "h1", "h2", "h3", "h4",
+            "ul", "ol", "li",
+            "strong", "em", "b", "i", "u", "br", "hr"
         ]);
 
         sanitizer.AllowedAttributes.Clear();
         sanitizer.AllowedAttributes.UnionWith(
         [
+            // CRITICAL: inline styles carry the whole email design.
+            "style", "class",
             "href", "target", "rel", "src", "alt", "title",
-            "style", "class", "width", "height", "align",
-            "border", "cellpadding", "cellspacing"
+            "width", "height", "align", "valign",
+            "bgcolor", "background", "color", "border",
+            "cellpadding", "cellspacing", "role",
+            "colspan", "rowspan"
         ]);
 
         sanitizer.AllowedSchemes.Clear();
-        sanitizer.AllowedSchemes.UnionWith(["http", "https", "mailto"]);
+        sanitizer.AllowedSchemes.UnionWith(["http", "https", "mailto", "tel"]);
 
+        // Inline CSS properties transactional emails rely on.
         sanitizer.AllowedCssProperties.Clear();
         sanitizer.AllowedCssProperties.UnionWith(
         [
-            "color", "background", "background-color", "font-size", "font-weight",
-            "font-family", "line-height", "letter-spacing", "text-align", "text-decoration",
+            "color", "background", "background-color", "background-image", "background-position",
+            "background-repeat", "background-size",
+            "font", "font-size", "font-weight", "font-family", "font-style",
+            "line-height", "letter-spacing", "text-align", "text-decoration", "text-transform",
+            "vertical-align", "white-space", "list-style", "list-style-type",
             "padding", "padding-left", "padding-right", "padding-top", "padding-bottom",
             "margin", "margin-left", "margin-right", "margin-top", "margin-bottom",
             "border", "border-top", "border-right", "border-bottom", "border-left",
-            "border-radius", "display", "max-width", "min-width", "width", "height"
+            "border-color", "border-width", "border-style", "border-collapse", "border-spacing",
+            "border-radius", "box-shadow", "outline",
+            "display", "overflow", "float", "clear",
+            "max-width", "min-width", "width", "max-height", "min-height", "height"
         ]);
+
+        // Preserve {{Variable}} placeholders that appear inside URL attributes
+        // (e.g. href="{{ResetLink}}"). Ganss would otherwise drop the attribute
+        // because "{{ResetLink}}" is not a valid URL scheme.
+        sanitizer.RemovingAttribute += (_, e) =>
+        {
+            var value = e.Attribute?.Value;
+            if (!string.IsNullOrEmpty(value) && VariableRegex().IsMatch(value))
+            {
+                e.Cancel = true;
+            }
+        };
 
         return sanitizer;
     }

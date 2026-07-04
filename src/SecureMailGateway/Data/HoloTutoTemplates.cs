@@ -13,15 +13,14 @@ public static class HoloTutoTemplates
         </div>
         """;
 
-    private static string BrandFooter(int seedRevision) => $"""
+    private static string BrandFooter(int seedRevision) => """
         <div style="background:#1a1a2e;padding:18px 32px;text-align:center;">
           <p style="margin:0;font-size:12px;color:#aaa;">
             HoloTuto — <a href="https://holotuto.com" style="color:#6c63ff;text-decoration:none;">holotuto.com</a>
           </p>
-          <p style="margin:8px 0 0;font-size:11px;color:#666;">© {{{{Year}}}} GISEBS Inc. Tous droits réservés.</p>
+          <p style="margin:8px 0 0;font-size:11px;color:#666;">© {{Year}} GISEBS Inc. Tous droits réservés.</p>
         </div>
-        <!-- holotuto-seed:{seedRevision} -->
-        """;
+        """ + $"\n<!-- holotuto-seed:{seedRevision} -->";
 
     private static string Wrap(string body, int seedRevision = 2) => $"""
         <div style="font-family:Segoe UI,Arial,sans-serif;line-height:1.55;color:#1e293b;max-width:600px;margin:0 auto;background:#f4f4f4;padding:16px;">

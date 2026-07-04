@@ -96,10 +96,7 @@ public sealed class OpenAiTemplateAiService(
                 new
                 {
                     role = "system",
-                    content =
-                        "Tu es un expert en email marketing B2B/B2C. Réponds uniquement en JSON valide avec les champs: " +
-                        "subjectTemplate (string), htmlBody (string), textBody (string), variables (array d'objets {name, sampleValue}). " +
-                        "Utilise uniquement des variables de la liste autorisée au format {{VarName}}."
+                    content = SystemPrompt
                 },
                 new
                 {
@@ -168,24 +165,61 @@ public sealed class OpenAiTemplateAiService(
         }
     }
 
+    private const string SystemPrompt =
+        "Tu es un designer/intégrateur email senior, expert en emails transactionnels HTML compatibles avec tous les " +
+        "clients de messagerie (Outlook, Gmail, Apple Mail, mobile).\n" +
+        "Tu réponds STRICTEMENT en JSON valide (aucun texte hors JSON, aucun bloc markdown) avec EXACTEMENT ces champs :\n" +
+        "  - subjectTemplate (string) : objet d'email concis et accrocheur.\n" +
+        "  - htmlBody (string) : le code HTML complet du corps de l'email.\n" +
+        "  - textBody (string) : version texte brut équivalente.\n" +
+        "  - variables (array d'objets {name, sampleValue}) : la liste des variables réellement utilisées avec un exemple.\n" +
+        "\n" +
+        "EXIGENCES HTML (impératif — un email pauvre/vide est un échec) :\n" +
+        "  - Mise en page 100% en TABLES imbriquées (<table>/<tr>/<td>), JAMAIS de flexbox/grid.\n" +
+        "  - UNIQUEMENT des styles INLINE via l'attribut style=\"...\". Interdit : <style>, CSS externe, <script>, classes CSS.\n" +
+        "  - Conteneur centré de largeur max ~600px (table role=\"presentation\" width=\"600\" align=\"center\", cellpadding=\"0\" cellspacing=\"0\").\n" +
+        "  - Polices web sûres (Arial, Helvetica, 'Segoe UI', sans-serif). Bon espacement (padding généreux dans les <td>).\n" +
+        "  - Un EN-TÊTE de marque (bandeau coloré avec la couleur de marque, nom/logo de la marque bien visible).\n" +
+        "  - Un TITRE clair, puis le corps du message rédigé.\n" +
+        "  - Au moins un BOUTON CTA proéminent : un <a> stylé « bulletproof » (background-color, color:#ffffff, padding:14px 28px, " +
+        "border-radius, font-weight:bold, text-decoration:none, display:inline-block) et non un simple lien texte.\n" +
+        "  - Un EMPLACEMENT IMAGE avec <img src=\"...\" alt=\"...\" width=\"...\" style=\"display:block;max-width:100%;\"> lorsque pertinent.\n" +
+        "  - Un PIED DE PAGE (mentions, désabonnement/contact, année/marque).\n" +
+        "  - Utilise des couleurs cohérentes avec la marque et un rendu soigné, digne d'une vraie campagne.\n" +
+        "\n" +
+        "VARIABLES :\n" +
+        "  - Utilise EXCLUSIVEMENT des variables de la liste autorisée fournie, au format {{NomVariable}} (doubles accolades).\n" +
+        "  - N'invente JAMAIS de variable hors de cette liste ; toute variable non autorisée sera supprimée.\n" +
+        "  - Pour le lien du bouton CTA, utilise la variable de lien autorisée (ex. {{ResetLink}}) dans href.\n" +
+        "  - Renseigne dans variables[] chaque variable utilisée avec un sampleValue réaliste.\n" +
+        "  - textBody doit reprendre les mêmes {{Variables}} et rester lisible sans HTML.\n" +
+        "  - Rédige tout le contenu dans la langue demandée (français par défaut).\n" +
+        "  - N'échappe pas les accolades : garde {{Variable}} tel quel.";
+
     private static string BuildUserPrompt(TemplateAiGenerationRequest request)
     {
         var allowedVariables = request.AllowedVariables.Count == 0
-            ? "(aucune)"
+            ? "(aucune variable autorisée — n'utilise aucun {{placeholder}})"
             : string.Join(", ", request.AllowedVariables.Select(v => $"{{{{{v}}}}}"));
 
         return
-            "Génère un template email professionnel à fort impact avec ces paramètres:\n" +
-            $"- Objectif: {request.Objective}\n" +
-            $"- Marque/Entreprise: {request.BrandOrCompany ?? "N/A"}\n" +
-            $"- Ton: {request.Tone ?? "professionnel"}\n" +
-            $"- Langue: {request.Language ?? "fr"}\n" +
-            $"- Type d'email: {request.EmailType ?? "transactionnel"}\n" +
-            $"- CTA: {request.Cta ?? "N/A"}\n" +
-            $"- Variables optionnelles demandées: {request.OptionalVariables ?? "N/A"}\n" +
-            $"- Variables autorisées UNIQUEMENT: {allowedVariables}\n" +
-            "Le HTML doit être compatible email (table/div simple, inline styles), clair et réutilisable.";
+            "Génère un template d'email transactionnel professionnel, riche et STYLÉ (en-tête de marque, titre, texte, " +
+            "bouton CTA, image, pied de page) à partir de ce brief :\n" +
+            $"- Objectif / cas d'usage : {Fallback(request.Objective, "email transactionnel générique")}\n" +
+            $"- Marque / entreprise : {Fallback(request.BrandOrCompany, "SecureMail")}\n" +
+            $"- Ton souhaité : {Fallback(request.Tone, "professionnel et chaleureux")}\n" +
+            $"- Langue : {Fallback(request.Language, "fr")}\n" +
+            $"- Type d'email : {Fallback(request.EmailType, "transactionnel")}\n" +
+            $"- Appel à l'action (CTA) : {Fallback(request.Cta, "un bouton d'action pertinent avec la variable de lien autorisée")}\n" +
+            $"- Variables souhaitées par l'utilisateur : {Fallback(request.OptionalVariables, "au choix parmi les variables autorisées")}\n" +
+            $"- Variables AUTORISÉES (utilise uniquement celles-ci, au format double-accolade) : {allowedVariables}\n" +
+            "\n" +
+            "Rappels : HTML en tables imbriquées + styles inline uniquement, largeur ~600px centrée, bouton CTA « bulletproof » " +
+            "bien visible, un <img> placeholder si pertinent, en-tête et pied de page soignés. Réponds uniquement en JSON valide.";
     }
+
+    private static string Fallback(string? value, string fallback) =>
+        string.IsNullOrWhiteSpace(value) ? fallback : value.Trim();
 
     private static OpenAiTemplateResponse? ParseResult(string content)
     {
