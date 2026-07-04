@@ -41,7 +41,7 @@ public static partial class DataSeeder
         }
 
         var adminEmail = config["Seed:AdminEmail"] ?? "bediga.jean@gisebs.com";
-        var adminPassword = config["Seed:AdminPassword"] ?? "Mcd!35578";
+        var adminPassword = config["Seed:AdminPassword"] ?? "Goodeeg!123456789";
 
         var admin = await userManager.FindByEmailAsync(adminEmail);
         if (admin is null)
