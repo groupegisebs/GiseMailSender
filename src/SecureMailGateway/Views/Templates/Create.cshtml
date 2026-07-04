@@ -90,13 +90,16 @@
             </div>
 
             <div class="template-editor-wrap">
-                <textarea asp-for="HtmlBody"
-                          class="form-control template-editor"
-                          id="htmlBody"
-                          rows="18"
-                          data-preview-url="@Url.Action("Preview")"
-                          data-variables="@string.Join(",", variableNames)"
-                          placeholder="Rédigez votre e-mail ici…"></textarea>
+                <div class="mail-editor">
+                    <div id="rteToolbar" class="mail-editor-toolbar"></div>
+                    <textarea asp-for="HtmlBody"
+                              class="form-control template-editor"
+                              id="htmlBody"
+                              rows="18"
+                              data-preview-url="@Url.Action("Preview")"
+                              data-variables="@string.Join(",", variableNames)"
+                              placeholder="Rédigez votre e-mail ici…"></textarea>
+                </div>
             </div>
 
             <label asp-for="TextBody" class="form-label mt-2">Corps texte (optionnel)</label>

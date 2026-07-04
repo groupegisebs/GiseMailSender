@@ -44,6 +44,21 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
+.mail-editor .tox-tinymce {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.mail-editor .tox .tox-editor-header {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.mail-editor .tox .tox-toolbar-overlord,
+.mail-editor .tox .tox-toolbar__primary {
+    background: #f8fafc;
+}
+
 .mail-editor-toolbar {
     display: flex;
     flex-wrap: wrap;

@@ -293,8 +293,19 @@
             menubar: false,
             height: 420,
             plugins: 'link lists code table autoresize',
-            toolbar: 'undo redo | blocks | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | link table | code',
+            toolbar_mode: 'wrap',
+            fixed_toolbar_container: '#rteToolbar',
+            statusbar: false,
             branding: false,
+            resize: true,
+            toolbar: 'styles | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | link table image | removeformat | code',
+            style_formats: [
+                { title: 'Titre 1', format: 'h1' },
+                { title: 'Titre 2', format: 'h2' },
+                { title: 'Titre 3', format: 'h3' },
+                { title: 'Paragraphe', format: 'p' }
+            ],
+            content_style: 'body { font-family: Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #1e293b; }',
             setup(editor) {
                 editor.on('init', () => {
                     htmlBodyEl.value = editor.getContent();
