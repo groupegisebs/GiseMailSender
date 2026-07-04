@@ -81,6 +81,15 @@ jobs:
           SERVICE_SECRET: ${{ secrets.UBUNTU1_SERVICE_NAME }}
           PORT_APP_VAR: ${{ vars.UBUNTU1_LISTEN_PORT }}
           PORT_APP_SECRET: ${{ secrets.UBUNTU1_LISTEN_PORT }}
+          OPENAI_KEY_GISEMAIL: ${{ secrets.GISEMAIL_OPENAI_API_KEY }}
+          OPENAI_KEY_SECRET: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_KEY_VAR: ${{ vars.OPENAI_API_KEY }}
+          OPENAI_MODEL_VAR: ${{ vars.OPENAI_MODEL }}
+          OPENAI_MODEL_SECRET: ${{ secrets.OPENAI_MODEL }}
+          OPENAI_BASE_URL_VAR: ${{ vars.OPENAI_BASE_URL }}
+          OPENAI_BASE_URL_SECRET: ${{ secrets.OPENAI_BASE_URL }}
+          OPENAI_TIMEOUT_VAR: ${{ vars.OPENAI_TIMEOUT_SECONDS }}
+          OPENAI_TIMEOUT_SECRET: ${{ secrets.OPENAI_TIMEOUT_SECONDS }}
         run: |
           source deploy/gha-env.sh
 
@@ -102,6 +111,10 @@ jobs:
           APP_ROOT_RAW=$(pick_first "$APP_ROOT_VAR" "$APP_ROOT_SECRET" "$DEFAULT_APP_ROOT") || true
           SERVICE_NAME_RAW=$(pick_first "$SERVICE_VAR" "$SERVICE_SECRET" "$DEFAULT_SERVICE_NAME") || true
           LISTEN_PORT_RAW=$(pick_first "$PORT_APP_VAR" "$PORT_APP_SECRET" "$DEFAULT_LISTEN_PORT") || true
+          OPENAI_API_KEY_RAW=$(pick_first "$OPENAI_KEY_GISEMAIL" "$OPENAI_KEY_SECRET" "$OPENAI_KEY_VAR") || true
+          OPENAI_MODEL_RAW=$(pick_first "$OPENAI_MODEL_VAR" "$OPENAI_MODEL_SECRET") || true
+          OPENAI_BASE_URL_RAW=$(pick_first "$OPENAI_BASE_URL_VAR" "$OPENAI_BASE_URL_SECRET") || true
+          OPENAI_TIMEOUT_RAW=$(pick_first "$OPENAI_TIMEOUT_VAR" "$OPENAI_TIMEOUT_SECRET") || true
 
           missing=0
           if [ -z "$SSH_PRIVATE_KEY" ]; then
@@ -120,6 +133,10 @@ jobs:
           APP_ROOT=$(gha_sanitize "$APP_ROOT_RAW")
           SERVICE_NAME=$(gha_sanitize "$SERVICE_NAME_RAW")
           LISTEN_PORT=$(gha_sanitize "$LISTEN_PORT_RAW")
+          OPENAI_API_KEY=$(gha_sanitize "$OPENAI_API_KEY_RAW")
+          OPENAI_MODEL=$(gha_sanitize "$OPENAI_MODEL_RAW")
+          OPENAI_BASE_URL=$(gha_sanitize "$OPENAI_BASE_URL_RAW")
+          OPENAI_TIMEOUT_SECONDS=$(gha_sanitize "$OPENAI_TIMEOUT_RAW")
 
           gha_write_env SSH_PRIVATE_KEY "$SSH_PRIVATE_KEY"
           gha_write_env SSH_HOST "$SSH_HOST"
@@ -130,6 +147,18 @@ jobs:
           gha_write_env APP_NAME "$DEFAULT_APP_NAME"
           gha_write_env LISTEN_PORT "$LISTEN_PORT"
           gha_write_env CONNECTION_STRING "$(gha_sanitize "$CONNECTION_STRING_RAW")"
+          if [ -n "$OPENAI_API_KEY" ]; then
+            gha_write_env OPENAI_API_KEY "$OPENAI_API_KEY"
+          fi
+          if [ -n "$OPENAI_MODEL" ]; then
+            gha_write_env OPENAI_MODEL "$OPENAI_MODEL"
+          fi
+          if [ -n "$OPENAI_BASE_URL" ]; then
+            gha_write_env OPENAI_BASE_URL "$OPENAI_BASE_URL"
+          fi
+          if [ -n "$OPENAI_TIMEOUT_SECONDS" ]; then
+            gha_write_env OPENAI_TIMEOUT_SECONDS "$OPENAI_TIMEOUT_SECONDS"
+          fi
           echo "OK → ${SSH_USER}@${SSH_HOST}:${SSH_PORT} service=${SERVICE_NAME}"
 
       - name: Setup SSH key

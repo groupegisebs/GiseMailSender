@@ -56,6 +56,13 @@ Workflow : [`.github/workflows/deploy-production.yml`](../.github/workflows/depl
 | Dépôt | `UBUNTU1_SERVICE_NAME` | `securemail-gateway` |
 | Dépôt | `UBUNTU1_LISTEN_PORT` | `5060` |
 
+OpenAI (optionnel, pour les fonctionnalités IA de l'application) :
+- Secret recommandé : `GISEMAIL_OPENAI_API_KEY` (fallback supporté : `OPENAI_API_KEY`, secret ou variable).
+- Variables/secrets optionnels :
+  - `OPENAI_MODEL` (défaut: `gpt-4o-mini`)
+  - `OPENAI_BASE_URL`
+  - `OPENAI_TIMEOUT_SECONDS` (défaut: `45`)
+
 Guide : [`deploy/servers/ubuntu1.md`](servers/ubuntu1.md)  
 Environnement optionnel : **`deploy-ubuntu1`** (approbation manuelle).
 

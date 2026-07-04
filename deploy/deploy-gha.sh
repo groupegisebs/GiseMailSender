@@ -14,6 +14,10 @@ set -euo pipefail
 : "${PUBLISH_DIR:=publish}"
 : "${SSH_PORT:=22}"
 : "${APP_NAME:=SecureMail Gateway}"
+: "${OPENAI_API_KEY:=}"
+: "${OPENAI_MODEL:=gpt-4o-mini}"
+: "${OPENAI_BASE_URL:=}"
+: "${OPENAI_TIMEOUT_SECONDS:=45}"
 
 sanitize() {
   printf '%s' "$1" | tr -d '\r\n\t' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//"
@@ -29,6 +33,17 @@ APP_ROOT=$(sanitize "${APP_ROOT}")
 SERVICE_NAME=$(sanitize "${SERVICE_NAME}")
 LISTEN_PORT=$(sanitize "${LISTEN_PORT}")
 CONNECTION_STRING=$(sanitize "${CONNECTION_STRING}")
+OPENAI_API_KEY=$(sanitize "${OPENAI_API_KEY}")
+OPENAI_MODEL=$(sanitize "${OPENAI_MODEL}")
+OPENAI_BASE_URL=$(sanitize "${OPENAI_BASE_URL}")
+OPENAI_TIMEOUT_SECONDS=$(sanitize "${OPENAI_TIMEOUT_SECONDS}")
+
+if [[ -z "${OPENAI_MODEL}" ]]; then
+  OPENAI_MODEL="gpt-4o-mini"
+fi
+if [[ -z "${OPENAI_TIMEOUT_SECONDS}" ]] || [[ ! "${OPENAI_TIMEOUT_SECONDS}" =~ ^[0-9]+$ ]]; then
+  OPENAI_TIMEOUT_SECONDS="45"
+fi
 
 if [[ ! "$SSH_HOST" =~ ^[0-9a-zA-Z.-]+$ ]]; then
   echo "SSH_HOST invalide" >&2
@@ -70,6 +85,14 @@ ENV_FILE="$(mktemp)"
   printf 'UBUNTU1_SERVICE_NAME=%s\n' "${SERVICE_NAME}"
   printf 'UBUNTU1_LISTEN_PORT=%s\n' "${LISTEN_PORT}"
   printf 'UBUNTU1_APP_NAME=%s\n' "${APP_NAME}"
+  if [[ -n "${OPENAI_API_KEY}" ]]; then
+    printf 'OpenAI__ApiKey=%s\n' "${OPENAI_API_KEY}"
+  fi
+  printf 'OpenAI__Model=%s\n' "${OPENAI_MODEL}"
+  if [[ -n "${OPENAI_BASE_URL}" ]]; then
+    printf 'OpenAI__BaseUrl=%s\n' "${OPENAI_BASE_URL}"
+  fi
+  printf 'OpenAI__TimeoutSeconds=%s\n' "${OPENAI_TIMEOUT_SECONDS}"
 } > "${ENV_FILE}"
 scp "${SCP_OPTS[@]}" "${ENV_FILE}" "${SSH_TARGET}:/tmp/${SERVICE_NAME}.app.env"
 rm -f "${ENV_FILE}"

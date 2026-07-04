@@ -20,6 +20,22 @@ Cliquez **New repository secret** pour chacun :
 
 ---
 
+## OpenAI (optionnel)
+
+Si vous activez les fonctionnalités IA, configurez :
+
+| Nom | Type | Contenu |
+|-----|------|---------|
+| **`GISEMAIL_OPENAI_API_KEY`** *(recommandé)* | Secret | Clé API OpenAI |
+| *ou* `OPENAI_API_KEY` | Secret/Variable | même contenu |
+| `OPENAI_MODEL` | Variable/Secret | ex. `gpt-4o-mini` (défaut si absent) |
+| `OPENAI_BASE_URL` | Variable/Secret | URL custom compatible OpenAI (optionnel) |
+| `OPENAI_TIMEOUT_SECONDS` | Variable/Secret | timeout HTTP en secondes (défaut `45`) |
+
+> Le workflow n'écrit `OpenAI__ApiKey` que si la clé est renseignée, pour éviter d'écraser une valeur existante par vide.
+
+---
+
 ## Host / User — pas besoin de secrets
 
 Le workflow utilise par défaut :
