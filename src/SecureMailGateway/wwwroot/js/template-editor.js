@@ -120,6 +120,25 @@
         return true;
     }
 
+    // Registers a variable (catalog or custom, e.g. one returned by the AI) into the template's
+    // per-template variable set: adds it to the palette + test-data panel and, when provided,
+    // fills its sample value so the preview renders.
+    function registerVariable(variableName, sampleValue) {
+        const normalizedName = normalizeVariableName(variableName);
+        if (!normalizedName) return;
+        if (!isVariableAlreadyAllowed(normalizedName)) {
+            allowedVariables.push(normalizedName);
+            addVariableToPalette(normalizedName);
+            addSampleField(normalizedName);
+        }
+        if (typeof sampleValue === 'string' && sampleValue.length > 0) {
+            const field = document.getElementById('sample_' + normalizedName);
+            if (field) {
+                field.value = sampleValue;
+            }
+        }
+    }
+
     function initializeAllowedVariables() {
         initialAllowedVariables.forEach(function (variableName) {
             const normalizedName = normalizeVariableName(variableName);
@@ -537,6 +556,10 @@
     schedulePreview();
     scheduleUnknownPrompt(true);
 
+    window.secureMailTemplateEditor = {
+        registerVariable: registerVariable,
+        addAllowedVariable: addAllowedVariable
+    };
     window.execCommand = execCommand;
     window.insertVariable = insertVariable;
     window.insertQuickBlock = insertQuickBlock;

@@ -78,12 +78,11 @@ public sealed class OpenAiTemplateAiService(
                 "La clé OpenAI n'est pas configurée. Définissez OpenAI:ApiKey pour activer la génération IA.");
         }
 
-        var baseUrl = string.IsNullOrWhiteSpace(config.BaseUrl) ? "https://api.openai.com/" : config.BaseUrl!;
         var model = string.IsNullOrWhiteSpace(config.Model) ? "gpt-4o-mini" : config.Model.Trim();
+        var requestUri = BuildChatCompletionsUri(config.BaseUrl);
 
         var client = httpClientFactory.CreateClient(nameof(OpenAiTemplateAiService));
         client.Timeout = TimeSpan.FromSeconds(Math.Clamp(config.TimeoutSeconds, 10, 120));
-        client.BaseAddress = new Uri(baseUrl.EndsWith('/') ? baseUrl : $"{baseUrl}/");
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", config.ApiKey);
 
         var payload = new
@@ -106,7 +105,7 @@ public sealed class OpenAiTemplateAiService(
             }
         };
 
-        using var requestMessage = new HttpRequestMessage(HttpMethod.Post, "v1/chat/completions")
+        using var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
         {
             Content = new StringContent(JsonSerializer.Serialize(payload, JsonOptions), Encoding.UTF8, "application/json")
         };
@@ -118,8 +117,11 @@ public sealed class OpenAiTemplateAiService(
             if (!response.IsSuccessStatusCode)
             {
                 var shortError = Truncate(responseBody, 350);
+                // Include the effective endpoint (scheme+host+path, never the API key) to ease diagnosis
+                // of common misconfigurations such as a doubled "/v1" path.
+                var effectiveUrl = requestUri.GetLeftPart(UriPartial.Path);
                 return TemplateAiGenerationResult.Fail(
-                    $"OpenAI a retourné {(int)response.StatusCode}. Vérifiez le modèle, la clé API et les quotas.",
+                    $"OpenAI a retourné {(int)response.StatusCode} pour {effectiveUrl}. Vérifiez le modèle, la clé API, l'URL de base (OpenAI:BaseUrl) et les quotas.",
                     shortError);
             }
 
@@ -165,6 +167,38 @@ public sealed class OpenAiTemplateAiService(
         }
     }
 
+    /// <summary>
+    /// Builds the absolute chat/completions endpoint from a configured base URL while making the
+    /// "/v1" segment idempotent. Handles: unset (defaults to api.openai.com), a base ending in
+    /// "/v1" or "/v1/", a bare host, or a base that already includes the full
+    /// "/v1/chat/completions" path. Returned as an absolute URI so it overrides any client BaseAddress.
+    /// </summary>
+    internal static Uri BuildChatCompletionsUri(string? configuredBaseUrl)
+    {
+        var baseUrl = string.IsNullOrWhiteSpace(configuredBaseUrl)
+            ? "https://api.openai.com"
+            : configuredBaseUrl.Trim();
+
+        baseUrl = baseUrl.TrimEnd('/');
+
+        // Already the full endpoint (with or without a trailing slash) -> use as-is.
+        if (baseUrl.EndsWith("/chat/completions", StringComparison.OrdinalIgnoreCase))
+        {
+            return new Uri(baseUrl);
+        }
+
+        // Base already contains a "/v1" version segment -> append only "chat/completions".
+        var hasVersionSegment = baseUrl.EndsWith("/v1", StringComparison.OrdinalIgnoreCase)
+            || baseUrl.Contains("/v1/", StringComparison.OrdinalIgnoreCase);
+        if (hasVersionSegment)
+        {
+            return new Uri($"{baseUrl}/chat/completions");
+        }
+
+        // Bare host / no version segment -> append the full "v1/chat/completions".
+        return new Uri($"{baseUrl}/v1/chat/completions");
+    }
+
     private const string SystemPrompt =
         "Tu es un designer/intégrateur email senior, expert en emails transactionnels HTML compatibles avec tous les " +
         "clients de messagerie (Outlook, Gmail, Apple Mail, mobile).\n" +
@@ -188,10 +222,11 @@ public sealed class OpenAiTemplateAiService(
         "  - Utilise des couleurs cohérentes avec la marque et un rendu soigné, digne d'une vraie campagne.\n" +
         "\n" +
         "VARIABLES :\n" +
-        "  - Utilise EXCLUSIVEMENT des variables de la liste autorisée fournie, au format {{NomVariable}} (doubles accolades).\n" +
-        "  - N'invente JAMAIS de variable hors de cette liste ; toute variable non autorisée sera supprimée.\n" +
-        "  - Pour le lien du bouton CTA, utilise la variable de lien autorisée (ex. {{ResetLink}}) dans href.\n" +
-        "  - Renseigne dans variables[] chaque variable utilisée avec un sampleValue réaliste.\n" +
+        "  - Privilégie les variables du catalogue recommandé fourni lorsqu'elles conviennent, au format {{NomVariable}} (doubles accolades).\n" +
+        "  - Tu PEUX aussi introduire des variables personnalisées supplémentaires quand le cas d'usage l'exige (ex. jeton spécifique e-commerce/abonnement absent du catalogue).\n" +
+        "  - Toute variable (catalogue OU personnalisée) DOIT être un identifiant valide : uniquement lettres, chiffres et underscore, en PascalCase, commençant par une lettre (ex. {{GiftCardCode}}, {{LoyaltyPoints}}).\n" +
+        "  - Tu DOIS lister dans variables[] CHAQUE variable réellement utilisée (catalogue comme personnalisée) avec un sampleValue réaliste.\n" +
+        "  - Pour le lien du bouton CTA, utilise une variable de lien (ex. {{ResetLink}}, {{CtaLink}} ou une variable de lien personnalisée) dans href.\n" +
         "  - textBody doit reprendre les mêmes {{Variables}} et rester lisible sans HTML.\n" +
         "  - Rédige tout le contenu dans la langue demandée (français par défaut).\n" +
         "  - N'échappe pas les accolades : garde {{Variable}} tel quel.";
@@ -199,7 +234,7 @@ public sealed class OpenAiTemplateAiService(
     private static string BuildUserPrompt(TemplateAiGenerationRequest request)
     {
         var allowedVariables = request.AllowedVariables.Count == 0
-            ? "(aucune variable autorisée — n'utilise aucun {{placeholder}})"
+            ? "(catalogue vide — crée des variables personnalisées pertinentes au format {{NomVariable}})"
             : string.Join(", ", request.AllowedVariables.Select(v => $"{{{{{v}}}}}"));
 
         return
@@ -211,8 +246,8 @@ public sealed class OpenAiTemplateAiService(
             $"- Langue : {Fallback(request.Language, "fr")}\n" +
             $"- Type d'email : {Fallback(request.EmailType, "transactionnel")}\n" +
             $"- Appel à l'action (CTA) : {Fallback(request.Cta, "un bouton d'action pertinent avec la variable de lien autorisée")}\n" +
-            $"- Variables souhaitées par l'utilisateur : {Fallback(request.OptionalVariables, "au choix parmi les variables autorisées")}\n" +
-            $"- Variables AUTORISÉES (utilise uniquement celles-ci, au format double-accolade) : {allowedVariables}\n" +
+            $"- Variables souhaitées par l'utilisateur : {Fallback(request.OptionalVariables, "au choix parmi le catalogue ou des variables personnalisées pertinentes")}\n" +
+            $"- Catalogue de variables RECOMMANDÉES (à privilégier, au format double-accolade ; tu peux en ajouter d'autres si besoin) : {allowedVariables}\n" +
             "\n" +
             "Rappels : HTML en tables imbriquées + styles inline uniquement, largeur ~600px centrée, bouton CTA « bulletproof » " +
             "bien visible, un <img> placeholder si pertinent, en-tête et pied de page soignés. Réponds uniquement en JSON valide.";

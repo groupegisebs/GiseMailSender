@@ -136,11 +136,14 @@ Exemple de template `WELCOME` :
 > `subjectData` et `bodyData` sont fusionnés. En cas de clé identique, `bodyData` l'emporte.
 > Toutes les variables utilisees dans le template (sujet + html + texte) sont obligatoires avec une valeur non vide. Sinon l'API retourne `400`.
 
-#### Catalogue des variables disponibles
+#### Catalogue des variables recommandées
 
-Seules les variables de ce catalogue sont autorisées dans un template. Toute variable
-hors catalogue est retirée à l'enregistrement (et lors de la génération IA). Les noms
-sont **sensibles à la casse recommandée** (PascalCase) et s'écrivent `{{NomVariable}}`.
+Ce catalogue est un ensemble de variables **recommandées par défaut** couvrant les cas
+d'usage transactionnels courants. Il n'est **pas** exclusif : un template (ou la génération
+IA) peut aussi déclarer ses **propres variables personnalisées** quand le cas d'usage
+l'exige (ex. un jeton spécifique à votre boutique). Les noms s'écrivent en PascalCase et
+au format `{{NomVariable}}` (identifiant valide : lettres, chiffres et underscore,
+commençant par une lettre).
 
 | Catégorie | Variables |
 |-----------|-----------|
@@ -157,6 +160,11 @@ sont **sensibles à la casse recommandée** (PascalCase) et s'écrivent `{{NomVa
 > `subjectData` / `bodyData`. Il n'y a pas de syntaxe de boucle/liste : pour plusieurs
 > articles, composez le HTML côté template ou envoyez des valeurs déjà mises en forme
 > (ex. `Quantity`, `ProductName` pour un article principal).
+>
+> **Variables personnalisées** : vous pouvez utiliser des placeholders `{{...}}` hors
+> catalogue. Comme pour les variables du catalogue, chaque variable réellement présente
+> dans le template (sujet + html + texte) reste **obligatoire** : fournissez-lui une valeur
+> non vide dans `subjectData` / `bodyData`, sinon l'API retourne `400`.
 
 ### Exemple complet (curl)
 

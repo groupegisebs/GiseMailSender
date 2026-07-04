@@ -6,50 +6,51 @@ namespace SecureMailGateway.Services;
 public interface IHtmlSanitizerService
 {
     string Sanitize(string? html);
-    IReadOnlyCollection<string> GetUnknownVariables(params string?[] templateParts);
-    bool HasUnknownVariables(params string?[] templateParts);
+
+    /// <summary>Recommended/default catalog variables. NOT an exclusive whitelist: templates may
+    /// also declare their own custom variables, which are preserved through sanitization.</summary>
     IReadOnlyCollection<string> AllowedVariables { get; }
 }
 
 public partial class HtmlSanitizerService : IHtmlSanitizerService
 {
-    // Single source of truth: the comprehensive variable catalog. Adding variables
-    // there automatically keeps the sanitizer whitelist, controller normalization,
-    // AI prompt allowed list and editor palette in sync.
-    private static readonly HashSet<string> AllowedVariableSet =
+    // Recommended default variable set (the catalog). This is surfaced to the AI and the editor
+    // palette as suggestions; it is NOT used to strip unknown variables — any well-formed
+    // {{Identifier}} placeholder (catalog or custom) is preserved.
+    private static readonly HashSet<string> RecommendedVariableSet =
         new(TemplateVariableCatalog.NameSet, StringComparer.OrdinalIgnoreCase);
+
+    // Attributes allowed on email markup. Reused by the RemovingAttribute guard so that a
+    // disallowed attribute (e.g. onclick) is never resurrected just because it holds a token.
+    private static readonly string[] AllowedAttributeNames =
+    [
+        // CRITICAL: inline styles carry the whole email design.
+        "style", "class",
+        "href", "target", "rel", "src", "alt", "title",
+        "width", "height", "align", "valign",
+        "bgcolor", "background", "color", "border",
+        "cellpadding", "cellspacing", "role",
+        "colspan", "rowspan"
+    ];
+
+    private static readonly HashSet<string> AllowedAttributeSet =
+        new(AllowedAttributeNames, StringComparer.OrdinalIgnoreCase);
 
     private static readonly HtmlSanitizer Sanitizer = CreateSanitizer();
 
     [GeneratedRegex(@"\{\{([A-Za-z][A-Za-z0-9_]*)\}\}", RegexOptions.Compiled)]
     private static partial Regex VariableRegex();
 
-    public IReadOnlyCollection<string> AllowedVariables => AllowedVariableSet.OrderBy(x => x).ToArray();
+    // Dangerous URL schemes that must never be resurrected, even if the value also contains a token.
+    [GeneratedRegex(@"(?i)(?:javascript|vbscript|data)\s*:", RegexOptions.Compiled)]
+    private static partial Regex DangerousUrlValueRegex();
+
+    public IReadOnlyCollection<string> AllowedVariables => RecommendedVariableSet.OrderBy(x => x).ToArray();
 
     public string Sanitize(string? html)
     {
         if (string.IsNullOrWhiteSpace(html)) return string.Empty;
         return Sanitizer.Sanitize(html);
-    }
-
-    public bool HasUnknownVariables(params string?[] templateParts) => GetUnknownVariables(templateParts).Count > 0;
-
-    public IReadOnlyCollection<string> GetUnknownVariables(params string?[] templateParts)
-    {
-        var content = string.Join(" ", templateParts.Where(x => !string.IsNullOrWhiteSpace(x)));
-        if (string.IsNullOrWhiteSpace(content)) return [];
-
-        var unknown = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (Match match in VariableRegex().Matches(content))
-        {
-            var variableName = match.Groups[1].Value;
-            if (!AllowedVariableSet.Contains(variableName))
-            {
-                unknown.Add(variableName);
-            }
-        }
-
-        return unknown.OrderBy(x => x).ToArray();
     }
 
     private static HtmlSanitizer CreateSanitizer()
@@ -69,16 +70,7 @@ public partial class HtmlSanitizerService : IHtmlSanitizerService
         ]);
 
         sanitizer.AllowedAttributes.Clear();
-        sanitizer.AllowedAttributes.UnionWith(
-        [
-            // CRITICAL: inline styles carry the whole email design.
-            "style", "class",
-            "href", "target", "rel", "src", "alt", "title",
-            "width", "height", "align", "valign",
-            "bgcolor", "background", "color", "border",
-            "cellpadding", "cellspacing", "role",
-            "colspan", "rowspan"
-        ]);
+        sanitizer.AllowedAttributes.UnionWith(AllowedAttributeNames);
 
         sanitizer.AllowedSchemes.Clear();
         sanitizer.AllowedSchemes.UnionWith(["http", "https", "mailto", "tel"]);
@@ -101,16 +93,25 @@ public partial class HtmlSanitizerService : IHtmlSanitizerService
             "max-width", "min-width", "width", "max-height", "min-height", "height"
         ]);
 
-        // Preserve {{Variable}} placeholders that appear inside URL attributes
-        // (e.g. href="{{ResetLink}}"). Ganss would otherwise drop the attribute
-        // because "{{ResetLink}}" is not a valid URL scheme.
+        // Preserve well-formed {{Variable}} placeholders inside URL attributes (e.g.
+        // href="{{ResetLink}}" or href="{{CustomLink}}"). Ganss would otherwise drop the
+        // attribute because "{{...}}" is not a recognised URL scheme.
+        //
+        // Security: this exemption is deliberately narrow. It only applies when
+        //   (1) the attribute itself is on the allow-list (so onclick / on* handlers are never
+        //       resurrected just because they contain a token), AND
+        //   (2) the value contains a syntactically valid {{Identifier}} token, AND
+        //   (3) the value carries no dangerous scheme (javascript:/vbscript:/data:).
         sanitizer.RemovingAttribute += (_, e) =>
         {
+            var name = e.Attribute?.Name;
             var value = e.Attribute?.Value;
-            if (!string.IsNullOrEmpty(value) && VariableRegex().IsMatch(value))
-            {
-                e.Cancel = true;
-            }
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(value)) return;
+            if (!AllowedAttributeSet.Contains(name)) return;
+            if (!VariableRegex().IsMatch(value)) return;
+            if (DangerousUrlValueRegex().IsMatch(value)) return;
+
+            e.Cancel = true;
         };
 
         return sanitizer;

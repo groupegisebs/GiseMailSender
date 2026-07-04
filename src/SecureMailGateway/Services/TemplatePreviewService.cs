@@ -12,7 +12,6 @@ public sealed class TemplatePreviewResult
     public string Subject { get; set; } = string.Empty;
     public string Html { get; set; } = string.Empty;
     public string? Text { get; set; }
-    public IReadOnlyCollection<string> UnknownVariables { get; set; } = [];
 }
 
 public class TemplatePreviewService(
@@ -21,10 +20,8 @@ public class TemplatePreviewService(
 {
     public TemplatePreviewResult BuildPreview(TemplatePreviewRequest request)
     {
-        var unknownVariables = htmlSanitizerService.GetUnknownVariables(request.SubjectTemplate, request.HtmlBody, request.TextBody);
-
-        // Default sample values come from the central catalog so every known variable
-        // renders in the preview even when the user leaves a test-data field blank.
+        // Catalog samples seed every known variable; custom variables use the caller-provided
+        // sample value (or stay as their literal {{Token}} if none is supplied).
         var mergedData = TemplateVariableCatalog.BuildSampleData();
         foreach (var pair in request.SampleData)
         {
@@ -53,8 +50,7 @@ public class TemplatePreviewService(
         {
             Subject = renderedSubject,
             Html = previewHtml,
-            Text = renderedText,
-            UnknownVariables = unknownVariables
+            Text = renderedText
         };
     }
 }

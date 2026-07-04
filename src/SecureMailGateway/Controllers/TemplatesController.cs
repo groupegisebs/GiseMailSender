@@ -93,12 +93,8 @@ public class TemplatesController(
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(EmailTemplateViewModel model, CancellationToken ct)
     {
-        var unknownCreateVariables = htmlSanitizerService.GetUnknownVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
-        if (unknownCreateVariables.Count > 0)
-        {
-            ModelState.AddModelError(string.Empty, $"Variables non autorisees detectees: {string.Join(", ", unknownCreateVariables)}");
-        }
-
+        // Custom {{Variable}} placeholders are allowed (per-template variable set); the catalog is a
+        // recommended default, not an exclusive whitelist. Well-formed tokens survive sanitization.
         if (!ModelState.IsValid)
         {
             model.Variables = templateRenderer.ExtractVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
@@ -149,12 +145,8 @@ public class TemplatesController(
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Guid id, EmailTemplateViewModel model, CancellationToken ct)
     {
-        var unknownEditVariables = htmlSanitizerService.GetUnknownVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
-        if (unknownEditVariables.Count > 0)
-        {
-            ModelState.AddModelError(string.Empty, $"Variables non autorisees detectees: {string.Join(", ", unknownEditVariables)}");
-        }
-
+        // Custom {{Variable}} placeholders are allowed (per-template variable set); the catalog is a
+        // recommended default, not an exclusive whitelist. Well-formed tokens survive sanitization.
         if (!ModelState.IsValid)
         {
             model.Variables = templateRenderer.ExtractVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
@@ -194,16 +186,9 @@ public class TemplatesController(
     [IgnoreAntiforgeryToken]
     public IActionResult Preview([FromBody] TemplatePreviewRequest request)
     {
+        // Custom variables are allowed, so the preview always renders (any {{Variable}} without a
+        // sample value simply falls back to its catalog default or stays as the literal token).
         var preview = templatePreviewService.BuildPreview(request);
-        if (preview.UnknownVariables.Count > 0)
-        {
-            return BadRequest(new
-            {
-                message = "Variables non autorisees detectees.",
-                unknownVariables = preview.UnknownVariables
-            });
-        }
-
         return Json(new { subject = preview.Subject, html = preview.Html, text = preview.Text });
     }
 
@@ -242,18 +227,19 @@ public class TemplatesController(
         }
 
         var warnings = aiResult.Warnings.ToList();
-        var allowedSet = new HashSet<string>(htmlSanitizerService.AllowedVariables, StringComparer.OrdinalIgnoreCase);
 
-        var subjectTemplate = NormalizeTemplateVariables(aiResult.SubjectTemplate, allowedSet, warnings);
-        var normalizedHtml = NormalizeTemplateVariables(aiResult.HtmlBody, allowedSet, warnings);
-        var textBody = NormalizeTemplateVariables(aiResult.TextBody, allowedSet, warnings);
+        // Keep every well-formed {{Variable}} the AI used (catalog or custom); only normalize the
+        // token formatting. Nothing is stripped based on the catalog anymore.
+        var subjectTemplate = NormalizeTemplateVariables(aiResult.SubjectTemplate);
+        var normalizedHtml = NormalizeTemplateVariables(aiResult.HtmlBody);
+        var textBody = NormalizeTemplateVariables(aiResult.TextBody);
         var htmlBody = htmlSanitizerService.Sanitize(normalizedHtml);
         if (!string.Equals(normalizedHtml, htmlBody, StringComparison.Ordinal))
         {
             warnings.Add("Le HTML généré a été assaini pour la sécurité.");
         }
 
-        var recommendedSamples = NormalizeRecommendedVariables(aiResult.Variables, allowedSet, warnings);
+        var recommendedSamples = NormalizeRecommendedVariables(aiResult.Variables);
         var extractedVariables = templateRenderer.ExtractVariables(subjectTemplate, htmlBody, textBody);
 
         var variableNames = extractedVariables
@@ -404,21 +390,15 @@ public class TemplatesController(
     };
 
     private static Dictionary<string, string> NormalizeRecommendedVariables(
-        IReadOnlyList<TemplateAiVariableSuggestion> aiVariables,
-        HashSet<string> allowedSet,
-        List<string> warnings)
+        IReadOnlyList<TemplateAiVariableSuggestion> aiVariables)
     {
+        // Accept every AI-suggested variable with a valid identifier name (catalog or custom),
+        // attaching the AI-provided sample value (or a sensible fallback) so previews render.
         var samples = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var variable in aiVariables)
         {
             var normalizedName = NormalizeVariableName(variable.Name);
             if (normalizedName is null) continue;
-
-            if (!allowedSet.Contains(normalizedName))
-            {
-                warnings.Add($"Variable IA ignorée (non autorisée): {normalizedName}");
-                continue;
-            }
 
             samples[normalizedName] = string.IsNullOrWhiteSpace(variable.SampleValue)
                 ? CreateFallbackSampleValue(normalizedName)
@@ -428,23 +408,15 @@ public class TemplatesController(
         return samples;
     }
 
-    private static string NormalizeTemplateVariables(string input, HashSet<string> allowedSet, List<string> warnings)
+    private static string NormalizeTemplateVariables(string input)
     {
         if (string.IsNullOrWhiteSpace(input)) return string.Empty;
 
+        // Preserve every well-formed placeholder (catalog or custom); only tidy the token formatting.
         return Regex.Replace(input, @"\{\{\s*([A-Za-z][A-Za-z0-9_]*)\s*\}\}", match =>
         {
-            var rawName = match.Groups[1].Value;
-            var normalizedName = NormalizeVariableName(rawName);
-            if (normalizedName is null) return string.Empty;
-
-            if (!allowedSet.Contains(normalizedName))
-            {
-                warnings.Add($"Variable IA retirée du template (non autorisée): {normalizedName}");
-                return normalizedName;
-            }
-
-            return $"{{{{{normalizedName}}}}}";
+            var normalizedName = NormalizeVariableName(match.Groups[1].Value);
+            return normalizedName is null ? string.Empty : $"{{{{{normalizedName}}}}}";
         }, RegexOptions.CultureInvariant);
     }
 

@@ -67,8 +67,8 @@ Si le `templateCode` n'existe pas encore, le service crée automatiquement un te
 
 ## 3bis) Variables disponibles dans les templates
 
-Les templates acceptent un catalogue riche de variables couvrant les cas d'usage
-transactionnels courants (inscription, mot de passe oublié, abonnement, commande,
+Les templates proposent un catalogue riche de variables **recommandées** couvrant les cas
+d'usage transactionnels courants (inscription, mot de passe oublié, abonnement, commande,
 livraison, facture, etc.). Insérez-les avec la syntaxe `{{NomVariable}}` puis fournissez
 la valeur dans `subjectData` / `bodyData` lors de l'appel API.
 
@@ -85,7 +85,9 @@ la valeur dans `subjectData` / `bodyData` lors de l'appel API.
 
 Points importants :
 
-- Seules ces variables sont autorisées : toute variable hors catalogue est retirée du template à l'enregistrement.
+- Ce catalogue est un **ensemble recommandé**, pas une liste exclusive : vous (ou la génération IA) pouvez aussi utiliser des **variables personnalisées** `{{NomVariable}}` hors catalogue quand le cas d'usage l'exige.
+- Une variable personnalisée doit être un identifiant valide (lettres, chiffres, underscore, en PascalCase, commençant par une lettre) et n'est jamais supprimée si elle est bien formée.
+- Toute variable réellement utilisée (catalogue ou personnalisée) reste **obligatoire** à l'envoi : fournissez-lui une valeur non vide dans `subjectData` / `bodyData`.
 - Il n'existe **pas** de syntaxe de boucle/liste. Pour lister plusieurs articles, composez le HTML directement dans le template ou envoyez des valeurs déjà formatées.
 - Les noms existants (`FirstName`, `LastName`, `CompanyName`, `Email`, `ResetLink`, `OrderId`, `Amount`, `InvoiceDate`, `Message`) restent valides : les anciens templates continuent de fonctionner.
 

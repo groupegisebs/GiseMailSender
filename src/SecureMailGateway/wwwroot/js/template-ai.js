@@ -76,6 +76,20 @@
         }
     }
 
+    // Ensure every variable the AI used (catalog OR custom) exists in the editor's palette and
+    // test-data panel, seeded with the AI-provided sample value so the preview renders.
+    function registerGeneratedVariables(variables) {
+        const editorApi = window.secureMailTemplateEditor;
+        if (!editorApi || typeof editorApi.registerVariable !== 'function' || !Array.isArray(variables)) {
+            return;
+        }
+        variables.forEach(function (variable) {
+            if (variable && variable.name) {
+                editorApi.registerVariable(variable.name, variable.sampleValue);
+            }
+        });
+    }
+
     function applySampleData(sampleData) {
         if (!sampleData || typeof sampleData !== 'object') return;
 
@@ -140,6 +154,7 @@
 
             setHtmlContent(result.htmlBody || '');
             setTextContent(result.textBody || '');
+            registerGeneratedVariables(result.variables);
             applySampleData(result.sampleData || {});
             renderWarnings(result.warnings || []);
             setStatus('Template généré. Vérifiez puis cliquez sur Enregistrer si le résultat vous convient.', false);
