@@ -42,7 +42,16 @@ Copiez `appsettings.Development.json` ou définissez la variable d'environnement
 ```bash
 export ConnectionStrings__DefaultConnection="Host=localhost;Port=5432;Database=SecureMailGateway;Username=postgres;Password=postgres"
 export Seed__AdminPassword="VotreMotDePasseFort!"
+export OpenAI__ApiKey="sk-..."
+export OpenAI__Model="gpt-4o-mini"
 ```
+
+Configuration OpenAI (facultative, requise seulement pour la génération IA de templates) :
+
+- `OpenAI:ApiKey` : clé API OpenAI
+- `OpenAI:Model` : modèle utilisé (`gpt-4o-mini` par défaut)
+- `OpenAI:BaseUrl` : URL de base custom/proxy compatible OpenAI (optionnel)
+- `OpenAI:TimeoutSeconds` : timeout HTTP de la génération (45 sec par défaut)
 
 ### Mettre à jour la base avec EF Core
 
@@ -206,11 +215,25 @@ Métriques exposées : e-mails envoyés, échecs, durée d'envoi, appels API par
 - Dashboard
 - Applications clientes + quotas + domaines
 - Tokens API (génération, rotation, révocation)
-- Templates (éditeur WYSIWYG, aperçu, test, versions)
+- Templates (éditeur WYSIWYG, aperçu, test, versions, génération IA assistée)
 - Historique e-mails + détails
 - Configuration SMTP
 - Journal d'audit
 - Utilisateurs et rôles
+
+## Génération IA des templates
+
+Dans `Templates > Créer` ou `Templates > Éditer`, utilisez le bouton **Générer avec IA** :
+
+1. Décrivez l'objectif (obligatoire), la marque, le ton, la langue, le type d'e-mail et le CTA.
+2. Cliquez sur **Générer** pour obtenir un sujet, un corps HTML, un corps texte et des variables recommandées.
+3. Vérifiez le résultat puis cliquez sur **Enregistrer** (aucune sauvegarde automatique).
+
+Notes:
+
+- Le HTML IA est assaini côté serveur avant affichage et sauvegarde.
+- Les variables sont normalisées au format `{{VarName}}` et filtrées selon les variables autorisées.
+- Chaque génération OpenAI consomme des tokens API (coût variable selon modèle/volume).
 
 ## Licence
 

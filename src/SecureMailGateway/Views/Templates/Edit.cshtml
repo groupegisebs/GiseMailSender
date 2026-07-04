@@ -167,11 +167,66 @@
         <div class="securemail-action-bar">
             <a asp-action="Index" class="btn btn-link">Retour</a>
             <div class="securemail-action-right">
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#aiGenerateModal">
+                    <i class="bi bi-stars"></i> Générer avec IA
+                </button>
                 <button type="button" class="btn btn-outline-secondary" id="btnValidateVariables">Valider variables</button>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </div>
     </form>
+</div>
+
+<div class="modal fade" id="aiGenerateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Générer un template avec IA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info small">
+                    La génération met à jour le sujet, le HTML, le texte et les données de test. Aucun enregistrement automatique.
+                </div>
+                <div class="row g-2">
+                    <div class="col-12">
+                        <label class="form-label" for="aiObjective">Objectif / use-case *</label>
+                        <textarea class="form-control" id="aiObjective" rows="3" placeholder="Ex: Relance de facture impayée avec ton ferme mais cordial"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="aiBrand">Marque / entreprise</label>
+                        <input class="form-control" id="aiBrand" placeholder="Ex: GiseDoc" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="aiEmailType">Type d'email</label>
+                        <input class="form-control" id="aiEmailType" placeholder="Ex: Marketing, Facturation, Securite" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="aiTone">Ton</label>
+                        <input class="form-control" id="aiTone" value="Professionnel et humain" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="aiLanguage">Langue</label>
+                        <input class="form-control" id="aiLanguage" value="fr" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="aiCta">CTA</label>
+                        <input class="form-control" id="aiCta" placeholder="Ex: Voir ma facture" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="aiOptionalVariables">Variables souhaitées (optionnel)</label>
+                        <input class="form-control" id="aiOptionalVariables" placeholder="Ex: FirstName, Amount, InvoiceDate" />
+                    </div>
+                </div>
+                <div id="aiGenerateStatus" class="small mt-3"></div>
+                <ul id="aiGenerateWarnings" class="small text-warning ps-3 mb-0"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="btnRunAiGenerate">Générer</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
@@ -181,6 +236,10 @@
             testDataDefaults: @Html.Raw(testDataJson),
             previewUrl: '@Url.Action("Preview", "Templates")'
         };
+        window.secureMailAiConfig = {
+            generateUrl: '@Url.Action("GenerateWithAi", "Templates")'
+        };
     </script>
     <script src="~/js/template-editor.js" asp-append-version="true"></script>
+    <script src="~/js/template-ai.js" asp-append-version="true"></script>
 }

@@ -77,6 +77,37 @@ public class TemplatePreviewRequest
     public Dictionary<string, string> SampleData { get; set; } = new();
 }
 
+public class TemplateAiGenerateRequest
+{
+    [Required, MaxLength(2000)]
+    public string Objective { get; set; } = string.Empty;
+
+    [MaxLength(200)]
+    public string? BrandOrCompany { get; set; }
+
+    [MaxLength(120)]
+    public string? Tone { get; set; }
+
+    [MaxLength(20)]
+    public string? Language { get; set; } = "fr";
+
+    [MaxLength(120)]
+    public string? EmailType { get; set; }
+
+    [MaxLength(300)]
+    public string? Cta { get; set; }
+
+    [MaxLength(2000)]
+    public string? OptionalVariables { get; set; }
+}
+
+public class TemplateAiVariableViewModel
+{
+    public string Name { get; set; } = string.Empty;
+    public string Token { get; set; } = string.Empty;
+    public string SampleValue { get; set; } = string.Empty;
+}
+
 public class TemplateTestRequest
 {
     public Guid? TemplateId { get; set; }

@@ -27,6 +27,8 @@ try
 
     builder.Services.Configure<DeploymentSettings>(
         builder.Configuration.GetSection(DeploymentSettings.SectionName));
+    builder.Services.Configure<OpenAiOptions>(
+        builder.Configuration.GetSection(OpenAiOptions.SectionName));
 
     builder.Host.UseSerilog((ctx, services, config) => config
         .ReadFrom.Configuration(ctx.Configuration)
@@ -77,11 +79,13 @@ try
 
     builder.Services.AddHttpContextAccessor();
     builder.Services.AddHttpClient("callback", c => c.Timeout = TimeSpan.FromSeconds(10));
+    builder.Services.AddHttpClient(nameof(OpenAiTemplateAiService));
 
     builder.Services.AddScoped<ITokenHashService, TokenHashService>();
     builder.Services.AddScoped<ITemplateRenderer, TemplateRenderer>();
     builder.Services.AddScoped<IHtmlSanitizerService, HtmlSanitizerService>();
     builder.Services.AddScoped<ITemplatePreviewService, TemplatePreviewService>();
+    builder.Services.AddScoped<ITemplateAiService, OpenAiTemplateAiService>();
     builder.Services.AddScoped<IMailCodeGenerator, MailCodeGenerator>();
     builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
     builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();

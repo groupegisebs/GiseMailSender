@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 using SecureMailGateway.Authorization;
 using SecureMailGateway.Data;
 using SecureMailGateway.Models.Entities;
@@ -16,6 +17,7 @@ public class TemplatesController(
     ITemplateRenderer templateRenderer,
     IHtmlSanitizerService htmlSanitizerService,
     ITemplatePreviewService templatePreviewService,
+    ITemplateAiService templateAiService,
     IAuditService auditService,
     IEmailSenderService emailSender,
     IMailCodeGenerator mailCodeGenerator) : Controller
@@ -206,6 +208,94 @@ public class TemplatesController(
     }
 
     [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> GenerateWithAi([FromBody] TemplateAiGenerateRequest request, CancellationToken ct)
+    {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .Where(e => !string.IsNullOrWhiteSpace(e))
+                .ToArray();
+            return BadRequest(new { message = "Paramètres invalides pour la génération IA.", errors });
+        }
+
+        var aiResult = await templateAiService.GenerateAsync(new TemplateAiGenerationRequest
+        {
+            Objective = request.Objective.Trim(),
+            BrandOrCompany = request.BrandOrCompany?.Trim(),
+            Tone = request.Tone?.Trim(),
+            Language = request.Language?.Trim(),
+            EmailType = request.EmailType?.Trim(),
+            Cta = request.Cta?.Trim(),
+            OptionalVariables = request.OptionalVariables?.Trim(),
+            AllowedVariables = htmlSanitizerService.AllowedVariables
+        }, ct);
+
+        if (!aiResult.Success)
+        {
+            return BadRequest(new
+            {
+                message = aiResult.UserMessage,
+                warnings = aiResult.Warnings
+            });
+        }
+
+        var warnings = aiResult.Warnings.ToList();
+        var allowedSet = new HashSet<string>(htmlSanitizerService.AllowedVariables, StringComparer.OrdinalIgnoreCase);
+
+        var subjectTemplate = NormalizeTemplateVariables(aiResult.SubjectTemplate, allowedSet, warnings);
+        var normalizedHtml = NormalizeTemplateVariables(aiResult.HtmlBody, allowedSet, warnings);
+        var textBody = NormalizeTemplateVariables(aiResult.TextBody, allowedSet, warnings);
+        var htmlBody = htmlSanitizerService.Sanitize(normalizedHtml);
+        if (!string.Equals(normalizedHtml, htmlBody, StringComparison.Ordinal))
+        {
+            warnings.Add("Le HTML généré a été assaini pour la sécurité.");
+        }
+
+        var recommendedSamples = NormalizeRecommendedVariables(aiResult.Variables, allowedSet, warnings);
+        var extractedVariables = templateRenderer.ExtractVariables(subjectTemplate, htmlBody, textBody);
+
+        var variableNames = extractedVariables
+            .Concat(recommendedSamples.Keys)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(v => v)
+            .ToList();
+
+        var sampleData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var variableName in variableNames)
+        {
+            if (recommendedSamples.TryGetValue(variableName, out var sampleValue))
+            {
+                sampleData[variableName] = sampleValue;
+            }
+            else
+            {
+                sampleData[variableName] = CreateFallbackSampleValue(variableName);
+            }
+        }
+
+        var variables = variableNames
+            .Select(v => new TemplateAiVariableViewModel
+            {
+                Name = v,
+                Token = $"{{{{{v}}}}}",
+                SampleValue = sampleData[v]
+            })
+            .ToList();
+
+        return Json(new
+        {
+            subjectTemplate,
+            htmlBody,
+            textBody,
+            variables,
+            sampleData,
+            warnings = warnings.Distinct().ToList()
+        });
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Duplicate(Guid id, CancellationToken ct)
     {
         var source = await db.EmailTemplates.FindAsync([id], ct);
@@ -311,6 +401,80 @@ public class TemplatesController(
         TextBody = e.TextBody,
         Language = e.Language,
         IsActive = e.IsActive
+    };
+
+    private static Dictionary<string, string> NormalizeRecommendedVariables(
+        IReadOnlyList<TemplateAiVariableSuggestion> aiVariables,
+        HashSet<string> allowedSet,
+        List<string> warnings)
+    {
+        var samples = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var variable in aiVariables)
+        {
+            var normalizedName = NormalizeVariableName(variable.Name);
+            if (normalizedName is null) continue;
+
+            if (!allowedSet.Contains(normalizedName))
+            {
+                warnings.Add($"Variable IA ignorée (non autorisée): {normalizedName}");
+                continue;
+            }
+
+            samples[normalizedName] = string.IsNullOrWhiteSpace(variable.SampleValue)
+                ? CreateFallbackSampleValue(normalizedName)
+                : variable.SampleValue.Trim();
+        }
+
+        return samples;
+    }
+
+    private static string NormalizeTemplateVariables(string input, HashSet<string> allowedSet, List<string> warnings)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return string.Empty;
+
+        return Regex.Replace(input, @"\{\{\s*([A-Za-z][A-Za-z0-9_]*)\s*\}\}", match =>
+        {
+            var rawName = match.Groups[1].Value;
+            var normalizedName = NormalizeVariableName(rawName);
+            if (normalizedName is null) return string.Empty;
+
+            if (!allowedSet.Contains(normalizedName))
+            {
+                warnings.Add($"Variable IA retirée du template (non autorisée): {normalizedName}");
+                return normalizedName;
+            }
+
+            return $"{{{{{normalizedName}}}}}";
+        }, RegexOptions.CultureInvariant);
+    }
+
+    private static string? NormalizeVariableName(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return null;
+
+        var cleaned = Regex.Replace(value, @"[^A-Za-z0-9_]", string.Empty, RegexOptions.CultureInvariant).Trim();
+        if (string.IsNullOrWhiteSpace(cleaned)) return null;
+
+        if (!char.IsLetter(cleaned[0]))
+        {
+            cleaned = $"Var{cleaned}";
+        }
+
+        return cleaned;
+    }
+
+    private static string CreateFallbackSampleValue(string variableName) => variableName switch
+    {
+        "FirstName" => "Jean",
+        "LastName" => "Dupont",
+        "CompanyName" => "GiseDoc",
+        "Email" => "client@example.com",
+        "ResetLink" => "https://example.com/reset",
+        "OrderId" => "ORD-2026-001",
+        "Amount" => "29,00 $",
+        "InvoiceDate" => DateTime.UtcNow.ToString("yyyy-MM-dd"),
+        "Message" => "Votre demande a bien été prise en compte.",
+        _ => "Exemple"
     };
 
 }
