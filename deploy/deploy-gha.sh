@@ -18,6 +18,8 @@ set -euo pipefail
 : "${OPENAI_MODEL:=gpt-4o-mini}"
 : "${OPENAI_BASE_URL:=}"
 : "${OPENAI_TIMEOUT_SECONDS:=45}"
+: "${UPLOADS_PATH:=}"
+: "${UPLOADS_PUBLIC_BASE_URL:=}"
 
 sanitize() {
   printf '%s' "$1" | tr -d '\r\n\t' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//"
@@ -37,6 +39,14 @@ OPENAI_API_KEY=$(sanitize "${OPENAI_API_KEY}")
 OPENAI_MODEL=$(sanitize "${OPENAI_MODEL}")
 OPENAI_BASE_URL=$(sanitize "${OPENAI_BASE_URL}")
 OPENAI_TIMEOUT_SECONDS=$(sanitize "${OPENAI_TIMEOUT_SECONDS}")
+UPLOADS_PATH=$(sanitize "${UPLOADS_PATH}")
+UPLOADS_PUBLIC_BASE_URL=$(sanitize "${UPLOADS_PUBLIC_BASE_URL}")
+
+# Persistent uploads directory: defaults to a sibling of the app dir so it survives the
+# rsync --delete that only targets ${APP_DIR}.
+if [[ -z "${UPLOADS_PATH}" ]]; then
+  UPLOADS_PATH="${APP_ROOT}/uploads"
+fi
 
 if [[ -z "${OPENAI_MODEL}" ]]; then
   OPENAI_MODEL="gpt-4o-mini"
@@ -64,7 +74,7 @@ fi
 
 [[ -f "${PUBLISH_DIR}/${DLL_NAME}" ]] || { echo "Assembly introuvable : ${PUBLISH_DIR}/${DLL_NAME}" >&2; exit 1; }
 
-ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" "sudo mkdir -p '${APP_DIR}' '${BACKUP_DIR}' '${APP_DIR}/keys' '${APP_DIR}/logs' && sudo chown -R ${SSH_USER}:${SSH_USER} '${APP_ROOT}'"
+ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" "sudo mkdir -p '${APP_DIR}' '${BACKUP_DIR}' '${APP_DIR}/keys' '${APP_DIR}/logs' '${UPLOADS_PATH}' && sudo chown -R ${SSH_USER}:${SSH_USER} '${APP_ROOT}' && sudo chown -R ${SSH_USER}:${SSH_USER} '${UPLOADS_PATH}'"
 
 ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" bash -s <<REMOTE_BACKUP
 set -eu
@@ -93,6 +103,10 @@ ENV_FILE="$(mktemp)"
     printf 'OpenAI__BaseUrl=%s\n' "${OPENAI_BASE_URL}"
   fi
   printf 'OpenAI__TimeoutSeconds=%s\n' "${OPENAI_TIMEOUT_SECONDS}"
+  printf 'Uploads__Path=%s\n' "${UPLOADS_PATH}"
+  if [[ -n "${UPLOADS_PUBLIC_BASE_URL}" ]]; then
+    printf 'Uploads__PublicBaseUrl=%s\n' "${UPLOADS_PUBLIC_BASE_URL}"
+  fi
 } > "${ENV_FILE}"
 scp "${SCP_OPTS[@]}" "${ENV_FILE}" "${SSH_TARGET}:/tmp/${SERVICE_NAME}.app.env"
 rm -f "${ENV_FILE}"

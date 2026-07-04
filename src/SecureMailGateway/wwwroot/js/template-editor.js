@@ -489,6 +489,7 @@
     let pickerInsertStyle = null;   // 'button' | 'link' | 'image' | null (edit existing)
     let pickerTarget = null;        // element being edited, or null when inserting
     let pickerSelectedVar = null;
+    let pickerUploadedUrl = null;   // absolute URL of an image uploaded from this device
     let linkPickerEl = null;
 
     function saveSelection() {
@@ -598,6 +599,16 @@
                     '<button type="button" class="securemail-lp-close" data-lp-close aria-label="Fermer">&times;</button>' +
                 '</div>' +
                 '<div class="securemail-linkpicker-body">' +
+                    '<div class="securemail-lp-upload" data-lp-upload-field hidden>' +
+                        '<label>Uploader une image</label>' +
+                        '<div class="securemail-lp-upload-row">' +
+                            '<input id="lpFile" type="file" accept="image/png,image/jpeg,image/gif,image/webp" />' +
+                            '<button type="button" class="btn btn-outline-secondary" id="lpUploadBtn">Uploader</button>' +
+                        '</div>' +
+                        '<p class="securemail-lp-hint" id="lpUploadStatus">PNG, JPG, GIF ou WEBP (max 2 Mo). L\'image est hébergée sur le serveur.</p>' +
+                        '<div class="securemail-lp-upload-preview" id="lpUploadPreview" hidden></div>' +
+                        '<p class="securemail-lp-hint">Ou choisissez une variable ci-dessous (ex. {{LogoUrl}}).</p>' +
+                    '</div>' +
                     '<div class="securemail-lp-field" data-lp-label-field>' +
                         '<label for="lpLabel">Texte affiché</label>' +
                         '<input id="lpLabel" class="form-control" type="text" />' +
@@ -664,6 +675,67 @@
         });
 
         linkPickerEl.querySelector('#lpConfirm').addEventListener('click', confirmLinkPicker);
+
+        const uploadBtn = linkPickerEl.querySelector('#lpUploadBtn');
+        const fileInput = linkPickerEl.querySelector('#lpFile');
+        if (uploadBtn && fileInput) {
+            uploadBtn.addEventListener('click', function () { uploadPickerImage(fileInput.files && fileInput.files[0]); });
+            fileInput.addEventListener('change', function () { uploadPickerImage(fileInput.files && fileInput.files[0]); });
+        }
+    }
+
+    async function uploadPickerImage(file) {
+        if (!linkPickerEl) return;
+        const statusEl = linkPickerEl.querySelector('#lpUploadStatus');
+        const previewEl = linkPickerEl.querySelector('#lpUploadPreview');
+        const uploadBtn = linkPickerEl.querySelector('#lpUploadBtn');
+
+        if (!file) {
+            if (statusEl) statusEl.textContent = 'Choisissez d\'abord un fichier image.';
+            return;
+        }
+        if (!config.uploadImageUrl) {
+            if (statusEl) statusEl.textContent = "L'upload d'images n'est pas configuré.";
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const token = document.querySelector('input[name="__RequestVerificationToken"]');
+        const headers = {};
+        if (token) headers.RequestVerificationToken = token.value;
+
+        if (uploadBtn) uploadBtn.disabled = true;
+        if (statusEl) statusEl.textContent = 'Upload en cours...';
+
+        try {
+            const response = await fetch(config.uploadImageUrl, {
+                method: 'POST',
+                headers: headers,
+                body: formData
+            });
+            const data = await response.json().catch(function () { return {}; });
+            if (!response.ok) {
+                if (statusEl) statusEl.textContent = data.message || 'Échec de l\'upload.';
+                return;
+            }
+
+            pickerUploadedUrl = data.url;
+            pickerSelectedVar = null;
+            const customUrl = linkPickerEl.querySelector('#lpCustomUrl');
+            if (customUrl) customUrl.value = '';
+            if (statusEl) statusEl.textContent = 'Image uploadée. Cliquez sur « Insérer ».';
+            if (previewEl) {
+                previewEl.hidden = false;
+                previewEl.innerHTML = '<img src="' + data.url + '" alt="Aperçu" />';
+            }
+            updatePickerSelectionUI();
+        } catch (err) {
+            if (statusEl) statusEl.textContent = 'Erreur réseau pendant l\'upload.';
+        } finally {
+            if (uploadBtn) uploadBtn.disabled = false;
+        }
     }
 
     function openLinkPicker(kind, insertStyle, targetEl) {
@@ -672,6 +744,7 @@
         pickerInsertStyle = insertStyle;
         pickerTarget = targetEl || null;
         pickerSelectedVar = null;
+        pickerUploadedUrl = null;
         saveSelection();
 
         const titleEl = linkPickerEl.querySelector('#lpTitle');
@@ -683,10 +756,17 @@
         const customDetails = linkPickerEl.querySelector('.securemail-lp-custom');
         const searchInput = linkPickerEl.querySelector('#lpSearch');
         const confirmBtn = linkPickerEl.querySelector('#lpConfirm');
+        const uploadField = linkPickerEl.querySelector('[data-lp-upload-field]');
+        const fileInput = linkPickerEl.querySelector('#lpFile');
+        const uploadStatus = linkPickerEl.querySelector('#lpUploadStatus');
+        const uploadPreview = linkPickerEl.querySelector('#lpUploadPreview');
 
         customUrl.value = '';
         customDetails.open = false;
         searchInput.value = '';
+        if (fileInput) fileInput.value = '';
+        if (uploadPreview) { uploadPreview.hidden = true; uploadPreview.innerHTML = ''; }
+        if (uploadStatus) uploadStatus.textContent = 'PNG, JPG, GIF ou WEBP (max 2 Mo). L\'image est hébergée sur le serveur.';
 
         function prefillTarget(current) {
             const match = (current || '').match(/^\s*\{\{\s*([A-Za-z][A-Za-z0-9_]*)\s*\}\}\s*$/);
@@ -701,11 +781,16 @@
         if (kind === 'image') {
             labelField.setAttribute('hidden', 'hidden');
             altField.removeAttribute('hidden');
+            if (uploadField) {
+                if (config.uploadImageUrl) uploadField.removeAttribute('hidden');
+                else uploadField.setAttribute('hidden', 'hidden');
+            }
             titleEl.textContent = targetEl ? "Modifier l'image" : 'Insérer une image';
             altInput.value = targetEl ? (targetEl.getAttribute('alt') || '') : '';
             if (targetEl) prefillTarget(targetEl.getAttribute('src') || '');
         } else {
             altField.setAttribute('hidden', 'hidden');
+            if (uploadField) uploadField.setAttribute('hidden', 'hidden');
             labelField.removeAttribute('hidden');
             titleEl.textContent = targetEl
                 ? 'Modifier le lien'
@@ -738,7 +823,9 @@
 
         let href;
         const custom = (customUrl.value || '').trim();
-        if (pickerSelectedVar) {
+        if (pickerKind === 'image' && pickerUploadedUrl) {
+            href = pickerUploadedUrl;
+        } else if (pickerSelectedVar) {
             href = '{{' + pickerSelectedVar + '}}';
         } else if (custom) {
             if (!isSafeUrl(custom)) {
@@ -746,6 +833,9 @@
                 return;
             }
             href = custom;
+        } else if (pickerKind === 'image') {
+            window.alert('Uploadez une image, sélectionnez une variable, ou saisissez une URL dans « Autre URL ».');
+            return;
         } else {
             window.alert('Sélectionnez une variable du formulaire (ou saisissez une URL dans « Autre URL »).');
             return;

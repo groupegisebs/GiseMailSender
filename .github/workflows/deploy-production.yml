@@ -90,6 +90,9 @@ jobs:
           OPENAI_BASE_URL_SECRET: ${{ secrets.OPENAI_BASE_URL }}
           OPENAI_TIMEOUT_VAR: ${{ vars.OPENAI_TIMEOUT_SECONDS }}
           OPENAI_TIMEOUT_SECRET: ${{ secrets.OPENAI_TIMEOUT_SECONDS }}
+          UPLOADS_PUBLIC_BASE_URL_VAR: ${{ vars.UPLOADS_PUBLIC_BASE_URL }}
+          UPLOADS_PUBLIC_BASE_URL_SECRET: ${{ secrets.UPLOADS_PUBLIC_BASE_URL }}
+          UPLOADS_PATH_VAR: ${{ vars.UPLOADS_PATH }}
         run: |
           source deploy/gha-env.sh
 
@@ -115,6 +118,8 @@ jobs:
           OPENAI_MODEL_RAW=$(pick_first "$OPENAI_MODEL_VAR" "$OPENAI_MODEL_SECRET") || true
           OPENAI_BASE_URL_RAW=$(pick_first "$OPENAI_BASE_URL_VAR" "$OPENAI_BASE_URL_SECRET") || true
           OPENAI_TIMEOUT_RAW=$(pick_first "$OPENAI_TIMEOUT_VAR" "$OPENAI_TIMEOUT_SECRET") || true
+          UPLOADS_PUBLIC_BASE_URL_RAW=$(pick_first "$UPLOADS_PUBLIC_BASE_URL_VAR" "$UPLOADS_PUBLIC_BASE_URL_SECRET") || true
+          UPLOADS_PATH_RAW=$(pick_first "$UPLOADS_PATH_VAR") || true
 
           missing=0
           if [ -z "$SSH_PRIVATE_KEY" ]; then
@@ -137,6 +142,8 @@ jobs:
           OPENAI_MODEL=$(gha_sanitize "$OPENAI_MODEL_RAW")
           OPENAI_BASE_URL=$(gha_sanitize "$OPENAI_BASE_URL_RAW")
           OPENAI_TIMEOUT_SECONDS=$(gha_sanitize "$OPENAI_TIMEOUT_RAW")
+          UPLOADS_PUBLIC_BASE_URL=$(gha_sanitize "$UPLOADS_PUBLIC_BASE_URL_RAW")
+          UPLOADS_PATH=$(gha_sanitize "$UPLOADS_PATH_RAW")
 
           gha_write_env SSH_PRIVATE_KEY "$SSH_PRIVATE_KEY"
           gha_write_env SSH_HOST "$SSH_HOST"
@@ -158,6 +165,12 @@ jobs:
           fi
           if [ -n "$OPENAI_TIMEOUT_SECONDS" ]; then
             gha_write_env OPENAI_TIMEOUT_SECONDS "$OPENAI_TIMEOUT_SECONDS"
+          fi
+          if [ -n "$UPLOADS_PUBLIC_BASE_URL" ]; then
+            gha_write_env UPLOADS_PUBLIC_BASE_URL "$UPLOADS_PUBLIC_BASE_URL"
+          fi
+          if [ -n "$UPLOADS_PATH" ]; then
+            gha_write_env UPLOADS_PATH "$UPLOADS_PATH"
           fi
           echo "OK → ${SSH_USER}@${SSH_HOST}:${SSH_PORT} service=${SERVICE_NAME}"
 

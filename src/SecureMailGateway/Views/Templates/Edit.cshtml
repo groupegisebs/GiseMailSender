@@ -251,7 +251,8 @@
         window.secureMailTemplateEditorConfig = {
             allowedVariables: @Html.Raw(variableListJson),
             testDataDefaults: @Html.Raw(testDataJson),
-            previewUrl: '@Url.Action("Preview", "Templates")'
+            previewUrl: '@Url.Action("Preview", "Templates")',
+            uploadImageUrl: '@Url.Action("UploadImage", "Templates")'
         };
         window.secureMailAiConfig = {
             generateUrl: '@Url.Action("GenerateWithAi", "Templates")'

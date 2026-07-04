@@ -19,6 +19,7 @@ public class TemplatesController(
     IHtmlSanitizerService htmlSanitizerService,
     ITemplatePreviewService templatePreviewService,
     OpenAiTemplateService openAiTemplateService,
+    IImageUploadService imageUploadService,
     IAuditService auditService,
     IEmailSenderService emailSender,
     IMailCodeGenerator mailCodeGenerator) : Controller
@@ -269,6 +270,25 @@ public class TemplatesController(
             Variables = variables,
             Warnings = warnings.Distinct().ToList()
         });
+    }
+
+    [HttpPost("templates/images/upload"), ValidateAntiForgeryToken]
+    [RequestSizeLimit(8 * 1024 * 1024)]
+    public async Task<IActionResult> UploadImage(IFormFile? file, CancellationToken ct)
+    {
+        var result = await imageUploadService.SaveAsync(file, Request, ct);
+        if (!result.Success)
+            return BadRequest(new { message = result.Error });
+
+        return Json(new { url = result.Url, fileName = result.FileName });
+    }
+
+    [HttpGet("templates/images")]
+    public IActionResult ListImages()
+    {
+        var items = imageUploadService.List(Request)
+            .Select(i => new { url = i.Url, fileName = i.FileName, size = i.Size });
+        return Json(items);
     }
 
     [HttpPost, ValidateAntiForgeryToken]

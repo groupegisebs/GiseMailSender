@@ -567,6 +567,45 @@
     color: #6B7280;
 }
 
+.securemail-lp-upload {
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed #E5E7EB;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.securemail-lp-upload > label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.securemail-lp-upload-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.securemail-lp-upload-row input[type="file"] {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.8rem;
+}
+
+.securemail-lp-upload-preview {
+    margin-top: 4px;
+}
+
+.securemail-lp-upload-preview img {
+    max-width: 100%;
+    max-height: 120px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+}
+
 .securemail-lp-custom {
     padding-top: 10px;
     border-top: 1px dashed #E5E7EB;
