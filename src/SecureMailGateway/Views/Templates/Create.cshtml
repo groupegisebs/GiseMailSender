@@ -90,47 +90,13 @@
             </div>
 
             <div class="template-editor-wrap">
-                <div class="mail-editor">
-                    <div class="mail-editor-toolbar">
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Style de texte">
-                            <button type="button" class="btn btn-outline-secondary" data-rte-cmd="bold" title="Gras"><i class="bi bi-type-bold"></i> Gras</button>
-                            <button type="button" class="btn btn-outline-secondary" data-rte-cmd="italic" title="Italique"><i class="bi bi-type-italic"></i> Italique</button>
-                            <button type="button" class="btn btn-outline-secondary" data-rte-cmd="underline" title="Souligné"><i class="bi bi-type-underline"></i> Souligné</button>
-                        </div>
-                        <span class="toolbar-divider"></span>
-                        <select class="form-select form-select-sm" id="rteHeading" style="width:auto;" title="Titre ou paragraphe">
-                            <option value="">Titre / Paragraphe</option>
-                            <option value="h1">Titre 1</option>
-                            <option value="h2">Titre 2</option>
-                            <option value="h3">Titre 3</option>
-                            <option value="p">Paragraphe</option>
-                        </select>
-                        <span class="toolbar-divider"></span>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Listes">
-                            <button type="button" class="btn btn-outline-secondary" data-rte-cmd="insertUnorderedList" title="Liste à puces"><i class="bi bi-list-ul"></i> Liste</button>
-                            <button type="button" class="btn btn-outline-secondary" data-rte-cmd="insertOrderedList" title="Liste numérotée"><i class="bi bi-list-ol"></i> Numérotée</button>
-                        </div>
-                        <span class="toolbar-divider"></span>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-rte-cmd="createLink" title="Ajouter un lien"><i class="bi bi-link-45deg"></i> Lien</button>
-                        <label class="btn btn-sm btn-outline-secondary mb-0" title="Couleur du texte">
-                            <i class="bi bi-palette"></i>
-                            <input type="color" id="rteColor" class="form-control form-control-color border-0 p-0 ms-1" value="#1e293b" style="width:1.5rem;height:1.25rem;" />
-                        </label>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-rte-cmd="removeFormat" title="Effacer la mise en forme"><i class="bi bi-eraser"></i> Effacer</button>
-                        <span class="toolbar-divider"></span>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" id="btnToggleHtml" title="Voir ou modifier le code HTML"><i class="bi bi-code-slash"></i> HTML</button>
-                    </div>
-                    <div id="rteEditor"
-                         class="mail-editor-body"
-                         contenteditable="true"
-                         data-placeholder="Rédigez votre e-mail ici… Cliquez sur une variable pour l'insérer."></div>
-                </div>
                 <textarea asp-for="HtmlBody"
-                          class="form-control template-editor d-none"
+                          class="form-control template-editor"
                           id="htmlBody"
                           rows="18"
                           data-preview-url="@Url.Action("Preview")"
-                          data-variables="@string.Join(",", variableNames)"></textarea>
+                          data-variables="@string.Join(",", variableNames)"
+                          placeholder="Rédigez votre e-mail ici…"></textarea>
             </div>
 
             <label asp-for="TextBody" class="form-label mt-2">Corps texte (optionnel)</label>
@@ -204,6 +170,7 @@
 }
 
 @section Scripts {
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="~/js/template-editor.js" asp-append-version="true"></script>
     <script>
         document.querySelectorAll('.btn-insert-var').forEach(btn => {

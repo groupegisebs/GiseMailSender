@@ -2,9 +2,9 @@
     'use strict';
 
     const htmlBodyEl = document.getElementById('htmlBody');
-    const rteEditor = document.getElementById('rteEditor');
     const variableListEl = document.getElementById('variableList');
-    if (!htmlBodyEl || !rteEditor || !variableListEl) return;
+    const formEl = document.getElementById('templateForm');
+    if (!htmlBodyEl || !variableListEl) return;
 
     const previewUrl = htmlBodyEl.dataset.previewUrl;
     const defaultVariables = (htmlBodyEl.dataset.variables || 'FirstName,CompanyName,Title,Message')
@@ -57,7 +57,9 @@
     };
 
     const knownVariables = new Set();
-    let htmlMode = false;
+    function tinyEditor() {
+        return window.tinymce?.get('htmlBody') ?? null;
+    }
 
     function normalizeVariableName(name) {
         return name.trim().replace(/\s+/g, '');
@@ -123,35 +125,31 @@
         });
     }
 
-    function syncHtmlFromEditor() {
-        htmlBodyEl.value = rteEditor.innerHTML;
-    }
-
-    function syncEditorFromHtml() {
-        rteEditor.innerHTML = htmlBodyEl.value || '<p><br></p>';
-    }
-
     function getHtmlBody() {
-        return htmlMode ? htmlBodyEl.value : rteEditor.innerHTML;
+        const editor = tinyEditor();
+        if (editor) return editor.getContent();
+        return htmlBodyEl.value;
     }
 
     function setHtmlBody(html) {
+        const editor = tinyEditor();
         htmlBodyEl.value = html;
-        if (!htmlMode) rteEditor.innerHTML = html || '<p><br></p>';
+        if (editor) editor.setContent(html || '');
     }
 
     function insertVariable(name) {
         const token = variableToken(name);
-        if (htmlMode) {
+        const editor = tinyEditor();
+        if (editor) {
+            editor.focus();
+            editor.insertContent(token);
+            htmlBodyEl.value = editor.getContent();
+        } else {
             const start = htmlBodyEl.selectionStart ?? htmlBodyEl.value.length;
             const end = htmlBodyEl.selectionEnd ?? htmlBodyEl.value.length;
             htmlBodyEl.value = htmlBodyEl.value.slice(0, start) + token + htmlBodyEl.value.slice(end);
             htmlBodyEl.focus();
             htmlBodyEl.selectionStart = htmlBodyEl.selectionEnd = start + token.length;
-        } else {
-            rteEditor.focus();
-            document.execCommand('insertText', false, token);
-            syncHtmlFromEditor();
         }
         extractVariablesFromContent();
         updatePreview();
@@ -224,81 +222,14 @@
         syncSampleFieldsFromVariables();
     }
 
-    function runCommand(cmd, value) {
-        if (htmlMode) return;
-        rteEditor.focus();
-        document.execCommand(cmd, false, value ?? null);
-        syncHtmlFromEditor();
-        extractVariablesFromContent();
-        updatePreview();
-    }
-
-    function toggleHtmlMode() {
-        const btn = document.getElementById('btnToggleHtml');
-        if (!htmlMode) {
-            syncHtmlFromEditor();
-            rteEditor.classList.add('d-none');
-            htmlBodyEl.classList.remove('d-none');
-            htmlBodyEl.classList.add('mail-editor-html');
-            htmlMode = true;
-            btn.innerHTML = '<i class="bi bi-eye"></i> Visuel';
-            btn.classList.replace('btn-outline-secondary', 'btn-secondary');
-        } else {
-            htmlBodyEl.classList.add('d-none');
-            htmlBodyEl.classList.remove('mail-editor-html');
-            rteEditor.classList.remove('d-none');
-            syncEditorFromHtml();
-            htmlMode = false;
-            btn.innerHTML = '<i class="bi bi-code-slash"></i> HTML';
-            btn.classList.replace('btn-secondary', 'btn-outline-secondary');
-            extractVariablesFromContent();
-            updatePreview();
-        }
-    }
-
     bindExistingVariableBadges();
     defaultVariables.forEach(v => addVariable(v, true));
     syncSampleFieldsFromVariables();
     refreshVariableSelect();
 
-    syncEditorFromHtml();
-    if (!htmlBodyEl.value.trim()) rteEditor.innerHTML = '<p><br></p>';
-
-    document.querySelectorAll('[data-rte-cmd]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const cmd = btn.dataset.rteCmd;
-            if (cmd === 'createLink') {
-                const url = prompt('Adresse du lien (https://...)');
-                if (url) runCommand('createLink', url);
-                return;
-            }
-            if (cmd === 'formatBlock') {
-                runCommand('formatBlock', btn.dataset.rteValue);
-                return;
-            }
-            runCommand(cmd);
-        });
-    });
-
-    document.getElementById('rteHeading')?.addEventListener('change', e => {
-        runCommand('formatBlock', e.target.value);
-        e.target.value = '';
-    });
-
-    document.getElementById('rteColor')?.addEventListener('input', e => runCommand('foreColor', e.target.value));
-    document.getElementById('btnToggleHtml')?.addEventListener('click', toggleHtmlMode);
-
-    rteEditor.addEventListener('input', () => {
-        syncHtmlFromEditor();
+    htmlBodyEl.addEventListener('input', () => {
         extractVariablesFromContent();
         updatePreview();
-    });
-
-    htmlBodyEl.addEventListener('input', () => {
-        if (htmlMode) {
-            extractVariablesFromContent();
-            updatePreview();
-        }
     });
 
     document.getElementById('btnApplyPreset')?.addEventListener('click', () => {
@@ -340,12 +271,12 @@
     });
     document.querySelectorAll('.sample-field').forEach(el => el.addEventListener('input', updatePreview));
 
-    document.getElementById('templateForm')?.addEventListener('submit', () => {
-        if (!htmlMode) syncHtmlFromEditor();
+    formEl?.addEventListener('submit', () => {
+        window.tinymce?.triggerSave();
     });
 
     document.getElementById('testModal')?.addEventListener('show.bs.modal', function () {
-        if (!htmlMode) syncHtmlFromEditor();
+        window.tinymce?.triggerSave();
         document.getElementById('testSubject').value = document.getElementById('subjectTemplate').value;
         document.getElementById('testHtml').value = getHtmlBody();
         document.getElementById('testText').value = document.getElementById('textBody').value;
@@ -356,6 +287,29 @@
         });
     });
 
-    extractVariablesFromContent();
-    updatePreview();
+    if (window.tinymce && typeof window.tinymce.init === 'function') {
+        window.tinymce.init({
+            selector: '#htmlBody',
+            menubar: false,
+            height: 420,
+            plugins: 'link lists code table autoresize',
+            toolbar: 'undo redo | blocks | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | link table | code',
+            branding: false,
+            setup(editor) {
+                editor.on('init', () => {
+                    htmlBodyEl.value = editor.getContent();
+                    extractVariablesFromContent();
+                    updatePreview();
+                });
+                editor.on('change input keyup undo redo setcontent', () => {
+                    htmlBodyEl.value = editor.getContent();
+                    extractVariablesFromContent();
+                    updatePreview();
+                });
+            }
+        });
+    } else {
+        extractVariablesFromContent();
+        updatePreview();
+    }
 })();
