@@ -469,6 +469,7 @@
 
     function toggleFullscreen() {
         editorRoot.classList.toggle('is-fullscreen');
+        fitPreview();
     }
 
     function syncSourceFromVisual() {
@@ -566,10 +567,33 @@
 
             previewSubject.textContent = payload.subject || '';
             previewPane.innerHTML = payload.html || '';
+            fitPreview();
         } catch (error) {
             if (error && error.name === 'AbortError') return;
             previewPane.innerHTML = '<div class="text-danger small">Erreur lors du chargement de l\'apercu.</div>';
+            fitPreview();
         }
+    }
+
+    // Scales the fixed-width email preview (600px desktop / 375px mobile) down so
+    // the whole email is always visible within the preview column, never clipped.
+    function fitPreview() {
+        if (!previewPane || !previewSurface) return;
+        const viewport = document.getElementById('previewViewport');
+        if (!viewport) return;
+
+        const contentWidth = previewSurface.classList.contains('is-mobile') ? 375 : 600;
+
+        previewPane.style.transform = 'none';
+        previewPane.style.width = contentWidth + 'px';
+        viewport.style.height = 'auto';
+
+        const available = viewport.clientWidth;
+        const scale = available > 0 ? Math.min(1, available / contentWidth) : 1;
+        const naturalHeight = previewPane.offsetHeight;
+
+        previewPane.style.transform = 'scale(' + scale + ')';
+        viewport.style.height = Math.ceil(naturalHeight * scale) + 'px';
     }
 
     function schedulePreview() {
@@ -640,7 +664,14 @@
                 previewSurface.classList.remove('is-mobile');
                 previewSurface.classList.add('is-desktop');
             }
+            fitPreview();
         });
+    });
+
+    let resizeDebounce = null;
+    window.addEventListener('resize', function () {
+        if (resizeDebounce) clearTimeout(resizeDebounce);
+        resizeDebounce = setTimeout(fitPreview, 120);
     });
 
     subjectTemplate.addEventListener('input', schedulePreview);

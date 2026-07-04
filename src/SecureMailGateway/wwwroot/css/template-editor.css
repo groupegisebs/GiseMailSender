@@ -252,6 +252,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    min-width: 0;
 }
 
 .securemail-preview-card {
@@ -297,11 +298,8 @@
     border-radius: 12px;
     padding: 12px;
     min-height: 440px;
+    overflow: hidden;
     transition: all 120ms ease;
-}
-
-.securemail-preview-surface.is-mobile .securemail-preview-frame {
-    max-width: 375px;
 }
 
 .securemail-preview-subject {
@@ -311,9 +309,21 @@
     color: #111827;
 }
 
+/* Viewport clips/holds the scaled email so it always fits the column width. */
+.securemail-preview-viewport {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
 .securemail-preview-frame {
-    max-width: 600px;
-    margin: 0 auto;
+    /* Width (600px desktop / 375px mobile) and scale are driven by JS (fitPreview). */
+    flex: 0 0 auto;
+    transform-origin: top center;
+    transition: transform 120ms ease;
 }
 
 .securemail-preview-email-shell {
