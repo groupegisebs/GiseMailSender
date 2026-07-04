@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using SecureMailGateway.Authorization;
 using SecureMailGateway.Data;
+using SecureMailGateway.Models.Dtos;
 using SecureMailGateway.Models.Entities;
 using SecureMailGateway.Models.Enums;
 using SecureMailGateway.Services;
@@ -17,7 +18,7 @@ public class TemplatesController(
     ITemplateRenderer templateRenderer,
     IHtmlSanitizerService htmlSanitizerService,
     ITemplatePreviewService templatePreviewService,
-    ITemplateAiService templateAiService,
+    OpenAiTemplateService openAiTemplateService,
     IAuditService auditService,
     IEmailSenderService emailSender,
     IMailCodeGenerator mailCodeGenerator) : Controller
@@ -192,8 +193,8 @@ public class TemplatesController(
         return Json(new { subject = preview.Subject, html = preview.Html, text = preview.Text });
     }
 
-    [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> GenerateWithAi([FromBody] TemplateAiGenerateRequest request, CancellationToken ct)
+    [HttpPost("templates/ai/generate"), ValidateAntiForgeryToken]
+    public async Task<IActionResult> GenerateWithAi([FromBody] AiTemplateGenerateRequest request, CancellationToken ct)
     {
         if (!ModelState.IsValid)
         {
@@ -205,42 +206,36 @@ public class TemplatesController(
             return BadRequest(new { message = "Paramètres invalides pour la génération IA.", errors });
         }
 
-        var aiResult = await templateAiService.GenerateAsync(new TemplateAiGenerationRequest
+        AiTemplateGenerateResponse aiResult;
+        try
         {
-            Objective = request.Objective.Trim(),
-            BrandOrCompany = request.BrandOrCompany?.Trim(),
-            Tone = request.Tone?.Trim(),
-            Language = request.Language?.Trim(),
-            EmailType = request.EmailType?.Trim(),
-            Cta = request.Cta?.Trim(),
-            OptionalVariables = request.OptionalVariables?.Trim(),
-            AllowedVariables = htmlSanitizerService.AllowedVariables
-        }, ct);
-
-        if (!aiResult.Success)
+            aiResult = await openAiTemplateService.GenerateEmailTemplateAsync(request, ct);
+        }
+        catch (AiTemplateGenerationException ex)
         {
+            // The message is always safe to surface (never contains the API key).
             return BadRequest(new
             {
-                message = aiResult.UserMessage,
-                warnings = aiResult.Warnings
+                message = ex.Message,
+                warnings = ex.Detail is { Length: > 0 } detail ? new[] { detail } : []
             });
         }
 
         var warnings = aiResult.Warnings.ToList();
 
         // Keep every well-formed {{Variable}} the AI used (catalog or custom); only normalize the
-        // token formatting. Nothing is stripped based on the catalog anymore.
-        var subjectTemplate = NormalizeTemplateVariables(aiResult.SubjectTemplate);
-        var normalizedHtml = NormalizeTemplateVariables(aiResult.HtmlBody);
-        var textBody = NormalizeTemplateVariables(aiResult.TextBody);
-        var htmlBody = htmlSanitizerService.Sanitize(normalizedHtml);
-        if (!string.Equals(normalizedHtml, htmlBody, StringComparison.Ordinal))
+        // token formatting. Nothing is stripped based on the catalog.
+        var subject = NormalizeTemplateVariables(aiResult.Subject);
+        var normalizedHtml = NormalizeTemplateVariables(aiResult.BodyHtml);
+        var bodyText = NormalizeTemplateVariables(aiResult.BodyText);
+        var bodyHtml = htmlSanitizerService.Sanitize(normalizedHtml);
+        if (!string.Equals(normalizedHtml, bodyHtml, StringComparison.Ordinal))
         {
             warnings.Add("Le HTML généré a été assaini pour la sécurité.");
         }
 
-        var recommendedSamples = NormalizeRecommendedVariables(aiResult.Variables);
-        var extractedVariables = templateRenderer.ExtractVariables(subjectTemplate, htmlBody, textBody);
+        var recommendedSamples = NormalizeRecommendedVariables(aiResult);
+        var extractedVariables = templateRenderer.ExtractVariables(subject, bodyHtml, bodyText);
 
         var variableNames = extractedVariables
             .Concat(recommendedSamples.Keys)
@@ -248,36 +243,31 @@ public class TemplatesController(
             .OrderBy(v => v)
             .ToList();
 
-        var sampleData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var variableName in variableNames)
         {
-            if (recommendedSamples.TryGetValue(variableName, out var sampleValue))
-            {
-                sampleData[variableName] = sampleValue;
-            }
-            else
-            {
-                sampleData[variableName] = CreateFallbackSampleValue(variableName);
-            }
+            testData[variableName] = recommendedSamples.TryGetValue(variableName, out var sampleValue)
+                ? sampleValue
+                : CreateFallbackSampleValue(variableName);
         }
 
         var variables = variableNames
-            .Select(v => new TemplateAiVariableViewModel
+            .Select(v => new AiTemplateVariable
             {
                 Name = v,
                 Token = $"{{{{{v}}}}}",
-                SampleValue = sampleData[v]
+                SampleValue = testData[v]
             })
             .ToList();
 
-        return Json(new
+        return Json(new AiTemplateGenerateResponse
         {
-            subjectTemplate,
-            htmlBody,
-            textBody,
-            variables,
-            sampleData,
-            warnings = warnings.Distinct().ToList()
+            Subject = subject,
+            BodyHtml = bodyHtml,
+            BodyText = bodyText,
+            TestData = testData,
+            Variables = variables,
+            Warnings = warnings.Distinct().ToList()
         });
     }
 
@@ -389,13 +379,14 @@ public class TemplatesController(
         IsActive = e.IsActive
     };
 
-    private static Dictionary<string, string> NormalizeRecommendedVariables(
-        IReadOnlyList<TemplateAiVariableSuggestion> aiVariables)
+    private static Dictionary<string, string> NormalizeRecommendedVariables(AiTemplateGenerateResponse aiResult)
     {
         // Accept every AI-suggested variable with a valid identifier name (catalog or custom),
         // attaching the AI-provided sample value (or a sensible fallback) so previews render.
+        // Sources: the variables[] list (with Token/SampleValue) and the testData{} map.
         var samples = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var variable in aiVariables)
+
+        foreach (var variable in aiResult.Variables)
         {
             var normalizedName = NormalizeVariableName(variable.Name);
             if (normalizedName is null) continue;
@@ -403,6 +394,16 @@ public class TemplatesController(
             samples[normalizedName] = string.IsNullOrWhiteSpace(variable.SampleValue)
                 ? CreateFallbackSampleValue(normalizedName)
                 : variable.SampleValue.Trim();
+        }
+
+        foreach (var (name, value) in aiResult.TestData)
+        {
+            var normalizedName = NormalizeVariableName(name);
+            if (normalizedName is null || samples.ContainsKey(normalizedName)) continue;
+
+            samples[normalizedName] = string.IsNullOrWhiteSpace(value)
+                ? CreateFallbackSampleValue(normalizedName)
+                : value.Trim();
         }
 
         return samples;
