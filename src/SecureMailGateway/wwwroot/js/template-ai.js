@@ -10,8 +10,11 @@
         return;
     }
 
+    const modalElement = document.getElementById('aiGenerateModal');
     const statusNode = document.getElementById('aiGenerateStatus');
     const warningsNode = document.getElementById('aiGenerateWarnings');
+    const variablesNode = document.getElementById('aiGenerateVariables');
+
     const subjectInput = document.getElementById('subjectTemplate');
     const htmlTextarea = document.getElementById('htmlBody');
     const textTextarea = document.getElementById('textBody');
@@ -20,6 +23,8 @@
     const htmlHidden = document.getElementById('HtmlBodyHidden');
     const textHidden = document.getElementById('TextBodyHidden');
     const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]');
+
+    const runButtonDefaultLabel = runButton.textContent;
 
     function valueOf(id) {
         const node = document.getElementById(id);
@@ -40,6 +45,61 @@
             li.textContent = warning;
             warningsNode.appendChild(li);
         });
+    }
+
+    function renderDetectedVariables(variables) {
+        if (!variablesNode) return;
+        variablesNode.innerHTML = '';
+        if (!Array.isArray(variables) || variables.length === 0) return;
+
+        const label = document.createElement('span');
+        label.className = 'text-muted me-1';
+        label.textContent = 'Variables détectées :';
+        variablesNode.appendChild(label);
+
+        variables.forEach(function (variable) {
+            if (!variable || !variable.name) return;
+            const badge = document.createElement('span');
+            badge.className = 'badge bg-secondary me-1 mb-1';
+            badge.textContent = '{{' + variable.name + '}}';
+            variablesNode.appendChild(badge);
+        });
+    }
+
+    function openAiGenerateModal() {
+        if (modalElement && window.bootstrap && window.bootstrap.Modal) {
+            window.bootstrap.Modal.getOrCreateInstance(modalElement).show();
+        }
+    }
+
+    function closeAiGenerateModal() {
+        if (modalElement && window.bootstrap && window.bootstrap.Modal) {
+            const instance = window.bootstrap.Modal.getInstance(modalElement);
+            if (instance) instance.hide();
+        }
+    }
+
+    function setAiGenerationLoading(isLoading) {
+        runButton.disabled = isLoading;
+        runButton.textContent = isLoading ? 'Génération en cours...' : runButtonDefaultLabel;
+    }
+
+    function showAiGenerationError(message) {
+        setStatus(message || 'La génération IA a échoué.', true);
+    }
+
+    function collectAiGenerateRequest() {
+        return {
+            objective: valueOf('aiObjective'),
+            brandName: valueOf('aiBrand'),
+            emailType: valueOf('aiEmailType'),
+            tone: valueOf('aiTone'),
+            language: valueOf('aiLanguage') || 'fr',
+            ctaText: valueOf('aiCta'),
+            desiredVariables: valueOf('aiDesiredVariables'),
+            primaryColor: valueOf('aiPrimaryColor'),
+            additionalInstructions: valueOf('aiAdditionalInstructions')
+        };
     }
 
     function setHtmlContent(html) {
@@ -77,7 +137,8 @@
     }
 
     // Ensure every variable the AI used (catalog OR custom) exists in the editor's palette and
-    // test-data panel, seeded with the AI-provided sample value so the preview renders.
+    // test-data panel, seeded with the AI-provided sample value so the preview renders. Reuses the
+    // editor's registerVariable API so custom variables land in the collapsible "Personnalisées" group.
     function registerGeneratedVariables(variables) {
         const editorApi = window.secureMailTemplateEditor;
         if (!editorApi || typeof editorApi.registerVariable !== 'function' || !Array.isArray(variables)) {
@@ -90,42 +151,55 @@
         });
     }
 
-    function applySampleData(sampleData) {
-        if (!sampleData || typeof sampleData !== 'object') return;
+    function applySampleData(testData) {
+        if (!testData || typeof testData !== 'object') return;
 
         const sampleFields = document.querySelectorAll('.sample-field');
         if (!sampleFields || sampleFields.length === 0) return;
 
         sampleFields.forEach(function (field) {
             const key = field.dataset.key;
-            if (!key || !(key in sampleData)) return;
-            field.value = sampleData[key] || '';
+            if (!key || !(key in testData)) return;
+            field.value = testData[key] || '';
             field.dispatchEvent(new Event('input', { bubbles: true }));
         });
     }
 
-    async function generateTemplate() {
-        const objective = valueOf('aiObjective');
-        if (!objective) {
-            setStatus('Le champ "Objectif / use-case" est requis.', true);
+    // Applies the server response to the editor. Never auto-saves: the user must click "Enregistrer".
+    function applyAiTemplateResponse(response) {
+        if (!response || typeof response !== 'object') return;
+
+        if (subjectInput) {
+            subjectInput.value = response.subject || '';
+            subjectInput.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        setHtmlContent(response.bodyHtml || '');
+        setTextContent(response.bodyText || '');
+        registerGeneratedVariables(response.variables);
+        applySampleData(response.testData || {});
+        renderDetectedVariables(response.variables);
+        renderWarnings(response.warnings || []);
+        setStatus('Template généré. Vérifiez puis cliquez sur Enregistrer si le résultat vous convient.', false);
+
+        if (typeof window.updatePreview === 'function') {
+            window.updatePreview();
+        }
+    }
+
+    async function generateTemplateWithAi() {
+        const payload = collectAiGenerateRequest();
+        if (!payload.objective) {
+            showAiGenerationError('Le champ "Objectif / use-case" est requis.');
             return;
         }
 
         setStatus('Génération IA en cours...', false);
         renderWarnings([]);
-        runButton.disabled = true;
+        renderDetectedVariables([]);
+        setAiGenerationLoading(true);
 
         try {
-            const payload = {
-                objective: objective,
-                brandOrCompany: valueOf('aiBrand'),
-                tone: valueOf('aiTone'),
-                language: valueOf('aiLanguage') || 'fr',
-                emailType: valueOf('aiEmailType'),
-                cta: valueOf('aiCta'),
-                optionalVariables: valueOf('aiOptionalVariables')
-            };
-
             const headers = {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
@@ -142,32 +216,28 @@
 
             const result = await response.json();
             if (!response.ok) {
-                setStatus(result.message || 'La génération IA a échoué.', true);
+                showAiGenerationError(result.message || 'La génération IA a échoué.');
                 renderWarnings(result.warnings || result.errors || []);
                 return;
             }
 
-            if (subjectInput) {
-                subjectInput.value = result.subjectTemplate || '';
-                subjectInput.dispatchEvent(new Event('input', { bubbles: true }));
-            }
-
-            setHtmlContent(result.htmlBody || '');
-            setTextContent(result.textBody || '');
-            registerGeneratedVariables(result.variables);
-            applySampleData(result.sampleData || {});
-            renderWarnings(result.warnings || []);
-            setStatus('Template généré. Vérifiez puis cliquez sur Enregistrer si le résultat vous convient.', false);
-
-            if (typeof window.updatePreview === 'function') {
-                window.updatePreview();
-            }
+            applyAiTemplateResponse(result);
         } catch (error) {
-            setStatus('Erreur réseau pendant la génération IA.', true);
+            showAiGenerationError('Erreur réseau pendant la génération IA.');
         } finally {
-            runButton.disabled = false;
+            setAiGenerationLoading(false);
         }
     }
 
-    runButton.addEventListener('click', generateTemplate);
+    runButton.addEventListener('click', generateTemplateWithAi);
+
+    window.secureMailAiGenerator = {
+        openAiGenerateModal: openAiGenerateModal,
+        closeAiGenerateModal: closeAiGenerateModal,
+        collectAiGenerateRequest: collectAiGenerateRequest,
+        generateTemplateWithAi: generateTemplateWithAi,
+        applyAiTemplateResponse: applyAiTemplateResponse,
+        showAiGenerationError: showAiGenerationError,
+        setAiGenerationLoading: setAiGenerationLoading
+    };
 })();
