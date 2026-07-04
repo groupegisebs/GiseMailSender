@@ -79,15 +79,135 @@
         input.addEventListener('input', schedulePreview);
     }
 
+    const PALETTE_STATE_KEY = 'secureMailVariableGroups';
+    const CUSTOM_GROUP_KEY = 'Personnalisées';
+
+    function readPaletteState() {
+        try {
+            const raw = window.localStorage.getItem(PALETTE_STATE_KEY);
+            const parsed = raw ? JSON.parse(raw) : {};
+            return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (error) {
+            return {};
+        }
+    }
+
+    function writePaletteState(state) {
+        try {
+            window.localStorage.setItem(PALETTE_STATE_KEY, JSON.stringify(state));
+        } catch (error) {
+            /* localStorage unavailable (private mode / quota) - persistence is best-effort */
+        }
+    }
+
+    const paletteGroupState = readPaletteState();
+
+    function setGroupExpanded(toggle, expanded, persist) {
+        if (!toggle) return;
+        const chipsId = toggle.getAttribute('aria-controls');
+        const chips = chipsId ? document.getElementById(chipsId) : null;
+        toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        if (chips) {
+            if (expanded) {
+                chips.removeAttribute('hidden');
+            } else {
+                chips.setAttribute('hidden', 'hidden');
+            }
+        }
+        if (persist) {
+            const key = toggle.dataset.groupKey || '';
+            if (key) {
+                paletteGroupState[key] = expanded;
+                writePaletteState(paletteGroupState);
+            }
+        }
+    }
+
+    function bindGroupToggle(toggle) {
+        if (!toggle || toggle.dataset.bound === 'true') return;
+        toggle.dataset.bound = 'true';
+
+        const key = toggle.dataset.groupKey || '';
+        if (key && Object.prototype.hasOwnProperty.call(paletteGroupState, key)) {
+            setGroupExpanded(toggle, paletteGroupState[key] === true, false);
+        }
+
+        toggle.addEventListener('click', function () {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            setGroupExpanded(toggle, !isExpanded, true);
+        });
+    }
+
+    function initVariableGroups() {
+        document.querySelectorAll('#variablePalette [data-group-toggle]').forEach(bindGroupToggle);
+    }
+
+    // Dynamically-registered variables (custom / AI-generated) live in their own collapsible
+    // "Personnalisées" group so they still benefit from the accordion behaviour.
+    function ensureCustomGroupChips() {
+        if (!variablePalette) return null;
+
+        let group = variablePalette.querySelector('[data-custom-group]');
+        if (!group) {
+            group = document.createElement('div');
+            group.className = 'securemail-variable-group';
+            group.setAttribute('data-custom-group', 'true');
+            group.setAttribute('data-group', CUSTOM_GROUP_KEY);
+
+            const chipsId = 'varGroupChipsCustom';
+
+            const toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = 'securemail-variable-group-label';
+            toggle.setAttribute('data-group-toggle', '');
+            toggle.dataset.groupKey = CUSTOM_GROUP_KEY;
+            toggle.setAttribute('aria-controls', chipsId);
+            toggle.setAttribute('aria-expanded', 'true');
+
+            const caret = document.createElement('span');
+            caret.className = 'securemail-variable-group-caret';
+            caret.setAttribute('aria-hidden', 'true');
+            caret.textContent = '▸';
+
+            const label = document.createElement('span');
+            label.className = 'securemail-variable-group-text';
+            label.textContent = CUSTOM_GROUP_KEY;
+
+            toggle.appendChild(caret);
+            toggle.appendChild(label);
+
+            const chips = document.createElement('div');
+            chips.className = 'securemail-variable-group-chips';
+            chips.id = chipsId;
+
+            group.appendChild(toggle);
+            group.appendChild(chips);
+            variablePalette.appendChild(group);
+
+            bindGroupToggle(toggle);
+        }
+
+        return group.querySelector('.securemail-variable-group-chips');
+    }
+
     function addVariableToPalette(variableName) {
-        if (!variablePalette) return;
+        const container = ensureCustomGroupChips();
+        if (!container) return;
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'securemail-pill-btn';
         button.dataset.variable = variableName;
         button.textContent = '{{' + variableName + '}}';
         bindVariableButton(button);
-        variablePalette.appendChild(button);
+        container.appendChild(button);
+
+        // Expand the custom group so the freshly added variable is immediately visible.
+        const toggle = variablePalette
+            ? variablePalette.querySelector('[data-custom-group] [data-group-toggle]')
+            : null;
+        if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+            setGroupExpanded(toggle, true, true);
+        }
     }
 
     function addSampleField(variableName) {
@@ -153,6 +273,7 @@
         document.querySelectorAll('.sample-field').forEach(function (input) {
             bindSampleFieldInput(input);
         });
+        initVariableGroups();
     }
 
     function findUnknownVariables() {

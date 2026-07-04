@@ -76,26 +76,79 @@
     color: #ffffff;
 }
 
-.securemail-variable-list,
 .securemail-quick-block-list {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
+.securemail-variable-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.securemail-variable-group {
+    display: flex;
+    flex-direction: column;
+}
+
 .securemail-variable-group-label {
-    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     width: 100%;
     margin-top: 6px;
+    border: 0;
+    background: transparent;
+    padding: 4px 2px;
+    text-align: left;
+    cursor: pointer;
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: rgba(229, 231, 235, 0.55);
+    transition: color 120ms ease;
 }
 
-.securemail-variable-group-label:first-child {
+.securemail-variable-group-label:hover {
+    color: rgba(229, 231, 235, 0.92);
+}
+
+.securemail-variable-group-label:focus-visible {
+    outline: 2px solid rgba(109, 93, 246, 0.8);
+    outline-offset: 2px;
+    border-radius: 6px;
+    color: rgba(229, 231, 235, 0.92);
+}
+
+.securemail-variable-group:first-child .securemail-variable-group-label {
     margin-top: 0;
+}
+
+.securemail-variable-group-caret {
+    display: inline-block;
+    flex: 0 0 auto;
+    font-size: 0.62rem;
+    line-height: 1;
+    color: rgba(229, 231, 235, 0.7);
+    transition: transform 120ms ease;
+}
+
+.securemail-variable-group-label[aria-expanded="true"] .securemail-variable-group-caret {
+    transform: rotate(90deg);
+}
+
+.securemail-variable-group-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 2px 0 6px;
+}
+
+.securemail-variable-group-chips[hidden] {
+    display: none;
 }
 
 .securemail-pill-btn,

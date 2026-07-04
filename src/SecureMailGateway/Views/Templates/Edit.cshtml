@@ -56,17 +56,33 @@
                 <section class="securemail-sidebar-section">
                     <h4>Variables</h4>
                     <div class="securemail-variable-list" id="variablePalette">
+                        @{ var groupIndex = 0; }
                         @foreach (var group in variableGroups)
                         {
-                            <div class="securemail-variable-group-label">@group.Label</div>
-                            @foreach (var variable in group.Variables)
-                            {
+                            var isFirstGroup = groupIndex == 0;
+                            var chipsId = $"varGroupChips_{groupIndex}";
+                            <div class="securemail-variable-group" data-group="@group.Label">
                                 <button type="button"
-                                        class="securemail-pill-btn"
-                                        data-variable="@variable.Name">
-                                    {{@variable.Name}}
+                                        class="securemail-variable-group-label"
+                                        data-group-toggle
+                                        data-group-key="@group.Label"
+                                        aria-controls="@chipsId"
+                                        aria-expanded="@(isFirstGroup ? "true" : "false")">
+                                    <span class="securemail-variable-group-caret" aria-hidden="true">▸</span>
+                                    <span class="securemail-variable-group-text">@group.Label</span>
                                 </button>
-                            }
+                                <div class="securemail-variable-group-chips" id="@chipsId" @(isFirstGroup ? "" : "hidden")>
+                                    @foreach (var variable in group.Variables)
+                                    {
+                                        <button type="button"
+                                                class="securemail-pill-btn"
+                                                data-variable="@variable.Name">
+                                            {{@variable.Name}}
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                            groupIndex++;
                         }
                     </div>
                 </section>
