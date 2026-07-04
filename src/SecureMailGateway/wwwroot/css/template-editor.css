@@ -211,28 +211,41 @@
 }
 
 .securemail-editor-canvas-card {
-    padding: 12px;
-    min-height: 540px;
+    /* Acts as a "desk" that frames the centered editing sheet. */
+    background: #EEF1F6;
+    padding: 20px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 420px;
+    overflow: auto;
 }
 
 .securemail-editor-canvas,
 .securemail-html-source {
+    /* Keep the editing content email-safe width and center it as a page sheet. */
     width: 100%;
-    min-height: 500px;
+    max-width: 640px;
+    margin: 0 auto;
+    min-height: 380px;
+    height: fit-content;
+    background: #ffffff;
     border: 1px solid #E5E7EB;
     border-radius: 12px;
-    padding: 16px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    padding: 24px;
     font-family: "Segoe UI", Arial, sans-serif;
     font-size: 15px;
     line-height: 1.6;
-    overflow: auto;
     outline: none;
 }
 
 .securemail-html-source {
     font-family: Consolas, "Courier New", monospace;
     resize: vertical;
-    min-height: 500px;
+    height: auto;
+    min-height: 380px;
 }
 
 .securemail-preview-column {
