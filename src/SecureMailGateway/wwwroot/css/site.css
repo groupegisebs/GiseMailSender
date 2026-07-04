@@ -32,7 +32,8 @@
 }
 
 .template-editor-wrap textarea.template-editor {
-    display: none;
+    display: block;
+    min-height: 380px;
 }
 
 .mail-editor {
