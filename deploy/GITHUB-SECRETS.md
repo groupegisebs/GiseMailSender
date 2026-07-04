@@ -36,6 +36,19 @@ Si vous activez les fonctionnalités IA, configurez :
 
 ---
 
+## Upload d'images (optionnel)
+
+Pour héberger sur le serveur les images insérées dans les templates :
+
+| Nom | Type | Contenu |
+|-----|------|---------|
+| `UPLOADS_PUBLIC_BASE_URL` | Variable/Secret | URL publique absolue du service (ex. `https://mail.gisebs.com`). Utilisée pour construire les liens d'images dans les emails. Si vide, l'URL est dérivée de la requête (déconseillé derrière un proxy). |
+| `UPLOADS_PATH` | Variable | Dossier persistant des uploads sur le serveur (défaut `<APP_ROOT>/uploads`). |
+
+> Le dossier d'uploads est créé **hors** du dossier applicatif synchronisé (`rsync --delete`), donc les images survivent aux déploiements. Renseignez `UPLOADS_PUBLIC_BASE_URL` avec votre domaine public pour que les images s'affichent dans les emails envoyés.
+
+---
+
 ## Host / User — pas besoin de secrets
 
 Le workflow utilise par défaut :

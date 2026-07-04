@@ -91,6 +91,11 @@ Points importants :
 - Il n'existe **pas** de syntaxe de boucle/liste. Pour lister plusieurs articles, composez le HTML directement dans le template ou envoyez des valeurs déjà formatées.
 - Les noms existants (`FirstName`, `LastName`, `CompanyName`, `Email`, `ResetLink`, `OrderId`, `Amount`, `InvoiceDate`, `Message`) restent valides : les anciens templates continuent de fonctionner.
 
+### Images dans les templates
+
+- Vous pouvez fournir l'URL d'une image via une variable (ex. `LogoUrl`) : le lien doit être une **URL absolue** publiquement accessible.
+- Dans l'éditeur de templates, l'outil **Image** permet aussi d'**uploader** un fichier (PNG/JPG/GIF/WEBP, max 2 Mo) : il est alors hébergé par le service et inséré avec une URL absolue, sans dépendre d'un hébergeur externe.
+
 ---
 
 ## 4) Checklist d'onboarding (équipe cliente)

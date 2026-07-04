@@ -32,8 +32,92 @@ public static class HoloTutoTemplates
         </div>
         """;
 
+    // Gabarit transactionnel "base" à la charte HoloTuto (Espace Parent). Compatible clients e-mail :
+    // 100 % table-based, styles inline, largeur 600px, aucun bloc <style>/media query/position.
+    // Non-interpolé volontairement pour que tous les {{Placeholders}} restent littéraux.
+    private const string BaseTemplateHtml = """
+        <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#F6F6FB;">{{Title}} — HoloTuto</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F6F6FB" style="background-color:#F6F6FB;margin:0;padding:0;width:100%;">
+          <tr>
+            <td align="center" valign="top" style="padding:24px 12px;font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+              <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;margin:0 auto;">
+                <tr>
+                  <td align="center" valign="middle" style="padding:8px 8px 20px;text-align:center;">
+                    <img src="{{LogoUrl}}" alt="HoloTuto" title="HoloTuto" width="140" height="36" style="display:inline-block;border:0;height:36px;width:auto;max-width:180px;" />
+                  </td>
+                </tr>
+                <tr>
+                  <td bgcolor="#7C6FF3" valign="top" style="border-radius:16px;background-color:#7C6FF3;background-image:linear-gradient(135deg,#7C6FF3,#9A8BFB);padding:36px 32px;">
+                    <p style="margin:0 0 6px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#EDEBFE;">Bonjour {{FirstName}},</p>
+                    <h1 style="margin:0;font-size:26px;line-height:1.25;font-weight:700;color:#FFFFFF;">{{Title}}</h1>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top" style="padding:0;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="background-color:#FFFFFF;border-radius:16px;margin-top:16px;">
+                      <tr>
+                        <td valign="top" style="padding:32px;font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+                          <div style="font-size:16px;line-height:1.65;color:#4B5563;">{{Message}}</div>
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0 4px;">
+                            <tr>
+                              <td align="center" bgcolor="#6D5DF6" style="border-radius:12px;background-color:#6D5DF6;">
+                                <a href="{{CtaLink}}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:14px 30px;font-size:16px;font-weight:700;line-height:1;color:#FFFFFF;text-decoration:none;border-radius:12px;font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">{{CtaLabel}}</a>
+                              </td>
+                            </tr>
+                          </table>
+                          <p style="margin:24px 0 0;font-size:13px;line-height:1.6;color:#9CA3AF;">Besoin d'aide ? Écrivez-nous à <a href="mailto:{{SupportEmail}}" style="color:#6D5DF6;text-decoration:none;font-weight:600;">{{SupportEmail}}</a>.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" style="padding:24px 24px 8px;text-align:center;font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+                    <p style="margin:0 0 10px;font-size:12px;line-height:1.6;color:#9CA3AF;">
+                      <a href="{{PrivacyPolicyLink}}" style="color:#6D5DF6;text-decoration:none;">Confidentialité</a>
+                      <span style="color:#D1D5DB;">&nbsp;·&nbsp;</span>
+                      <a href="{{WebsiteUrl}}" style="color:#6D5DF6;text-decoration:none;">Conditions</a>
+                      <span style="color:#D1D5DB;">&nbsp;·&nbsp;</span>
+                      <a href="{{UnsubscribeLink}}" style="color:#6D5DF6;text-decoration:none;">Se désabonner</a>
+                    </p>
+                    <p style="margin:0;font-size:12px;line-height:1.6;color:#9CA3AF;">© {{Year}} HoloTuto — Une innovation de GISEBS Inc.</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        """ + "\n<!-- holotuto-seed:1 -->";
+
+    private const string BaseTemplateText = """
+        Bonjour {{FirstName}},
+
+        {{Title}}
+
+        {{Message}}
+
+        {{CtaLabel}} : {{CtaLink}}
+
+        Besoin d'aide ? Écrivez-nous à {{SupportEmail}}.
+
+        Confidentialité : {{PrivacyPolicyLink}}
+        Conditions : {{WebsiteUrl}}
+        Se désabonner : {{UnsubscribeLink}}
+
+        © {{Year}} HoloTuto — Une innovation de GISEBS Inc.
+        """;
+
     public static IReadOnlyList<EmailTemplateSeed> Definitions { get; } =
     [
+        new(
+            TemplateCode: "HOLOTUTO_BASE",
+            Name: "HoloTuto — Base",
+            SubjectTemplate: "{{Title}} — HoloTuto",
+            HtmlBody: BaseTemplateHtml,
+            TextBody: BaseTemplateText,
+            Language: "fr",
+            SeedRevision: 1),
+
         new(
             TemplateCode: "RAW",
             Name: "HoloTuto — HTML brut (passe-plat)",
