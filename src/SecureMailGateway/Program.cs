@@ -5,6 +5,8 @@ using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 using Prometheus;
 using SecureMailGateway.Configuration;
 using SecureMailGateway.Authorization;
@@ -40,6 +42,21 @@ try
         var envModel = Environment.GetEnvironmentVariable("OPENAI_MODEL");
         if (!string.IsNullOrWhiteSpace(envModel))
             opt.Model = envModel;
+    });
+
+    builder.Services.Configure<UploadsOptions>(
+        builder.Configuration.GetSection(UploadsOptions.SectionName));
+    // Honor plain UPLOADS_PATH / UPLOADS_PUBLIC_BASE_URL env vars in addition to the
+    // ASP.NET-mapped Uploads__Path / Uploads__PublicBaseUrl.
+    builder.Services.PostConfigure<UploadsOptions>(opt =>
+    {
+        var envPath = Environment.GetEnvironmentVariable("UPLOADS_PATH");
+        if (!string.IsNullOrWhiteSpace(envPath))
+            opt.Path = envPath;
+
+        var envBaseUrl = Environment.GetEnvironmentVariable("UPLOADS_PUBLIC_BASE_URL");
+        if (string.IsNullOrWhiteSpace(opt.PublicBaseUrl) && !string.IsNullOrWhiteSpace(envBaseUrl))
+            opt.PublicBaseUrl = envBaseUrl;
     });
 
     builder.Host.UseSerilog((ctx, services, config) => config
@@ -97,6 +114,7 @@ try
     builder.Services.AddScoped<ITemplateRenderer, TemplateRenderer>();
     builder.Services.AddScoped<IHtmlSanitizerService, HtmlSanitizerService>();
     builder.Services.AddScoped<ITemplatePreviewService, TemplatePreviewService>();
+    builder.Services.AddScoped<IImageUploadService, ImageUploadService>();
     builder.Services.AddScoped<IMailCodeGenerator, MailCodeGenerator>();
     builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
     builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
@@ -122,6 +140,15 @@ try
 
     var app = builder.Build();
 
+    // Resolve and create the persistent uploads directory (may live outside the app folder).
+    var uploadsOptions = app.Services.GetRequiredService<IOptions<UploadsOptions>>().Value;
+    var uploadsPath = Path.IsPathRooted(uploadsOptions.Path)
+        ? uploadsOptions.Path
+        : Path.Combine(app.Environment.ContentRootPath, uploadsOptions.Path);
+    Directory.CreateDirectory(uploadsPath);
+
+    var uploadsRequestPath = "/" + (uploadsOptions.RequestPath ?? "/uploads").Trim('/');
+
     await DataSeeder.SeedAsync(app.Services);
 
     if (app.Environment.IsDevelopment())
@@ -134,6 +161,15 @@ try
 
     app.UseSerilogRequestLogging();
     app.UseHttpsRedirection();
+
+    // Serve runtime-uploaded images from the persistent directory (public, no auth so that
+    // e-mail clients can load them). MapStaticAssets only serves build-time assets.
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(uploadsPath),
+        RequestPath = uploadsRequestPath
+    });
+
     app.UseIpRateLimiting();
     app.UseRouting();
     app.UseAuthentication();

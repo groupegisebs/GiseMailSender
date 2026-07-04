@@ -427,27 +427,366 @@
         schedulePreview();
     }
 
-    function insertButton() {
-        insertHtmlAtCursor('<a href="https://example.com" style="display:inline-block;background:#6D5DF6;color:#ffffff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:600;">Call to action</a>');
+    // ----- Variable-based link/button/image picker ----------------------------
+    // Instead of typing a raw URL, the user chooses a target from the variables
+    // that already exist on the form (palette + test-data), so the href becomes
+    // {{VariableName}} and the real value is substituted per-recipient at send time.
+
+    function escapeHtml(value) {
+        return String(value == null ? '' : value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function isLinkLikeVariable(name) {
+        return /(?:link|url)$/i.test(name);
+    }
+
+    function isImageLikeVariable(name) {
+        return /(?:url|logo|image|photo|avatar|banner|picture|visual)$/i.test(name)
+            || /(?:logo|image|photo|avatar|banner|picture)/i.test(name);
+    }
+
+    function getVariableDetail(name) {
+        const field = document.getElementById('sample_' + name);
+        if (field && typeof field.value === 'string') return field.value;
+        if (Object.prototype.hasOwnProperty.call(testDataDefaults, name)) return testDataDefaults[name] || '';
+        return '';
+    }
+
+    // Sources the available variables (with their group) straight from the palette DOM
+    // so the picker always mirrors the "Variables" panel, including custom / AI-added ones.
+    function collectVariableGroups() {
+        const groups = [];
+        if (variablePalette) {
+            variablePalette.querySelectorAll('.securemail-variable-group').forEach(function (groupEl) {
+                const labelEl = groupEl.querySelector('.securemail-variable-group-text');
+                const groupName = labelEl ? labelEl.textContent.trim() : 'Variables';
+                const vars = [];
+                groupEl.querySelectorAll('[data-variable]').forEach(function (chip) {
+                    if (chip.dataset.variable) vars.push(chip.dataset.variable);
+                });
+                if (vars.length) groups.push({ name: groupName, vars: vars });
+            });
+        }
+        if (!groups.length && allowedVariables.length) {
+            groups.push({ name: 'Variables', vars: allowedVariables.slice() });
+        }
+        return groups;
+    }
+
+    function isSafeUrl(value) {
+        const v = (value || '').trim();
+        if (!v) return false;
+        if (/^(?:javascript|data|vbscript):/i.test(v)) return false;
+        return /^(?:https?:\/\/|mailto:|tel:|\/|#|\{\{)/i.test(v);
+    }
+
+    let savedRange = null;
+    let pickerKind = 'anchor';      // 'anchor' | 'image'
+    let pickerInsertStyle = null;   // 'button' | 'link' | 'image' | null (edit existing)
+    let pickerTarget = null;        // element being edited, or null when inserting
+    let pickerSelectedVar = null;
+    let linkPickerEl = null;
+
+    function saveSelection() {
+        if (htmlMode) { savedRange = null; return; }
+        const selection = window.getSelection();
+        if (selection && selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            if (visualEditor.contains(range.commonAncestorContainer)) {
+                savedRange = range.cloneRange();
+                return;
+            }
+        }
+        savedRange = null;
+    }
+
+    function restoreSavedRange() {
+        visualEditor.focus();
+        if (!savedRange) return;
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(savedRange);
+    }
+
+    function insertPickerHtml(html) {
+        if (!htmlMode) restoreSavedRange();
+        insertHtmlAtCursor(html);
+    }
+
+    function varItemHtml(name) {
+        const detail = getVariableDetail(name);
+        return '<button type="button" class="securemail-lp-var" data-variable="' + escapeHtml(name) + '">' +
+            '<span class="securemail-lp-var-name">{{' + escapeHtml(name) + '}}</span>' +
+            '<span class="securemail-lp-var-detail">' + (detail ? escapeHtml(detail) : '<em>valeur vide</em>') + '</span>' +
+            '</button>';
+    }
+
+    function renderPickerVarList(filter) {
+        if (!linkPickerEl) return;
+        const listEl = linkPickerEl.querySelector('#lpVarList');
+        if (!listEl) return;
+
+        const f = (filter || '').trim().toLowerCase();
+        const groups = collectVariableGroups();
+        const prioritize = pickerKind === 'image' ? isImageLikeVariable : isLinkLikeVariable;
+
+        function matches(name) {
+            if (!f) return true;
+            return name.toLowerCase().indexOf(f) >= 0 || getVariableDetail(name).toLowerCase().indexOf(f) >= 0;
+        }
+
+        const seen = {};
+        const suggested = [];
+        groups.forEach(function (g) {
+            g.vars.forEach(function (v) {
+                if (!seen[v] && prioritize(v)) { seen[v] = true; suggested.push(v); }
+            });
+        });
+
+        let html = '';
+        const suggestedFiltered = suggested.filter(matches);
+        if (suggestedFiltered.length) {
+            html += '<div class="securemail-lp-group">Suggérées</div>';
+            suggestedFiltered.forEach(function (v) { html += varItemHtml(v); });
+        }
+        groups.forEach(function (g) {
+            const vs = g.vars.filter(matches);
+            if (!vs.length) return;
+            html += '<div class="securemail-lp-group">' + escapeHtml(g.name || 'Variables') + '</div>';
+            vs.forEach(function (v) { html += varItemHtml(v); });
+        });
+        if (!html) html = '<div class="securemail-lp-empty">Aucune variable ne correspond.</div>';
+
+        listEl.innerHTML = html;
+        updatePickerSelectionUI();
+    }
+
+    function updatePickerSelectionUI() {
+        if (!linkPickerEl) return;
+        linkPickerEl.querySelectorAll('.securemail-lp-var').forEach(function (btn) {
+            btn.classList.toggle('is-selected', btn.dataset.variable === pickerSelectedVar);
+        });
+        const selEl = linkPickerEl.querySelector('#lpSelected');
+        if (!selEl) return;
+        if (pickerSelectedVar) {
+            const detail = getVariableDetail(pickerSelectedVar);
+            selEl.innerHTML = 'Cible : <strong>{{' + escapeHtml(pickerSelectedVar) + '}}</strong>' +
+                (detail ? ' <span class="securemail-lp-selected-detail">' + escapeHtml(detail) + '</span>' : '');
+        } else {
+            const custom = linkPickerEl.querySelector('#lpCustomUrl');
+            if (custom && custom.value.trim()) {
+                selEl.textContent = 'Cible : ' + custom.value.trim();
+            } else {
+                selEl.textContent = 'Aucune variable sélectionnée';
+            }
+        }
+    }
+
+    function buildLinkPicker() {
+        if (linkPickerEl) return;
+        linkPickerEl = document.createElement('div');
+        linkPickerEl.className = 'securemail-linkpicker-backdrop';
+        linkPickerEl.setAttribute('hidden', 'hidden');
+        linkPickerEl.innerHTML =
+            '<div class="securemail-linkpicker" role="dialog" aria-modal="true" aria-labelledby="lpTitle">' +
+                '<div class="securemail-linkpicker-header">' +
+                    '<h5 id="lpTitle" class="securemail-lp-title">Cible du lien</h5>' +
+                    '<button type="button" class="securemail-lp-close" data-lp-close aria-label="Fermer">&times;</button>' +
+                '</div>' +
+                '<div class="securemail-linkpicker-body">' +
+                    '<div class="securemail-lp-field" data-lp-label-field>' +
+                        '<label for="lpLabel">Texte affiché</label>' +
+                        '<input id="lpLabel" class="form-control" type="text" />' +
+                    '</div>' +
+                    '<div class="securemail-lp-field" data-lp-alt-field hidden>' +
+                        '<label for="lpAlt">Texte alternatif</label>' +
+                        '<input id="lpAlt" class="form-control" type="text" />' +
+                    '</div>' +
+                    '<div class="securemail-lp-field">' +
+                        '<label for="lpSearch">Variable du formulaire</label>' +
+                        '<input id="lpSearch" class="form-control" type="text" placeholder="Rechercher une variable..." autocomplete="off" />' +
+                    '</div>' +
+                    '<div class="securemail-lp-varlist" id="lpVarList"></div>' +
+                    '<details class="securemail-lp-custom">' +
+                        '<summary>Autre URL (avancé)</summary>' +
+                        '<input id="lpCustomUrl" class="form-control" type="text" placeholder="https://... ou mailto:..." />' +
+                        '<p class="securemail-lp-hint">Déconseillé pour les emails transactionnels : préférez une variable du formulaire.</p>' +
+                    '</details>' +
+                '</div>' +
+                '<div class="securemail-linkpicker-footer">' +
+                    '<span class="securemail-lp-selected" id="lpSelected">Aucune variable sélectionnée</span>' +
+                    '<div class="securemail-lp-actions">' +
+                        '<button type="button" class="btn btn-outline-secondary" data-lp-close>Annuler</button>' +
+                        '<button type="button" class="btn btn-primary" id="lpConfirm">Insérer</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        document.body.appendChild(linkPickerEl);
+
+        linkPickerEl.addEventListener('click', function (event) {
+            if (event.target === linkPickerEl || (event.target.closest && event.target.closest('[data-lp-close]'))) {
+                closeLinkPicker();
+            }
+        });
+        linkPickerEl.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') { closeLinkPicker(); }
+        });
+
+        const listEl = linkPickerEl.querySelector('#lpVarList');
+        listEl.addEventListener('click', function (event) {
+            const btn = event.target.closest('.securemail-lp-var');
+            if (!btn) return;
+            pickerSelectedVar = btn.dataset.variable;
+            const custom = linkPickerEl.querySelector('#lpCustomUrl');
+            if (custom) custom.value = '';
+            updatePickerSelectionUI();
+        });
+        listEl.addEventListener('dblclick', function (event) {
+            const btn = event.target.closest('.securemail-lp-var');
+            if (!btn) return;
+            pickerSelectedVar = btn.dataset.variable;
+            confirmLinkPicker();
+        });
+
+        const searchInput = linkPickerEl.querySelector('#lpSearch');
+        searchInput.addEventListener('input', function () {
+            renderPickerVarList(searchInput.value);
+        });
+
+        const customUrl = linkPickerEl.querySelector('#lpCustomUrl');
+        customUrl.addEventListener('input', function () {
+            if (customUrl.value.trim()) pickerSelectedVar = null;
+            updatePickerSelectionUI();
+        });
+
+        linkPickerEl.querySelector('#lpConfirm').addEventListener('click', confirmLinkPicker);
+    }
+
+    function openLinkPicker(kind, insertStyle, targetEl) {
+        buildLinkPicker();
+        pickerKind = kind;
+        pickerInsertStyle = insertStyle;
+        pickerTarget = targetEl || null;
+        pickerSelectedVar = null;
+        saveSelection();
+
+        const titleEl = linkPickerEl.querySelector('#lpTitle');
+        const labelField = linkPickerEl.querySelector('[data-lp-label-field]');
+        const altField = linkPickerEl.querySelector('[data-lp-alt-field]');
+        const labelInput = linkPickerEl.querySelector('#lpLabel');
+        const altInput = linkPickerEl.querySelector('#lpAlt');
+        const customUrl = linkPickerEl.querySelector('#lpCustomUrl');
+        const customDetails = linkPickerEl.querySelector('.securemail-lp-custom');
+        const searchInput = linkPickerEl.querySelector('#lpSearch');
+        const confirmBtn = linkPickerEl.querySelector('#lpConfirm');
+
+        customUrl.value = '';
+        customDetails.open = false;
+        searchInput.value = '';
+
+        function prefillTarget(current) {
+            const match = (current || '').match(/^\s*\{\{\s*([A-Za-z][A-Za-z0-9_]*)\s*\}\}\s*$/);
+            if (match) {
+                pickerSelectedVar = match[1];
+            } else if (current) {
+                customUrl.value = current;
+                customDetails.open = true;
+            }
+        }
+
+        if (kind === 'image') {
+            labelField.setAttribute('hidden', 'hidden');
+            altField.removeAttribute('hidden');
+            titleEl.textContent = targetEl ? "Modifier l'image" : 'Insérer une image';
+            altInput.value = targetEl ? (targetEl.getAttribute('alt') || '') : '';
+            if (targetEl) prefillTarget(targetEl.getAttribute('src') || '');
+        } else {
+            altField.setAttribute('hidden', 'hidden');
+            labelField.removeAttribute('hidden');
+            titleEl.textContent = targetEl
+                ? 'Modifier le lien'
+                : (insertStyle === 'button' ? 'Ajouter un bouton (CTA)' : 'Ajouter un lien');
+            if (targetEl) {
+                labelInput.value = targetEl.textContent || '';
+                prefillTarget(targetEl.getAttribute('href') || '');
+            } else {
+                labelInput.value = insertStyle === 'button' ? 'Appeler à l\'action' : 'Cliquez ici';
+            }
+        }
+        confirmBtn.textContent = targetEl ? 'Enregistrer' : 'Insérer';
+
+        renderPickerVarList('');
+        updatePickerSelectionUI();
+
+        linkPickerEl.removeAttribute('hidden');
+        setTimeout(function () { searchInput.focus(); }, 20);
+    }
+
+    function closeLinkPicker() {
+        if (linkPickerEl) linkPickerEl.setAttribute('hidden', 'hidden');
+    }
+
+    function confirmLinkPicker() {
+        if (!linkPickerEl) return;
+        const labelInput = linkPickerEl.querySelector('#lpLabel');
+        const altInput = linkPickerEl.querySelector('#lpAlt');
+        const customUrl = linkPickerEl.querySelector('#lpCustomUrl');
+
+        let href;
+        const custom = (customUrl.value || '').trim();
+        if (pickerSelectedVar) {
+            href = '{{' + pickerSelectedVar + '}}';
+        } else if (custom) {
+            if (!isSafeUrl(custom)) {
+                window.alert('URL non autorisée. Utilisez http(s):, mailto:, tel:, un chemin relatif (/…), une ancre (#…) ou une variable {{…}}.');
+                return;
+            }
+            href = custom;
+        } else {
+            window.alert('Sélectionnez une variable du formulaire (ou saisissez une URL dans « Autre URL »).');
+            return;
+        }
+
+        if (pickerKind === 'image') {
+            const alt = (altInput.value || '').trim() || 'Image';
+            if (pickerTarget) {
+                pickerTarget.setAttribute('src', href);
+                pickerTarget.setAttribute('alt', alt);
+            } else {
+                insertPickerHtml('<img src="' + href + '" alt="' + escapeHtml(alt) + '" style="max-width:100%;height:auto;border-radius:12px;" />');
+            }
+        } else {
+            const label = (labelInput.value || '').trim() || (pickerSelectedVar || 'Lien');
+            if (pickerTarget) {
+                pickerTarget.setAttribute('href', href);
+                pickerTarget.textContent = label;
+            } else if (pickerInsertStyle === 'button') {
+                insertPickerHtml('<a href="' + href + '" style="display:inline-block;background:#6D5DF6;color:#ffffff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:600;">' + escapeHtml(label) + '</a>');
+            } else {
+                insertPickerHtml('<a href="' + href + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(label) + '</a>');
+            }
+        }
+
+        closeLinkPicker();
         syncSourceFromVisual();
         schedulePreview();
+        scheduleUnknownPrompt(false);
+    }
+
+    function insertButton() {
+        openLinkPicker('anchor', 'button', null);
     }
 
     function insertImage() {
-        const imageUrl = window.prompt('URL de l\'image');
-        if (!imageUrl) return;
-        insertHtmlAtCursor('<img src="' + imageUrl + '" alt="Image" style="max-width:100%;height:auto;border-radius:12px;" />');
-        syncSourceFromVisual();
-        schedulePreview();
+        openLinkPicker('image', 'image', null);
     }
 
     function insertLink() {
-        const url = window.prompt('URL du lien');
-        if (!url) return;
-        const label = window.prompt('Texte du lien', 'Cliquez ici') || 'Cliquez ici';
-        insertHtmlAtCursor('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>');
-        syncSourceFromVisual();
-        schedulePreview();
+        openLinkPicker('anchor', 'link', null);
     }
 
     function toggleHtmlMode() {
@@ -686,6 +1025,24 @@
     htmlSourceEditor.addEventListener('input', function () {
         schedulePreview();
         scheduleUnknownPrompt(false);
+    });
+
+    // Clicking an existing button/link or image inside the editor opens the picker
+    // pre-filled, so the target variable can be changed without editing raw HTML.
+    visualEditor.addEventListener('click', function (event) {
+        const el = event.target;
+        if (!el || typeof el.closest !== 'function') return;
+        const img = el.closest('img');
+        if (img && visualEditor.contains(img)) {
+            event.preventDefault();
+            openLinkPicker('image', null, img);
+            return;
+        }
+        const anchor = el.closest('a');
+        if (anchor && visualEditor.contains(anchor)) {
+            event.preventDefault();
+            openLinkPicker('anchor', null, anchor);
+        }
     });
 
     const validateButton = document.getElementById('btnValidateVariables');

@@ -418,3 +418,203 @@
         order: 3;
     }
 }
+
+/* Links / images inside the editor are clickable to open the variable picker. */
+.securemail-editor-canvas a,
+.securemail-editor-canvas img {
+    cursor: pointer;
+}
+
+/* ----- Variable link/button/image picker modal ----- */
+.securemail-linkpicker-backdrop {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.55);
+    z-index: 2000;
+}
+
+.securemail-linkpicker-backdrop[hidden] {
+    display: none;
+}
+
+.securemail-linkpicker {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 520px;
+    max-height: 86vh;
+    background: #ffffff;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+    overflow: hidden;
+}
+
+.securemail-linkpicker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: #111827;
+    color: #ffffff;
+}
+
+.securemail-lp-title {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.securemail-lp-close {
+    border: 0;
+    background: transparent;
+    color: #E5E7EB;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.securemail-lp-close:hover {
+    color: #ffffff;
+}
+
+.securemail-linkpicker-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 18px;
+    overflow: auto;
+}
+
+.securemail-lp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.securemail-lp-field label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.securemail-lp-varlist {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 280px;
+    padding: 6px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    background: #F9FAFB;
+    overflow: auto;
+}
+
+.securemail-lp-group {
+    padding: 8px 8px 2px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6B7280;
+}
+
+.securemail-lp-var {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    padding: 8px 10px;
+    text-align: left;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 120ms ease;
+}
+
+.securemail-lp-var:hover {
+    border-color: rgba(109, 93, 246, 0.5);
+    background: #F3F1FE;
+}
+
+.securemail-lp-var.is-selected {
+    border-color: #6D5DF6;
+    background: rgba(109, 93, 246, 0.12);
+}
+
+.securemail-lp-var-name {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #4338CA;
+}
+
+.securemail-lp-var-detail {
+    font-size: 0.75rem;
+    color: #6B7280;
+    word-break: break-all;
+}
+
+.securemail-lp-empty {
+    padding: 14px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6B7280;
+}
+
+.securemail-lp-custom {
+    padding-top: 10px;
+    border-top: 1px dashed #E5E7EB;
+}
+
+.securemail-lp-custom summary {
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: #6B7280;
+}
+
+.securemail-lp-custom summary:hover {
+    color: #111827;
+}
+
+.securemail-lp-custom .form-control {
+    margin-top: 8px;
+}
+
+.securemail-lp-hint {
+    margin: 6px 0 0;
+    font-size: 0.72rem;
+    color: #9CA3AF;
+}
+
+.securemail-linkpicker-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 18px;
+    border-top: 1px solid #E5E7EB;
+    background: #F9FAFB;
+}
+
+.securemail-lp-selected {
+    font-size: 0.8rem;
+    color: #374151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.securemail-lp-selected-detail {
+    color: #6B7280;
+}
+
+.securemail-lp-actions {
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 8px;
+}
