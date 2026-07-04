@@ -134,6 +134,7 @@ Exemple de template `WELCOME` :
 ```
 
 > `subjectData` et `bodyData` sont fusionnés. En cas de clé identique, `bodyData` l'emporte.
+> Toutes les variables utilisees dans le template (sujet + html + texte) sont obligatoires avec une valeur non vide. Sinon l'API retourne `400`.
 
 ### Exemple complet (curl)
 
@@ -192,6 +193,15 @@ Le template auto-créé doit ensuite être édité dans l'interface d'administra
 }
 ```
 
+Exemple d'erreur si des variables de template sont absentes ou vides :
+
+```json
+{
+  "success": false,
+  "error": "Missing required template variables. Required: [CompanyName, FirstName]. Missing or empty: [CompanyName]. Provide values in subjectData/bodyData."
+}
+```
+
 Erreurs fréquentes :
 
 | Message | Cause |
@@ -201,6 +211,7 @@ Erreurs fréquentes :
 | `Quota exceeded.` | Quota journalier ou mensuel dépassé |
 | `Invalid or unauthorized recipient domain.` | E-mail invalide ou domaine non autorisé |
 | `Template 'XXX' is inactive.` | Template existant mais inactif |
+| `Missing required template variables...` | Une ou plusieurs variables du template sont absentes ou ont une valeur vide |
 | `Attachment exceeds 10 MB limit.` | Pièce jointe trop volumineuse |
 
 ---

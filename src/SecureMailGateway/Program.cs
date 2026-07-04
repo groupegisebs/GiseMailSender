@@ -80,6 +80,8 @@ try
 
     builder.Services.AddScoped<ITokenHashService, TokenHashService>();
     builder.Services.AddScoped<ITemplateRenderer, TemplateRenderer>();
+    builder.Services.AddScoped<IHtmlSanitizerService, HtmlSanitizerService>();
+    builder.Services.AddScoped<ITemplatePreviewService, TemplatePreviewService>();
     builder.Services.AddScoped<IMailCodeGenerator, MailCodeGenerator>();
     builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
     builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();

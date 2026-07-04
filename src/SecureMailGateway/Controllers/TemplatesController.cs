@@ -14,6 +14,8 @@ namespace SecureMailGateway.Controllers;
 public class TemplatesController(
     ApplicationDbContext db,
     ITemplateRenderer templateRenderer,
+    IHtmlSanitizerService htmlSanitizerService,
+    ITemplatePreviewService templatePreviewService,
     IAuditService auditService,
     IEmailSenderService emailSender,
     IMailCodeGenerator mailCodeGenerator) : Controller
@@ -89,7 +91,17 @@ public class TemplatesController(
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(EmailTemplateViewModel model, CancellationToken ct)
     {
-        if (!ModelState.IsValid) return View(model);
+        var unknownCreateVariables = htmlSanitizerService.GetUnknownVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
+        if (unknownCreateVariables.Count > 0)
+        {
+            ModelState.AddModelError(string.Empty, $"Variables non autorisees detectees: {string.Join(", ", unknownCreateVariables)}");
+        }
+
+        if (!ModelState.IsValid)
+        {
+            model.Variables = templateRenderer.ExtractVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
+            return View(model);
+        }
 
         if (await db.EmailTemplates.AnyAsync(t => t.TemplateCode == model.TemplateCode, ct))
         {
@@ -99,7 +111,7 @@ public class TemplatesController(
 
         var entity = MapToEntity(model);
         entity.Version = 1;
-        entity.HtmlBody = templateRenderer.SanitizeHtml(entity.HtmlBody);
+        entity.HtmlBody = htmlSanitizerService.Sanitize(entity.HtmlBody);
 
         db.EmailTemplates.Add(entity);
         db.EmailTemplateVersions.Add(new EmailTemplateVersion
@@ -135,14 +147,24 @@ public class TemplatesController(
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Guid id, EmailTemplateViewModel model, CancellationToken ct)
     {
-        if (!ModelState.IsValid) return View(model);
+        var unknownEditVariables = htmlSanitizerService.GetUnknownVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
+        if (unknownEditVariables.Count > 0)
+        {
+            ModelState.AddModelError(string.Empty, $"Variables non autorisees detectees: {string.Join(", ", unknownEditVariables)}");
+        }
+
+        if (!ModelState.IsValid)
+        {
+            model.Variables = templateRenderer.ExtractVariables(model.SubjectTemplate, model.HtmlBody, model.TextBody);
+            return View(model);
+        }
 
         var entity = await db.EmailTemplates.FindAsync([id], ct);
         if (entity is null) return NotFound();
 
         entity.Name = model.Name;
         entity.SubjectTemplate = model.SubjectTemplate;
-        entity.HtmlBody = templateRenderer.SanitizeHtml(model.HtmlBody);
+        entity.HtmlBody = htmlSanitizerService.Sanitize(model.HtmlBody);
         entity.TextBody = model.TextBody;
         entity.Language = model.Language;
         entity.IsActive = model.IsActive;
@@ -170,10 +192,17 @@ public class TemplatesController(
     [IgnoreAntiforgeryToken]
     public IActionResult Preview([FromBody] TemplatePreviewRequest request)
     {
-        var subject = templateRenderer.Render(request.SubjectTemplate, request.SampleData);
-        var html = templateRenderer.Render(request.HtmlBody, request.SampleData);
-        var text = request.TextBody is not null ? templateRenderer.Render(request.TextBody, request.SampleData) : null;
-        return Json(new { subject, html, text });
+        var preview = templatePreviewService.BuildPreview(request);
+        if (preview.UnknownVariables.Count > 0)
+        {
+            return BadRequest(new
+            {
+                message = "Variables non autorisees detectees.",
+                unknownVariables = preview.UnknownVariables
+            });
+        }
+
+        return Json(new { subject = preview.Subject, html = preview.Html, text = preview.Text });
     }
 
     [HttpPost, ValidateAntiForgeryToken]
@@ -221,7 +250,7 @@ public class TemplatesController(
         }
 
         var subject = templateRenderer.Render(subjectTpl, request.SampleData);
-        var html = templateRenderer.SanitizeHtml(templateRenderer.Render(htmlTpl, request.SampleData));
+        var html = htmlSanitizerService.Sanitize(templateRenderer.Render(htmlTpl, request.SampleData));
         var text = textTpl is not null ? templateRenderer.Render(textTpl, request.SampleData) : null;
 
         var testClient = await db.ClientApplications.FirstOrDefaultAsync(ct);

@@ -56,6 +56,11 @@ Réponse attendue :
 }
 ```
 
+Exigence importante :
+
+- Les variables présentes dans le template (`{{NomVariable}}`) doivent etre fournies avec une valeur non vide dans `subjectData` et/ou `bodyData`.
+- `subjectData` et `bodyData` sont fusionnes. En cas de meme cle, `bodyData` ecrase `subjectData`.
+
 Si le `templateCode` n'existe pas encore, le service crée automatiquement un template brouillon actif, puis l'envoi continue. Un administrateur peut ensuite l'éditer dans *Templates*.
 
 ---
@@ -101,8 +106,18 @@ Procédure recommandée :
 | `401 Invalid or expired API key.` | Token absent/invalide/expiré | Vérifier le token et sa révocation |
 | `400 Client code mismatch.` | `clientCode` différent de celui du token | Aligner le `clientCode` |
 | `400 Template 'XXX' not found or inactive.` | Template absent/inactif | Vérifier le code template et son statut |
+| `400 Missing required template variables...` | Variables du template absentes ou vides dans `subjectData`/`bodyData` | Fournir toutes les variables requises avec une valeur non vide |
 | `400 Quota exceeded.` | Quota journalier/mensuel atteint | Ajuster quotas ou attendre reset |
 | `429` | Trop de requêtes | Réduire cadence + retry backoff |
+
+Exemple d'erreur :
+
+```json
+{
+  "success": false,
+  "error": "Missing required template variables. Required: [CompanyName, FirstName]. Missing or empty: [CompanyName]. Provide values in subjectData/bodyData."
+}
+```
 
 ---
 

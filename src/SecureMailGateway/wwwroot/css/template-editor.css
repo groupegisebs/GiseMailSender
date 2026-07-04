@@ -1,0 +1,329 @@
+.securemail-template-editor-page {
+    background: #F6F8FC;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.securemail-editor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.securemail-meta-card,
+.securemail-toolbar-card,
+.securemail-editor-canvas-card,
+.securemail-preview-card {
+    background: #ffffff;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.securemail-meta-card {
+    padding: 16px;
+}
+
+.securemail-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
+    gap: 12px;
+    align-items: end;
+}
+
+.securemail-active-toggle {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.securemail-active-toggle .form-check-input {
+    margin-top: 0;
+}
+
+.securemail-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.securemail-field label {
+    color: #111827;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.securemail-editor-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr) 360px;
+    gap: 16px;
+    min-height: 70vh;
+}
+
+.securemail-sidebar {
+    background: #111827;
+    border-radius: 16px;
+    color: #E5E7EB;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.securemail-sidebar-section h4 {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.securemail-variable-list,
+.securemail-quick-block-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.securemail-pill-btn,
+.securemail-quick-block-btn {
+    border: 1px solid rgba(229, 231, 235, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #E5E7EB;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    transition: all 120ms ease;
+}
+
+.securemail-pill-btn:hover,
+.securemail-quick-block-btn:hover {
+    background: rgba(109, 93, 246, 0.25);
+    border-color: rgba(109, 93, 246, 0.8);
+}
+
+.securemail-editor-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 12px;
+}
+
+.securemail-toolbar-card {
+    padding: 10px;
+}
+
+.securemail-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.securemail-tool-btn {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 0.8rem;
+    min-height: 34px;
+    padding: 6px 10px;
+}
+
+.securemail-tool-btn:hover {
+    border-color: #6D5DF6;
+    color: #6D5DF6;
+}
+
+#foreColorPicker,
+#backColorPicker {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    width: 34px;
+    height: 34px;
+    padding: 2px;
+    background: #ffffff;
+}
+
+.securemail-editor-canvas-card {
+    padding: 12px;
+    min-height: 540px;
+}
+
+.securemail-editor-canvas,
+.securemail-html-source {
+    width: 100%;
+    min-height: 500px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow: auto;
+    outline: none;
+}
+
+.securemail-html-source {
+    font-family: Consolas, "Courier New", monospace;
+    resize: vertical;
+    min-height: 500px;
+}
+
+.securemail-preview-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.securemail-preview-card {
+    padding: 12px;
+}
+
+.securemail-preview-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.securemail-preview-topbar h4,
+.securemail-preview-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.securemail-preview-device-toggle {
+    display: inline-flex;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.securemail-device-btn {
+    border: 0;
+    background: #ffffff;
+    color: #374151;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+}
+
+.securemail-device-btn.is-active {
+    background: #6D5DF6;
+    color: #ffffff;
+}
+
+.securemail-preview-surface {
+    background: #F3F4F6;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 12px;
+    min-height: 440px;
+    transition: all 120ms ease;
+}
+
+.securemail-preview-surface.is-mobile .securemail-preview-frame {
+    max-width: 375px;
+}
+
+.securemail-preview-subject {
+    font-size: 0.83rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.securemail-preview-frame {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.securemail-preview-email-shell {
+    background: #F3F4F6;
+    border-radius: 14px;
+    padding: 20px 16px;
+}
+
+.securemail-preview-email-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #E5E7EB;
+    overflow: hidden;
+}
+
+.securemail-preview-email-header {
+    background: #6D5DF6;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 14px 18px;
+}
+
+.securemail-preview-email-body {
+    padding: 18px;
+}
+
+.securemail-preview-email-legal {
+    border-top: 1px solid #E5E7EB;
+    padding: 12px 18px;
+    font-size: 12px;
+    color: #6B7280;
+}
+
+.securemail-test-data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.securemail-action-bar {
+    position: sticky;
+    bottom: 0;
+    background: #ffffff;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.06);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 20;
+}
+
+.securemail-action-right {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.securemail-editor-layout.is-fullscreen {
+    position: fixed;
+    inset: 12px;
+    z-index: 1200;
+    background: #F6F8FC;
+    padding: 12px;
+    border-radius: 16px;
+}
+
+@media (max-width: 1400px) {
+    .securemail-editor-layout {
+        grid-template-columns: 240px minmax(0, 1fr) 330px;
+    }
+}
+
+@media (max-width: 1180px) {
+    .securemail-meta-grid {
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
+    }
+
+    .securemail-editor-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .securemail-sidebar {
+        order: 2;
+    }
+
+    .securemail-preview-column {
+        order: 3;
+    }
+}

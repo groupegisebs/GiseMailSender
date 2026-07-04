@@ -1,3 +1,186 @@
+@using System.Text.Json
 @model EmailTemplateViewModel
-@{ ViewData["Title"] = "Éditer le template"; }
-@await Html.PartialAsync("Create", Model)
+@{
+    ViewData["Title"] = "Editeur de template SecureMail";
+    var allowedVariables = new[]
+    {
+        "FirstName", "LastName", "CompanyName", "Email", "ResetLink", "OrderId", "Amount", "InvoiceDate", "Message"
+    };
+    var testDataDefaults = new Dictionary<string, string>
+    {
+        ["FirstName"] = "Jean",
+        ["CompanyName"] = "Acme Corp",
+        ["Title"] = "Bienvenue",
+        ["Message"] = "Votre compte est pret.",
+        ["Amount"] = "29,00 $",
+        ["OrderId"] = "ORD-2026-001",
+        ["LastName"] = "",
+        ["Email"] = "",
+        ["ResetLink"] = "",
+        ["InvoiceDate"] = ""
+    };
+    var variableListJson = JsonSerializer.Serialize(allowedVariables);
+    var testDataJson = JsonSerializer.Serialize(testDataDefaults);
+}
+
+<link rel="stylesheet" href="~/css/template-editor.css" asp-append-version="true" />
+
+<div class="securemail-template-editor-page">
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post" id="templateForm" class="securemail-editor-form">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="HtmlBody" id="HtmlBodyHidden" />
+        <input type="hidden" asp-for="TextBody" id="TextBodyHidden" />
+
+        <input type="hidden" name="BodyHtml" id="BodyHtml" />
+        <input type="hidden" name="BodyText" id="BodyText" />
+        <input type="hidden" name="Subject" id="Subject" />
+        <input type="hidden" name="CodeTemplate" id="CodeTemplate" />
+        <input type="hidden" name="Active" id="Active" />
+
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="securemail-meta-card">
+            <div class="securemail-meta-grid">
+                <div class="securemail-field">
+                    <label asp-for="TemplateCode"></label>
+                    <input asp-for="TemplateCode" class="form-control" readonly />
+                </div>
+                <div class="securemail-field">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <div class="securemail-field">
+                    <label asp-for="Language"></label>
+                    <input asp-for="Language" class="form-control" />
+                </div>
+                <div class="securemail-field">
+                    <label asp-for="SubjectTemplate">Sujet</label>
+                    <input asp-for="SubjectTemplate" class="form-control" id="subjectTemplate" />
+                </div>
+                <div class="securemail-field securemail-active-toggle">
+                    <label asp-for="IsActive">Actif</label>
+                    <input asp-for="IsActive" class="form-check-input" />
+                </div>
+            </div>
+        </div>
+
+        <div class="securemail-editor-layout" id="SecureMailTemplateEditor">
+            <aside class="securemail-sidebar">
+                <section class="securemail-sidebar-section">
+                    <h4>Variables</h4>
+                    <div class="securemail-variable-list" id="variablePalette">
+                        @foreach (var variableName in allowedVariables)
+                        {
+                            <button type="button"
+                                    class="securemail-pill-btn"
+                                    data-variable="@variableName">
+                                {{@variableName}}
+                            </button>
+                        }
+                    </div>
+                </section>
+
+                <section class="securemail-sidebar-section">
+                    <h4>Quick blocks</h4>
+                    <div class="securemail-quick-block-list">
+                        <button type="button" class="securemail-quick-block-btn" data-block="header-logo">Header with logo</button>
+                        <button type="button" class="securemail-quick-block-btn" data-block="welcome-message">Welcome message</button>
+                        <button type="button" class="securemail-quick-block-btn" data-block="verification-code">Verification code</button>
+                        <button type="button" class="securemail-quick-block-btn" data-block="primary-button">Primary button</button>
+                        <button type="button" class="securemail-quick-block-btn" data-block="invoice-block">Invoice block</button>
+                        <button type="button" class="securemail-quick-block-btn" data-block="security-alert">Security alert block</button>
+                        <button type="button" class="securemail-quick-block-btn" data-block="legal-footer">Legal footer</button>
+                        <button type="button" class="securemail-quick-block-btn" data-block="team-signature">Team signature</button>
+                    </div>
+                </section>
+            </aside>
+
+            <main class="securemail-editor-main">
+                <div class="securemail-toolbar-card">
+                    <div class="securemail-toolbar" id="editorToolbar">
+                        <button type="button" class="securemail-tool-btn" data-action="formatBlock:h1">H1</button>
+                        <button type="button" class="securemail-tool-btn" data-action="formatBlock:h2">H2</button>
+                        <button type="button" class="securemail-tool-btn" data-action="formatBlock:h3">H3</button>
+                        <button type="button" class="securemail-tool-btn" data-action="formatBlock:p">P</button>
+                        <button type="button" class="securemail-tool-btn" data-action="bold"><strong>B</strong></button>
+                        <button type="button" class="securemail-tool-btn" data-action="italic"><em>I</em></button>
+                        <button type="button" class="securemail-tool-btn" data-action="underline"><u>U</u></button>
+                        <input type="color" id="foreColorPicker" title="Text color" value="#111827" />
+                        <input type="color" id="backColorPicker" title="Background color" value="#ffffff" />
+                        <button type="button" class="securemail-tool-btn" data-action="justifyleft">Left</button>
+                        <button type="button" class="securemail-tool-btn" data-action="justifycenter">Center</button>
+                        <button type="button" class="securemail-tool-btn" data-action="justifyright">Right</button>
+                        <button type="button" class="securemail-tool-btn" data-action="insertUnorderedList">UL</button>
+                        <button type="button" class="securemail-tool-btn" data-action="insertOrderedList">OL</button>
+                        <button type="button" class="securemail-tool-btn" data-role="insertLink">Link</button>
+                        <button type="button" class="securemail-tool-btn" data-role="insertButton">CTA</button>
+                        <button type="button" class="securemail-tool-btn" data-role="insertImage">Image</button>
+                        <button type="button" class="securemail-tool-btn" data-role="insertSeparator">Separator</button>
+                        <button type="button" class="securemail-tool-btn" data-role="insertFrame">Frame</button>
+                        <button type="button" class="securemail-tool-btn" data-role="insertTable">Table</button>
+                        <button type="button" class="securemail-tool-btn" data-action="undo">Undo</button>
+                        <button type="button" class="securemail-tool-btn" data-action="redo">Redo</button>
+                        <button type="button" class="securemail-tool-btn" data-role="toggleHtmlMode">HTML</button>
+                        <button type="button" class="securemail-tool-btn" data-role="toggleFullscreen">Fullscreen</button>
+                    </div>
+                </div>
+
+                <div class="securemail-editor-canvas-card">
+                    <div id="visualEditor"
+                         class="securemail-editor-canvas"
+                         contenteditable="true"
+                         spellcheck="true">@Html.Raw(Model.HtmlBody)</div>
+                    <textarea id="htmlSourceEditor" class="securemail-html-source d-none">@Model.HtmlBody</textarea>
+                </div>
+            </main>
+
+            <aside class="securemail-preview-column">
+                <div class="securemail-preview-card">
+                    <div class="securemail-preview-topbar">
+                        <h4>Live preview</h4>
+                        <div class="securemail-preview-device-toggle">
+                            <button type="button" class="securemail-device-btn is-active" data-device="desktop">Desktop</button>
+                            <button type="button" class="securemail-device-btn" data-device="mobile">Mobile</button>
+                        </div>
+                    </div>
+                    <div class="securemail-preview-surface is-desktop" id="previewSurface">
+                        <div class="securemail-preview-subject" id="previewSubject"></div>
+                        <div class="securemail-preview-frame" id="previewPane"></div>
+                    </div>
+                </div>
+                <div class="securemail-preview-card">
+                    <h4>Test data</h4>
+                    <div class="securemail-test-data-grid" id="sampleDataFields">
+                        @foreach (var pair in testDataDefaults)
+                        {
+                            <div class="securemail-field">
+                                <label for="sample_@pair.Key">@pair.Key</label>
+                                <input id="sample_@pair.Key" class="form-control sample-field" data-key="@pair.Key" value="@pair.Value" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <div class="securemail-action-bar">
+            <a asp-action="Index" class="btn btn-link">Retour</a>
+            <div class="securemail-action-right">
+                <button type="button" class="btn btn-outline-secondary" id="btnValidateVariables">Valider variables</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        window.secureMailTemplateEditorConfig = {
+            allowedVariables: @Html.Raw(variableListJson),
+            testDataDefaults: @Html.Raw(testDataJson),
+            previewUrl: '@Url.Action("Preview", "Templates")'
+        };
+    </script>
+    <script src="~/js/template-editor.js" asp-append-version="true"></script>
+}

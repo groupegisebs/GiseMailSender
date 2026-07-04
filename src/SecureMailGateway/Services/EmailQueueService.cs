@@ -80,11 +80,17 @@ public partial class EmailQueueService(
         if (!ValidateRecipients(allRecipients, client))
             return Fail("Invalid or unauthorized recipient domain.");
 
-        var subjectData = request.SubjectData ?? new Dictionary<string, string>();
-        var bodyData = request.BodyData ?? new Dictionary<string, string>();
-        var mergedData = subjectData.Concat(bodyData)
-            .GroupBy(kv => kv.Key, StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(g => g.Key, g => g.Last().Value, StringComparer.OrdinalIgnoreCase);
+        var mergedData = MergeTemplateData(request.SubjectData, request.BodyData);
+        var requiredVariables = templateRenderer.ExtractVariables(
+            template.SubjectTemplate,
+            template.HtmlBody,
+            template.TextBody);
+        var missingVariables = requiredVariables
+            .Where(variable => !mergedData.TryGetValue(variable, out var value) || string.IsNullOrWhiteSpace(value))
+            .ToList();
+
+        if (missingVariables.Count > 0)
+            return Fail(BuildMissingVariablesError(requiredVariables, missingVariables));
 
         var subject = templateRenderer.Render(template.SubjectTemplate, mergedData);
         var html = templateRenderer.SanitizeHtml(templateRenderer.Render(template.HtmlBody, mergedData));
@@ -166,6 +172,40 @@ public partial class EmailQueueService(
             .CountAsync(m => m.ClientApplicationId == client.Id && m.QueuedAt >= monthStart, ct);
 
         return monthlyCount < client.MonthlyQuota;
+    }
+
+    private static Dictionary<string, string> MergeTemplateData(
+        Dictionary<string, string>? subjectData,
+        Dictionary<string, string>? bodyData)
+    {
+        var merged = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        if (subjectData is not null)
+        {
+            foreach (var kv in subjectData)
+            {
+                if (string.IsNullOrWhiteSpace(kv.Key)) continue;
+                merged[kv.Key] = kv.Value;
+            }
+        }
+
+        if (bodyData is not null)
+        {
+            foreach (var kv in bodyData)
+            {
+                if (string.IsNullOrWhiteSpace(kv.Key)) continue;
+                merged[kv.Key] = kv.Value;
+            }
+        }
+
+        return merged;
+    }
+
+    private static string BuildMissingVariablesError(List<string> requiredVariables, List<string> missingVariables)
+    {
+        var requiredList = string.Join(", ", requiredVariables);
+        var missingList = string.Join(", ", missingVariables);
+        return $"Missing required template variables. Required: [{requiredList}]. Missing or empty: [{missingList}]. Provide values in subjectData/bodyData.";
     }
 
     private static bool ValidateRecipients(List<string> recipients, ClientApplication client)
