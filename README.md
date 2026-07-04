@@ -76,7 +76,7 @@ dotnet run --no-launch-profile
 
 Interface admin : [https://gisemailsender.gisebs.com](https://gisemailsender.gisebs.com)  
 Développement local : `https://localhost:5001`  
-Compte admin par défaut : `admin@securemail.local` / `ChangeMe!SecureMail2026` (à changer immédiatement)
+Compte admin : créé manuellement par un administrateur (aucun utilisateur seedé par défaut)
 
 ## API — Envoi d'e-mail
 
