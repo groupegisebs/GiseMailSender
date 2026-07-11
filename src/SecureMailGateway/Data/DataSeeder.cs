@@ -5,6 +5,7 @@ using Npgsql;
 using SecureMailGateway.Authorization;
 using SecureMailGateway.Data;
 using SecureMailGateway.Models.Entities;
+using SecureMailGateway.Services;
 
 namespace SecureMailGateway.Data;
 
@@ -101,10 +102,23 @@ public static partial class DataSeeder
                 ClientCode = "COMPTADOC",
                 DailyQuota = 5000,
                 MonthlyQuota = 100000,
-                AllowedDomains = "gisebs.com,comptadoc.gisebs.com,gmail.com,outlook.com,yahoo.com,hotmail.com,icloud.com"
+                // null = tous domaines (factures / invites vers n'importe quel client PME)
+                AllowedDomains = null
             });
             await db.SaveChangesAsync();
             logger.LogInformation("Client application COMPTADOC seeded.");
+        }
+        else
+        {
+            // Assouplir les domaines si un seed antérieur avait une allowlist trop stricte.
+            var compta = await db.ClientApplications.FirstAsync(c => c.ClientCode == "COMPTADOC");
+            if (!string.IsNullOrWhiteSpace(compta.AllowedDomains)
+                && !ClientApplicationDomainRules.AllowsAllDomains(compta.AllowedDomains))
+            {
+                compta.AllowedDomains = null;
+                await db.SaveChangesAsync();
+                logger.LogInformation("Client COMPTADOC : AllowedDomains ouvert à tous les domaines.");
+            }
         }
 
         await SeedTemplatesAsync(db, logger);
