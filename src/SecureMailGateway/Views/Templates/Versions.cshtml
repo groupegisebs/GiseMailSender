@@ -11,7 +11,7 @@
         @foreach (var v in Model)
         {
             <tr>
-                <td>v@v.Version</td>
+                <td>v@(v.Version)</td>
                 <td>@v.SubjectTemplate</td>
                 <td>@(v.CreatedBy ?? "—")</td>
                 <td>@v.CreatedAt.LocalDateTime.ToString("g")</td>
