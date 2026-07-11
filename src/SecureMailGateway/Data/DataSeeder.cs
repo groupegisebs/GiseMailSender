@@ -10,7 +10,7 @@ namespace SecureMailGateway.Data;
 
 public static partial class DataSeeder
 {
-    [GeneratedRegex(@"<!--\s*boutiquegise-seed:(\d+)\s*-->", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"<!--\s*[a-z0-9]+-seed:(\d+)\s*-->", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
     private static partial Regex SeedRevisionRegex();
     public static async Task SeedAsync(IServiceProvider services)
     {
@@ -93,6 +93,20 @@ public static partial class DataSeeder
             logger.LogInformation("Client application HOLOTUTO seeded.");
         }
 
+        if (!await db.ClientApplications.AnyAsync(c => c.ClientCode == "COMPTADOC"))
+        {
+            db.ClientApplications.Add(new ClientApplication
+            {
+                Name = "ComptaDoc PME",
+                ClientCode = "COMPTADOC",
+                DailyQuota = 5000,
+                MonthlyQuota = 100000,
+                AllowedDomains = "gisebs.com,comptadoc.gisebs.com,gmail.com,outlook.com,yahoo.com,hotmail.com,icloud.com"
+            });
+            await db.SaveChangesAsync();
+            logger.LogInformation("Client application COMPTADOC seeded.");
+        }
+
         await SeedTemplatesAsync(db, logger);
     }
 
@@ -105,7 +119,12 @@ public static partial class DataSeeder
         var updated = 0;
 
         foreach (var definitions in new IReadOnlyList<EmailTemplateSeed>[]
-            { BoutiqueGiseTemplates.Definitions, TutorSphereTemplates.Definitions, HoloTutoTemplates.Definitions })
+            {
+                BoutiqueGiseTemplates.Definitions,
+                TutorSphereTemplates.Definitions,
+                HoloTutoTemplates.Definitions,
+                ComptaDocTemplates.Definitions
+            })
         {
             foreach (var definition in definitions)
             {

@@ -16,7 +16,7 @@ public static class HoloTutoTemplates
     private static string BrandFooter(int seedRevision) => """
         <div style="background:#1a1a2e;padding:18px 32px;text-align:center;">
           <p style="margin:0;font-size:12px;color:#aaa;">
-            HoloTuto — <a href="https://holotuto.com" style="color:#6c63ff;text-decoration:none;">holotuto.com</a>
+            HoloTuto — <a href="https://www.holotuto.com" style="color:#6c63ff;text-decoration:none;">www.holotuto.com</a>
           </p>
           <p style="margin:8px 0 0;font-size:11px;color:#666;">© {{Year}} GISEBS Inc. Tous droits réservés.</p>
         </div>
@@ -137,7 +137,7 @@ public static class HoloTutoTemplates
             HtmlBody: Wrap("<h2 style=\"margin:0 0 12px;color:#1a1a2e;\">{{Subject}}</h2><div>{{Body}}</div>"),
             TextBody: "{{Subject}} — {{Body}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "WELCOME",
@@ -158,7 +158,7 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "Bienvenue {{FirstName}} sur HoloTuto. Connectez-vous : {{LoginUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -185,7 +185,7 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "Bonjour {{ParentName}}, mot de passe temporaire : {{TempPassword}} (expire en 24h). {{LoginUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PAYMENT_CONFIRMATION",
@@ -207,7 +207,7 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "Paiement confirmé {{Amount}} — {{PlanLabel}} pour {{Students}}. Réf. {{PaymentRef}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SUBSCRIPTION_RENEWED",
@@ -225,7 +225,7 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "Abonnement renouvelé pour {{Students}} du {{PeriodStart}} au {{PeriodEnd}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "BALANCE_EXHAUSTED",
@@ -242,7 +242,7 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "Session terminée pour {{StudentName}} — solde épuisé ({{HoursDebited}}h). {{BillingUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TEACHER_INVITE",
@@ -258,7 +258,7 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "{{ParentName}} vous invite à suivre {{StudentName}}. {{InviteUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TEACHER_ACCEPTED",
@@ -272,7 +272,7 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "{{TeacherName}} a accepté l'invitation pour {{StudentName}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TEACHER_REVOKED",
@@ -286,6 +286,6 @@ public static class HoloTutoTemplates
                 """),
             TextBody: "Votre accès au profil de {{StudentName}} a été révoqué.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
     ];
 }
