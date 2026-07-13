@@ -1,4 +1,6 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
-  <rect width="64" height="64" rx="12" fill="#F5C518"/>
-  <text x="32" y="46" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="800" fill="#0A0A0A">M</text>
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SecureMail">
+  <rect width="64" height="64" rx="12" fill="#0A0A0A"/>
+  <!-- enveloppe -->
+  <rect x="12" y="18" width="40" height="28" rx="3" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+  <path d="M14 20 L32 36 L50 20" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
