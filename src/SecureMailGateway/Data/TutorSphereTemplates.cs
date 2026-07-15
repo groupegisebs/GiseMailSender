@@ -321,6 +321,60 @@ public static class TutorSphereTemplates
                 <p>Bonjour {{ParentName}},</p>
                 <p>Votre nouvelle facture TutorSphere est disponible au téléchargement.</p>
                 """ + PrimaryBtn("{{InvoiceUrl}}", "Télécharger ma facture")),
-            TextBody: "Bonjour {{ParentName}}, votre facture TutorSphere est disponible : {{InvoiceUrl}}")
+            TextBody: "Bonjour {{ParentName}}, votre facture TutorSphere est disponible : {{InvoiceUrl}}"),
+
+        new(
+            TemplateCode: "PARENT_PAYMENT_OVERDUE",
+            Name: "TutorSphere — Paiement en retard",
+            SubjectTemplate: "Rappel : paiement en attente pour {{StudentName}} — TutorSphere",
+            HtmlBody: Wrap("""
+                <h2 style="color:#dc2626;margin:0 0 12px;">Paiement en retard</h2>
+                <p>Bonjour {{ParentName}},</p>
+                <p>Le paiement pour le cours <strong>{{CourseTitle}}</strong> de <strong>{{StudentName}}</strong> est toujours en attente.</p>
+                <p>Merci de régulariser dès que possible afin d'activer ou de maintenir l'accès aux séances.</p>
+                """ + PrimaryBtn("{{PayUrl}}", "Payer maintenant"), seedRevision: 1),
+            TextBody: "Rappel : paiement en retard pour {{StudentName}} — {{CourseTitle}}. Payer : {{PayUrl}}",
+            SeedRevision: 1),
+
+        new(
+            TemplateCode: "COURSE_ENROLLMENT_REQUEST",
+            Name: "TutorSphere — Demande d'inscription à un cours",
+            SubjectTemplate: "Nouvelle demande d'inscription — {{CourseTitle}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#5831E0;margin:0 0 12px;">Nouvelle demande d'inscription</h2>
+                <p>Bonjour {{TutorName}},</p>
+                <p><strong>{{StudentName}}</strong> souhaite s'inscrire au cours <strong>{{CourseTitle}}</strong>.</p>
+                <p>Connectez-vous pour accepter ou refuser la demande.</p>
+                """ + PrimaryBtn("https://app.tutorsphere.gisebs.com/login", "Gérer les inscriptions"), seedRevision: 1),
+            TextBody: "Demande d'inscription de {{StudentName}} au cours {{CourseTitle}}.",
+            SeedRevision: 1),
+
+        new(
+            TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
+            Name: "TutorSphere — Inscription au cours acceptée",
+            SubjectTemplate: "Inscription acceptée — {{CourseTitle}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#16a34a;margin:0 0 12px;">Inscription acceptée</h2>
+                <p>Bonjour {{ParentName}},</p>
+                <p>L'inscription de <strong>{{StudentName}}</strong> au cours <strong>{{CourseTitle}}</strong> a été acceptée.</p>
+                <p>{{StatusNote}}</p>
+                """ + PrimaryBtn("{{ActionUrl}}", "Continuer"), seedRevision: 1),
+            TextBody: "Inscription de {{StudentName}} à {{CourseTitle}} acceptée. {{StatusNote}} {{ActionUrl}}",
+            SeedRevision: 1),
+
+        new(
+            TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
+            Name: "TutorSphere — Paiement reçu (cours élève)",
+            SubjectTemplate: "Paiement reçu — {{StudentName}} / {{CourseTitle}}",
+            HtmlBody: Wrap("""
+                <h2 style="color:#16a34a;margin:0 0 12px;">Paiement reçu</h2>
+                <p>Bonjour {{TutorName}},</p>
+                <p>Un paiement a été reçu pour <strong>{{StudentName}}</strong> — cours <strong>{{CourseTitle}}</strong>.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;">
+                  <tr><td style="padding:8px 0;color:#555;">Montant</td><td style="padding:8px 0;font-weight:600;text-align:right;">{{Amount}}</td></tr>
+                </table>
+                """ + PrimaryBtn("https://app.tutorsphere.gisebs.com/login", "Voir mon espace"), seedRevision: 1),
+            TextBody: "Paiement reçu : {{Amount}} pour {{StudentName}} — {{CourseTitle}}.",
+            SeedRevision: 1)
     ];
 }
