@@ -28,6 +28,7 @@ public class EmailSenderService(
     {
         var message = await db.EmailMessages
             .Include(m => m.Attachments)
+            .Include(m => m.ClientApplication)
             .FirstOrDefaultAsync(m => m.Id == emailMessageId, ct);
 
         if (message is null || message.Status is EmailStatus.Sent or EmailStatus.Cancelled)
@@ -106,9 +107,11 @@ public class EmailSenderService(
 
     private MailMessage BuildMailMessage(EmailMessage msg, SmtpConfiguration smtp)
     {
+        // Toujours : [GISEBS_{NomApplication}] (jamais le FromName SMTP générique).
+        var fromDisplayName = ClientFromDisplayName.For(msg.ClientApplication);
         var mail = new MailMessage
         {
-            From = new MailAddress(smtp.FromEmail, smtp.FromName ?? smtp.FromEmail),
+            From = new MailAddress(smtp.FromEmail, fromDisplayName),
             Subject = msg.Subject
         };
 

@@ -39,7 +39,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         builder.Entity<EmailTemplate>(e =>
         {
-            e.HasIndex(x => x.TemplateCode).IsUnique();
+            // Une variante par langue (fr, en, …) pour le même TemplateCode.
+            e.HasIndex(x => new { x.TemplateCode, x.Language }).IsUnique();
         });
 
         builder.Entity<EmailTemplateVersion>(e =>

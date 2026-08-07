@@ -1,0 +1,797 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereTemplates.cs");
+
+const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
+const REV = 2;
+
+/** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
+
+/** @param {Loc} l @param {string} lang */
+function t(l, lang) {
+  switch (lang) {
+    case "en": return l.en;
+    case "es": return l.es;
+    case "de": return l.de;
+    case "pt": return l.pt;
+    case "zh-Hans": return l.zh;
+    case "ar": return l.ar;
+    default: return l.fr;
+  }
+}
+
+/** @param {...string} parts */
+function L(fr, en, es, de, pt, zh, ar) {
+  return { fr, en, es, de, pt, zh, ar };
+}
+
+const footer = L(
+  "Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href=\"https://tutorsphere.gisebs.com\" style=\"color:#5831E0;text-decoration:none;\">tutorsphere.gisebs.com</a>",
+  "This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href=\"https://tutorsphere.gisebs.com\" style=\"color:#5831E0;text-decoration:none;\">tutorsphere.gisebs.com</a>",
+  "Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href=\"https://tutorsphere.gisebs.com\" style=\"color:#5831E0;text-decoration:none;\">tutorsphere.gisebs.com</a>",
+  "Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href=\"https://tutorsphere.gisebs.com\" style=\"color:#5831E0;text-decoration:none;\">tutorsphere.gisebs.com</a>",
+  "Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href=\"https://tutorsphere.gisebs.com\" style=\"color:#5831E0;text-decoration:none;\">tutorsphere.gisebs.com</a>",
+  "此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href=\"https://tutorsphere.gisebs.com\" style=\"color:#5831E0;text-decoration:none;\">tutorsphere.gisebs.com</a>",
+  "تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href=\"https://tutorsphere.gisebs.com\" style=\"color:#5831E0;text-decoration:none;\">tutorsphere.gisebs.com</a>"
+);
+
+const ignore = L(
+  "Si vous n'avez pas créé de compte, ignorez cet e-mail.",
+  "If you did not create an account, please ignore this email.",
+  "Si no creó una cuenta, ignore este correo.",
+  "Wenn Sie kein Konto erstellt haben, ignorieren Sie diese E-Mail.",
+  "Se não criou uma conta, ignore este e-mail.",
+  "如果您未创建帐户，请忽略此邮件。",
+  "إذا لم تنشئ حسابًا، فتجاهل هذا البريد."
+);
+
+const templates = [
+  {
+    code: "WELCOME",
+    name: L("TutorSphere — Bienvenue", "TutorSphere — Welcome", "TutorSphere — Bienvenida", "TutorSphere — Willkommen", "TutorSphere — Boas-vindas", "TutorSphere — 欢迎", "TutorSphere — مرحبًا"),
+    subject: L("Bienvenue {{FirstName}} sur TutorSphere !", "Welcome {{FirstName}} to TutorSphere!", "¡Bienvenido/a {{FirstName}} a TutorSphere!", "Willkommen {{FirstName}} bei TutorSphere!", "Bem-vindo(a) {{FirstName}} ao TutorSphere!", "欢迎 {{FirstName}} 加入 TutorSphere！", "مرحبًا {{FirstName}} في TutorSphere!"),
+    title: L("Bienvenue {{FirstName}} !", "Welcome {{FirstName}}!", "¡Bienvenido/a {{FirstName}}!", "Willkommen {{FirstName}}!", "Bem-vindo(a) {{FirstName}}!", "欢迎，{{FirstName}}！", "مرحبًا {{FirstName}}!"),
+    body: L(
+      "Votre compte TutorSphere est prêt. Connectez-vous pour accéder à votre espace personnel.",
+      "Your TutorSphere account is ready. Sign in to access your personal space.",
+      "Su cuenta de TutorSphere está lista. Inicie sesión para acceder a su espacio personal.",
+      "Ihr TutorSphere-Konto ist bereit. Melden Sie sich an, um auf Ihren Bereich zuzugreifen.",
+      "A sua conta TutorSphere está pronta. Inicie sessão para aceder ao seu espaço pessoal.",
+      "您的 TutorSphere 帐户已准备就绪。请登录以访问您的个人空间。",
+      "حساب TutorSphere جاهز. سجّل الدخول للوصول إلى مساحتك الشخصية."
+    ),
+    btn: L("Accéder à mon espace", "Go to my space", "Ir a mi espacio", "Zu meinem Bereich", "Aceder ao meu espaço", "进入我的空间", "الانتقال إلى مساحتي"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Bienvenue {{FirstName}} sur TutorSphere.", "Welcome {{FirstName}} to TutorSphere.", "Bienvenido/a {{FirstName}} a TutorSphere.", "Willkommen {{FirstName}} bei TutorSphere.", "Bem-vindo(a) {{FirstName}} ao TutorSphere.", "欢迎 {{FirstName}} 加入 TutorSphere。", "مرحبًا {{FirstName}} في TutorSphere.")
+  },
+  {
+    code: "CONFIRM_EMAIL",
+    name: L("TutorSphere — Confirmation e-mail (école)", "TutorSphere — Email confirmation (school)", "TutorSphere — Confirmación de correo (escuela)", "TutorSphere — E-Mail-Bestätigung (Schule)", "TutorSphere — Confirmação de e-mail (escola)", "TutorSphere — 确认电子邮件（学校）", "TutorSphere — تأكيد البريد (مدرسة)"),
+    subject: L("Confirmez votre adresse e-mail — TutorSphere", "Confirm your email address — TutorSphere", "Confirme su correo electrónico — TutorSphere", "Bestätigen Sie Ihre E-Mail — TutorSphere", "Confirme o seu e-mail — TutorSphere", "确认您的电子邮件 — TutorSphere", "أكد عنوان بريدك — TutorSphere"),
+    title: L("Confirmez votre adresse e-mail", "Confirm your email address", "Confirme su correo electrónico", "Bestätigen Sie Ihre E-Mail-Adresse", "Confirme o seu endereço de e-mail", "确认您的电子邮件地址", "أكد عنوان بريدك الإلكتروني"),
+    hello: true,
+    body: L(
+      "Cliquez sur le bouton ci-dessous pour activer votre compte école.",
+      "Click the button below to activate your school account.",
+      "Haga clic en el botón de abajo para activar su cuenta de escuela.",
+      "Klicken Sie auf die Schaltfläche unten, um Ihr Schulkonto zu aktivieren.",
+      "Clique no botão abaixo para ativar a sua conta de escola.",
+      "点击下方按钮以激活您的学校帐户。",
+      "انقر على الزر أدناه لتفعيل حساب مدرستك."
+    ),
+    btn: L("Confirmer mon e-mail", "Confirm my email", "Confirmar mi correo", "E-Mail bestätigen", "Confirmar o meu e-mail", "确认我的电子邮件", "تأكيد بريدي"),
+    btnUrl: "{{ConfirmationUrl}}",
+    footerNote: ignore,
+    text: L("Confirmez votre e-mail : {{ConfirmationUrl}}", "Confirm your email: {{ConfirmationUrl}}", "Confirme su correo: {{ConfirmationUrl}}", "Bestätigen Sie Ihre E-Mail: {{ConfirmationUrl}}", "Confirme o seu e-mail: {{ConfirmationUrl}}", "确认您的电子邮件：{{ConfirmationUrl}}", "أكد بريدك: {{ConfirmationUrl}}")
+  },
+  {
+    code: "LESSON_REPORT",
+    name: L("TutorSphere — Rapport de cours au parent", "TutorSphere — Lesson report to parent", "TutorSphere — Informe de clase al padre", "TutorSphere — Unterrichtsbericht an Eltern", "TutorSphere — Relatório de aula ao responsável", "TutorSphere — 课程报告（家长）", "TutorSphere — تقرير الحصة لولي الأمر"),
+    subject: L("Rapport de cours pour {{StudentName}} — TutorSphere", "Lesson report for {{StudentName}} — TutorSphere", "Informe de clase de {{StudentName}} — TutorSphere", "Unterrichtsbericht für {{StudentName}} — TutorSphere", "Relatório de aula de {{StudentName}} — TutorSphere", "{{StudentName}} 的课程报告 — TutorSphere", "تقرير الحصة لـ {{StudentName}} — TutorSphere"),
+    title: L("Rapport de cours", "Lesson report", "Informe de clase", "Unterrichtsbericht", "Relatório de aula", "课程报告", "تقرير الحصة"),
+    helloParent: true,
+    body: L(
+      "Voici le rapport de la dernière séance de <strong>{{StudentName}}</strong> avec <strong>{{TutorName}}</strong>.",
+      "Here is the report from <strong>{{StudentName}}</strong>'s latest session with <strong>{{TutorName}}</strong>.",
+      "Aquí tiene el informe de la última sesión de <strong>{{StudentName}}</strong> con <strong>{{TutorName}}</strong>.",
+      "Hier ist der Bericht der letzten Sitzung von <strong>{{StudentName}}</strong> mit <strong>{{TutorName}}</strong>.",
+      "Segue o relatório da última sessão de <strong>{{StudentName}}</strong> com <strong>{{TutorName}}</strong>.",
+      "以下是 <strong>{{StudentName}}</strong> 与 <strong>{{TutorName}}</strong> 最近一次课程的报告。",
+      "إليك تقرير آخر حصة لـ <strong>{{StudentName}}</strong> مع <strong>{{TutorName}}</strong>."
+    ),
+    note: L(
+      "Connectez-vous à votre espace pour consulter le rapport complet.",
+      "Sign in to your space to view the full report.",
+      "Inicie sesión en su espacio para ver el informe completo.",
+      "Melden Sie sich an, um den vollständigen Bericht anzuzeigen.",
+      "Inicie sessão no seu espaço para ver o relatório completo.",
+      "登录您的空间以查看完整报告。",
+      "سجّل الدخول إلى مساحتك لعرض التقرير الكامل."
+    ),
+    btn: L("Voir le rapport", "View report", "Ver informe", "Bericht ansehen", "Ver relatório", "查看报告", "عرض التقرير"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Rapport de cours pour {{StudentName}} avec {{TutorName}}.", "Lesson report for {{StudentName}} with {{TutorName}}.", "Informe de clase de {{StudentName}} con {{TutorName}}.", "Unterrichtsbericht für {{StudentName}} mit {{TutorName}}.", "Relatório de aula de {{StudentName}} com {{TutorName}}.", "{{StudentName}} 与 {{TutorName}} 的课程报告。", "تقرير الحصة لـ {{StudentName}} مع {{TutorName}}.")
+  },
+  {
+    code: "SCHOOL_CREATED",
+    name: L("TutorSphere — École créée (en attente)", "TutorSphere — School created (pending)", "TutorSphere — Escuela creada (pendiente)", "TutorSphere — Schule erstellt (ausstehend)", "TutorSphere — Escola criada (pendente)", "TutorSphere — 学校已创建（待审）", "TutorSphere — تم إنشاء المدرسة (قيد الانتظار)"),
+    subject: L("Votre école {{SchoolName}} est en cours de validation — TutorSphere", "Your school {{SchoolName}} is being reviewed — TutorSphere", "Su escuela {{SchoolName}} está en revisión — TutorSphere", "Ihre Schule {{SchoolName}} wird geprüft — TutorSphere", "A sua escola {{SchoolName}} está em análise — TutorSphere", "您的学校 {{SchoolName}} 正在审核 — TutorSphere", "مدرستك {{SchoolName}} قيد المراجعة — TutorSphere"),
+    title: L("École enregistrée", "School registered", "Escuela registrada", "Schule registriert", "Escola registada", "学校已登记", "تم تسجيل المدرسة"),
+    helloOwner: true,
+    body: L(
+      "Votre école <strong>{{SchoolName}}</strong> a bien été enregistrée et est en attente de validation par l'équipe TutorSphere.",
+      "Your school <strong>{{SchoolName}}</strong> has been registered and is awaiting approval by the TutorSphere team.",
+      "Su escuela <strong>{{SchoolName}}</strong> ha sido registrada y está pendiente de aprobación por el equipo de TutorSphere.",
+      "Ihre Schule <strong>{{SchoolName}}</strong> wurde registriert und wartet auf die Freigabe durch das TutorSphere-Team.",
+      "A sua escola <strong>{{SchoolName}}</strong> foi registada e aguarda aprovação da equipa TutorSphere.",
+      "您的学校 <strong>{{SchoolName}}</strong> 已登记，正在等待 TutorSphere 团队审核。",
+      "تم تسجيل مدرستك <strong>{{SchoolName}}</strong> وهي بانتظار موافقة فريق TutorSphere."
+    ),
+    body2: L(
+      "Vous serez notifié par e-mail dès qu'une décision sera prise (délai habituel : 1 à 2 jours ouvrables).",
+      "You will be notified by email once a decision is made (usually 1–2 business days).",
+      "Se le notificará por correo cuando se tome una decisión (plazo habitual: 1 a 2 días hábiles).",
+      "Sie werden per E-Mail benachrichtigt, sobald eine Entscheidung vorliegt (in der Regel 1–2 Werktage).",
+      "Será notificado por e-mail assim que houver uma decisão (prazo habitual: 1 a 2 dias úteis).",
+      "作出决定后将通过电子邮件通知您（通常为 1–2 个工作日）。",
+      "سيتم إعلامك بالبريد عند اتخاذ قرار (عادة خلال يوم إلى يومي عمل)."
+    ),
+    text: L("École {{SchoolName}} enregistrée, en attente de validation.", "School {{SchoolName}} registered, awaiting approval.", "Escuela {{SchoolName}} registrada, pendiente de aprobación.", "Schule {{SchoolName}} registriert, Freigabe ausstehend.", "Escola {{SchoolName}} registada, aguarda aprovação.", "学校 {{SchoolName}} 已登记，等待审核。", "تم تسجيل المدرسة {{SchoolName}} وبانتظار الموافقة.")
+  },
+  {
+    code: "CONFIRM_EMAIL_SIMPLE",
+    name: L("TutorSphere — Confirmation e-mail (standard)", "TutorSphere — Email confirmation (standard)", "TutorSphere — Confirmación de correo (estándar)", "TutorSphere — E-Mail-Bestätigung (Standard)", "TutorSphere — Confirmação de e-mail (padrão)", "TutorSphere — 确认电子邮件（标准）", "TutorSphere — تأكيد البريد (قياسي)"),
+    subject: L("Confirmez votre adresse e-mail — TutorSphere", "Confirm your email address — TutorSphere", "Confirme su correo electrónico — TutorSphere", "Bestätigen Sie Ihre E-Mail — TutorSphere", "Confirme o seu e-mail — TutorSphere", "确认您的电子邮件 — TutorSphere", "أكد عنوان بريدك — TutorSphere"),
+    title: L("Confirmez votre adresse e-mail", "Confirm your email address", "Confirme su correo electrónico", "Bestätigen Sie Ihre E-Mail-Adresse", "Confirme o seu endereço de e-mail", "确认您的电子邮件地址", "أكد عنوان بريدك الإلكتروني"),
+    hello: true,
+    body: L(
+      "Merci de confirmer votre adresse e-mail pour finaliser la création de votre compte.",
+      "Please confirm your email address to finish creating your account.",
+      "Confirme su correo electrónico para finalizar la creación de su cuenta.",
+      "Bitte bestätigen Sie Ihre E-Mail-Adresse, um die Kontoerstellung abzuschließen.",
+      "Confirme o seu e-mail para concluir a criação da sua conta.",
+      "请确认您的电子邮件地址以完成帐户创建。",
+      "يرجى تأكيد بريدك الإلكتروني لإكمال إنشاء حسابك."
+    ),
+    btn: L("Confirmer mon e-mail", "Confirm my email", "Confirmar mi correo", "E-Mail bestätigen", "Confirmar o meu e-mail", "确认我的电子邮件", "تأكيد بريدي"),
+    btnUrl: "{{ConfirmationUrl}}",
+    footerNote: ignore,
+    text: L("Confirmez votre e-mail : {{ConfirmationUrl}}", "Confirm your email: {{ConfirmationUrl}}", "Confirme su correo: {{ConfirmationUrl}}", "Bestätigen Sie Ihre E-Mail: {{ConfirmationUrl}}", "Confirme o seu e-mail: {{ConfirmationUrl}}", "确认您的电子邮件：{{ConfirmationUrl}}", "أكد بريدك: {{ConfirmationUrl}}")
+  },
+  {
+    code: "RESET_PASSWORD",
+    name: L("TutorSphere — Réinitialisation mot de passe", "TutorSphere — Password reset", "TutorSphere — Restablecer contraseña", "TutorSphere — Passwort zurücksetzen", "TutorSphere — Redefinição de palavra-passe", "TutorSphere — 重置密码", "TutorSphere — إعادة تعيين كلمة المرور"),
+    subject: L("Réinitialisez votre mot de passe — TutorSphere", "Reset your password — TutorSphere", "Restablezca su contraseña — TutorSphere", "Setzen Sie Ihr Passwort zurück — TutorSphere", "Redefina a sua palavra-passe — TutorSphere", "重置您的密码 — TutorSphere", "أعد تعيين كلمة المرور — TutorSphere"),
+    title: L("Réinitialisation du mot de passe", "Password reset", "Restablecer contraseña", "Passwort zurücksetzen", "Redefinição de palavra-passe", "重置密码", "إعادة تعيين كلمة المرور"),
+    hello: true,
+    body: L(
+      "Vous avez demandé à réinitialiser votre mot de passe TutorSphere. Cliquez ci-dessous :",
+      "You requested to reset your TutorSphere password. Click below:",
+      "Solicitó restablecer su contraseña de TutorSphere. Haga clic abajo:",
+      "Sie haben das Zurücksetzen Ihres TutorSphere-Passworts angefordert. Klicken Sie unten:",
+      "Pediu para redefinir a sua palavra-passe TutorSphere. Clique abaixo:",
+      "您请求重置 TutorSphere 密码。请点击下方：",
+      "طلبت إعادة تعيين كلمة مرور TutorSphere. انقر أدناه:"
+    ),
+    btn: L("Réinitialiser mon mot de passe", "Reset my password", "Restablecer mi contraseña", "Passwort zurücksetzen", "Redefinir a minha palavra-passe", "重置我的密码", "إعادة تعيين كلمة المرور"),
+    btnUrl: "{{ResetUrl}}",
+    footerNote: L(
+      "Ce lien est valide 24 heures. Si vous n'avez pas fait cette demande, ignorez cet e-mail.",
+      "This link is valid for 24 hours. If you did not request this, ignore this email.",
+      "Este enlace es válido 24 horas. Si no lo solicitó, ignore este correo.",
+      "Dieser Link ist 24 Stunden gültig. Wenn Sie dies nicht angefordert haben, ignorieren Sie diese E-Mail.",
+      "Este link é válido por 24 horas. Se não fez este pedido, ignore este e-mail.",
+      "此链接 24 小时内有效。如非您本人操作，请忽略此邮件。",
+      "هذا الرابط صالح لمدة 24 ساعة. إذا لم تطلب ذلك، فتجاهل هذا البريد."
+    ),
+    text: L("Réinitialisez votre mot de passe : {{ResetUrl}}", "Reset your password: {{ResetUrl}}", "Restablezca su contraseña: {{ResetUrl}}", "Passwort zurücksetzen: {{ResetUrl}}", "Redefina a sua palavra-passe: {{ResetUrl}}", "重置密码：{{ResetUrl}}", "أعد تعيين كلمة المرور: {{ResetUrl}}")
+  },
+  {
+    code: "PASSWORD_CHANGED",
+    name: L("TutorSphere — Mot de passe modifié", "TutorSphere — Password changed", "TutorSphere — Contraseña cambiada", "TutorSphere — Passwort geändert", "TutorSphere — Palavra-passe alterada", "TutorSphere — 密码已更改", "TutorSphere — تم تغيير كلمة المرور"),
+    subject: L("Votre mot de passe a été modifié — TutorSphere", "Your password was changed — TutorSphere", "Su contraseña fue cambiada — TutorSphere", "Ihr Passwort wurde geändert — TutorSphere", "A sua palavra-passe foi alterada — TutorSphere", "您的密码已更改 — TutorSphere", "تم تغيير كلمة مرورك — TutorSphere"),
+    title: L("Mot de passe modifié", "Password changed", "Contraseña cambiada", "Passwort geändert", "Palavra-passe alterada", "密码已更改", "تم تغيير كلمة المرور"),
+    hello: true,
+    body: L(
+      "Votre mot de passe TutorSphere a bien été modifié.",
+      "Your TutorSphere password has been changed.",
+      "Su contraseña de TutorSphere ha sido cambiada.",
+      "Ihr TutorSphere-Passwort wurde geändert.",
+      "A sua palavra-passe TutorSphere foi alterada.",
+      "您的 TutorSphere 密码已更改。",
+      "تم تغيير كلمة مرور TutorSphere الخاصة بك."
+    ),
+    body2: L(
+      "Si vous n'êtes pas à l'origine de cette modification, contactez immédiatement le support.",
+      "If you did not make this change, contact support immediately.",
+      "Si no realizó este cambio, contacte al soporte de inmediato.",
+      "Wenn Sie diese Änderung nicht vorgenommen haben, kontaktieren Sie sofort den Support.",
+      "Se não fez esta alteração, contacte o suporte imediatamente.",
+      "如非您本人操作，请立即联系支持。",
+      "إذا لم تقم بهذا التغيير، فاتصل بالدعم فورًا."
+    ),
+    btn: L("Se connecter", "Sign in", "Iniciar sesión", "Anmelden", "Iniciar sessão", "登录", "تسجيل الدخول"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Bonjour {{FirstName}}, votre mot de passe TutorSphere a été modifié.", "Hi {{FirstName}}, your TutorSphere password was changed.", "Hola {{FirstName}}, su contraseña de TutorSphere fue cambiada.", "Hallo {{FirstName}}, Ihr TutorSphere-Passwort wurde geändert.", "Olá {{FirstName}}, a sua palavra-passe TutorSphere foi alterada.", "{{FirstName}}，您好，您的 TutorSphere 密码已更改。", "مرحبًا {{FirstName}}، تم تغيير كلمة مرور TutorSphere.")
+  },
+  {
+    code: "TUTOR_TRIAL_STARTED",
+    name: L("TutorSphere — Essai gratuit tuteur démarré", "TutorSphere — Tutor free trial started", "TutorSphere — Prueba gratuita de tutor iniciada", "TutorSphere — Tutor-Testversion gestartet", "TutorSphere — Avaliação gratuita do tutor iniciada", "TutorSphere — 导师免费试用已开始", "TutorSphere — بدأت الفترة التجريبية للمعلم"),
+    subject: L("Votre essai gratuit TutorSphere a commencé !", "Your TutorSphere free trial has started!", "¡Su prueba gratuita de TutorSphere ha comenzado!", "Ihre TutorSphere-Testversion hat begonnen!", "A sua avaliação gratuita TutorSphere começou!", "您的 TutorSphere 免费试用已开始！", "بدأت فترتك التجريبية في TutorSphere!"),
+    title: L("Votre essai gratuit a commencé !", "Your free trial has started!", "¡Su prueba gratuita ha comenzado!", "Ihre Testversion hat begonnen!", "A sua avaliação gratuita começou!", "您的免费试用已开始！", "بدأت فترتك التجريبية!"),
+    hello: true,
+    body: L(
+      "Bienvenue dans TutorSphere ! Votre période d'essai gratuit est maintenant active.",
+      "Welcome to TutorSphere! Your free trial period is now active.",
+      "¡Bienvenido/a a TutorSphere! Su período de prueba gratuita ya está activo.",
+      "Willkommen bei TutorSphere! Ihre kostenlose Testphase ist jetzt aktiv.",
+      "Bem-vindo(a) ao TutorSphere! O seu período de avaliação gratuita está ativo.",
+      "欢迎使用 TutorSphere！您的免费试用期现已激活。",
+      "مرحبًا بك في TutorSphere! فترتك التجريبية المجانية نشطة الآن."
+    ),
+    body2: L(
+      "Profitez de toutes les fonctionnalités pour gérer vos cours, vos élèves et vos paiements.",
+      "Enjoy all features to manage your lessons, students, and payments.",
+      "Disfrute de todas las funciones para gestionar sus clases, alumnos y pagos.",
+      "Nutzen Sie alle Funktionen zur Verwaltung von Unterricht, Schülern und Zahlungen.",
+      "Aproveite todas as funcionalidades para gerir aulas, alunos e pagamentos.",
+      "畅享全部功能，管理课程、学生和付款。",
+      "استفد من جميع الميزات لإدارة دروسك وطلابك ومدفوعاتك."
+    ),
+    btn: L("Accéder à mon tableau de bord", "Go to my dashboard", "Ir a mi panel", "Zum Dashboard", "Ir ao meu painel", "前往我的仪表板", "الانتقال إلى لوحة التحكم"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/dashboard",
+    text: L("Bonjour {{FirstName}}, votre essai gratuit TutorSphere a commencé.", "Hi {{FirstName}}, your TutorSphere free trial has started.", "Hola {{FirstName}}, su prueba gratuita de TutorSphere ha comenzado.", "Hallo {{FirstName}}, Ihre TutorSphere-Testversion hat begonnen.", "Olá {{FirstName}}, a sua avaliação gratuita TutorSphere começou.", "{{FirstName}}，您好，您的 TutorSphere 免费试用已开始。", "مرحبًا {{FirstName}}، بدأت فترتك التجريبية في TutorSphere.")
+  },
+  {
+    code: "TUTOR_PAYMENT_RECEIPT",
+    name: L("TutorSphere — Reçu de paiement tuteur", "TutorSphere — Tutor payment receipt", "TutorSphere — Recibo de pago del tutor", "TutorSphere — Tutor-Zahlungsbeleg", "TutorSphere — Recibo de pagamento do tutor", "TutorSphere — 导师付款收据", "TutorSphere — إيصال دفع المعلم"),
+    subject: L("Reçu de paiement — TutorSphere", "Payment receipt — TutorSphere", "Recibo de pago — TutorSphere", "Zahlungsbeleg — TutorSphere", "Recibo de pagamento — TutorSphere", "付款收据 — TutorSphere", "إيصال الدفع — TutorSphere"),
+    title: L("Reçu de paiement", "Payment receipt", "Recibo de pago", "Zahlungsbeleg", "Recibo de pagamento", "付款收据", "إيصال الدفع"),
+    hello: true,
+    body: L(
+      "Nous avons bien reçu votre paiement pour votre abonnement TutorSphere.",
+      "We have received your payment for your TutorSphere subscription.",
+      "Hemos recibido su pago por la suscripción a TutorSphere.",
+      "Wir haben Ihre Zahlung für Ihr TutorSphere-Abonnement erhalten.",
+      "Recebemos o seu pagamento da subscrição TutorSphere.",
+      "我们已收到您的 TutorSphere 订阅付款。",
+      "استلمنا دفعتك لاشتراك TutorSphere."
+    ),
+    amountLabel: L("Montant", "Amount", "Importe", "Betrag", "Montante", "金额", "المبلغ"),
+    btn: L("Voir ma facture", "View my invoice", "Ver mi factura", "Rechnung ansehen", "Ver a minha fatura", "查看我的发票", "عرض فاتورتي"),
+    btnUrl: "{{InvoiceUrl}}",
+    text: L("Reçu de paiement {{Amount}}. Facture : {{InvoiceUrl}}", "Payment receipt {{Amount}}. Invoice: {{InvoiceUrl}}", "Recibo de pago {{Amount}}. Factura: {{InvoiceUrl}}", "Zahlungsbeleg {{Amount}}. Rechnung: {{InvoiceUrl}}", "Recibo de pagamento {{Amount}}. Fatura: {{InvoiceUrl}}", "付款收据 {{Amount}}。发票：{{InvoiceUrl}}", "إيصال دفع {{Amount}}. الفاتورة: {{InvoiceUrl}}")
+  },
+  {
+    code: "TUTOR_RENEWAL_REMINDER",
+    name: L("TutorSphere — Rappel de renouvellement tuteur", "TutorSphere — Tutor renewal reminder", "TutorSphere — Recordatorio de renovación del tutor", "TutorSphere — Tutor-Verlängerungserinnerung", "TutorSphere — Lembrete de renovação do tutor", "TutorSphere — 导师续订提醒", "TutorSphere — تذكير بتجديد المعلم"),
+    subject: L("Votre abonnement TutorSphere se renouvelle bientôt", "Your TutorSphere subscription renews soon", "Su suscripción a TutorSphere se renueva pronto", "Ihr TutorSphere-Abonnement wird bald verlängert", "A sua subscrição TutorSphere renova em breve", "您的 TutorSphere 订阅即将续订", "سيُجدَّد اشتراكك في TutorSphere قريبًا"),
+    title: L("Renouvellement à venir", "Upcoming renewal", "Renovación próxima", "Bevorstehende Verlängerung", "Renovação próxima", "即将续订", "تجديد قادم"),
+    hello: true,
+    body: L(
+      "Votre abonnement TutorSphere se renouvellera le <strong>{{RenewalDate}}</strong>.",
+      "Your TutorSphere subscription will renew on <strong>{{RenewalDate}}</strong>.",
+      "Su suscripción a TutorSphere se renovará el <strong>{{RenewalDate}}</strong>.",
+      "Ihr TutorSphere-Abonnement wird am <strong>{{RenewalDate}}</strong> verlängert.",
+      "A sua subscrição TutorSphere será renovada em <strong>{{RenewalDate}}</strong>.",
+      "您的 TutorSphere 订阅将于 <strong>{{RenewalDate}}</strong> 续订。",
+      "سيُجدَّد اشتراكك في TutorSphere في <strong>{{RenewalDate}}</strong>."
+    ),
+    body2: L(
+      "Assurez-vous que vos informations de paiement sont à jour.",
+      "Please make sure your payment details are up to date.",
+      "Asegúrese de que sus datos de pago estén actualizados.",
+      "Stellen Sie sicher, dass Ihre Zahlungsdaten aktuell sind.",
+      "Certifique-se de que os seus dados de pagamento estão atualizados.",
+      "请确保您的付款信息是最新的。",
+      "تأكد من أن بيانات الدفع محدثة."
+    ),
+    btn: L("Gérer mon abonnement", "Manage my subscription", "Gestionar mi suscripción", "Abonnement verwalten", "Gerir a minha subscrição", "管理我的订阅", "إدارة اشتراكي"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/settings/billing",
+    text: L("Votre abonnement TutorSphere se renouvelle le {{RenewalDate}}.", "Your TutorSphere subscription renews on {{RenewalDate}}.", "Su suscripción a TutorSphere se renueva el {{RenewalDate}}.", "Ihr TutorSphere-Abonnement wird am {{RenewalDate}} verlängert.", "A sua subscrição TutorSphere renova em {{RenewalDate}}.", "您的 TutorSphere 订阅将于 {{RenewalDate}} 续订。", "سيُجدَّد اشتراكك في TutorSphere في {{RenewalDate}}.")
+  },
+  {
+    code: "TUTOR_PAYMENT_FAILED",
+    name: L("TutorSphere — Échec de paiement tuteur", "TutorSphere — Tutor payment failed", "TutorSphere — Fallo de pago del tutor", "TutorSphere — Tutor-Zahlung fehlgeschlagen", "TutorSphere — Falha no pagamento do tutor", "TutorSphere — 导师付款失败", "TutorSphere — فشل دفع المعلم"),
+    subject: L("Problème de paiement — votre abonnement TutorSphere", "Payment issue — your TutorSphere subscription", "Problema de pago — su suscripción a TutorSphere", "Zahlungsproblem — Ihr TutorSphere-Abonnement", "Problema de pagamento — a sua subscrição TutorSphere", "付款问题 — 您的 TutorSphere 订阅", "مشكلة في الدفع — اشتراك TutorSphere"),
+    title: L("Problème de paiement", "Payment issue", "Problema de pago", "Zahlungsproblem", "Problema de pagamento", "付款问题", "مشكلة في الدفع"),
+    titleColor: "#dc2626",
+    hello: true,
+    body: L(
+      "Nous n'avons pas pu traiter votre paiement pour votre abonnement TutorSphere.",
+      "We could not process your payment for your TutorSphere subscription.",
+      "No pudimos procesar su pago de la suscripción a TutorSphere.",
+      "Wir konnten Ihre Zahlung für das TutorSphere-Abonnement nicht verarbeiten.",
+      "Não foi possível processar o pagamento da sua subscrição TutorSphere.",
+      "我们无法处理您的 TutorSphere 订阅付款。",
+      "تعذّر معالجة دفعتك لاشتراك TutorSphere."
+    ),
+    body2: L(
+      "Veuillez mettre à jour vos informations de paiement pour éviter l'interruption de votre service.",
+      "Please update your payment details to avoid service interruption.",
+      "Actualice sus datos de pago para evitar la interrupción del servicio.",
+      "Bitte aktualisieren Sie Ihre Zahlungsdaten, um eine Unterbrechung zu vermeiden.",
+      "Atualize os seus dados de pagamento para evitar a interrupção do serviço.",
+      "请更新付款信息，以免服务中断。",
+      "يرجى تحديث بيانات الدفع لتجنب انقطاع الخدمة."
+    ),
+    btn: L("Mettre à jour mes informations", "Update my details", "Actualizar mis datos", "Daten aktualisieren", "Atualizar os meus dados", "更新我的信息", "تحديث بياناتي"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/settings/billing",
+    text: L("Bonjour {{FirstName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.", "Hi {{FirstName}}, your TutorSphere payment failed. Please update your details.", "Hola {{FirstName}}, falló su pago de TutorSphere. Actualice sus datos.", "Hallo {{FirstName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.", "Olá {{FirstName}}, o pagamento TutorSphere falhou. Atualize os seus dados.", "{{FirstName}}，您好，您的 TutorSphere 付款失败。请更新信息。", "مرحبًا {{FirstName}}، فشل دفع TutorSphere. حدّث بياناتك.")
+  },
+  {
+    code: "TUTOR_SUB_CANCELLED",
+    name: L("TutorSphere — Abonnement tuteur annulé", "TutorSphere — Tutor subscription cancelled", "TutorSphere — Suscripción de tutor cancelada", "TutorSphere — Tutor-Abonnement gekündigt", "TutorSphere — Subscrição do tutor cancelada", "TutorSphere — 导师订阅已取消", "TutorSphere — تم إلغاء اشتراك المعلم"),
+    subject: L("Votre abonnement TutorSphere a été annulé", "Your TutorSphere subscription was cancelled", "Su suscripción a TutorSphere fue cancelada", "Ihr TutorSphere-Abonnement wurde gekündigt", "A sua subscrição TutorSphere foi cancelada", "您的 TutorSphere 订阅已取消", "تم إلغاء اشتراكك في TutorSphere"),
+    title: L("Abonnement annulé", "Subscription cancelled", "Suscripción cancelada", "Abonnement gekündigt", "Subscrição cancelada", "订阅已取消", "تم إلغاء الاشتراك"),
+    hello: true,
+    body: L(
+      "Votre abonnement TutorSphere a bien été annulé. Vous conservez l'accès jusqu'à la fin de la période en cours.",
+      "Your TutorSphere subscription has been cancelled. You keep access until the end of the current period.",
+      "Su suscripción a TutorSphere ha sido cancelada. Conserva el acceso hasta el final del período actual.",
+      "Ihr TutorSphere-Abonnement wurde gekündigt. Sie behalten den Zugang bis zum Ende des aktuellen Zeitraums.",
+      "A sua subscrição TutorSphere foi cancelada. Mantém o acesso até ao fim do período atual.",
+      "您的 TutorSphere 订阅已取消。在当前周期结束前您仍可访问。",
+      "تم إلغاء اشتراكك في TutorSphere. تحتفظ بالوصول حتى نهاية الفترة الحالية."
+    ),
+    body2: L("Nous espérons vous revoir bientôt !", "We hope to see you again soon!", "¡Esperamos verle pronto de nuevo!", "Wir hoffen, Sie bald wiederzusehen!", "Esperamos vê-lo(a) em breve!", "期待很快再次见到您！", "نأمل أن نراك قريبًا مجددًا!"),
+    btn: L("Revenir sur TutorSphere", "Return to TutorSphere", "Volver a TutorSphere", "Zurück zu TutorSphere", "Voltar ao TutorSphere", "返回 TutorSphere", "العودة إلى TutorSphere"),
+    btnUrl: "https://tutorsphere.gisebs.com",
+    text: L("Bonjour {{FirstName}}, votre abonnement TutorSphere a été annulé.", "Hi {{FirstName}}, your TutorSphere subscription was cancelled.", "Hola {{FirstName}}, su suscripción a TutorSphere fue cancelada.", "Hallo {{FirstName}}, Ihr TutorSphere-Abonnement wurde gekündigt.", "Olá {{FirstName}}, a sua subscrição TutorSphere foi cancelada.", "{{FirstName}}，您好，您的 TutorSphere 订阅已取消。", "مرحبًا {{FirstName}}، تم إلغاء اشتراكك في TutorSphere.")
+  },
+  {
+    code: "ACCOUNT_ACTIVATED",
+    name: L("TutorSphere — Compte activé", "TutorSphere — Account activated", "TutorSphere — Cuenta activada", "TutorSphere — Konto aktiviert", "TutorSphere — Conta ativada", "TutorSphere — 帐户已激活", "TutorSphere — تم تفعيل الحساب"),
+    subject: L("Votre compte TutorSphere a été activé", "Your TutorSphere account was activated", "Su cuenta de TutorSphere fue activada", "Ihr TutorSphere-Konto wurde aktiviert", "A sua conta TutorSphere foi ativada", "您的 TutorSphere 帐户已激活", "تم تفعيل حسابك في TutorSphere"),
+    title: L("Compte activé", "Account activated", "Cuenta activada", "Konto aktiviert", "Conta ativada", "帐户已激活", "تم تفعيل الحساب"),
+    titleColor: "#16a34a",
+    hello: true,
+    body: L(
+      "Votre compte TutorSphere a été <strong>activé</strong>. Vous pouvez désormais vous connecter normalement.",
+      "Your TutorSphere account has been <strong>activated</strong>. You can now sign in normally.",
+      "Su cuenta de TutorSphere ha sido <strong>activada</strong>. Ya puede iniciar sesión con normalidad.",
+      "Ihr TutorSphere-Konto wurde <strong>aktiviert</strong>. Sie können sich jetzt normal anmelden.",
+      "A sua conta TutorSphere foi <strong>ativada</strong>. Já pode iniciar sessão normalmente.",
+      "您的 TutorSphere 帐户已<strong>激活</strong>。您现在可以正常登录。",
+      "تم <strong>تفعيل</strong> حساب TutorSphere. يمكنك الآن تسجيل الدخول كالمعتاد."
+    ),
+    btn: L("Se connecter", "Sign in", "Iniciar sesión", "Anmelden", "Iniciar sessão", "登录", "تسجيل الدخول"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Bonjour {{FirstName}}, votre compte TutorSphere a été activé.", "Hi {{FirstName}}, your TutorSphere account was activated.", "Hola {{FirstName}}, su cuenta de TutorSphere fue activada.", "Hallo {{FirstName}}, Ihr TutorSphere-Konto wurde aktiviert.", "Olá {{FirstName}}, a sua conta TutorSphere foi ativada.", "{{FirstName}}，您好，您的 TutorSphere 帐户已激活。", "مرحبًا {{FirstName}}، تم تفعيل حسابك في TutorSphere.")
+  },
+  {
+    code: "ACCOUNT_DEACTIVATED",
+    name: L("TutorSphere — Compte désactivé", "TutorSphere — Account deactivated", "TutorSphere — Cuenta desactivada", "TutorSphere — Konto deaktiviert", "TutorSphere — Conta desativada", "TutorSphere — 帐户已停用", "TutorSphere — تم تعطيل الحساب"),
+    subject: L("Votre compte TutorSphere a été désactivé", "Your TutorSphere account was deactivated", "Su cuenta de TutorSphere fue desactivada", "Ihr TutorSphere-Konto wurde deaktiviert", "A sua conta TutorSphere foi desativada", "您的 TutorSphere 帐户已停用", "تم تعطيل حسابك في TutorSphere"),
+    title: L("Compte désactivé", "Account deactivated", "Cuenta desactivada", "Konto deaktiviert", "Conta desativada", "帐户已停用", "تم تعطيل الحساب"),
+    titleColor: "#dc2626",
+    hello: true,
+    body: L(
+      "Votre compte TutorSphere a été désactivé par l'administration.",
+      "Your TutorSphere account was deactivated by administration.",
+      "Su cuenta de TutorSphere fue desactivada por la administración.",
+      "Ihr TutorSphere-Konto wurde von der Administration deaktiviert.",
+      "A sua conta TutorSphere foi desativada pela administração.",
+      "您的 TutorSphere 帐户已被管理员停用。",
+      "تم تعطيل حساب TutorSphere من قبل الإدارة."
+    ),
+    reasonLabel: L("Motif", "Reason", "Motivo", "Grund", "Motivo", "原因", "السبب"),
+    footerNote: L(
+      "Pour toute question, contactez le support TutorSphere.",
+      "For any questions, contact TutorSphere support.",
+      "Para cualquier pregunta, contacte al soporte de TutorSphere.",
+      "Bei Fragen wenden Sie sich an den TutorSphere-Support.",
+      "Para qualquer questão, contacte o suporte TutorSphere.",
+      "如有疑问，请联系 TutorSphere 支持。",
+      "لأي استفسار، تواصل مع دعم TutorSphere."
+    ),
+    text: L("Bonjour {{FirstName}}, votre compte a été désactivé. Motif : {{Reason}}", "Hi {{FirstName}}, your account was deactivated. Reason: {{Reason}}", "Hola {{FirstName}}, su cuenta fue desactivada. Motivo: {{Reason}}", "Hallo {{FirstName}}, Ihr Konto wurde deaktiviert. Grund: {{Reason}}", "Olá {{FirstName}}, a sua conta foi desativada. Motivo: {{Reason}}", "{{FirstName}}，您好，您的帐户已停用。原因：{{Reason}}", "مرحبًا {{FirstName}}، تم تعطيل حسابك. السبب: {{Reason}}")
+  },
+  {
+    code: "SCHOOL_APPROVED",
+    name: L("TutorSphere — École approuvée", "TutorSphere — School approved", "TutorSphere — Escuela aprobada", "TutorSphere — Schule genehmigt", "TutorSphere — Escola aprovada", "TutorSphere — 学校已批准", "TutorSphere — تمت الموافقة على المدرسة"),
+    subject: L("Félicitations ! Votre école {{SchoolName}} est approuvée", "Congratulations! Your school {{SchoolName}} is approved", "¡Enhorabuena! Su escuela {{SchoolName}} está aprobada", "Glückwunsch! Ihre Schule {{SchoolName}} ist genehmigt", "Parabéns! A sua escola {{SchoolName}} foi aprovada", "恭喜！您的学校 {{SchoolName}} 已获批准", "تهانينا! تمت الموافقة على مدرستك {{SchoolName}}"),
+    title: L("École approuvée !", "School approved!", "¡Escuela aprobada!", "Schule genehmigt!", "Escola aprovada!", "学校已批准！", "تمت الموافقة على المدرسة!"),
+    titleColor: "#16a34a",
+    hello: true,
+    body: L(
+      "Bonne nouvelle : votre école <strong>{{SchoolName}}</strong> a été <strong>approuvée</strong> par l'équipe TutorSphere.",
+      "Good news: your school <strong>{{SchoolName}}</strong> has been <strong>approved</strong> by the TutorSphere team.",
+      "Buenas noticias: su escuela <strong>{{SchoolName}}</strong> ha sido <strong>aprobada</strong> por el equipo de TutorSphere.",
+      "Gute Nachricht: Ihre Schule <strong>{{SchoolName}}</strong> wurde vom TutorSphere-Team <strong>genehmigt</strong>.",
+      "Boas notícias: a sua escola <strong>{{SchoolName}}</strong> foi <strong>aprovada</strong> pela equipa TutorSphere.",
+      "好消息：您的学校 <strong>{{SchoolName}}</strong> 已获 TutorSphere 团队<strong>批准</strong>。",
+      "خبر سار: تمت <strong>الموافقة</strong> على مدرستك <strong>{{SchoolName}}</strong> من فريق TutorSphere."
+    ),
+    body2: L(
+      "Vous pouvez maintenant vous connecter et commencer à gérer vos cours et vos élèves.",
+      "You can now sign in and start managing your lessons and students.",
+      "Ya puede iniciar sesión y gestionar sus clases y alumnos.",
+      "Sie können sich jetzt anmelden und Unterricht sowie Schüler verwalten.",
+      "Já pode iniciar sessão e gerir as suas aulas e alunos.",
+      "您现在可以登录并开始管理课程和学生。",
+      "يمكنك الآن تسجيل الدخول وبدء إدارة دروسك وطلابك."
+    ),
+    btn: L("Accéder à mon espace école", "Go to my school space", "Ir a mi espacio escolar", "Zum Schulbereich", "Aceder ao espaço da escola", "进入我的学校空间", "الانتقال إلى مساحة المدرسة"),
+    btnUrl: "{{LoginUrl}}",
+    text: L("Bonjour {{FirstName}}, votre école {{SchoolName}} est approuvée. Connexion : {{LoginUrl}}", "Hi {{FirstName}}, your school {{SchoolName}} is approved. Sign in: {{LoginUrl}}", "Hola {{FirstName}}, su escuela {{SchoolName}} está aprobada. Acceso: {{LoginUrl}}", "Hallo {{FirstName}}, Ihre Schule {{SchoolName}} ist genehmigt. Anmeldung: {{LoginUrl}}", "Olá {{FirstName}}, a sua escola {{SchoolName}} foi aprovada. Acesso: {{LoginUrl}}", "{{FirstName}}，您好，您的学校 {{SchoolName}} 已获批准。登录：{{LoginUrl}}", "مرحبًا {{FirstName}}، تمت الموافقة على مدرستك {{SchoolName}}. الدخول: {{LoginUrl}}")
+  },
+  {
+    code: "LESSON_SCHEDULED",
+    name: L("TutorSphere — Cours planifié", "TutorSphere — Lesson scheduled", "TutorSphere — Clase programada", "TutorSphere — Unterricht geplant", "TutorSphere — Aula agendada", "TutorSphere — 课程已安排", "TutorSphere — تمت جدولة الحصة"),
+    subject: L("Nouveau cours planifié — {{Subject}}", "New lesson scheduled — {{Subject}}", "Nueva clase programada — {{Subject}}", "Neuer Unterricht geplant — {{Subject}}", "Nova aula agendada — {{Subject}}", "新课程已安排 — {{Subject}}", "حصة جديدة مجدولة — {{Subject}}"),
+    title: L("Cours planifié", "Lesson scheduled", "Clase programada", "Unterricht geplant", "Aula agendada", "课程已安排", "حصة مجدولة"),
+    helloRecipient: true,
+    body: L(
+      "Un nouveau cours a été planifié pour vous.",
+      "A new lesson has been scheduled for you.",
+      "Se ha programado una nueva clase para usted.",
+      "Für Sie wurde ein neuer Unterricht geplant.",
+      "Foi agendada uma nova aula para si.",
+      "已为您安排了一节新课程。",
+      "تمت جدولة حصة جديدة لك."
+    ),
+    labels: {
+      subject: L("Matière", "Subject", "Materia", "Fach", "Disciplina", "科目", "المادة"),
+      tutor: L("Tuteur", "Tutor", "Tutor", "Tutor", "Tutor", "导师", "المعلم"),
+      date: L("Date", "Date", "Fecha", "Datum", "Data", "日期", "التاريخ")
+    },
+    tableBg: "#f5f3ff",
+    btn: L("Voir mon calendrier", "View my calendar", "Ver mi calendario", "Kalender ansehen", "Ver o meu calendário", "查看我的日历", "عرض تقويمي"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Cours planifié — {{Subject}} avec {{TutorName}} le {{LessonDate}}.", "Lesson scheduled — {{Subject}} with {{TutorName}} on {{LessonDate}}.", "Clase programada — {{Subject}} con {{TutorName}} el {{LessonDate}}.", "Unterricht geplant — {{Subject}} mit {{TutorName}} am {{LessonDate}}.", "Aula agendada — {{Subject}} com {{TutorName}} em {{LessonDate}}.", "课程已安排 — {{Subject}}，导师 {{TutorName}}，时间 {{LessonDate}}。", "حصة مجدولة — {{Subject}} مع {{TutorName}} في {{LessonDate}}.")
+  },
+  {
+    code: "LESSON_REMINDER",
+    name: L("TutorSphere — Rappel de cours", "TutorSphere — Lesson reminder", "TutorSphere — Recordatorio de clase", "TutorSphere — Unterrichtserinnerung", "TutorSphere — Lembrete de aula", "TutorSphere — 课程提醒", "TutorSphere — تذكير بالحصة"),
+    subject: L("Rappel : votre cours de {{Subject}} est demain", "Reminder: your {{Subject}} lesson is tomorrow", "Recordatorio: su clase de {{Subject}} es mañana", "Erinnerung: Ihr {{Subject}}-Unterricht ist morgen", "Lembrete: a sua aula de {{Subject}} é amanhã", "提醒：您的 {{Subject}} 课程在明天", "تذكير: حصتك في {{Subject}} غدًا"),
+    title: L("Rappel de cours", "Lesson reminder", "Recordatorio de clase", "Unterrichtserinnerung", "Lembrete de aula", "课程提醒", "تذكير بالحصة"),
+    helloRecipient: true,
+    body: L(
+      "N'oubliez pas votre cours de demain !",
+      "Don't forget your lesson tomorrow!",
+      "¡No olvide su clase de mañana!",
+      "Vergessen Sie Ihren Unterricht morgen nicht!",
+      "Não se esqueça da sua aula de amanhã!",
+      "别忘了明天的课程！",
+      "لا تنسَ حصتك غدًا!"
+    ),
+    labels: {
+      subject: L("Matière", "Subject", "Materia", "Fach", "Disciplina", "科目", "المادة"),
+      tutor: L("Tuteur", "Tutor", "Tutor", "Tutor", "Tutor", "导师", "المعلم"),
+      date: L("Date", "Date", "Fecha", "Datum", "Data", "日期", "التاريخ")
+    },
+    tableBg: "#f5f3ff",
+    btn: L("Voir les détails", "View details", "Ver detalles", "Details ansehen", "Ver detalhes", "查看详情", "عرض التفاصيل"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Rappel : cours de {{Subject}} avec {{TutorName}} le {{LessonDate}}.", "Reminder: {{Subject}} lesson with {{TutorName}} on {{LessonDate}}.", "Recordatorio: clase de {{Subject}} con {{TutorName}} el {{LessonDate}}.", "Erinnerung: {{Subject}}-Unterricht mit {{TutorName}} am {{LessonDate}}.", "Lembrete: aula de {{Subject}} com {{TutorName}} em {{LessonDate}}.", "提醒：{{Subject}} 课程，导师 {{TutorName}}，时间 {{LessonDate}}。", "تذكير: حصة {{Subject}} مع {{TutorName}} في {{LessonDate}}.")
+  },
+  {
+    code: "LESSON_CANCELLED",
+    name: L("TutorSphere — Cours annulé", "TutorSphere — Lesson cancelled", "TutorSphere — Clase cancelada", "TutorSphere — Unterricht abgesagt", "TutorSphere — Aula cancelada", "TutorSphere — 课程已取消", "TutorSphere — تم إلغاء الحصة"),
+    subject: L("Cours annulé — {{Subject}}", "Lesson cancelled — {{Subject}}", "Clase cancelada — {{Subject}}", "Unterricht abgesagt — {{Subject}}", "Aula cancelada — {{Subject}}", "课程已取消 — {{Subject}}", "تم إلغاء الحصة — {{Subject}}"),
+    title: L("Cours annulé", "Lesson cancelled", "Clase cancelada", "Unterricht abgesagt", "Aula cancelada", "课程已取消", "تم إلغاء الحصة"),
+    titleColor: "#dc2626",
+    helloRecipient: true,
+    body: L(
+      "Nous vous informons que le cours suivant a été <strong>annulé</strong> :",
+      "We are writing to let you know the following lesson was <strong>cancelled</strong>:",
+      "Le informamos que la siguiente clase ha sido <strong>cancelada</strong>:",
+      "Wir informieren Sie, dass der folgende Unterricht <strong>abgesagt</strong> wurde:",
+      "Informamos que a seguinte aula foi <strong>cancelada</strong>:",
+      "以下课程已被<strong>取消</strong>：",
+      "نعلمك أن الحصة التالية قد تم <strong>إلغاؤها</strong>:"
+    ),
+    labels: {
+      subject: L("Matière", "Subject", "Materia", "Fach", "Disciplina", "科目", "المادة"),
+      tutor: L("Tuteur", "Tutor", "Tutor", "Tutor", "Tutor", "导师", "المعلم"),
+      date: L("Date prévue", "Scheduled date", "Fecha prevista", "Geplantes Datum", "Data prevista", "原定日期", "التاريخ المقرر")
+    },
+    tableBg: "#fff5f5",
+    btn: L("Consulter mon calendrier", "View my calendar", "Consultar mi calendario", "Kalender öffnen", "Consultar o meu calendário", "查看我的日历", "عرض تقويمي"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Cours annulé — {{Subject}} avec {{TutorName}} prévu le {{LessonDate}}.", "Lesson cancelled — {{Subject}} with {{TutorName}} scheduled for {{LessonDate}}.", "Clase cancelada — {{Subject}} con {{TutorName}} prevista el {{LessonDate}}.", "Unterricht abgesagt — {{Subject}} mit {{TutorName}} geplant am {{LessonDate}}.", "Aula cancelada — {{Subject}} com {{TutorName}} prevista para {{LessonDate}}.", "课程已取消 — {{Subject}}，导师 {{TutorName}}，原定 {{LessonDate}}。", "تم إلغاء الحصة — {{Subject}} مع {{TutorName}} المقررة في {{LessonDate}}.")
+  },
+  {
+    code: "PARENT_PAYMENT_RECEIPT",
+    name: L("TutorSphere — Reçu de paiement parent", "TutorSphere — Parent payment receipt", "TutorSphere — Recibo de pago del padre", "TutorSphere — Eltern-Zahlungsbeleg", "TutorSphere — Recibo de pagamento do responsável", "TutorSphere — 家长付款收据", "TutorSphere — إيصال دفع ولي الأمر"),
+    subject: L("Reçu de paiement pour {{StudentName}} — TutorSphere", "Payment receipt for {{StudentName}} — TutorSphere", "Recibo de pago de {{StudentName}} — TutorSphere", "Zahlungsbeleg für {{StudentName}} — TutorSphere", "Recibo de pagamento de {{StudentName}} — TutorSphere", "{{StudentName}} 的付款收据 — TutorSphere", "إيصال دفع لـ {{StudentName}} — TutorSphere"),
+    title: L("Reçu de paiement", "Payment receipt", "Recibo de pago", "Zahlungsbeleg", "Recibo de pagamento", "付款收据", "إيصال الدفع"),
+    helloParentName: true,
+    body: L(
+      "Nous avons bien reçu votre paiement pour les cours de <strong>{{StudentName}}</strong>.",
+      "We have received your payment for <strong>{{StudentName}}</strong>'s lessons.",
+      "Hemos recibido su pago por las clases de <strong>{{StudentName}}</strong>.",
+      "Wir haben Ihre Zahlung für den Unterricht von <strong>{{StudentName}}</strong> erhalten.",
+      "Recebemos o seu pagamento pelas aulas de <strong>{{StudentName}}</strong>.",
+      "我们已收到您为 <strong>{{StudentName}}</strong> 课程支付的款项。",
+      "استلمنا دفعتك لحصص <strong>{{StudentName}}</strong>."
+    ),
+    studentLabel: L("Élève", "Student", "Alumno/a", "Schüler/in", "Aluno/a", "学生", "الطالب"),
+    amountLabel: L("Montant", "Amount", "Importe", "Betrag", "Montante", "金额", "المبلغ"),
+    btn: L("Voir ma facture", "View my invoice", "Ver mi factura", "Rechnung ansehen", "Ver a minha fatura", "查看我的发票", "عرض فاتورتي"),
+    btnUrl: "{{InvoiceUrl}}",
+    text: L("Reçu de paiement pour {{StudentName}} — {{Amount}}. Facture : {{InvoiceUrl}}", "Payment receipt for {{StudentName}} — {{Amount}}. Invoice: {{InvoiceUrl}}", "Recibo de pago de {{StudentName}} — {{Amount}}. Factura: {{InvoiceUrl}}", "Zahlungsbeleg für {{StudentName}} — {{Amount}}. Rechnung: {{InvoiceUrl}}", "Recibo de pagamento de {{StudentName}} — {{Amount}}. Fatura: {{InvoiceUrl}}", "{{StudentName}} 的付款收据 — {{Amount}}。发票：{{InvoiceUrl}}", "إيصال دفع لـ {{StudentName}} — {{Amount}}. الفاتورة: {{InvoiceUrl}}")
+  },
+  {
+    code: "PARENT_PAYMENT_FAILED",
+    name: L("TutorSphere — Échec de paiement parent", "TutorSphere — Parent payment failed", "TutorSphere — Fallo de pago del padre", "TutorSphere — Eltern-Zahlung fehlgeschlagen", "TutorSphere — Falha no pagamento do responsável", "TutorSphere — 家长付款失败", "TutorSphere — فشل دفع ولي الأمر"),
+    subject: L("Problème de paiement — TutorSphere", "Payment issue — TutorSphere", "Problema de pago — TutorSphere", "Zahlungsproblem — TutorSphere", "Problema de pagamento — TutorSphere", "付款问题 — TutorSphere", "مشكلة في الدفع — TutorSphere"),
+    title: L("Problème de paiement", "Payment issue", "Problema de pago", "Zahlungsproblem", "Problema de pagamento", "付款问题", "مشكلة في الدفع"),
+    titleColor: "#dc2626",
+    helloParentName: true,
+    body: L(
+      "Nous n'avons pas pu traiter votre paiement pour les cours de votre enfant.",
+      "We could not process your payment for your child's lessons.",
+      "No pudimos procesar su pago por las clases de su hijo/a.",
+      "Wir konnten Ihre Zahlung für den Unterricht Ihres Kindes nicht verarbeiten.",
+      "Não foi possível processar o pagamento das aulas do seu filho/a.",
+      "我们无法处理您为孩子课程支付的款项。",
+      "تعذّر معالجة دفعتك لحصص طفلك."
+    ),
+    body2: L(
+      "Veuillez mettre à jour vos informations de paiement pour maintenir l'accès aux cours.",
+      "Please update your payment details to keep access to lessons.",
+      "Actualice sus datos de pago para mantener el acceso a las clases.",
+      "Bitte aktualisieren Sie Ihre Zahlungsdaten, um den Zugang zum Unterricht zu behalten.",
+      "Atualize os seus dados de pagamento para manter o acesso às aulas.",
+      "请更新付款信息以保持课程访问权限。",
+      "يرجى تحديث بيانات الدفع للحفاظ على الوصول إلى الحصص."
+    ),
+    btn: L("Mettre à jour mes informations", "Update my details", "Actualizar mis datos", "Daten aktualisieren", "Atualizar os meus dados", "更新我的信息", "تحديث بياناتي"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/settings/billing",
+    text: L("Bonjour {{ParentName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.", "Hi {{ParentName}}, your TutorSphere payment failed. Please update your details.", "Hola {{ParentName}}, falló su pago de TutorSphere. Actualice sus datos.", "Hallo {{ParentName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.", "Olá {{ParentName}}, o pagamento TutorSphere falhou. Atualize os seus dados.", "{{ParentName}}，您好，您的 TutorSphere 付款失败。请更新信息。", "مرحبًا {{ParentName}}، فشل دفع TutorSphere. حدّث بياناتك.")
+  },
+  {
+    code: "INVOICE_READY",
+    name: L("TutorSphere — Facture disponible", "TutorSphere — Invoice ready", "TutorSphere — Factura disponible", "TutorSphere — Rechnung verfügbar", "TutorSphere — Fatura disponível", "TutorSphere — 发票已就绪", "TutorSphere — الفاتورة جاهزة"),
+    subject: L("Votre facture TutorSphere est disponible", "Your TutorSphere invoice is ready", "Su factura de TutorSphere está disponible", "Ihre TutorSphere-Rechnung ist verfügbar", "A sua fatura TutorSphere está disponível", "您的 TutorSphere 发票已就绪", "فاتورة TutorSphere جاهزة"),
+    title: L("Facture disponible", "Invoice ready", "Factura disponible", "Rechnung verfügbar", "Fatura disponível", "发票已就绪", "الفاتورة جاهزة"),
+    helloParentName: true,
+    body: L(
+      "Votre nouvelle facture TutorSphere est disponible au téléchargement.",
+      "Your new TutorSphere invoice is available to download.",
+      "Su nueva factura de TutorSphere está disponible para descargar.",
+      "Ihre neue TutorSphere-Rechnung steht zum Download bereit.",
+      "A sua nova fatura TutorSphere está disponível para descarregar.",
+      "您的新 TutorSphere 发票可供下载。",
+      "فاتورتك الجديدة من TutorSphere جاهزة للتنزيل."
+    ),
+    btn: L("Télécharger ma facture", "Download my invoice", "Descargar mi factura", "Rechnung herunterladen", "Descarregar a minha fatura", "下载我的发票", "تنزيل فاتورتي"),
+    btnUrl: "{{InvoiceUrl}}",
+    text: L("Bonjour {{ParentName}}, votre facture TutorSphere est disponible : {{InvoiceUrl}}", "Hi {{ParentName}}, your TutorSphere invoice is ready: {{InvoiceUrl}}", "Hola {{ParentName}}, su factura de TutorSphere está disponible: {{InvoiceUrl}}", "Hallo {{ParentName}}, Ihre TutorSphere-Rechnung ist verfügbar: {{InvoiceUrl}}", "Olá {{ParentName}}, a sua fatura TutorSphere está disponível: {{InvoiceUrl}}", "{{ParentName}}，您好，您的 TutorSphere 发票已就绪：{{InvoiceUrl}}", "مرحبًا {{ParentName}}، فاتورة TutorSphere جاهزة: {{InvoiceUrl}}")
+  },
+  {
+    code: "PARENT_PAYMENT_OVERDUE",
+    name: L("TutorSphere — Paiement en retard", "TutorSphere — Overdue payment", "TutorSphere — Pago atrasado", "TutorSphere — Überfällige Zahlung", "TutorSphere — Pagamento em atraso", "TutorSphere — 逾期付款", "TutorSphere — دفعة متأخرة"),
+    subject: L("Rappel : paiement en attente pour {{StudentName}} — TutorSphere", "Reminder: payment pending for {{StudentName}} — TutorSphere", "Recordatorio: pago pendiente de {{StudentName}} — TutorSphere", "Erinnerung: ausstehende Zahlung für {{StudentName}} — TutorSphere", "Lembrete: pagamento pendente de {{StudentName}} — TutorSphere", "提醒：{{StudentName}} 的付款待处理 — TutorSphere", "تذكير: دفعة معلّقة لـ {{StudentName}} — TutorSphere"),
+    title: L("Paiement en retard", "Overdue payment", "Pago atrasado", "Überfällige Zahlung", "Pagamento em atraso", "逾期付款", "دفعة متأخرة"),
+    titleColor: "#dc2626",
+    helloParentName: true,
+    body: L(
+      "Le paiement pour le cours <strong>{{CourseTitle}}</strong> de <strong>{{StudentName}}</strong> est toujours en attente.",
+      "Payment for <strong>{{StudentName}}</strong>'s course <strong>{{CourseTitle}}</strong> is still pending.",
+      "El pago del curso <strong>{{CourseTitle}}</strong> de <strong>{{StudentName}}</strong> sigue pendiente.",
+      "Die Zahlung für den Kurs <strong>{{CourseTitle}}</strong> von <strong>{{StudentName}}</strong> steht noch aus.",
+      "O pagamento do curso <strong>{{CourseTitle}}</strong> de <strong>{{StudentName}}</strong> ainda está pendente.",
+      "<strong>{{StudentName}}</strong> 的课程 <strong>{{CourseTitle}}</strong> 付款仍待处理。",
+      "لا تزال دفعة دورة <strong>{{CourseTitle}}</strong> لـ <strong>{{StudentName}}</strong> معلّقة."
+    ),
+    body2: L(
+      "Merci de régulariser dès que possible afin d'activer ou de maintenir l'accès aux séances.",
+      "Please settle as soon as possible to activate or keep access to sessions.",
+      "Regularice lo antes posible para activar o mantener el acceso a las sesiones.",
+      "Bitte begleichen Sie so bald wie möglich, um den Zugang zu den Sitzungen zu aktivieren oder zu behalten.",
+      "Regularize o mais cedo possível para ativar ou manter o acesso às sessões.",
+      "请尽快完成付款以激活或保持课程访问权限。",
+      "يرجى التسوية في أقرب وقت لتفعيل أو الحفاظ على الوصول إلى الحصص."
+    ),
+    btn: L("Payer maintenant", "Pay now", "Pagar ahora", "Jetzt bezahlen", "Pagar agora", "立即付款", "ادفع الآن"),
+    btnUrl: "{{PayUrl}}",
+    text: L("Rappel : paiement en retard pour {{StudentName}} — {{CourseTitle}}. Payer : {{PayUrl}}", "Reminder: overdue payment for {{StudentName}} — {{CourseTitle}}. Pay: {{PayUrl}}", "Recordatorio: pago atrasado de {{StudentName}} — {{CourseTitle}}. Pagar: {{PayUrl}}", "Erinnerung: überfällige Zahlung für {{StudentName}} — {{CourseTitle}}. Zahlen: {{PayUrl}}", "Lembrete: pagamento em atraso de {{StudentName}} — {{CourseTitle}}. Pagar: {{PayUrl}}", "提醒：{{StudentName}} — {{CourseTitle}} 逾期付款。付款：{{PayUrl}}", "تذكير: دفعة متأخرة لـ {{StudentName}} — {{CourseTitle}}. ادفع: {{PayUrl}}")
+  },
+  {
+    code: "COURSE_ENROLLMENT_REQUEST",
+    name: L("TutorSphere — Demande d'inscription à un cours", "TutorSphere — Course enrollment request", "TutorSphere — Solicitud de inscripción a un curso", "TutorSphere — Kursanmeldungsanfrage", "TutorSphere — Pedido de inscrição num curso", "TutorSphere — 课程报名请求", "TutorSphere — طلب تسجيل في دورة"),
+    subject: L("Nouvelle demande d'inscription — {{CourseTitle}}", "New enrollment request — {{CourseTitle}}", "Nueva solicitud de inscripción — {{CourseTitle}}", "Neue Anmeldungsanfrage — {{CourseTitle}}", "Novo pedido de inscrição — {{CourseTitle}}", "新的报名请求 — {{CourseTitle}}", "طلب تسجيل جديد — {{CourseTitle}}"),
+    title: L("Nouvelle demande d'inscription", "New enrollment request", "Nueva solicitud de inscripción", "Neue Anmeldungsanfrage", "Novo pedido de inscrição", "新的报名请求", "طلب تسجيل جديد"),
+    helloTutor: true,
+    body: L(
+      "<strong>{{StudentName}}</strong> souhaite s'inscrire au cours <strong>{{CourseTitle}}</strong>.",
+      "<strong>{{StudentName}}</strong> wants to enroll in <strong>{{CourseTitle}}</strong>.",
+      "<strong>{{StudentName}}</strong> desea inscribirse en el curso <strong>{{CourseTitle}}</strong>.",
+      "<strong>{{StudentName}}</strong> möchte sich für den Kurs <strong>{{CourseTitle}}</strong> anmelden.",
+      "<strong>{{StudentName}}</strong> deseja inscrever-se no curso <strong>{{CourseTitle}}</strong>.",
+      "<strong>{{StudentName}}</strong> 希望报名课程 <strong>{{CourseTitle}}</strong>。",
+      "يرغب <strong>{{StudentName}}</strong> في التسجيل في دورة <strong>{{CourseTitle}}</strong>."
+    ),
+    body2: L(
+      "Connectez-vous pour accepter ou refuser la demande.",
+      "Sign in to accept or decline the request.",
+      "Inicie sesión para aceptar o rechazar la solicitud.",
+      "Melden Sie sich an, um die Anfrage anzunehmen oder abzulehnen.",
+      "Inicie sessão para aceitar ou recusar o pedido.",
+      "登录以接受或拒绝该请求。",
+      "سجّل الدخول لقبول الطلب أو رفضه."
+    ),
+    btn: L("Gérer les inscriptions", "Manage enrollments", "Gestionar inscripciones", "Anmeldungen verwalten", "Gerir inscrições", "管理报名", "إدارة التسجيلات"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Demande d'inscription de {{StudentName}} au cours {{CourseTitle}}.", "Enrollment request from {{StudentName}} for {{CourseTitle}}.", "Solicitud de inscripción de {{StudentName}} al curso {{CourseTitle}}.", "Anmeldungsanfrage von {{StudentName}} für {{CourseTitle}}.", "Pedido de inscrição de {{StudentName}} no curso {{CourseTitle}}.", "{{StudentName}} 报名课程 {{CourseTitle}} 的请求。", "طلب تسجيل من {{StudentName}} في دورة {{CourseTitle}}.")
+  },
+  {
+    code: "COURSE_ENROLLMENT_ACCEPTED",
+    name: L("TutorSphere — Inscription au cours acceptée", "TutorSphere — Course enrollment accepted", "TutorSphere — Inscripción al curso aceptada", "TutorSphere — Kursanmeldung angenommen", "TutorSphere — Inscrição no curso aceite", "TutorSphere — 课程报名已接受", "TutorSphere — تم قبول التسجيل في الدورة"),
+    subject: L("Inscription acceptée — {{CourseTitle}}", "Enrollment accepted — {{CourseTitle}}", "Inscripción aceptada — {{CourseTitle}}", "Anmeldung angenommen — {{CourseTitle}}", "Inscrição aceite — {{CourseTitle}}", "报名已接受 — {{CourseTitle}}", "تم قبول التسجيل — {{CourseTitle}}"),
+    title: L("Inscription acceptée", "Enrollment accepted", "Inscripción aceptada", "Anmeldung angenommen", "Inscrição aceite", "报名已接受", "تم قبول التسجيل"),
+    titleColor: "#16a34a",
+    helloParentName: true,
+    body: L(
+      "L'inscription de <strong>{{StudentName}}</strong> au cours <strong>{{CourseTitle}}</strong> a été acceptée.",
+      "<strong>{{StudentName}}</strong>'s enrollment in <strong>{{CourseTitle}}</strong> has been accepted.",
+      "La inscripción de <strong>{{StudentName}}</strong> en el curso <strong>{{CourseTitle}}</strong> ha sido aceptada.",
+      "Die Anmeldung von <strong>{{StudentName}}</strong> für den Kurs <strong>{{CourseTitle}}</strong> wurde angenommen.",
+      "A inscrição de <strong>{{StudentName}}</strong> no curso <strong>{{CourseTitle}}</strong> foi aceite.",
+      "<strong>{{StudentName}}</strong> 报名课程 <strong>{{CourseTitle}}</strong> 已获接受。",
+      "تم قبول تسجيل <strong>{{StudentName}}</strong> في دورة <strong>{{CourseTitle}}</strong>."
+    ),
+    statusNote: true,
+    btn: L("Continuer", "Continue", "Continuar", "Weiter", "Continuar", "继续", "متابعة"),
+    btnUrl: "{{ActionUrl}}",
+    text: L("Inscription de {{StudentName}} à {{CourseTitle}} acceptée. {{StatusNote}} {{ActionUrl}}", "Enrollment of {{StudentName}} in {{CourseTitle}} accepted. {{StatusNote}} {{ActionUrl}}", "Inscripción de {{StudentName}} en {{CourseTitle}} aceptada. {{StatusNote}} {{ActionUrl}}", "Anmeldung von {{StudentName}} für {{CourseTitle}} angenommen. {{StatusNote}} {{ActionUrl}}", "Inscrição de {{StudentName}} em {{CourseTitle}} aceite. {{StatusNote}} {{ActionUrl}}", "{{StudentName}} 报名 {{CourseTitle}} 已接受。{{StatusNote}} {{ActionUrl}}", "تم قبول تسجيل {{StudentName}} في {{CourseTitle}}. {{StatusNote}} {{ActionUrl}}")
+  },
+  {
+    code: "TUTOR_STUDENT_PAYMENT_RECEIVED",
+    name: L("TutorSphere — Paiement reçu (cours élève)", "TutorSphere — Payment received (student course)", "TutorSphere — Pago recibido (curso del alumno)", "TutorSphere — Zahlung eingegangen (Schülerkurs)", "TutorSphere — Pagamento recebido (curso do aluno)", "TutorSphere — 已收到付款（学生课程）", "TutorSphere — تم استلام الدفع (دورة الطالب)"),
+    subject: L("Paiement reçu — {{StudentName}} / {{CourseTitle}}", "Payment received — {{StudentName}} / {{CourseTitle}}", "Pago recibido — {{StudentName}} / {{CourseTitle}}", "Zahlung eingegangen — {{StudentName}} / {{CourseTitle}}", "Pagamento recebido — {{StudentName}} / {{CourseTitle}}", "已收到付款 — {{StudentName}} / {{CourseTitle}}", "تم استلام الدفع — {{StudentName}} / {{CourseTitle}}"),
+    title: L("Paiement reçu", "Payment received", "Pago recibido", "Zahlung eingegangen", "Pagamento recebido", "已收到付款", "تم استلام الدفع"),
+    titleColor: "#16a34a",
+    helloTutor: true,
+    body: L(
+      "Un paiement a été reçu pour <strong>{{StudentName}}</strong> — cours <strong>{{CourseTitle}}</strong>.",
+      "A payment was received for <strong>{{StudentName}}</strong> — course <strong>{{CourseTitle}}</strong>.",
+      "Se recibió un pago por <strong>{{StudentName}}</strong> — curso <strong>{{CourseTitle}}</strong>.",
+      "Eine Zahlung für <strong>{{StudentName}}</strong> — Kurs <strong>{{CourseTitle}}</strong> ist eingegangen.",
+      "Foi recebido um pagamento por <strong>{{StudentName}}</strong> — curso <strong>{{CourseTitle}}</strong>.",
+      "已收到 <strong>{{StudentName}}</strong> — 课程 <strong>{{CourseTitle}}</strong> 的付款。",
+      "تم استلام دفعة لـ <strong>{{StudentName}}</strong> — دورة <strong>{{CourseTitle}}</strong>."
+    ),
+    amountLabel: L("Montant", "Amount", "Importe", "Betrag", "Montante", "金额", "المبلغ"),
+    btn: L("Voir mon espace", "View my space", "Ver mi espacio", "Meinen Bereich öffnen", "Ver o meu espaço", "查看我的空间", "عرض مساحتي"),
+    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    text: L("Paiement reçu : {{Amount}} pour {{StudentName}} — {{CourseTitle}}.", "Payment received: {{Amount}} for {{StudentName}} — {{CourseTitle}}.", "Pago recibido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.", "Zahlung eingegangen: {{Amount}} für {{StudentName}} — {{CourseTitle}}.", "Pagamento recebido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.", "已收到付款：{{Amount}}，{{StudentName}} — {{CourseTitle}}。", "تم استلام الدفع: {{Amount}} لـ {{StudentName}} — {{CourseTitle}}.")
+  }
+];
+
+const hello = L("Bonjour {{FirstName}},", "Hello {{FirstName}},", "Hola {{FirstName}},", "Hallo {{FirstName}},", "Olá {{FirstName}},", "{{FirstName}}，您好，", "مرحبًا {{FirstName}}،");
+const helloParent = L("Bonjour {{ParentFirstName}},", "Hello {{ParentFirstName}},", "Hola {{ParentFirstName}},", "Hallo {{ParentFirstName}},", "Olá {{ParentFirstName}},", "{{ParentFirstName}}，您好，", "مرحبًا {{ParentFirstName}}،");
+const helloOwner = L("Bonjour {{OwnerFirstName}},", "Hello {{OwnerFirstName}},", "Hola {{OwnerFirstName}},", "Hallo {{OwnerFirstName}},", "Olá {{OwnerFirstName}},", "{{OwnerFirstName}}，您好，", "مرحبًا {{OwnerFirstName}}،");
+const helloRecipient = L("Bonjour {{RecipientName}},", "Hello {{RecipientName}},", "Hola {{RecipientName}},", "Hallo {{RecipientName}},", "Olá {{RecipientName}},", "{{RecipientName}}，您好，", "مرحبًا {{RecipientName}}،");
+const helloParentName = L("Bonjour {{ParentName}},", "Hello {{ParentName}},", "Hola {{ParentName}},", "Hallo {{ParentName}},", "Olá {{ParentName}},", "{{ParentName}}，您好，", "مرحبًا {{ParentName}}،");
+const helloTutor = L("Bonjour {{TutorName}},", "Hello {{TutorName}},", "Hola {{TutorName}},", "Hallo {{TutorName}},", "Olá {{TutorName}},", "{{TutorName}}，您好，", "مرحبًا {{TutorName}}،");
+
+function esc(s) {
+  return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+}
+
+function btn(url, label) {
+  return `<p style="text-align:center;margin:28px 0;"><a href="${url}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">${label}</a></p>`;
+}
+
+function buildHtml(tpl, lang) {
+  const color = tpl.titleColor || "#5831E0";
+  const parts = [];
+  parts.push(`<h1 style="color:${color};margin:0 0 12px;font-size:24px;">${t(tpl.title, lang)}</h1>`.replace("h1", tpl.code === "WELCOME" ? "h1" : "h2").replace("font-size:24px;", tpl.code === "WELCOME" ? "font-size:24px;" : ""));
+  // fix: use h2 for non-welcome
+  parts[0] = tpl.code === "WELCOME"
+    ? `<h1 style="color:${color};margin:0 0 12px;font-size:24px;">${t(tpl.title, lang)}</h1>`
+    : `<h2 style="color:${color};margin:0 0 12px;">${t(tpl.title, lang)}</h2>`;
+
+  if (tpl.hello) parts.push(`<p>${t(hello, lang)}</p>`);
+  if (tpl.helloParent) parts.push(`<p>${t(helloParent, lang)}</p>`);
+  if (tpl.helloOwner) parts.push(`<p>${t(helloOwner, lang)}</p>`);
+  if (tpl.helloRecipient) parts.push(`<p>${t(helloRecipient, lang)}</p>`);
+  if (tpl.helloParentName) parts.push(`<p>${t(helloParentName, lang)}</p>`);
+  if (tpl.helloTutor) parts.push(`<p>${t(helloTutor, lang)}</p>`);
+  if (tpl.body) parts.push(`<p>${t(tpl.body, lang)}</p>`);
+  if (tpl.body2) parts.push(`<p>${t(tpl.body2, lang)}</p>`);
+  if (tpl.note) {
+    parts.push(`<p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">${t(tpl.note, lang)}</p>`);
+  }
+  if (tpl.reasonLabel) {
+    parts.push(`<p><strong>${t(tpl.reasonLabel, lang)} :</strong> {{Reason}}</p>`);
+  }
+  if (tpl.statusNote) {
+    parts.push(`<p>{{StatusNote}}</p>`);
+  }
+  if (tpl.labels) {
+    const bg = tpl.tableBg || "#f5f3ff";
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.labels.subject, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Subject}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.labels.tutor, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{TutorName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.labels.date, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{LessonDate}}</td></tr>
+                </table>`);
+  }
+  if (tpl.amountLabel && tpl.studentLabel) {
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+                  <tr><td style="padding:8px 0;color:#555;">${t(tpl.studentLabel, lang)}</td><td style="padding:8px 0;font-weight:600;text-align:right;">{{StudentName}}</td></tr>
+                  <tr><td style="padding:8px 0;color:#555;">${t(tpl.amountLabel, lang)}</td><td style="padding:8px 0;font-weight:600;text-align:right;">{{Amount}}</td></tr>
+                </table>`);
+  } else if (tpl.amountLabel) {
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+                  <tr><td style="padding:8px 0;color:#555;">${t(tpl.amountLabel, lang)}</td><td style="padding:8px 0;font-weight:600;text-align:right;">{{Amount}}</td></tr>
+                </table>`);
+  }
+  if (tpl.btn) parts.push(btn(tpl.btnUrl, t(tpl.btn, lang)));
+  if (tpl.footerNote) parts.push(`<p style="font-size:13px;color:#888;">${t(tpl.footerNote, lang)}</p>`);
+  return parts.join("\n                ");
+}
+
+function wrap(bodyHtml, footerHtml, seedRevision) {
+  return `<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              ${bodyHtml}
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          ${footerHtml}
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:${seedRevision} -->`;
+}
+
+let seeds = [];
+for (const lang of LANGS) {
+  for (const tpl of templates) {
+    const html = wrap(buildHtml(tpl, lang), t(footer, lang), REV);
+    const name = esc(t(tpl.name, lang));
+    const subject = esc(t(tpl.subject, lang));
+    const text = esc(t(tpl.text, lang));
+    // Use raw string literals carefully - embed as verbatim via @"..." equivalent in C# is """
+    seeds.push({ code: tpl.code, lang, name: t(tpl.name, lang), subject: t(tpl.subject, lang), html, text: t(tpl.text, lang) });
+  }
+}
+
+function toCsString(s) {
+  // Prefer raw string literals """ ... """
+  if (s.includes('"""')) throw new Error('triple quote in content');
+  return `"""\n${s}\n"""`;
+}
+
+const items = seeds.map((s, i) => {
+  const comma = i < seeds.length - 1 ? "," : "";
+  return `        new(
+            TemplateCode: "${s.code}",
+            Name: ${JSON.stringify(s.name)},
+            SubjectTemplate: ${JSON.stringify(s.subject)},
+            HtmlBody: ${toCsString(s.html)},
+            TextBody: ${JSON.stringify(s.text)},
+            Language: "${s.lang}",
+            SeedRevision: ${REV})${comma}`;
+}).join("\n\n");
+
+const file = `namespace SecureMailGateway.Data;
+
+/// <summary>
+/// Templates e-mail TutorSphere (fr, en, es, de, pt, zh-Hans, ar).
+/// Généré par tools/generate-tutorsphere-templates.mjs — ne pas éditer à la main.
+/// Client code : TUTORSPHERE.
+/// </summary>
+public static class TutorSphereTemplates
+{
+    public static IReadOnlyList<EmailTemplateSeed> Definitions { get; } =
+    [
+${items}
+    ];
+}
+`;
+
+fs.writeFileSync(outPath, file, "utf8");
+console.log(`Wrote ${seeds.length} templates → ${outPath}`);

@@ -11,6 +11,13 @@ public class SendMailRequest
     [Required, MaxLength(50)]
     public string TemplateCode { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Langue du template (ex. fr, en, es, de, pt, zh-Hans, ar). Défaut fr.
+    /// Si la variante n'existe pas, le gateway retombe sur fr.
+    /// </summary>
+    [MaxLength(10)]
+    public string? Language { get; set; }
+
     [Required, MinLength(1)]
     public List<string> To { get; set; } = [];
 

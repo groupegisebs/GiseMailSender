@@ -127,7 +127,9 @@ public static partial class DataSeeder
     private static async Task SeedTemplatesAsync(ApplicationDbContext db, ILogger logger)
     {
         var existing = await db.EmailTemplates.ToListAsync();
-        var byCode = existing.ToDictionary(t => t.TemplateCode, StringComparer.OrdinalIgnoreCase);
+        var byCodeLang = existing.ToDictionary(
+            t => TemplateKey(t.TemplateCode, t.Language),
+            StringComparer.OrdinalIgnoreCase);
 
         var added = 0;
         var updated = 0;
@@ -142,9 +144,12 @@ public static partial class DataSeeder
         {
             foreach (var definition in definitions)
             {
-                if (!byCode.TryGetValue(definition.TemplateCode, out var entity))
+                var key = TemplateKey(definition.TemplateCode, definition.Language);
+                if (!byCodeLang.TryGetValue(key, out var entity))
                 {
-                    db.EmailTemplates.Add(definition.ToEntity());
+                    var created = definition.ToEntity();
+                    db.EmailTemplates.Add(created);
+                    byCodeLang[key] = created;
                     added++;
                     continue;
                 }
@@ -180,5 +185,18 @@ public static partial class DataSeeder
         return match.Success && int.TryParse(match.Groups[1].Value, out var revision)
             ? revision
             : 0;
+    }
+
+    private static string TemplateKey(string templateCode, string language) =>
+        $"{templateCode.Trim().ToUpperInvariant()}|{NormalizeSeedLanguage(language)}";
+
+    private static string NormalizeSeedLanguage(string? language)
+    {
+        if (string.IsNullOrWhiteSpace(language))
+            return "fr";
+        var trimmed = language.Trim();
+        return trimmed.Equals("zh-hans", StringComparison.OrdinalIgnoreCase)
+            ? "zh-Hans"
+            : trimmed.ToLowerInvariant();
     }
 }
