@@ -631,6 +631,64 @@ public static class TutorSphereTemplates
             SeedRevision: 2),
 
         new(
+            TemplateCode: "PARENT_SUBSCRIPTION_RENEWAL",
+            Name: "TutorSphere — Renouvellement abonnement",
+            SubjectTemplate: "Renouvellement : {{CourseTitle}} se termine le {{EndDate}} — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Renouvellement bientôt</h2>
+                <p>Bonjour {{ParentName}},</p>
+                <p>L'abonnement <strong>{{CourseTitle}}</strong> de <strong>{{StudentName}}</strong> se termine le <strong>{{EndDate}}</strong>.</p>
+                <p>Renouvelez dès maintenant (carte, PayPal ou Mobile Money) pour éviter toute interruption.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{PayUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Renouveler</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:2 -->
+""",
+            TextBody: "Renouvellement : {{CourseTitle}} pour {{StudentName}} se termine le {{EndDate}}. Payer : {{PayUrl}}",
+            Language: "fr",
+            SeedRevision: 2),
+
+        new(
+            TemplateCode: "PARENT_SUBSCRIPTION_RENEWAL",
+            Name: "TutorSphere — Subscription renewal",
+            SubjectTemplate: "Renewal: {{CourseTitle}} ends on {{EndDate}} — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Renewal coming up</h2>
+                <p>Hello {{ParentName}},</p>
+                <p>The subscription <strong>{{CourseTitle}}</strong> for <strong>{{StudentName}}</strong> ends on <strong>{{EndDate}}</strong>.</p>
+                <p>Renew now (card, PayPal or Mobile Money) to avoid any interruption.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{PayUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Renew</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:2 -->
+""",
+            TextBody: "Renewal: {{CourseTitle}} for {{StudentName}} ends on {{EndDate}}. Pay: {{PayUrl}}",
+            Language: "en",
+            SeedRevision: 2),
+
+        new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
             Name: "TutorSphere — Paiement en retard",
             SubjectTemplate: "Rappel : paiement en attente pour {{StudentName}} — TutorSphere",
