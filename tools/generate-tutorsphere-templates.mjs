@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 3;
+const REV = 4;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -722,7 +722,8 @@ const templates = [
     inviteLabels: {
       email: L("E-mail de connexion", "Sign-in email", "Correo de acceso", "Anmelde-E-Mail", "E-mail de acesso", "登录电子邮件", "بريد الدخول"),
       password: L("Mot de passe temporaire", "Temporary password", "Contraseña temporal", "Temporäres Passwort", "Palavra-passe temporária", "临时密码", "كلمة المرور المؤقتة"),
-      group: L("Groupe d'experts", "Expert group", "Grupo de expertos", "Expertengruppe", "Grupo de especialistas", "专家组", "مجموعة الخبراء")
+      group: L("Groupe d'experts", "Expert group", "Grupo de expertos", "Expertengruppe", "Grupo de especialistas", "专家组", "مجموعة الخبراء"),
+      loginUrl: L("Page de connexion expert", "Expert sign-in page", "Página de acceso experto", "Experten-Anmeldeseite", "Página de acesso especialista", "专家登录页", "صفحة دخول الخبير")
     },
     note: L(
       "Pour votre sécurité, <strong>changez ce mot de passe</strong> dès la première connexion à l'espace expert.",
@@ -734,13 +735,13 @@ const templates = [
       "لأمانك، <strong>غيّر كلمة المرور هذه</strong> عند أول دخول إلى مساحة الخبير."
     ),
     body2: L(
-      "Cliquez sur le bouton ci-dessous pour ouvrir la page de connexion expert.",
-      "Click the button below to open the expert sign-in page.",
-      "Haga clic en el botón de abajo para abrir la página de inicio de sesión de experto.",
-      "Klicken Sie auf die Schaltfläche unten, um die Experten-Anmeldeseite zu öffnen.",
-      "Clique no botão abaixo para abrir a página de início de sessão de especialista.",
-      "点击下方按钮打开专家登录页。",
-      "انقر الزر أدناه لفتح صفحة تسجيل دخول الخبير."
+      "Étapes : 1) Ouvrez la page de connexion expert ci-dessous 2) Saisissez l'e-mail et le mot de passe temporaire 3) Choisissez un nouveau mot de passe.",
+      "Steps: 1) Open the expert sign-in page below 2) Enter the email and temporary password 3) Choose a new password.",
+      "Pasos: 1) Abra la página de acceso experto abajo 2) Introduzca el correo y la contraseña temporal 3) Elija una nueva contraseña.",
+      "Schritte: 1) Öffnen Sie die Experten-Anmeldeseite unten 2) Geben Sie E-Mail und temporäres Passwort ein 3) Wählen Sie ein neues Passwort.",
+      "Passos: 1) Abra a página de acesso especialista abaixo 2) Introduza o e-mail e a palavra-passe temporária 3) Escolha uma nova palavra-passe.",
+      "步骤：1）打开下方专家登录页 2）输入电子邮件和临时密码 3）设置新密码。",
+      "الخطوات: 1) افتح صفحة دخول الخبير أدناه 2) أدخل البريد وكلمة المرور المؤقتة 3) اختر كلمة مرور جديدة."
     ),
     btn: L("Se connecter à l'espace expert", "Sign in to expert space", "Iniciar sesión en el espacio experto", "Zum Expertenbereich anmelden", "Iniciar sessão no espaço de especialista", "登录专家空间", "تسجيل الدخول إلى مساحة الخبير"),
     btnUrl: "{{LoginUrl}}",
@@ -829,10 +830,14 @@ function buildHtml(tpl, lang) {
   }
   if (tpl.inviteLabels) {
     const bg = tpl.tableBg || "#f5f3ff";
+    const loginRow = tpl.inviteLabels.loginUrl
+      ? `<tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.loginUrl, lang)}</td><td style="padding:10px 14px;font-weight:600;word-break:break-all;"><a href="{{LoginUrl}}" style="color:#5831E0;">{{LoginUrl}}</a></td></tr>`
+      : "";
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.email, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.password, lang)}</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                  ${loginRow}
                 </table>`);
   }
   if (tpl.addedLabels) {
