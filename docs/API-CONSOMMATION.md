@@ -212,7 +212,7 @@ curl -X POST "https://gisemailsender.gisebs.com/api/mail/send" \
 
 Si `templateCode` n'existe pas encore, SecureMail crée automatiquement un template actif avec un contenu brouillon, puis traite l'envoi.
 
-Le template auto-créé doit ensuite être édité dans l'interface d'administration (*Templates*).
+Le template auto-créé doit ensuite être édité dans l'interface d'administration (*Templates*). Si une définition seedée existe (ex. TutorSphere `EXPERT_INVITE`), un redémarrage / redéploiement du gateway remplace le stub automatiquement.
 
 ### Réponse erreur (`400 Bad Request`)
 

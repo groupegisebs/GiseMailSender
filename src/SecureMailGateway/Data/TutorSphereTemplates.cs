@@ -30,11 +30,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bienvenue {{FirstName}} sur TutorSphere.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -59,11 +59,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirmez votre e-mail : {{ConfirmationUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -88,11 +88,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Rapport de cours pour {{StudentName}} avec {{TutorName}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -116,11 +116,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "École {{SchoolName}} enregistrée, en attente de validation.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -145,11 +145,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirmez votre e-mail : {{ConfirmationUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -174,11 +174,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Réinitialisez votre mot de passe : {{ResetUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -203,11 +203,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre mot de passe TutorSphere a été modifié.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -232,11 +232,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre essai gratuit TutorSphere a commencé.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -263,11 +263,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Reçu de paiement {{Amount}}. Facture : {{InvoiceUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -292,11 +292,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Votre abonnement TutorSphere se renouvelle le {{RenewalDate}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -321,11 +321,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -350,11 +350,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre abonnement TutorSphere a été annulé.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -378,11 +378,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre compte TutorSphere a été activé.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -407,11 +407,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre compte a été désactivé. Motif : {{Reason}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -436,11 +436,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre école {{SchoolName}} est approuvée. Connexion : {{LoginUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -469,11 +469,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Cours planifié — {{Subject}} avec {{TutorName}} le {{LessonDate}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -502,11 +502,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Rappel : cours de {{Subject}} avec {{TutorName}} le {{LessonDate}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -535,11 +535,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Cours annulé — {{Subject}} avec {{TutorName}} prévu le {{LessonDate}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -567,11 +567,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Reçu de paiement pour {{StudentName}} — {{Amount}}. Facture : {{InvoiceUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -596,11 +596,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{ParentName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -624,69 +624,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bonjour {{ParentName}}, votre facture TutorSphere est disponible : {{InvoiceUrl}}",
             Language: "fr",
-            SeedRevision: 2),
-
-        new(
-            TemplateCode: "PARENT_SUBSCRIPTION_RENEWAL",
-            Name: "TutorSphere — Renouvellement abonnement",
-            SubjectTemplate: "Renouvellement : {{CourseTitle}} se termine le {{EndDate}} — TutorSphere",
-            HtmlBody: """
-<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
-          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
-            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
-          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
-        </div>
-            <div style="padding:32px 32px 24px;">
-              <h2 style="color:#5831E0;margin:0 0 12px;">Renouvellement bientôt</h2>
-                <p>Bonjour {{ParentName}},</p>
-                <p>L'abonnement <strong>{{CourseTitle}}</strong> de <strong>{{StudentName}}</strong> se termine le <strong>{{EndDate}}</strong>.</p>
-                <p>Renouvelez dès maintenant (carte, PayPal ou Mobile Money) pour éviter toute interruption.</p>
-                <p style="text-align:center;margin:28px 0;"><a href="{{PayUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Renouveler</a></p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
-        </p>
-            </div>
-          </div>
-        </div>
-        <!-- tutorsphere-seed:2 -->
-""",
-            TextBody: "Renouvellement : {{CourseTitle}} pour {{StudentName}} se termine le {{EndDate}}. Payer : {{PayUrl}}",
-            Language: "fr",
-            SeedRevision: 2),
-
-        new(
-            TemplateCode: "PARENT_SUBSCRIPTION_RENEWAL",
-            Name: "TutorSphere — Subscription renewal",
-            SubjectTemplate: "Renewal: {{CourseTitle}} ends on {{EndDate}} — TutorSphere",
-            HtmlBody: """
-<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
-          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
-            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
-          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
-        </div>
-            <div style="padding:32px 32px 24px;">
-              <h2 style="color:#5831E0;margin:0 0 12px;">Renewal coming up</h2>
-                <p>Hello {{ParentName}},</p>
-                <p>The subscription <strong>{{CourseTitle}}</strong> for <strong>{{StudentName}}</strong> ends on <strong>{{EndDate}}</strong>.</p>
-                <p>Renew now (card, PayPal or Mobile Money) to avoid any interruption.</p>
-                <p style="text-align:center;margin:28px 0;"><a href="{{PayUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Renew</a></p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          This email was sent by TutorSphere. Please do not reply directly.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
-        </p>
-            </div>
-          </div>
-        </div>
-        <!-- tutorsphere-seed:2 -->
-""",
-            TextBody: "Renewal: {{CourseTitle}} for {{StudentName}} ends on {{EndDate}}. Pay: {{PayUrl}}",
-            Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -711,11 +653,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Rappel : paiement en retard pour {{StudentName}} — {{CourseTitle}}. Payer : {{PayUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -740,11 +682,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Demande d'inscription de {{StudentName}} au cours {{CourseTitle}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -769,11 +711,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Inscription de {{StudentName}} à {{CourseTitle}} acceptée. {{StatusNote}} {{ActionUrl}}",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -800,11 +742,111 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Paiement reçu : {{Amount}} pour {{StudentName}} — {{CourseTitle}}.",
             Language: "fr",
-            SeedRevision: 2),
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_PENDING",
+            Name: "TutorSphere — Enseignant en attente (expert)",
+            SubjectTemplate: "Nouvelle demande enseignant à valider — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Demande enseignant à valider</h2>
+                <p>Bonjour {{ExpertFirstName}},</p>
+                <p>Une école a soumis un compte enseignant en attente de validation.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">École</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Pays</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>
+                <p>Connectez-vous pour examiner le dossier et approuver ou refuser la demande.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ReviewUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Examiner la demande</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Bonjour {{ExpertFirstName}}, demande enseignant à valider — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+            Language: "fr",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_INVITE",
+            Name: "TutorSphere — Invitation expert",
+            SubjectTemplate: "Bienvenue {{FirstName}} — accès expert {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Votre accès à l'espace expert</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Vous avez été invité(e) à rejoindre le groupe d'experts <strong>{{GroupName}}</strong> sur TutorSphere. Voici vos identifiants de connexion :</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Groupe d'experts</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">E-mail de connexion</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Mot de passe temporaire</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Pour votre sécurité, <strong>changez ce mot de passe</strong> dès la première connexion à l'espace expert.</p>
+                <p>Cliquez sur le bouton ci-dessous pour ouvrir la page de connexion expert.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Se connecter à l'espace expert</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, invitation expert {{GroupName}}. E-mail : {{Email}}. Mot de passe temporaire : {{TemporaryPassword}}. Changez ce mot de passe à la première connexion. Connexion : {{LoginUrl}}",
+            Language: "fr",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_ADDED_TO_GROUP",
+            Name: "TutorSphere — Ajouté au groupe expert",
+            SubjectTemplate: "{{FirstName}}, vous avez été ajouté(e) à {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Ajouté à un groupe d'experts</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Vous avez été ajouté(e) au groupe d'experts <strong>{{GroupName}}</strong> sur TutorSphere. Utilisez vos identifiants existants pour vous connecter.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Groupe d'experts</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Compte</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Se connecter à l'espace expert</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, vous avez été ajouté(e) au groupe {{GroupName}} (compte {{Email}}). Connexion : {{LoginUrl}}",
+            Language: "fr",
+            SeedRevision: 3),
 
         new(
             TemplateCode: "WELCOME",
@@ -827,11 +869,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Welcome {{FirstName}} to TutorSphere.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -856,11 +898,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirm your email: {{ConfirmationUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -885,11 +927,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Lesson report for {{StudentName}} with {{TutorName}}.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -913,11 +955,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "School {{SchoolName}} registered, awaiting approval.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -942,11 +984,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirm your email: {{ConfirmationUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -971,11 +1013,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Reset your password: {{ResetUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -1000,11 +1042,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere password was changed.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -1029,11 +1071,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere free trial has started.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -1060,11 +1102,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Payment receipt {{Amount}}. Invoice: {{InvoiceUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -1089,11 +1131,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Your TutorSphere subscription renews on {{RenewalDate}}.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -1118,11 +1160,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere payment failed. Please update your details.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -1147,11 +1189,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere subscription was cancelled.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -1175,11 +1217,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere account was activated.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -1204,11 +1246,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{FirstName}}, your account was deactivated. Reason: {{Reason}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -1233,11 +1275,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{FirstName}}, your school {{SchoolName}} is approved. Sign in: {{LoginUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -1266,11 +1308,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Lesson scheduled — {{Subject}} with {{TutorName}} on {{LessonDate}}.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -1299,11 +1341,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Reminder: {{Subject}} lesson with {{TutorName}} on {{LessonDate}}.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -1332,11 +1374,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Lesson cancelled — {{Subject}} with {{TutorName}} scheduled for {{LessonDate}}.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -1364,11 +1406,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Payment receipt for {{StudentName}} — {{Amount}}. Invoice: {{InvoiceUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -1393,11 +1435,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{ParentName}}, your TutorSphere payment failed. Please update your details.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -1421,11 +1463,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hi {{ParentName}}, your TutorSphere invoice is ready: {{InvoiceUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -1450,11 +1492,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Reminder: overdue payment for {{StudentName}} — {{CourseTitle}}. Pay: {{PayUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -1479,11 +1521,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Enrollment request from {{StudentName}} for {{CourseTitle}}.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -1508,11 +1550,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Enrollment of {{StudentName}} in {{CourseTitle}} accepted. {{StatusNote}} {{ActionUrl}}",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -1539,11 +1581,111 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Payment received: {{Amount}} for {{StudentName}} — {{CourseTitle}}.",
             Language: "en",
-            SeedRevision: 2),
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_PENDING",
+            Name: "TutorSphere — Teacher pending (expert)",
+            SubjectTemplate: "New teacher application to review — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Teacher application to review</h2>
+                <p>Hello {{ExpertFirstName}},</p>
+                <p>A school has submitted a teacher account pending validation.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">School</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Country</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>
+                <p>Sign in to review the file and approve or decline the application.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ReviewUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Review application</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hello {{ExpertFirstName}}, teacher application to review — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+            Language: "en",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_INVITE",
+            Name: "TutorSphere — Expert invitation",
+            SubjectTemplate: "Welcome {{FirstName}} — expert access {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Your expert space access</h2>
+                <p>Hello {{FirstName}},</p>
+                <p>You have been invited to join the expert group <strong>{{GroupName}}</strong> on TutorSphere. Here are your sign-in credentials:</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Expert group</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Sign-in email</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Temporary password</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">For your security, <strong>change this password</strong> as soon as you first sign in to the expert space.</p>
+                <p>Click the button below to open the expert sign-in page.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Sign in to expert space</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hello {{FirstName}}, expert invite {{GroupName}}. Email: {{Email}}. Temporary password: {{TemporaryPassword}}. Change this password on first login. Login: {{LoginUrl}}",
+            Language: "en",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_ADDED_TO_GROUP",
+            Name: "TutorSphere — Added to expert group",
+            SubjectTemplate: "{{FirstName}}, you were added to {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Added to an expert group</h2>
+                <p>Hello {{FirstName}},</p>
+                <p>You have been added to the expert group <strong>{{GroupName}}</strong> on TutorSphere. Use your existing credentials to sign in.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Expert group</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Account</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Sign in to expert space</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hello {{FirstName}}, you were added to group {{GroupName}} (account {{Email}}). Login: {{LoginUrl}}",
+            Language: "en",
+            SeedRevision: 3),
 
         new(
             TemplateCode: "WELCOME",
@@ -1566,11 +1708,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bienvenido/a {{FirstName}} a TutorSphere.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -1595,11 +1737,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirme su correo: {{ConfirmationUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -1624,11 +1766,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Informe de clase de {{StudentName}} con {{TutorName}}.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -1652,11 +1794,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Escuela {{SchoolName}} registrada, pendiente de aprobación.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -1681,11 +1823,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirme su correo: {{ConfirmationUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -1710,11 +1852,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Restablezca su contraseña: {{ResetUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -1739,11 +1881,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{FirstName}}, su contraseña de TutorSphere fue cambiada.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -1768,11 +1910,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{FirstName}}, su prueba gratuita de TutorSphere ha comenzado.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -1799,11 +1941,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Recibo de pago {{Amount}}. Factura: {{InvoiceUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -1828,11 +1970,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Su suscripción a TutorSphere se renueva el {{RenewalDate}}.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -1857,11 +1999,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{FirstName}}, falló su pago de TutorSphere. Actualice sus datos.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -1886,11 +2028,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{FirstName}}, su suscripción a TutorSphere fue cancelada.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -1914,11 +2056,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{FirstName}}, su cuenta de TutorSphere fue activada.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -1943,11 +2085,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{FirstName}}, su cuenta fue desactivada. Motivo: {{Reason}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -1972,11 +2114,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{FirstName}}, su escuela {{SchoolName}} está aprobada. Acceso: {{LoginUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -2005,11 +2147,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Clase programada — {{Subject}} con {{TutorName}} el {{LessonDate}}.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -2038,11 +2180,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Recordatorio: clase de {{Subject}} con {{TutorName}} el {{LessonDate}}.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -2071,11 +2213,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Clase cancelada — {{Subject}} con {{TutorName}} prevista el {{LessonDate}}.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -2103,11 +2245,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Recibo de pago de {{StudentName}} — {{Amount}}. Factura: {{InvoiceUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -2132,11 +2274,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{ParentName}}, falló su pago de TutorSphere. Actualice sus datos.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -2160,11 +2302,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hola {{ParentName}}, su factura de TutorSphere está disponible: {{InvoiceUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -2189,11 +2331,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Recordatorio: pago atrasado de {{StudentName}} — {{CourseTitle}}. Pagar: {{PayUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -2218,11 +2360,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Solicitud de inscripción de {{StudentName}} al curso {{CourseTitle}}.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -2247,11 +2389,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Inscripción de {{StudentName}} en {{CourseTitle}} aceptada. {{StatusNote}} {{ActionUrl}}",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -2278,11 +2420,111 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Pago recibido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.",
             Language: "es",
-            SeedRevision: 2),
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_PENDING",
+            Name: "TutorSphere — Profesor pendiente (experto)",
+            SubjectTemplate: "Nueva solicitud de profesor por revisar — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Solicitud de profesor por revisar</h2>
+                <p>Hola {{ExpertFirstName}},</p>
+                <p>Una escuela ha enviado una cuenta de profesor pendiente de validación.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Escuela</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">País</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>
+                <p>Inicie sesión para revisar el expediente y aprobar o rechazar la solicitud.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ReviewUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Revisar solicitud</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hola {{ExpertFirstName}}, solicitud de profesor por revisar — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+            Language: "es",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_INVITE",
+            Name: "TutorSphere — Invitación experto",
+            SubjectTemplate: "Bienvenido/a {{FirstName}} — acceso experto {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Su acceso al espacio experto</h2>
+                <p>Hola {{FirstName}},</p>
+                <p>Ha sido invitado/a a unirse al grupo de expertos <strong>{{GroupName}}</strong> en TutorSphere. Estas son sus credenciales de acceso:</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Grupo de expertos</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Correo de acceso</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Contraseña temporal</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Por su seguridad, <strong>cambie esta contraseña</strong> en el primer acceso al espacio experto.</p>
+                <p>Haga clic en el botón de abajo para abrir la página de inicio de sesión de experto.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Iniciar sesión en el espacio experto</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hola {{FirstName}}, invitación experto {{GroupName}}. Correo: {{Email}}. Contraseña temporal: {{TemporaryPassword}}. Cambie esta contraseña en el primer acceso. Acceso: {{LoginUrl}}",
+            Language: "es",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_ADDED_TO_GROUP",
+            Name: "TutorSphere — Añadido al grupo experto",
+            SubjectTemplate: "{{FirstName}}, ha sido añadido/a a {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Añadido a un grupo de expertos</h2>
+                <p>Hola {{FirstName}},</p>
+                <p>Ha sido añadido/a al grupo de expertos <strong>{{GroupName}}</strong> en TutorSphere. Use sus credenciales existentes para iniciar sesión.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Grupo de expertos</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Cuenta</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Iniciar sesión en el espacio experto</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hola {{FirstName}}, ha sido añadido/a al grupo {{GroupName}} (cuenta {{Email}}). Acceso: {{LoginUrl}}",
+            Language: "es",
+            SeedRevision: 3),
 
         new(
             TemplateCode: "WELCOME",
@@ -2305,11 +2547,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Willkommen {{FirstName}} bei TutorSphere.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -2334,11 +2576,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bestätigen Sie Ihre E-Mail: {{ConfirmationUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -2363,11 +2605,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Unterrichtsbericht für {{StudentName}} mit {{TutorName}}.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -2391,11 +2633,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Schule {{SchoolName}} registriert, Freigabe ausstehend.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -2420,11 +2662,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bestätigen Sie Ihre E-Mail: {{ConfirmationUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -2449,11 +2691,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Passwort zurücksetzen: {{ResetUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -2478,11 +2720,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr TutorSphere-Passwort wurde geändert.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -2507,11 +2749,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihre TutorSphere-Testversion hat begonnen.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -2538,11 +2780,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Zahlungsbeleg {{Amount}}. Rechnung: {{InvoiceUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -2567,11 +2809,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Ihr TutorSphere-Abonnement wird am {{RenewalDate}} verlängert.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -2596,11 +2838,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -2625,11 +2867,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr TutorSphere-Abonnement wurde gekündigt.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -2653,11 +2895,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr TutorSphere-Konto wurde aktiviert.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -2682,11 +2924,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr Konto wurde deaktiviert. Grund: {{Reason}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -2711,11 +2953,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihre Schule {{SchoolName}} ist genehmigt. Anmeldung: {{LoginUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -2744,11 +2986,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Unterricht geplant — {{Subject}} mit {{TutorName}} am {{LessonDate}}.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -2777,11 +3019,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Erinnerung: {{Subject}}-Unterricht mit {{TutorName}} am {{LessonDate}}.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -2810,11 +3052,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Unterricht abgesagt — {{Subject}} mit {{TutorName}} geplant am {{LessonDate}}.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -2842,11 +3084,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Zahlungsbeleg für {{StudentName}} — {{Amount}}. Rechnung: {{InvoiceUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -2871,11 +3113,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{ParentName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -2899,11 +3141,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Hallo {{ParentName}}, Ihre TutorSphere-Rechnung ist verfügbar: {{InvoiceUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -2928,11 +3170,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Erinnerung: überfällige Zahlung für {{StudentName}} — {{CourseTitle}}. Zahlen: {{PayUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -2957,11 +3199,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Anmeldungsanfrage von {{StudentName}} für {{CourseTitle}}.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -2986,11 +3228,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Anmeldung von {{StudentName}} für {{CourseTitle}} angenommen. {{StatusNote}} {{ActionUrl}}",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -3017,11 +3259,111 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Zahlung eingegangen: {{Amount}} für {{StudentName}} — {{CourseTitle}}.",
             Language: "de",
-            SeedRevision: 2),
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_PENDING",
+            Name: "TutorSphere — Lehrer ausstehend (Experte)",
+            SubjectTemplate: "Neuer Lehrerantrag zur Prüfung — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Lehrerantrag zur Prüfung</h2>
+                <p>Hallo {{ExpertFirstName}},</p>
+                <p>Eine Schule hat ein Lehrerkonto zur Validierung eingereicht.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Schule</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Land</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>
+                <p>Melden Sie sich an, um die Unterlagen zu prüfen und den Antrag anzunehmen oder abzulehnen.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ReviewUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Antrag prüfen</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hallo {{ExpertFirstName}}, Lehrerantrag zur Prüfung — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+            Language: "de",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_INVITE",
+            Name: "TutorSphere — Experten-Einladung",
+            SubjectTemplate: "Willkommen {{FirstName}} — Expertenzugang {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Ihr Zugang zum Expertenbereich</h2>
+                <p>Hallo {{FirstName}},</p>
+                <p>Sie wurden eingeladen, der Expertengruppe <strong>{{GroupName}}</strong> auf TutorSphere beizutreten. Hier sind Ihre Anmeldedaten:</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Expertengruppe</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Anmelde-E-Mail</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Temporäres Passwort</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Aus Sicherheitsgründen <strong>ändern Sie dieses Passwort</strong> bei der ersten Anmeldung im Expertenbereich.</p>
+                <p>Klicken Sie auf die Schaltfläche unten, um die Experten-Anmeldeseite zu öffnen.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Zum Expertenbereich anmelden</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hallo {{FirstName}}, Experten-Einladung {{GroupName}}. E-Mail: {{Email}}. Temporäres Passwort: {{TemporaryPassword}}. Ändern Sie dieses Passwort bei der ersten Anmeldung. Anmeldung: {{LoginUrl}}",
+            Language: "de",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_ADDED_TO_GROUP",
+            Name: "TutorSphere — Zur Expertengruppe hinzugefügt",
+            SubjectTemplate: "{{FirstName}}, Sie wurden zu {{GroupName}} hinzugefügt",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Zu einer Expertengruppe hinzugefügt</h2>
+                <p>Hallo {{FirstName}},</p>
+                <p>Sie wurden der Expertengruppe <strong>{{GroupName}}</strong> auf TutorSphere hinzugefügt. Melden Sie sich mit Ihren bestehenden Zugangsdaten an.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Expertengruppe</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Konto</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Zum Expertenbereich anmelden</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Hallo {{FirstName}}, Sie wurden der Gruppe {{GroupName}} hinzugefügt (Konto {{Email}}). Anmeldung: {{LoginUrl}}",
+            Language: "de",
+            SeedRevision: 3),
 
         new(
             TemplateCode: "WELCOME",
@@ -3044,11 +3386,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Bem-vindo(a) {{FirstName}} ao TutorSphere.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -3073,11 +3415,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirme o seu e-mail: {{ConfirmationUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -3102,11 +3444,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Relatório de aula de {{StudentName}} com {{TutorName}}.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -3130,11 +3472,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Escola {{SchoolName}} registada, aguarda aprovação.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -3159,11 +3501,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Confirme o seu e-mail: {{ConfirmationUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -3188,11 +3530,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Redefina a sua palavra-passe: {{ResetUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -3217,11 +3559,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua palavra-passe TutorSphere foi alterada.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -3246,11 +3588,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua avaliação gratuita TutorSphere começou.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -3277,11 +3619,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Recibo de pagamento {{Amount}}. Fatura: {{InvoiceUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -3306,11 +3648,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "A sua subscrição TutorSphere renova em {{RenewalDate}}.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -3335,11 +3677,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{FirstName}}, o pagamento TutorSphere falhou. Atualize os seus dados.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -3364,11 +3706,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua subscrição TutorSphere foi cancelada.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -3392,11 +3734,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua conta TutorSphere foi ativada.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -3421,11 +3763,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua conta foi desativada. Motivo: {{Reason}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -3450,11 +3792,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua escola {{SchoolName}} foi aprovada. Acesso: {{LoginUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -3483,11 +3825,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Aula agendada — {{Subject}} com {{TutorName}} em {{LessonDate}}.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -3516,11 +3858,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Lembrete: aula de {{Subject}} com {{TutorName}} em {{LessonDate}}.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -3549,11 +3891,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Aula cancelada — {{Subject}} com {{TutorName}} prevista para {{LessonDate}}.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -3581,11 +3923,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Recibo de pagamento de {{StudentName}} — {{Amount}}. Fatura: {{InvoiceUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -3610,11 +3952,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{ParentName}}, o pagamento TutorSphere falhou. Atualize os seus dados.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -3638,11 +3980,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Olá {{ParentName}}, a sua fatura TutorSphere está disponível: {{InvoiceUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -3667,11 +4009,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Lembrete: pagamento em atraso de {{StudentName}} — {{CourseTitle}}. Pagar: {{PayUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -3696,11 +4038,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Pedido de inscrição de {{StudentName}} no curso {{CourseTitle}}.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -3725,11 +4067,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Inscrição de {{StudentName}} em {{CourseTitle}} aceite. {{StatusNote}} {{ActionUrl}}",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -3756,11 +4098,111 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "Pagamento recebido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.",
             Language: "pt",
-            SeedRevision: 2),
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_PENDING",
+            Name: "TutorSphere — Professor pendente (especialista)",
+            SubjectTemplate: "Novo pedido de professor para rever — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Pedido de professor para rever</h2>
+                <p>Olá {{ExpertFirstName}},</p>
+                <p>Uma escola submeteu uma conta de professor pendente de validação.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Escola</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">País</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>
+                <p>Inicie sessão para rever o processo e aprovar ou recusar o pedido.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ReviewUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Rever pedido</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Olá {{ExpertFirstName}}, pedido de professor para rever — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+            Language: "pt",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_INVITE",
+            Name: "TutorSphere — Convite especialista",
+            SubjectTemplate: "Bem-vindo(a) {{FirstName}} — acesso especialista {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">O seu acesso ao espaço de especialista</h2>
+                <p>Olá {{FirstName}},</p>
+                <p>Foi convidado(a) a juntar-se ao grupo de especialistas <strong>{{GroupName}}</strong> no TutorSphere. Eis as suas credenciais de acesso:</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Grupo de especialistas</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">E-mail de acesso</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Palavra-passe temporária</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Por segurança, <strong>altere esta palavra-passe</strong> no primeiro acesso ao espaço de especialista.</p>
+                <p>Clique no botão abaixo para abrir a página de início de sessão de especialista.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Iniciar sessão no espaço de especialista</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Olá {{FirstName}}, convite especialista {{GroupName}}. E-mail: {{Email}}. Palavra-passe temporária: {{TemporaryPassword}}. Altere esta palavra-passe no primeiro acesso. Acesso: {{LoginUrl}}",
+            Language: "pt",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_ADDED_TO_GROUP",
+            Name: "TutorSphere — Adicionado ao grupo de especialistas",
+            SubjectTemplate: "{{FirstName}}, foi adicionado(a) a {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Adicionado a um grupo de especialistas</h2>
+                <p>Olá {{FirstName}},</p>
+                <p>Foi adicionado(a) ao grupo de especialistas <strong>{{GroupName}}</strong> no TutorSphere. Utilize as suas credenciais existentes para iniciar sessão.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Grupo de especialistas</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Conta</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Iniciar sessão no espaço de especialista</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "Olá {{FirstName}}, foi adicionado(a) ao grupo {{GroupName}} (conta {{Email}}). Acesso: {{LoginUrl}}",
+            Language: "pt",
+            SeedRevision: 3),
 
         new(
             TemplateCode: "WELCOME",
@@ -3783,11 +4225,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "欢迎 {{FirstName}} 加入 TutorSphere。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -3812,11 +4254,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "确认您的电子邮件：{{ConfirmationUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -3841,11 +4283,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{StudentName}} 与 {{TutorName}} 的课程报告。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -3869,11 +4311,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "学校 {{SchoolName}} 已登记，等待审核。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -3898,11 +4340,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "确认您的电子邮件：{{ConfirmationUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -3927,11 +4369,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "重置密码：{{ResetUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -3956,11 +4398,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 密码已更改。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -3985,11 +4427,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 免费试用已开始。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -4016,11 +4458,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "付款收据 {{Amount}}。发票：{{InvoiceUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -4045,11 +4487,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "您的 TutorSphere 订阅将于 {{RenewalDate}} 续订。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -4074,11 +4516,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 付款失败。请更新信息。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -4103,11 +4545,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 订阅已取消。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -4131,11 +4573,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 帐户已激活。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -4160,11 +4602,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{FirstName}}，您好，您的帐户已停用。原因：{{Reason}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -4189,11 +4631,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{FirstName}}，您好，您的学校 {{SchoolName}} 已获批准。登录：{{LoginUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -4222,11 +4664,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "课程已安排 — {{Subject}}，导师 {{TutorName}}，时间 {{LessonDate}}。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -4255,11 +4697,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "提醒：{{Subject}} 课程，导师 {{TutorName}}，时间 {{LessonDate}}。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -4288,11 +4730,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "课程已取消 — {{Subject}}，导师 {{TutorName}}，原定 {{LessonDate}}。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -4320,11 +4762,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{StudentName}} 的付款收据 — {{Amount}}。发票：{{InvoiceUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -4349,11 +4791,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{ParentName}}，您好，您的 TutorSphere 付款失败。请更新信息。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -4377,11 +4819,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{ParentName}}，您好，您的 TutorSphere 发票已就绪：{{InvoiceUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -4406,11 +4848,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "提醒：{{StudentName}} — {{CourseTitle}} 逾期付款。付款：{{PayUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -4435,11 +4877,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{StudentName}} 报名课程 {{CourseTitle}} 的请求。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -4464,11 +4906,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "{{StudentName}} 报名 {{CourseTitle}} 已接受。{{StatusNote}} {{ActionUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -4495,11 +4937,111 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "已收到付款：{{Amount}}，{{StudentName}} — {{CourseTitle}}。",
             Language: "zh-Hans",
-            SeedRevision: 2),
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_PENDING",
+            Name: "TutorSphere — 待审教师（专家）",
+            SubjectTemplate: "待审教师申请 — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">待审教师申请</h2>
+                <p>{{ExpertFirstName}}，您好，</p>
+                <p>一所学校已提交待审教师帐户。</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">学校</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">国家</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>
+                <p>请登录以审核材料并批准或拒绝该申请。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ReviewUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">审核申请</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "{{ExpertFirstName}}，您好，待审教师申请 — {{SchoolName}}（{{Country}}）。{{ReviewUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_INVITE",
+            Name: "TutorSphere — 专家邀请",
+            SubjectTemplate: "欢迎 {{FirstName}} — 专家访问 {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">您的专家空间访问权限</h2>
+                <p>{{FirstName}}，您好，</p>
+                <p>您已受邀加入 TutorSphere 专家组 <strong>{{GroupName}}</strong>。以下是您的登录凭据：</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">专家组</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">登录电子邮件</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">临时密码</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">为安全起见，请在首次登录专家空间时<strong>更改此密码</strong>。</p>
+                <p>点击下方按钮打开专家登录页。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">登录专家空间</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "{{FirstName}}，您好，专家邀请 {{GroupName}}。电子邮件：{{Email}}。临时密码：{{TemporaryPassword}}。请在首次登录时更改密码。登录：{{LoginUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_ADDED_TO_GROUP",
+            Name: "TutorSphere — 已加入专家组",
+            SubjectTemplate: "{{FirstName}}，您已加入 {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">已加入专家组</h2>
+                <p>{{FirstName}}，您好，</p>
+                <p>您已加入 TutorSphere 专家组 <strong>{{GroupName}}</strong>。请使用现有凭据登录。</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">专家组</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">帐户</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">登录专家空间</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "{{FirstName}}，您好，您已加入小组 {{GroupName}}（帐户 {{Email}}）。登录：{{LoginUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 3),
 
         new(
             TemplateCode: "WELCOME",
@@ -4522,11 +5064,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}} في TutorSphere.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -4551,11 +5093,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "أكد بريدك: {{ConfirmationUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -4580,11 +5122,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "تقرير الحصة لـ {{StudentName}} مع {{TutorName}}.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -4608,11 +5150,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "تم تسجيل المدرسة {{SchoolName}} وبانتظار الموافقة.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -4637,11 +5179,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "أكد بريدك: {{ConfirmationUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -4666,11 +5208,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "أعد تعيين كلمة المرور: {{ResetUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -4695,11 +5237,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم تغيير كلمة مرور TutorSphere.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -4724,11 +5266,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، بدأت فترتك التجريبية في TutorSphere.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -4755,11 +5297,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "إيصال دفع {{Amount}}. الفاتورة: {{InvoiceUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -4784,11 +5326,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "سيُجدَّد اشتراكك في TutorSphere في {{RenewalDate}}.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -4813,11 +5355,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، فشل دفع TutorSphere. حدّث بياناتك.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -4842,11 +5384,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم إلغاء اشتراكك في TutorSphere.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -4870,11 +5412,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم تفعيل حسابك في TutorSphere.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -4899,11 +5441,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم تعطيل حسابك. السبب: {{Reason}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -4928,11 +5470,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تمت الموافقة على مدرستك {{SchoolName}}. الدخول: {{LoginUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -4961,11 +5503,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "حصة مجدولة — {{Subject}} مع {{TutorName}} في {{LessonDate}}.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -4994,11 +5536,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "تذكير: حصة {{Subject}} مع {{TutorName}} في {{LessonDate}}.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -5027,11 +5569,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "تم إلغاء الحصة — {{Subject}} مع {{TutorName}} المقررة في {{LessonDate}}.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -5059,11 +5601,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "إيصال دفع لـ {{StudentName}} — {{Amount}}. الفاتورة: {{InvoiceUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -5088,11 +5630,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{ParentName}}، فشل دفع TutorSphere. حدّث بياناتك.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -5116,11 +5658,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "مرحبًا {{ParentName}}، فاتورة TutorSphere جاهزة: {{InvoiceUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -5145,11 +5687,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "تذكير: دفعة متأخرة لـ {{StudentName}} — {{CourseTitle}}. ادفع: {{PayUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -5174,11 +5716,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "طلب تسجيل من {{StudentName}} في دورة {{CourseTitle}}.",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -5203,11 +5745,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "تم قبول تسجيل {{StudentName}} في {{CourseTitle}}. {{StatusNote}} {{ActionUrl}}",
             Language: "ar",
-            SeedRevision: 2),
+            SeedRevision: 3),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -5234,10 +5776,110 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:2 -->
+        <!-- tutorsphere-seed:3 -->
 """,
             TextBody: "تم استلام الدفع: {{Amount}} لـ {{StudentName}} — {{CourseTitle}}.",
             Language: "ar",
-            SeedRevision: 2)
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_PENDING",
+            Name: "TutorSphere — معلم قيد الانتظار (خبير)",
+            SubjectTemplate: "طلب معلم جديد للمراجعة — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">طلب معلم للمراجعة</h2>
+                <p>مرحبًا {{ExpertFirstName}}،</p>
+                <p>قدّمت مدرسة حساب معلم بانتظار التحقق.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">المدرسة</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">البلد</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>
+                <p>سجّل الدخول لمراجعة الملف والموافقة على الطلب أو رفضه.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ReviewUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">مراجعة الطلب</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "مرحبًا {{ExpertFirstName}}، طلب معلم للمراجعة — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+            Language: "ar",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_INVITE",
+            Name: "TutorSphere — دعوة خبير",
+            SubjectTemplate: "مرحبًا {{FirstName}} — وصول خبير {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">وصولك إلى مساحة الخبير</h2>
+                <p>مرحبًا {{FirstName}}،</p>
+                <p>تمت دعوتك للانضمام إلى مجموعة الخبراء <strong>{{GroupName}}</strong> على TutorSphere. إليك بيانات تسجيل الدخول:</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">مجموعة الخبراء</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">بريد الدخول</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">كلمة المرور المؤقتة</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">لأمانك، <strong>غيّر كلمة المرور هذه</strong> عند أول دخول إلى مساحة الخبير.</p>
+                <p>انقر الزر أدناه لفتح صفحة تسجيل دخول الخبير.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">تسجيل الدخول إلى مساحة الخبير</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "مرحبًا {{FirstName}}، دعوة خبير {{GroupName}}. البريد: {{Email}}. كلمة المرور المؤقتة: {{TemporaryPassword}}. غيّر كلمة المرور عند أول دخول. الدخول: {{LoginUrl}}",
+            Language: "ar",
+            SeedRevision: 3),
+
+        new(
+            TemplateCode: "EXPERT_ADDED_TO_GROUP",
+            Name: "TutorSphere — أُضيفت إلى مجموعة الخبراء",
+            SubjectTemplate: "{{FirstName}}، تمت إضافتك إلى {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">أُضيفت إلى مجموعة خبراء</h2>
+                <p>مرحبًا {{FirstName}}،</p>
+                <p>تمت إضافتك إلى مجموعة الخبراء <strong>{{GroupName}}</strong> على TutorSphere. استخدم بيانات اعتمادك الحالية لتسجيل الدخول.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">مجموعة الخبراء</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">الحساب</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">تسجيل الدخول إلى مساحة الخبير</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:3 -->
+""",
+            TextBody: "مرحبًا {{FirstName}}، تمت إضافتك إلى المجموعة {{GroupName}} (الحساب {{Email}}). الدخول: {{LoginUrl}}",
+            Language: "ar",
+            SeedRevision: 3)
     ];
 }

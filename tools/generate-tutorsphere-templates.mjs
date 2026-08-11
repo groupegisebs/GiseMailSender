@@ -6,7 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereTemplates.cs");
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
-const REV = 2;
+/** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
+const REV = 3;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -662,6 +663,127 @@ const templates = [
     btn: L("Voir mon espace", "View my space", "Ver mi espacio", "Meinen Bereich öffnen", "Ver o meu espaço", "查看我的空间", "عرض مساحتي"),
     btnUrl: "https://app.tutorsphere.gisebs.com/login",
     text: L("Paiement reçu : {{Amount}} pour {{StudentName}} — {{CourseTitle}}.", "Payment received: {{Amount}} for {{StudentName}} — {{CourseTitle}}.", "Pago recibido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.", "Zahlung eingegangen: {{Amount}} für {{StudentName}} — {{CourseTitle}}.", "Pagamento recebido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.", "已收到付款：{{Amount}}，{{StudentName}} — {{CourseTitle}}。", "تم استلام الدفع: {{Amount}} لـ {{StudentName}} — {{CourseTitle}}.")
+  },
+  {
+    code: "EXPERT_TEACHER_PENDING",
+    name: L("TutorSphere — Enseignant en attente (expert)", "TutorSphere — Teacher pending (expert)", "TutorSphere — Profesor pendiente (experto)", "TutorSphere — Lehrer ausstehend (Experte)", "TutorSphere — Professor pendente (especialista)", "TutorSphere — 待审教师（专家）", "TutorSphere — معلم قيد الانتظار (خبير)"),
+    subject: L("Nouvelle demande enseignant à valider — {{SchoolName}}", "New teacher application to review — {{SchoolName}}", "Nueva solicitud de profesor por revisar — {{SchoolName}}", "Neuer Lehrerantrag zur Prüfung — {{SchoolName}}", "Novo pedido de professor para rever — {{SchoolName}}", "待审教师申请 — {{SchoolName}}", "طلب معلم جديد للمراجعة — {{SchoolName}}"),
+    title: L("Demande enseignant à valider", "Teacher application to review", "Solicitud de profesor por revisar", "Lehrerantrag zur Prüfung", "Pedido de professor para rever", "待审教师申请", "طلب معلم للمراجعة"),
+    helloExpert: true,
+    body: L(
+      "Une école a soumis un compte enseignant en attente de validation.",
+      "A school has submitted a teacher account pending validation.",
+      "Una escuela ha enviado una cuenta de profesor pendiente de validación.",
+      "Eine Schule hat ein Lehrerkonto zur Validierung eingereicht.",
+      "Uma escola submeteu uma conta de professor pendente de validação.",
+      "一所学校已提交待审教师帐户。",
+      "قدّمت مدرسة حساب معلم بانتظار التحقق."
+    ),
+    expertLabels: {
+      school: L("École", "School", "Escuela", "Schule", "Escola", "学校", "المدرسة"),
+      country: L("Pays", "Country", "País", "Land", "País", "国家", "البلد")
+    },
+    body2: L(
+      "Connectez-vous pour examiner le dossier et approuver ou refuser la demande.",
+      "Sign in to review the file and approve or decline the application.",
+      "Inicie sesión para revisar el expediente y aprobar o rechazar la solicitud.",
+      "Melden Sie sich an, um die Unterlagen zu prüfen und den Antrag anzunehmen oder abzulehnen.",
+      "Inicie sessão para rever o processo e aprovar ou recusar o pedido.",
+      "请登录以审核材料并批准或拒绝该申请。",
+      "سجّل الدخول لمراجعة الملف والموافقة على الطلب أو رفضه."
+    ),
+    btn: L("Examiner la demande", "Review application", "Revisar solicitud", "Antrag prüfen", "Rever pedido", "审核申请", "مراجعة الطلب"),
+    btnUrl: "{{ReviewUrl}}",
+    text: L(
+      "Bonjour {{ExpertFirstName}}, demande enseignant à valider — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+      "Hello {{ExpertFirstName}}, teacher application to review — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+      "Hola {{ExpertFirstName}}, solicitud de profesor por revisar — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+      "Hallo {{ExpertFirstName}}, Lehrerantrag zur Prüfung — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+      "Olá {{ExpertFirstName}}, pedido de professor para rever — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
+      "{{ExpertFirstName}}，您好，待审教师申请 — {{SchoolName}}（{{Country}}）。{{ReviewUrl}}",
+      "مرحبًا {{ExpertFirstName}}، طلب معلم للمراجعة — {{SchoolName}} ({{Country}}). {{ReviewUrl}}"
+    )
+  },
+  {
+    code: "EXPERT_INVITE",
+    name: L("TutorSphere — Invitation expert", "TutorSphere — Expert invitation", "TutorSphere — Invitación experto", "TutorSphere — Experten-Einladung", "TutorSphere — Convite especialista", "TutorSphere — 专家邀请", "TutorSphere — دعوة خبير"),
+    subject: L("Bienvenue {{FirstName}} — accès expert {{GroupName}}", "Welcome {{FirstName}} — expert access {{GroupName}}", "Bienvenido/a {{FirstName}} — acceso experto {{GroupName}}", "Willkommen {{FirstName}} — Expertenzugang {{GroupName}}", "Bem-vindo(a) {{FirstName}} — acesso especialista {{GroupName}}", "欢迎 {{FirstName}} — 专家访问 {{GroupName}}", "مرحبًا {{FirstName}} — وصول خبير {{GroupName}}"),
+    title: L("Votre accès à l'espace expert", "Your expert space access", "Su acceso al espacio experto", "Ihr Zugang zum Expertenbereich", "O seu acesso ao espaço de especialista", "您的专家空间访问权限", "وصولك إلى مساحة الخبير"),
+    hello: true,
+    body: L(
+      "Vous avez été invité(e) à rejoindre le groupe d'experts <strong>{{GroupName}}</strong> sur TutorSphere. Voici vos identifiants de connexion :",
+      "You have been invited to join the expert group <strong>{{GroupName}}</strong> on TutorSphere. Here are your sign-in credentials:",
+      "Ha sido invitado/a a unirse al grupo de expertos <strong>{{GroupName}}</strong> en TutorSphere. Estas son sus credenciales de acceso:",
+      "Sie wurden eingeladen, der Expertengruppe <strong>{{GroupName}}</strong> auf TutorSphere beizutreten. Hier sind Ihre Anmeldedaten:",
+      "Foi convidado(a) a juntar-se ao grupo de especialistas <strong>{{GroupName}}</strong> no TutorSphere. Eis as suas credenciais de acesso:",
+      "您已受邀加入 TutorSphere 专家组 <strong>{{GroupName}}</strong>。以下是您的登录凭据：",
+      "تمت دعوتك للانضمام إلى مجموعة الخبراء <strong>{{GroupName}}</strong> على TutorSphere. إليك بيانات تسجيل الدخول:"
+    ),
+    inviteLabels: {
+      email: L("E-mail de connexion", "Sign-in email", "Correo de acceso", "Anmelde-E-Mail", "E-mail de acesso", "登录电子邮件", "بريد الدخول"),
+      password: L("Mot de passe temporaire", "Temporary password", "Contraseña temporal", "Temporäres Passwort", "Palavra-passe temporária", "临时密码", "كلمة المرور المؤقتة"),
+      group: L("Groupe d'experts", "Expert group", "Grupo de expertos", "Expertengruppe", "Grupo de especialistas", "专家组", "مجموعة الخبراء")
+    },
+    note: L(
+      "Pour votre sécurité, <strong>changez ce mot de passe</strong> dès la première connexion à l'espace expert.",
+      "For your security, <strong>change this password</strong> as soon as you first sign in to the expert space.",
+      "Por su seguridad, <strong>cambie esta contraseña</strong> en el primer acceso al espacio experto.",
+      "Aus Sicherheitsgründen <strong>ändern Sie dieses Passwort</strong> bei der ersten Anmeldung im Expertenbereich.",
+      "Por segurança, <strong>altere esta palavra-passe</strong> no primeiro acesso ao espaço de especialista.",
+      "为安全起见，请在首次登录专家空间时<strong>更改此密码</strong>。",
+      "لأمانك، <strong>غيّر كلمة المرور هذه</strong> عند أول دخول إلى مساحة الخبير."
+    ),
+    body2: L(
+      "Cliquez sur le bouton ci-dessous pour ouvrir la page de connexion expert.",
+      "Click the button below to open the expert sign-in page.",
+      "Haga clic en el botón de abajo para abrir la página de inicio de sesión de experto.",
+      "Klicken Sie auf die Schaltfläche unten, um die Experten-Anmeldeseite zu öffnen.",
+      "Clique no botão abaixo para abrir a página de início de sessão de especialista.",
+      "点击下方按钮打开专家登录页。",
+      "انقر الزر أدناه لفتح صفحة تسجيل دخول الخبير."
+    ),
+    btn: L("Se connecter à l'espace expert", "Sign in to expert space", "Iniciar sesión en el espacio experto", "Zum Expertenbereich anmelden", "Iniciar sessão no espaço de especialista", "登录专家空间", "تسجيل الدخول إلى مساحة الخبير"),
+    btnUrl: "{{LoginUrl}}",
+    text: L(
+      "Bonjour {{FirstName}}, invitation expert {{GroupName}}. E-mail : {{Email}}. Mot de passe temporaire : {{TemporaryPassword}}. Changez ce mot de passe à la première connexion. Connexion : {{LoginUrl}}",
+      "Hello {{FirstName}}, expert invite {{GroupName}}. Email: {{Email}}. Temporary password: {{TemporaryPassword}}. Change this password on first login. Login: {{LoginUrl}}",
+      "Hola {{FirstName}}, invitación experto {{GroupName}}. Correo: {{Email}}. Contraseña temporal: {{TemporaryPassword}}. Cambie esta contraseña en el primer acceso. Acceso: {{LoginUrl}}",
+      "Hallo {{FirstName}}, Experten-Einladung {{GroupName}}. E-Mail: {{Email}}. Temporäres Passwort: {{TemporaryPassword}}. Ändern Sie dieses Passwort bei der ersten Anmeldung. Anmeldung: {{LoginUrl}}",
+      "Olá {{FirstName}}, convite especialista {{GroupName}}. E-mail: {{Email}}. Palavra-passe temporária: {{TemporaryPassword}}. Altere esta palavra-passe no primeiro acesso. Acesso: {{LoginUrl}}",
+      "{{FirstName}}，您好，专家邀请 {{GroupName}}。电子邮件：{{Email}}。临时密码：{{TemporaryPassword}}。请在首次登录时更改密码。登录：{{LoginUrl}}",
+      "مرحبًا {{FirstName}}، دعوة خبير {{GroupName}}. البريد: {{Email}}. كلمة المرور المؤقتة: {{TemporaryPassword}}. غيّر كلمة المرور عند أول دخول. الدخول: {{LoginUrl}}"
+    )
+  },
+  {
+    code: "EXPERT_ADDED_TO_GROUP",
+    name: L("TutorSphere — Ajouté au groupe expert", "TutorSphere — Added to expert group", "TutorSphere — Añadido al grupo experto", "TutorSphere — Zur Expertengruppe hinzugefügt", "TutorSphere — Adicionado ao grupo de especialistas", "TutorSphere — 已加入专家组", "TutorSphere — أُضيفت إلى مجموعة الخبراء"),
+    subject: L("{{FirstName}}, vous avez été ajouté(e) à {{GroupName}}", "{{FirstName}}, you were added to {{GroupName}}", "{{FirstName}}, ha sido añadido/a a {{GroupName}}", "{{FirstName}}, Sie wurden zu {{GroupName}} hinzugefügt", "{{FirstName}}, foi adicionado(a) a {{GroupName}}", "{{FirstName}}，您已加入 {{GroupName}}", "{{FirstName}}، تمت إضافتك إلى {{GroupName}}"),
+    title: L("Ajouté à un groupe d'experts", "Added to an expert group", "Añadido a un grupo de expertos", "Zu einer Expertengruppe hinzugefügt", "Adicionado a um grupo de especialistas", "已加入专家组", "أُضيفت إلى مجموعة خبراء"),
+    hello: true,
+    body: L(
+      "Vous avez été ajouté(e) au groupe d'experts <strong>{{GroupName}}</strong> sur TutorSphere. Utilisez vos identifiants existants pour vous connecter.",
+      "You have been added to the expert group <strong>{{GroupName}}</strong> on TutorSphere. Use your existing credentials to sign in.",
+      "Ha sido añadido/a al grupo de expertos <strong>{{GroupName}}</strong> en TutorSphere. Use sus credenciales existentes para iniciar sesión.",
+      "Sie wurden der Expertengruppe <strong>{{GroupName}}</strong> auf TutorSphere hinzugefügt. Melden Sie sich mit Ihren bestehenden Zugangsdaten an.",
+      "Foi adicionado(a) ao grupo de especialistas <strong>{{GroupName}}</strong> no TutorSphere. Utilize as suas credenciais existentes para iniciar sessão.",
+      "您已加入 TutorSphere 专家组 <strong>{{GroupName}}</strong>。请使用现有凭据登录。",
+      "تمت إضافتك إلى مجموعة الخبراء <strong>{{GroupName}}</strong> على TutorSphere. استخدم بيانات اعتمادك الحالية لتسجيل الدخول."
+    ),
+    addedLabels: {
+      email: L("Compte", "Account", "Cuenta", "Konto", "Conta", "帐户", "الحساب"),
+      group: L("Groupe d'experts", "Expert group", "Grupo de expertos", "Expertengruppe", "Grupo de especialistas", "专家组", "مجموعة الخبراء")
+    },
+    btn: L("Se connecter à l'espace expert", "Sign in to expert space", "Iniciar sesión en el espacio experto", "Zum Expertenbereich anmelden", "Iniciar sessão no espaço de especialista", "登录专家空间", "تسجيل الدخول إلى مساحة الخبير"),
+    btnUrl: "{{LoginUrl}}",
+    text: L(
+      "Bonjour {{FirstName}}, vous avez été ajouté(e) au groupe {{GroupName}} (compte {{Email}}). Connexion : {{LoginUrl}}",
+      "Hello {{FirstName}}, you were added to group {{GroupName}} (account {{Email}}). Login: {{LoginUrl}}",
+      "Hola {{FirstName}}, ha sido añadido/a al grupo {{GroupName}} (cuenta {{Email}}). Acceso: {{LoginUrl}}",
+      "Hallo {{FirstName}}, Sie wurden der Gruppe {{GroupName}} hinzugefügt (Konto {{Email}}). Anmeldung: {{LoginUrl}}",
+      "Olá {{FirstName}}, foi adicionado(a) ao grupo {{GroupName}} (conta {{Email}}). Acesso: {{LoginUrl}}",
+      "{{FirstName}}，您好，您已加入小组 {{GroupName}}（帐户 {{Email}}）。登录：{{LoginUrl}}",
+      "مرحبًا {{FirstName}}، تمت إضافتك إلى المجموعة {{GroupName}} (الحساب {{Email}}). الدخول: {{LoginUrl}}"
+    )
   }
 ];
 
@@ -671,6 +793,7 @@ const helloOwner = L("Bonjour {{OwnerFirstName}},", "Hello {{OwnerFirstName}},",
 const helloRecipient = L("Bonjour {{RecipientName}},", "Hello {{RecipientName}},", "Hola {{RecipientName}},", "Hallo {{RecipientName}},", "Olá {{RecipientName}},", "{{RecipientName}}，您好，", "مرحبًا {{RecipientName}}،");
 const helloParentName = L("Bonjour {{ParentName}},", "Hello {{ParentName}},", "Hola {{ParentName}},", "Hallo {{ParentName}},", "Olá {{ParentName}},", "{{ParentName}}，您好，", "مرحبًا {{ParentName}}،");
 const helloTutor = L("Bonjour {{TutorName}},", "Hello {{TutorName}},", "Hola {{TutorName}},", "Hallo {{TutorName}},", "Olá {{TutorName}},", "{{TutorName}}，您好，", "مرحبًا {{TutorName}}،");
+const helloExpert = L("Bonjour {{ExpertFirstName}},", "Hello {{ExpertFirstName}},", "Hola {{ExpertFirstName}},", "Hallo {{ExpertFirstName}},", "Olá {{ExpertFirstName}},", "{{ExpertFirstName}}，您好，", "مرحبًا {{ExpertFirstName}}،");
 
 function esc(s) {
   return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
@@ -695,11 +818,34 @@ function buildHtml(tpl, lang) {
   if (tpl.helloRecipient) parts.push(`<p>${t(helloRecipient, lang)}</p>`);
   if (tpl.helloParentName) parts.push(`<p>${t(helloParentName, lang)}</p>`);
   if (tpl.helloTutor) parts.push(`<p>${t(helloTutor, lang)}</p>`);
+  if (tpl.helloExpert) parts.push(`<p>${t(helloExpert, lang)}</p>`);
   if (tpl.body) parts.push(`<p>${t(tpl.body, lang)}</p>`);
-  if (tpl.body2) parts.push(`<p>${t(tpl.body2, lang)}</p>`);
+  if (tpl.expertLabels) {
+    const bg = tpl.tableBg || "#f5f3ff";
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.expertLabels.school, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.expertLabels.country, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
+                </table>`);
+  }
+  if (tpl.inviteLabels) {
+    const bg = tpl.tableBg || "#f5f3ff";
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.email, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.password, lang)}</td><td style="padding:10px 14px;font-weight:600;font-family:monospace;letter-spacing:0.02em;">{{TemporaryPassword}}</td></tr>
+                </table>`);
+  }
+  if (tpl.addedLabels) {
+    const bg = tpl.tableBg || "#f5f3ff";
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.email, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>`);
+  }
   if (tpl.note) {
     parts.push(`<p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">${t(tpl.note, lang)}</p>`);
   }
+  if (tpl.body2) parts.push(`<p>${t(tpl.body2, lang)}</p>`);
   if (tpl.reasonLabel) {
     parts.push(`<p><strong>${t(tpl.reasonLabel, lang)} :</strong> {{Reason}}</p>`);
   }

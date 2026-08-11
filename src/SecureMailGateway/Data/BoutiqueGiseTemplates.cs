@@ -30,7 +30,8 @@ public sealed record EmailTemplateSeed(
 
 /// <summary>
 /// Templates e-mail pour l'intégration BoutiqueGise / Agentia Market.
-/// Insérés au démarrage s'ils n'existent pas encore (par TemplateCode).
+/// Upsert au démarrage (par TemplateCode + Language) selon SeedRevision ;
+/// les stubs auto-créés (AUTO - …) sont toujours écrasés.
 /// </summary>
 public static class BoutiqueGiseTemplates
 {

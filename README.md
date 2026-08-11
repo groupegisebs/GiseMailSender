@@ -167,6 +167,8 @@ Chaque e-mail reçoit un identifiant lisible `MAIL-2026-000145`, enregistré en 
 
 Chaque **push sur `main`** déploie automatiquement vers `51.79.53.197`.
 
+**Templates TutorSphere :** au démarrage, le seeder upsert les définitions (`SeedRevision` + écrasement des stubs `AUTO - …`). Redéployer / redémarrer SecureMail Gateway pour remplacer un stub en prod ; sinon éditer manuellement dans *Templates*.
+
 Voir **[`deploy/README.md`](deploy/README.md)** et **[`deploy/servers/ubuntu1.md`](deploy/servers/ubuntu1.md)** pour configurer les secrets GitHub.
 
 ```text
