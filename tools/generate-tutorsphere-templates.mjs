@@ -874,6 +874,127 @@ const templates = [
       "{{FirstName}}，您好，您已加入小组 {{GroupName}}（帐户 {{Email}}）。登录：{{LoginUrl}}",
       "مرحبًا {{FirstName}}، تمت إضافتك إلى المجموعة {{GroupName}} (الحساب {{Email}}). الدخول: {{LoginUrl}}"
     )
+  },
+  {
+    code: "EXPERT_TEACHER_APPROVED",
+    name: L("TutorSphere — Enseignant approuvé (expert)", "TutorSphere — Teacher approved (expert)", "TutorSphere — Profesor aprobado (experto)", "TutorSphere — Lehrer genehmigt (Experte)", "TutorSphere — Professor aprovado (especialista)", "TutorSphere — 教师已批准（专家）", "TutorSphere — تمت الموافقة على المعلم (خبير)"),
+    subject: L("Bonne nouvelle : votre profil enseignant est approuvé", "Good news: your teacher profile is approved", "Buenas noticias: su perfil de profesor está aprobado", "Gute Nachricht: Ihr Lehrerprofil wurde genehmigt", "Boa notícia: o seu perfil de professor foi aprovado", "好消息：您的教师资料已获批准", "خبر سار: تمت الموافقة على ملفك كمعلم"),
+    title: L("Profil enseignant approuvé", "Teacher profile approved", "Perfil de profesor aprobado", "Lehrerprofil genehmigt", "Perfil de professor aprovado", "教师资料已批准", "تمت الموافقة على ملف المعلم"),
+    titleColor: "#16a34a",
+    hello: true,
+    body: L(
+      "Votre demande pour <strong>{{SchoolName}}</strong> a été <strong>approuvée</strong> par le groupe d'experts <strong>{{GroupName}}</strong>.",
+      "Your application for <strong>{{SchoolName}}</strong> has been <strong>approved</strong> by the expert group <strong>{{GroupName}}</strong>.",
+      "Su solicitud para <strong>{{SchoolName}}</strong> ha sido <strong>aprobada</strong> por el grupo de expertos <strong>{{GroupName}}</strong>.",
+      "Ihr Antrag für <strong>{{SchoolName}}</strong> wurde von der Expertengruppe <strong>{{GroupName}}</strong> <strong>genehmigt</strong>.",
+      "O seu pedido para <strong>{{SchoolName}}</strong> foi <strong>aprovado</strong> pelo grupo de especialistas <strong>{{GroupName}}</strong>.",
+      "您针对 <strong>{{SchoolName}}</strong> 的申请已由专家组 <strong>{{GroupName}}</strong> <strong>批准</strong>。",
+      "تمت <strong>الموافقة</strong> على طلبك لـ <strong>{{SchoolName}}</strong> من مجموعة الخبراء <strong>{{GroupName}}</strong>."
+    ),
+    decisionLabels: {
+      school: L("École / profil", "School / profile", "Escuela / perfil", "Schule / Profil", "Escola / perfil", "学校 / 资料", "المدرسة / الملف"),
+      group: L("Groupe d'experts", "Expert group", "Grupo de expertos", "Expertengruppe", "Grupo de especialistas", "专家组", "مجموعة الخبراء"),
+      notes: L("Commentaire", "Comment", "Comentario", "Kommentar", "Comentário", "备注", "تعليق")
+    },
+    body2: L(
+      "Vous pouvez vous connecter à votre espace enseignant pour poursuivre votre activité sur TutorSphere.",
+      "You can sign in to your teacher space to continue on TutorSphere.",
+      "Puede iniciar sesión en su espacio de profesor para continuar en TutorSphere.",
+      "Melden Sie sich in Ihrem Lehrerbereich an, um auf TutorSphere fortzufahren.",
+      "Pode iniciar sessão no seu espaço de professor para continuar no TutorSphere.",
+      "您可以登录教师空间继续使用 TutorSphere。",
+      "يمكنك تسجيل الدخول إلى مساحة المعلم لمتابعة نشاطك على TutorSphere."
+    ),
+    btn: L("Accéder à mon espace enseignant", "Go to my teacher space", "Ir a mi espacio de profesor", "Zum Lehrerbereich", "Ir para o meu espaço de professor", "进入我的教师空间", "الانتقال إلى مساحة المعلم"),
+    btnUrl: "{{LoginUrl}}",
+    text: L(
+      "Bonjour {{FirstName}}, votre profil {{SchoolName}} a été approuvé par {{GroupName}}. Commentaire : {{Notes}}. Connexion : {{LoginUrl}}",
+      "Hello {{FirstName}}, your profile {{SchoolName}} was approved by {{GroupName}}. Comment: {{Notes}}. Login: {{LoginUrl}}",
+      "Hola {{FirstName}}, su perfil {{SchoolName}} fue aprobado por {{GroupName}}. Comentario: {{Notes}}. Acceso: {{LoginUrl}}",
+      "Hallo {{FirstName}}, Ihr Profil {{SchoolName}} wurde von {{GroupName}} genehmigt. Kommentar: {{Notes}}. Anmeldung: {{LoginUrl}}",
+      "Olá {{FirstName}}, o seu perfil {{SchoolName}} foi aprovado por {{GroupName}}. Comentário: {{Notes}}. Acesso: {{LoginUrl}}",
+      "{{FirstName}}，您好，您的资料 {{SchoolName}} 已由 {{GroupName}} 批准。备注：{{Notes}}。登录：{{LoginUrl}}",
+      "مرحبًا {{FirstName}}، تمت الموافقة على ملفك {{SchoolName}} من {{GroupName}}. التعليق: {{Notes}}. الدخول: {{LoginUrl}}"
+    )
+  },
+  {
+    code: "EXPERT_TEACHER_REJECTED",
+    name: L("TutorSphere — Enseignant refusé (expert)", "TutorSphere — Teacher rejected (expert)", "TutorSphere — Profesor rechazado (experto)", "TutorSphere — Lehrer abgelehnt (Experte)", "TutorSphere — Professor recusado (especialista)", "TutorSphere — 教师已拒绝（专家）", "TutorSphere — رُفض المعلم (خبير)"),
+    subject: L("Décision sur votre demande enseignant — {{SchoolName}}", "Decision on your teacher application — {{SchoolName}}", "Decisión sobre su solicitud de profesor — {{SchoolName}}", "Entscheidung zu Ihrem Lehrerantrag — {{SchoolName}}", "Decisão sobre o seu pedido de professor — {{SchoolName}}", "关于您教师申请的决定 — {{SchoolName}}", "قرار بشأن طلبك كمعلم — {{SchoolName}}"),
+    title: L("Demande enseignant non approuvée", "Teacher application not approved", "Solicitud de profesor no aprobada", "Lehrerantrag nicht genehmigt", "Pedido de professor não aprovado", "教师申请未获批准", "لم تتم الموافقة على طلب المعلم"),
+    titleColor: "#dc2626",
+    hello: true,
+    body: L(
+      "Après examen, votre demande pour <strong>{{SchoolName}}</strong> n'a pas été approuvée par le groupe d'experts <strong>{{GroupName}}</strong>.",
+      "After review, your application for <strong>{{SchoolName}}</strong> was not approved by the expert group <strong>{{GroupName}}</strong>.",
+      "Tras la revisión, su solicitud para <strong>{{SchoolName}}</strong> no fue aprobada por el grupo de expertos <strong>{{GroupName}}</strong>.",
+      "Nach Prüfung wurde Ihr Antrag für <strong>{{SchoolName}}</strong> von der Expertengruppe <strong>{{GroupName}}</strong> nicht genehmigt.",
+      "Após análise, o seu pedido para <strong>{{SchoolName}}</strong> não foi aprovado pelo grupo de especialistas <strong>{{GroupName}}</strong>.",
+      "经审核，专家组 <strong>{{GroupName}}</strong> 未批准您针对 <strong>{{SchoolName}}</strong> 的申请。",
+      "بعد المراجعة، لم تتم الموافقة على طلبك لـ <strong>{{SchoolName}}</strong> من مجموعة الخبراء <strong>{{GroupName}}</strong>."
+    ),
+    decisionLabels: {
+      school: L("École / profil", "School / profile", "Escuela / perfil", "Schule / Profil", "Escola / perfil", "学校 / 资料", "المدرسة / الملف"),
+      group: L("Groupe d'experts", "Expert group", "Grupo de expertos", "Expertengruppe", "Grupo de especialistas", "专家组", "مجموعة الخبراء"),
+      notes: L("Motif / commentaire", "Reason / comment", "Motivo / comentario", "Grund / Kommentar", "Motivo / comentário", "原因 / 备注", "السبب / التعليق")
+    },
+    body2: L(
+      "Vous pouvez mettre à jour votre dossier (documents, diplômes, présentation) puis soumettre à nouveau une demande si besoin.",
+      "You can update your file (documents, diplomas, presentation) and submit a new application if needed.",
+      "Puede actualizar su expediente (documentos, diplomas, presentación) y volver a enviar una solicitud si lo necesita.",
+      "Sie können Ihre Unterlagen (Dokumente, Abschlüsse, Präsentation) aktualisieren und bei Bedarf erneut beantragen.",
+      "Pode atualizar o seu processo (documentos, diplomas, apresentação) e voltar a submeter um pedido se necessário.",
+      "您可以更新材料（文件、学历、介绍），如有需要可重新提交申请。",
+      "يمكنك تحديث ملفك (المستندات، الشهادات، العرض) ثم إعادة تقديم الطلب عند الحاجة."
+    ),
+    btn: L("Ouvrir mon espace enseignant", "Open my teacher space", "Abrir mi espacio de profesor", "Lehrerbereich öffnen", "Abrir o meu espaço de professor", "打开我的教师空间", "فتح مساحة المعلم"),
+    btnUrl: "{{LoginUrl}}",
+    text: L(
+      "Bonjour {{FirstName}}, votre demande {{SchoolName}} n'a pas été approuvée par {{GroupName}}. Motif : {{Notes}}. Connexion : {{LoginUrl}}",
+      "Hello {{FirstName}}, your application {{SchoolName}} was not approved by {{GroupName}}. Reason: {{Notes}}. Login: {{LoginUrl}}",
+      "Hola {{FirstName}}, su solicitud {{SchoolName}} no fue aprobada por {{GroupName}}. Motivo: {{Notes}}. Acceso: {{LoginUrl}}",
+      "Hallo {{FirstName}}, Ihr Antrag {{SchoolName}} wurde von {{GroupName}} nicht genehmigt. Grund: {{Notes}}. Anmeldung: {{LoginUrl}}",
+      "Olá {{FirstName}}, o seu pedido {{SchoolName}} não foi aprovado por {{GroupName}}. Motivo: {{Notes}}. Acesso: {{LoginUrl}}",
+      "{{FirstName}}，您好，您的申请 {{SchoolName}} 未获 {{GroupName}} 批准。原因：{{Notes}}。登录：{{LoginUrl}}",
+      "مرحبًا {{FirstName}}، لم تتم الموافقة على طلبك {{SchoolName}} من {{GroupName}}. السبب: {{Notes}}. الدخول: {{LoginUrl}}"
+    )
+  },
+  {
+    code: "EXPERT_TEACHER_APPLY_INVITE",
+    name: L("TutorSphere — Invitation candidature enseignant", "TutorSphere — Teacher application invite", "TutorSphere — Invitación candidatura profesor", "TutorSphere — Einladung Lehrerbewerbung", "TutorSphere — Convite candidatura professor", "TutorSphere — 教师申请邀请", "TutorSphere — دعوة تقديم طلب معلم"),
+    subject: L("{{ExpertName}} vous invite à déposer votre candidature enseignant", "{{ExpertName}} invites you to submit your teacher application", "{{ExpertName}} le invita a presentar su candidatura de profesor", "{{ExpertName}} lädt Sie ein, Ihre Lehrerbewerbung einzureichen", "{{ExpertName}} convida-o a submeter a sua candidatura de professor", "{{ExpertName}} 邀请您提交教师申请", "{{ExpertName}} يدعوك لتقديم طلبك كمعلم"),
+    title: L("Invitation à candidater", "Invitation to apply", "Invitación a postular", "Einladung zur Bewerbung", "Convite para candidatar-se", "申请邀请", "دعوة للتقديم"),
+    hello: true,
+    body: L(
+      "<strong>{{ExpertName}}</strong> (groupe d'experts <strong>{{GroupName}}</strong>) vous invite à déposer votre candidature enseignant sur TutorSphere pour examen.",
+      "<strong>{{ExpertName}}</strong> (expert group <strong>{{GroupName}}</strong>) invites you to submit your teacher application on TutorSphere for review.",
+      "<strong>{{ExpertName}}</strong> (grupo de expertos <strong>{{GroupName}}</strong>) le invita a presentar su candidatura de profesor en TutorSphere para revisión.",
+      "<strong>{{ExpertName}}</strong> (Expertengruppe <strong>{{GroupName}}</strong>) lädt Sie ein, Ihre Lehrerbewerbung auf TutorSphere zur Prüfung einzureichen.",
+      "<strong>{{ExpertName}}</strong> (grupo de especialistas <strong>{{GroupName}}</strong>) convida-o a submeter a sua candidatura de professor no TutorSphere para análise.",
+      "<strong>{{ExpertName}}</strong>（专家组 <strong>{{GroupName}}</strong>）邀请您在 TutorSphere 提交教师申请以供审核。",
+      "<strong>{{ExpertName}}</strong> (مجموعة الخبراء <strong>{{GroupName}}</strong>) يدعوك لتقديم طلبك كمعلم على TutorSphere للمراجعة."
+    ),
+    note: L("{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}"),
+    body2: L(
+      "Créez votre compte et soumettez votre dossier via le lien ci-dessous. URL : {{ApplyUrl}}",
+      "Create your account and submit your file using the link below. URL: {{ApplyUrl}}",
+      "Cree su cuenta y envíe su expediente con el enlace de abajo. URL: {{ApplyUrl}}",
+      "Erstellen Sie Ihr Konto und reichen Sie Ihre Unterlagen über den Link unten ein. URL: {{ApplyUrl}}",
+      "Crie a sua conta e submeta o seu processo através do link abaixo. URL: {{ApplyUrl}}",
+      "请通过下方链接创建账户并提交材料。URL：{{ApplyUrl}}",
+      "أنشئ حسابك وقدّم ملفك عبر الرابط أدناه. الرابط: {{ApplyUrl}}"
+    ),
+    btn: L("Déposer ma candidature", "Submit my application", "Presentar mi candidatura", "Bewerbung einreichen", "Submeter a minha candidatura", "提交我的申请", "تقديم طلبي"),
+    btnUrl: "{{ApplyUrl}}",
+    text: L(
+      "Bonjour {{FirstName}}, {{ExpertName}} ({{GroupName}}) vous invite à candidater. {{PersonalMessage}} Lien : {{ApplyUrl}}",
+      "Hello {{FirstName}}, {{ExpertName}} ({{GroupName}}) invites you to apply. {{PersonalMessage}} Link: {{ApplyUrl}}",
+      "Hola {{FirstName}}, {{ExpertName}} ({{GroupName}}) le invita a postular. {{PersonalMessage}} Enlace: {{ApplyUrl}}",
+      "Hallo {{FirstName}}, {{ExpertName}} ({{GroupName}}) lädt Sie zur Bewerbung ein. {{PersonalMessage}} Link: {{ApplyUrl}}",
+      "Olá {{FirstName}}, {{ExpertName}} ({{GroupName}}) convida-o a candidatar-se. {{PersonalMessage}} Link: {{ApplyUrl}}",
+      "{{FirstName}}，您好，{{ExpertName}}（{{GroupName}}）邀请您申请。{{PersonalMessage}} 链接：{{ApplyUrl}}",
+      "مرحبًا {{FirstName}}، {{ExpertName}} ({{GroupName}}) يدعوك للتقديم. {{PersonalMessage}} الرابط: {{ApplyUrl}}"
+    )
   }
 ];
 
@@ -934,6 +1055,14 @@ function buildHtml(tpl, lang) {
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.email, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>`);
+  }
+  if (tpl.decisionLabels) {
+    const bg = tpl.tableBg || "#f5f3ff";
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.decisionLabels.school, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.decisionLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.decisionLabels.notes, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Notes}}</td></tr>
                 </table>`);
   }
   if (tpl.note) {

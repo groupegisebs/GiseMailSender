@@ -869,6 +869,105 @@ public static class TutorSphereTemplates
             SeedRevision: 5),
 
         new(
+            TemplateCode: "EXPERT_TEACHER_APPROVED",
+            Name: "TutorSphere — Enseignant approuvé (expert)",
+            SubjectTemplate: "Bonne nouvelle : votre profil enseignant est approuvé",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#16a34a;margin:0 0 12px;">Profil enseignant approuvé</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Votre demande pour <strong>{{SchoolName}}</strong> a été <strong>approuvée</strong> par le groupe d'experts <strong>{{GroupName}}</strong>.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">École / profil</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Groupe d'experts</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Commentaire</td><td style="padding:10px 14px;font-weight:600;">{{Notes}}</td></tr>
+                </table>
+                <p>Vous pouvez vous connecter à votre espace enseignant pour poursuivre votre activité sur TutorSphere.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Accéder à mon espace enseignant</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:1 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, votre profil {{SchoolName}} a été approuvé par {{GroupName}}. Commentaire : {{Notes}}. Connexion : {{LoginUrl}}",
+            Language: "fr",
+            SeedRevision: 1),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_REJECTED",
+            Name: "TutorSphere — Enseignant refusé (expert)",
+            SubjectTemplate: "Décision sur votre demande enseignant — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Demande enseignant non approuvée</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Après examen, votre demande pour <strong>{{SchoolName}}</strong> n'a pas été approuvée par le groupe d'experts <strong>{{GroupName}}</strong>.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">École / profil</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Groupe d'experts</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Motif / commentaire</td><td style="padding:10px 14px;font-weight:600;">{{Notes}}</td></tr>
+                </table>
+                <p>Vous pouvez mettre à jour votre dossier (documents, diplômes, présentation) puis soumettre à nouveau une demande si besoin.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Ouvrir mon espace enseignant</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:1 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, votre demande {{SchoolName}} n'a pas été approuvée par {{GroupName}}. Motif : {{Notes}}. Connexion : {{LoginUrl}}",
+            Language: "fr",
+            SeedRevision: 1),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
+            Name: "TutorSphere — Invitation candidature enseignant",
+            SubjectTemplate: "{{ExpertName}} vous invite à déposer votre candidature enseignant",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitation à candidater</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p><strong>{{ExpertName}}</strong> (groupe d'experts <strong>{{GroupName}}</strong>) vous invite à déposer votre candidature enseignant sur TutorSphere pour examen.</p>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>Créez votre compte et soumettez votre dossier via le lien ci-dessous :</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ApplyUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Déposer ma candidature</a></p>
+                <p style="font-size:13px;color:#555;word-break:break-all;">URL : <a href="{{ApplyUrl}}" style="color:#5831E0;">{{ApplyUrl}}</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:1 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, {{ExpertName}} ({{GroupName}}) vous invite à candidater. {{PersonalMessage}} Lien : {{ApplyUrl}}",
+            Language: "fr",
+            SeedRevision: 1),
+
+        new(
             TemplateCode: "WELCOME",
             Name: "TutorSphere — Welcome",
             SubjectTemplate: "Welcome {{FirstName}} to TutorSphere!",
@@ -1726,6 +1825,105 @@ public static class TutorSphereTemplates
             TextBody: "Hello {{FirstName}}, you were added to group {{GroupName}} (account {{Email}}). Login: {{LoginUrl}}",
             Language: "en",
             SeedRevision: 5),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_APPROVED",
+            Name: "TutorSphere — Teacher approved (expert)",
+            SubjectTemplate: "Good news: your teacher profile is approved",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#16a34a;margin:0 0 12px;">Teacher profile approved</h2>
+                <p>Hello {{FirstName}},</p>
+                <p>Your application for <strong>{{SchoolName}}</strong> has been <strong>approved</strong> by the expert group <strong>{{GroupName}}</strong>.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">School / profile</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Expert group</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Comment</td><td style="padding:10px 14px;font-weight:600;">{{Notes}}</td></tr>
+                </table>
+                <p>You can sign in to your teacher space to continue on TutorSphere.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Go to my teacher space</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:1 -->
+""",
+            TextBody: "Hello {{FirstName}}, your profile {{SchoolName}} was approved by {{GroupName}}. Comment: {{Notes}}. Login: {{LoginUrl}}",
+            Language: "en",
+            SeedRevision: 1),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_REJECTED",
+            Name: "TutorSphere — Teacher rejected (expert)",
+            SubjectTemplate: "Decision on your teacher application — {{SchoolName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Teacher application not approved</h2>
+                <p>Hello {{FirstName}},</p>
+                <p>After review, your application for <strong>{{SchoolName}}</strong> was not approved by the expert group <strong>{{GroupName}}</strong>.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">School / profile</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Expert group</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Reason / comment</td><td style="padding:10px 14px;font-weight:600;">{{Notes}}</td></tr>
+                </table>
+                <p>You can update your file (documents, diplomas, presentation) and submit a new application if needed.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Open my teacher space</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:1 -->
+""",
+            TextBody: "Hello {{FirstName}}, your application {{SchoolName}} was not approved by {{GroupName}}. Reason: {{Notes}}. Login: {{LoginUrl}}",
+            Language: "en",
+            SeedRevision: 1),
+
+        new(
+            TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
+            Name: "TutorSphere — Teacher application invite",
+            SubjectTemplate: "{{ExpertName}} invites you to submit your teacher application",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitation to apply</h2>
+                <p>Hello {{FirstName}},</p>
+                <p><strong>{{ExpertName}}</strong> (expert group <strong>{{GroupName}}</strong>) invites you to submit your teacher application on TutorSphere for review.</p>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>Create your account and submit your file using the link below:</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{ApplyUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Submit my application</a></p>
+                <p style="font-size:13px;color:#555;word-break:break-all;">URL: <a href="{{ApplyUrl}}" style="color:#5831E0;">{{ApplyUrl}}</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:1 -->
+""",
+            TextBody: "Hello {{FirstName}}, {{ExpertName}} ({{GroupName}}) invites you to apply. {{PersonalMessage}} Link: {{ApplyUrl}}",
+            Language: "en",
+            SeedRevision: 1),
 
         new(
             TemplateCode: "WELCOME",
