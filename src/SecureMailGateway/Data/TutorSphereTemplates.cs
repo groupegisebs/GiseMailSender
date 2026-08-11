@@ -804,33 +804,37 @@ public static class TutorSphereTemplates
                 <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Pour votre sécurité, <strong>changez ce mot de passe</strong> dès la première connexion à l'espace expert.</p>
                 <p>Étapes : 1) Ouvrez la page de connexion expert ci-dessous 2) Saisissez l'e-mail et le mot de passe temporaire 3) Choisissez un nouveau mot de passe.</p>
                 <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Se connecter à l'espace expert</a></p>
-                <p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
-                  <strong style="display:block;margin-bottom:6px;color:#5831E0;">Page de connexion expert</strong>
-                  <a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a>
-                </p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          Connectez-vous uniquement sur l’espace expert :<br/><a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a><br/><span style="color:#666;">(équivalent : <a href="https://tutorsphere.gisebs.com/login/expert" style="color:#5831E0;">https://tutorsphere.gisebs.com/login/expert</a>)</span>
-<br/><br/>
-<strong style="color:#333;">Écosystème GISEBS — nos produits</strong><br/>
-<a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a> ·
-<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a> ·
-<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a> ·
-<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a> ·
-<a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a> ·
-<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a> ·
-<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
-<br/><br/>
-Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directement à ce message.<br/>© 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
-        </p>
-            </div>
+              </div>
+              <div style="padding:0 32px 28px;">
+                <div style="border-top:1px solid #ede9fb;padding-top:20px;">
+                  <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#6b7280;text-align:center;">
+                    Utilisez uniquement le bouton ci-dessus ou le lien de connexion expert fourni dans ce message.
+                  </p>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#9ca3af;text-align:center;">
+                    Écosystème GISEBS
+                  </p>
+                  <p style="margin:0 0 16px;font-size:12px;line-height:1.8;text-align:center;color:#6b7280;">
+                    <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a>
+                    &nbsp;·&nbsp;<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a>
+                    &nbsp;·&nbsp;<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a>
+                    &nbsp;·&nbsp;<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a><br/>
+                    <a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a>
+                    &nbsp;·&nbsp;<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a>
+                    &nbsp;·&nbsp;<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
+                  </p>
+                  <p style="margin:0;font-size:11px;line-height:1.5;color:#9ca3af;text-align:center;">
+                    Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas à ce message.<br/>
+                    © 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
+                  </p>
+                </div>
+              </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:5 -->
+        <!-- tutorsphere-seed:6 -->
 """,
-            TextBody: "Bonjour {{FirstName}}, invitation expert {{GroupName}}. E-mail : {{Email}}. Mot de passe temporaire : {{TemporaryPassword}}. Changez ce mot de passe à la première connexion. Connexion expert : {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS : https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
+            TextBody: "Bonjour {{FirstName}}, invitation expert {{GroupName}}. E-mail : {{Email}}. Mot de passe temporaire : {{TemporaryPassword}}. Changez ce mot de passe à la première connexion. Connexion expert : {{LoginUrl}}. GISEBS : https://gisebs.com",
             Language: "fr",
-            SeedRevision: 5),
+            SeedRevision: 6),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -1659,33 +1663,37 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
                 <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">For your security, <strong>change this password</strong> as soon as you first sign in to the expert space.</p>
                 <p>Steps: 1) Open the expert sign-in page below 2) Enter the email and temporary password 3) Choose a new password.</p>
                 <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Sign in to expert space</a></p>
-                <p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
-                  <strong style="display:block;margin-bottom:6px;color:#5831E0;">Expert sign-in page</strong>
-                  <a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a>
-                </p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          Sign in only on the expert space:<br/><a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a><br/><span style="color:#666;">(canonical: <a href="https://tutorsphere.gisebs.com/login/expert" style="color:#5831E0;">https://tutorsphere.gisebs.com/login/expert</a>)</span>
-<br/><br/>
-<strong style="color:#333;">GISEBS ecosystem — our products</strong><br/>
-<a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a> ·
-<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a> ·
-<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a> ·
-<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a> ·
-<a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a> ·
-<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a> ·
-<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
-<br/><br/>
-This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>© 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
-        </p>
-            </div>
+              </div>
+              <div style="padding:0 32px 28px;">
+                <div style="border-top:1px solid #ede9fb;padding-top:20px;">
+                  <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#6b7280;text-align:center;">
+                    Use only the button above or the expert sign-in link in this message.
+                  </p>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#9ca3af;text-align:center;">
+                    GISEBS ecosystem
+                  </p>
+                  <p style="margin:0 0 16px;font-size:12px;line-height:1.8;text-align:center;color:#6b7280;">
+                    <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a>
+                    &nbsp;·&nbsp;<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a>
+                    &nbsp;·&nbsp;<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a>
+                    &nbsp;·&nbsp;<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a><br/>
+                    <a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a>
+                    &nbsp;·&nbsp;<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a>
+                    &nbsp;·&nbsp;<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
+                  </p>
+                  <p style="margin:0;font-size:11px;line-height:1.5;color:#9ca3af;text-align:center;">
+                    This email was sent by TutorSphere (GISEBS). Please do not reply.<br/>
+                    © 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
+                  </p>
+                </div>
+              </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:5 -->
+        <!-- tutorsphere-seed:6 -->
 """,
-            TextBody: "Hello {{FirstName}}, expert invite {{GroupName}}. Email: {{Email}}. Temporary password: {{TemporaryPassword}}. Change this password on first login. Expert login: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
+            TextBody: "Hello {{FirstName}}, expert invite {{GroupName}}. Email: {{Email}}. Temporary password: {{TemporaryPassword}}. Change this password on first login. Expert login: {{LoginUrl}}. GISEBS: https://gisebs.com",
             Language: "en",
-            SeedRevision: 5),
+            SeedRevision: 6),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -2514,33 +2522,37 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
                 <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Por su seguridad, <strong>cambie esta contraseña</strong> en el primer acceso al espacio experto.</p>
                 <p>Pasos: 1) Abra la página de acceso experto abajo 2) Introduzca el correo y la contraseña temporal 3) Elija una nueva contraseña.</p>
                 <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Iniciar sesión en el espacio experto</a></p>
-                <p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
-                  <strong style="display:block;margin-bottom:6px;color:#5831E0;">Página de acceso experto</strong>
-                  <a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a>
-                </p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          Inicie sesión solo en el espacio experto:<br/><a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a><br/><span style="color:#666;">(canónica: <a href="https://tutorsphere.gisebs.com/login/expert" style="color:#5831E0;">https://tutorsphere.gisebs.com/login/expert</a>)</span>
-<br/><br/>
-<strong style="color:#333;">Ecosistema GISEBS — nuestros productos</strong><br/>
-<a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a> ·
-<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a> ·
-<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a> ·
-<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a> ·
-<a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a> ·
-<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a> ·
-<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
-<br/><br/>
-Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>© 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
-        </p>
-            </div>
+              </div>
+              <div style="padding:0 32px 28px;">
+                <div style="border-top:1px solid #ede9fb;padding-top:20px;">
+                  <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#6b7280;text-align:center;">
+                    Utilice únicamente el botón de arriba o el enlace de acceso experto de este mensaje.
+                  </p>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#9ca3af;text-align:center;">
+                    Ecosistema GISEBS
+                  </p>
+                  <p style="margin:0 0 16px;font-size:12px;line-height:1.8;text-align:center;color:#6b7280;">
+                    <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a>
+                    &nbsp;·&nbsp;<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a>
+                    &nbsp;·&nbsp;<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a>
+                    &nbsp;·&nbsp;<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a><br/>
+                    <a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a>
+                    &nbsp;·&nbsp;<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a>
+                    &nbsp;·&nbsp;<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
+                  </p>
+                  <p style="margin:0;font-size:11px;line-height:1.5;color:#9ca3af;text-align:center;">
+                    Este correo fue enviado por TutorSphere (GISEBS). No responda a este mensaje.<br/>
+                    © 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
+                  </p>
+                </div>
+              </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:5 -->
+        <!-- tutorsphere-seed:6 -->
 """,
-            TextBody: "Hola {{FirstName}}, invitación experto {{GroupName}}. Correo: {{Email}}. Contraseña temporal: {{TemporaryPassword}}. Cambie esta contraseña en el primer acceso. Acceso experto: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
+            TextBody: "Hola {{FirstName}}, invitación experto {{GroupName}}. Correo: {{Email}}. Contraseña temporal: {{TemporaryPassword}}. Cambie esta contraseña en el primer acceso. Acceso experto: {{LoginUrl}}. GISEBS: https://gisebs.com",
             Language: "es",
-            SeedRevision: 5),
+            SeedRevision: 6),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -3369,33 +3381,37 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
                 <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Aus Sicherheitsgründen <strong>ändern Sie dieses Passwort</strong> bei der ersten Anmeldung im Expertenbereich.</p>
                 <p>Schritte: 1) Öffnen Sie die Experten-Anmeldeseite unten 2) Geben Sie E-Mail und temporäres Passwort ein 3) Wählen Sie ein neues Passwort.</p>
                 <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Zum Expertenbereich anmelden</a></p>
-                <p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
-                  <strong style="display:block;margin-bottom:6px;color:#5831E0;">Experten-Anmeldeseite</strong>
-                  <a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a>
-                </p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          Melden Sie sich nur im Expertenbereich an:<br/><a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a><br/><span style="color:#666;">(kanonisch: <a href="https://tutorsphere.gisebs.com/login/expert" style="color:#5831E0;">https://tutorsphere.gisebs.com/login/expert</a>)</span>
-<br/><br/>
-<strong style="color:#333;">GISEBS-Ökosystem — unsere Produkte</strong><br/>
-<a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a> ·
-<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a> ·
-<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a> ·
-<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a> ·
-<a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a> ·
-<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a> ·
-<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
-<br/><br/>
-Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antworten.<br/>© 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
-        </p>
-            </div>
+              </div>
+              <div style="padding:0 32px 28px;">
+                <div style="border-top:1px solid #ede9fb;padding-top:20px;">
+                  <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#6b7280;text-align:center;">
+                    Nutzen Sie nur die Schaltfläche oben oder den Experten-Link in dieser Nachricht.
+                  </p>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#9ca3af;text-align:center;">
+                    GISEBS-Ökosystem
+                  </p>
+                  <p style="margin:0 0 16px;font-size:12px;line-height:1.8;text-align:center;color:#6b7280;">
+                    <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a>
+                    &nbsp;·&nbsp;<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a>
+                    &nbsp;·&nbsp;<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a>
+                    &nbsp;·&nbsp;<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a><br/>
+                    <a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a>
+                    &nbsp;·&nbsp;<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a>
+                    &nbsp;·&nbsp;<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
+                  </p>
+                  <p style="margin:0;font-size:11px;line-height:1.5;color:#9ca3af;text-align:center;">
+                    Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht antworten.<br/>
+                    © 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
+                  </p>
+                </div>
+              </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:5 -->
+        <!-- tutorsphere-seed:6 -->
 """,
-            TextBody: "Hallo {{FirstName}}, Experten-Einladung {{GroupName}}. E-Mail: {{Email}}. Temporäres Passwort: {{TemporaryPassword}}. Ändern Sie dieses Passwort bei der ersten Anmeldung. Experten-Login: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
+            TextBody: "Hallo {{FirstName}}, Experten-Einladung {{GroupName}}. E-Mail: {{Email}}. Temporäres Passwort: {{TemporaryPassword}}. Ändern Sie dieses Passwort bei der ersten Anmeldung. Experten-Login: {{LoginUrl}}. GISEBS: https://gisebs.com",
             Language: "de",
-            SeedRevision: 5),
+            SeedRevision: 6),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -4224,33 +4240,37 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
                 <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">Por segurança, <strong>altere esta palavra-passe</strong> no primeiro acesso ao espaço de especialista.</p>
                 <p>Passos: 1) Abra a página de acesso especialista abaixo 2) Introduza o e-mail e a palavra-passe temporária 3) Escolha uma nova palavra-passe.</p>
                 <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Iniciar sessão no espaço de especialista</a></p>
-                <p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
-                  <strong style="display:block;margin-bottom:6px;color:#5831E0;">Página de acesso especialista</strong>
-                  <a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a>
-                </p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          Inicie sessão apenas no espaço de especialista:<br/><a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a><br/><span style="color:#666;">(canónico: <a href="https://tutorsphere.gisebs.com/login/expert" style="color:#5831E0;">https://tutorsphere.gisebs.com/login/expert</a>)</span>
-<br/><br/>
-<strong style="color:#333;">Ecossistema GISEBS — os nossos produtos</strong><br/>
-<a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a> ·
-<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a> ·
-<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a> ·
-<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a> ·
-<a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a> ·
-<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a> ·
-<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
-<br/><br/>
-Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br/>© 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
-        </p>
-            </div>
+              </div>
+              <div style="padding:0 32px 28px;">
+                <div style="border-top:1px solid #ede9fb;padding-top:20px;">
+                  <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#6b7280;text-align:center;">
+                    Utilize apenas o botão acima ou a ligação de acesso especialista nesta mensagem.
+                  </p>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#9ca3af;text-align:center;">
+                    Ecossistema GISEBS
+                  </p>
+                  <p style="margin:0 0 16px;font-size:12px;line-height:1.8;text-align:center;color:#6b7280;">
+                    <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a>
+                    &nbsp;·&nbsp;<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a>
+                    &nbsp;·&nbsp;<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a>
+                    &nbsp;·&nbsp;<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a><br/>
+                    <a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a>
+                    &nbsp;·&nbsp;<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a>
+                    &nbsp;·&nbsp;<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
+                  </p>
+                  <p style="margin:0;font-size:11px;line-height:1.5;color:#9ca3af;text-align:center;">
+                    Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda a esta mensagem.<br/>
+                    © 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
+                  </p>
+                </div>
+              </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:5 -->
+        <!-- tutorsphere-seed:6 -->
 """,
-            TextBody: "Olá {{FirstName}}, convite especialista {{GroupName}}. E-mail: {{Email}}. Palavra-passe temporária: {{TemporaryPassword}}. Altere esta palavra-passe no primeiro acesso. Acesso especialista: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
+            TextBody: "Olá {{FirstName}}, convite especialista {{GroupName}}. E-mail: {{Email}}. Palavra-passe temporária: {{TemporaryPassword}}. Altere esta palavra-passe no primeiro acesso. Acesso especialista: {{LoginUrl}}. GISEBS: https://gisebs.com",
             Language: "pt",
-            SeedRevision: 5),
+            SeedRevision: 6),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -5079,33 +5099,37 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
                 <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">为安全起见，请在首次登录专家空间时<strong>更改此密码</strong>。</p>
                 <p>步骤：1）打开下方专家登录页 2）输入电子邮件和临时密码 3）设置新密码。</p>
                 <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">登录专家空间</a></p>
-                <p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
-                  <strong style="display:block;margin-bottom:6px;color:#5831E0;">专家登录页</strong>
-                  <a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a>
-                </p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          请仅通过专家空间登录：<br/><a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a><br/><span style="color:#666;">（标准地址：<a href="https://tutorsphere.gisebs.com/login/expert" style="color:#5831E0;">https://tutorsphere.gisebs.com/login/expert</a>）</span>
-<br/><br/>
-<strong style="color:#333;">GISEBS 生态系统 — 我们的产品</strong><br/>
-<a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a> ·
-<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a> ·
-<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a> ·
-<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a> ·
-<a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a> ·
-<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a> ·
-<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
-<br/><br/>
-此邮件由 TutorSphere（GISEBS）发送。请勿直接回复。<br/>© 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
-        </p>
-            </div>
+              </div>
+              <div style="padding:0 32px 28px;">
+                <div style="border-top:1px solid #ede9fb;padding-top:20px;">
+                  <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#6b7280;text-align:center;">
+                    请仅使用上方按钮或本邮件中的专家登录链接。
+                  </p>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#9ca3af;text-align:center;">
+                    GISEBS 生态系统
+                  </p>
+                  <p style="margin:0 0 16px;font-size:12px;line-height:1.8;text-align:center;color:#6b7280;">
+                    <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a>
+                    &nbsp;·&nbsp;<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a>
+                    &nbsp;·&nbsp;<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a>
+                    &nbsp;·&nbsp;<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a><br/>
+                    <a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a>
+                    &nbsp;·&nbsp;<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a>
+                    &nbsp;·&nbsp;<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
+                  </p>
+                  <p style="margin:0;font-size:11px;line-height:1.5;color:#9ca3af;text-align:center;">
+                    此邮件由 TutorSphere（GISEBS）发送。请勿直接回复。<br/>
+                    © 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
+                  </p>
+                </div>
+              </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:5 -->
+        <!-- tutorsphere-seed:6 -->
 """,
-            TextBody: "{{FirstName}}，您好，专家邀请 {{GroupName}}。电子邮件：{{Email}}。临时密码：{{TemporaryPassword}}。请在首次登录时更改密码。专家登录：{{LoginUrl}}（https://tutorsphere.gisebs.com/login/expert）。GISEBS：https://gisebs.com",
+            TextBody: "{{FirstName}}，您好，专家邀请 {{GroupName}}。电子邮件：{{Email}}。临时密码：{{TemporaryPassword}}。请在首次登录时更改密码。专家登录：{{LoginUrl}}。GISEBS：https://gisebs.com",
             Language: "zh-Hans",
-            SeedRevision: 5),
+            SeedRevision: 6),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -5934,33 +5958,37 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
                 <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">لأمانك، <strong>غيّر كلمة المرور هذه</strong> عند أول دخول إلى مساحة الخبير.</p>
                 <p>الخطوات: 1) افتح صفحة دخول الخبير أدناه 2) أدخل البريد وكلمة المرور المؤقتة 3) اختر كلمة مرور جديدة.</p>
                 <p style="text-align:center;margin:28px 0;"><a href="{{LoginUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">تسجيل الدخول إلى مساحة الخبير</a></p>
-                <p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
-                  <strong style="display:block;margin-bottom:6px;color:#5831E0;">صفحة دخول الخبير</strong>
-                  <a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a>
-                </p>
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
-        <p style="font-size:12px;color:#888;margin:0;">
-          سجّل الدخول فقط عبر مساحة الخبير:<br/><a href="{{LoginUrl}}" style="color:#5831E0;font-weight:600;word-break:break-all;">{{LoginUrl}}</a><br/><span style="color:#666;">(العنوان الرسمي: <a href="https://tutorsphere.gisebs.com/login/expert" style="color:#5831E0;">https://tutorsphere.gisebs.com/login/expert</a>)</span>
-<br/><br/>
-<strong style="color:#333;">منظومة GISEBS — منتجاتنا</strong><br/>
-<a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a> ·
-<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a> ·
-<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a> ·
-<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a> ·
-<a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a> ·
-<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a> ·
-<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
-<br/><br/>
-تم إرسال هذا البريد بواسطة TutorSphere (GISEBS). يُرجى عدم الرد مباشرة.<br/>© 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
-        </p>
-            </div>
+              </div>
+              <div style="padding:0 32px 28px;">
+                <div style="border-top:1px solid #ede9fb;padding-top:20px;">
+                  <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#6b7280;text-align:center;">
+                    استخدم فقط الزر أعلاه أو رابط دخول الخبير في هذه الرسالة.
+                  </p>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#9ca3af;text-align:center;">
+                    منظومة GISEBS
+                  </p>
+                  <p style="margin:0 0 16px;font-size:12px;line-height:1.8;text-align:center;color:#6b7280;">
+                    <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">GISEBS</a>
+                    &nbsp;·&nbsp;<a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">TutorSphere</a>
+                    &nbsp;·&nbsp;<a href="https://agentiafactory.gisebs.com/" style="color:#5831E0;text-decoration:none;">Agentia OS</a>
+                    &nbsp;·&nbsp;<a href="https://cognidoc.gisebs.com/" style="color:#5831E0;text-decoration:none;">CogniDoc</a><br/>
+                    <a href="https://giseboutique.gisebs.com/" style="color:#5831E0;text-decoration:none;">GISEBoutique</a>
+                    &nbsp;·&nbsp;<a href="https://comptadoc.gisebs.com" style="color:#5831E0;text-decoration:none;">ComptaDoc</a>
+                    &nbsp;·&nbsp;<a href="https://gisebsapipaygateway.gisebs.com" style="color:#5831E0;text-decoration:none;">Pay Gateway</a>
+                  </p>
+                  <p style="margin:0;font-size:11px;line-height:1.5;color:#9ca3af;text-align:center;">
+                    تم إرسال هذا البريد بواسطة TutorSphere (GISEBS). يُرجى عدم الرد.<br/>
+                    © 2026 GISEBS — <a href="https://gisebs.com" style="color:#5831E0;text-decoration:none;">gisebs.com</a>
+                  </p>
+                </div>
+              </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:5 -->
+        <!-- tutorsphere-seed:6 -->
 """,
-            TextBody: "مرحبًا {{FirstName}}، دعوة خبير {{GroupName}}. البريد: {{Email}}. كلمة المرور المؤقتة: {{TemporaryPassword}}. غيّر كلمة المرور عند أول دخول. دخول الخبير: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com",
+            TextBody: "مرحبًا {{FirstName}}، دعوة خبير {{GroupName}}. البريد: {{Email}}. كلمة المرور المؤقتة: {{TemporaryPassword}}. غيّر كلمة المرور عند أول دخول. دخول الخبير: {{LoginUrl}}. GISEBS: https://gisebs.com",
             Language: "ar",
-            SeedRevision: 5),
+            SeedRevision: 6),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
