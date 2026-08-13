@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 5;
+const REV = 6;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -153,8 +153,36 @@ const templates = [
       "حساب TutorSphere جاهز. سجّل الدخول للوصول إلى مساحتك الشخصية."
     ),
     btn: L("Accéder à mon espace", "Go to my space", "Ir a mi espacio", "Zu meinem Bereich", "Aceder ao meu espaço", "进入我的空间", "الانتقال إلى مساحتي"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Bienvenue {{FirstName}} sur TutorSphere.", "Welcome {{FirstName}} to TutorSphere.", "Bienvenido/a {{FirstName}} a TutorSphere.", "Willkommen {{FirstName}} bei TutorSphere.", "Bem-vindo(a) {{FirstName}} ao TutorSphere.", "欢迎 {{FirstName}} 加入 TutorSphere。", "مرحبًا {{FirstName}} في TutorSphere.")
+  },
+  {
+    code: "PARENT_CONFIRM_ACCESS",
+    name: L("TutorSphere — Validation espace parent", "TutorSphere — Parent space validation", "TutorSphere — Validación espacio padres", "TutorSphere — Elternbereich bestätigen", "TutorSphere — Validação espaço responsável", "TutorSphere — 家长空间验证", "TutorSphere — تأكيد مساحة ولي الأمر"),
+    subject: L("Validez votre espace parent — TutorSphere", "Validate your parent space — TutorSphere", "Valide su espacio de padres — TutorSphere", "Bestätigen Sie Ihren Elternbereich — TutorSphere", "Valide o seu espaço de responsável — TutorSphere", "验证您的家长空间 — TutorSphere", "أكد مساحة ولي الأمر — TutorSphere"),
+    title: L("Activez votre espace parent", "Activate your parent space", "Active su espacio de padres", "Aktivieren Sie Ihren Elternbereich", "Ative o seu espaço de responsável", "激活您的家长空间", "فعّل مساحة ولي الأمر"),
+    hello: true,
+    body: L(
+      "Bienvenue sur TutorSphere. Pour accéder à <strong>l'espace parent</strong> et suivre le parcours scolaire de vos enfants, veuillez d'abord <strong>valider votre adresse e-mail</strong>. Sans cette validation, la connexion reste bloquée.",
+      "Welcome to TutorSphere. To access the <strong>parent space</strong> and follow your children's learning journey, please <strong>validate your email address</strong> first. Without this validation, sign-in remains blocked.",
+      "Bienvenido/a a TutorSphere. Para acceder al <strong>espacio de padres</strong> y seguir el recorrido escolar de sus hijos, primero <strong>valide su correo electrónico</strong>. Sin esta validación, el acceso permanece bloqueado.",
+      "Willkommen bei TutorSphere. Um den <strong>Elternbereich</strong> zu nutzen und den Lernweg Ihrer Kinder zu verfolgen, bestätigen Sie bitte zuerst Ihre <strong>E-Mail-Adresse</strong>. Ohne Bestätigung bleibt die Anmeldung gesperrt.",
+      "Bem-vindo(a) ao TutorSphere. Para aceder ao <strong>espaço de responsável</strong> e acompanhar o percurso escolar dos seus filhos, <strong>valide primeiro o seu e-mail</strong>. Sem esta validação, o acesso permanece bloqueado.",
+      "欢迎使用 TutorSphere。要访问<strong>家长空间</strong>并跟进孩子的学习，请先<strong>验证您的电子邮件</strong>。未验证前无法登录。",
+      "مرحبًا بك في TutorSphere. للوصول إلى <strong>مساحة ولي الأمر</strong> ومتابعة مسار أبنائك الدراسي، يرجى <strong>تأكيد بريدك الإلكتروني</strong> أولًا. بدون هذا التأكيد يبقى تسجيل الدخول محظورًا."
+    ),
+    btn: L("Valider mon espace parent", "Validate my parent space", "Validar mi espacio de padres", "Elternbereich bestätigen", "Validar o meu espaço de responsável", "验证我的家长空间", "تأكيد مساحة ولي الأمر"),
+    btnUrl: "{{ConfirmationUrl}}",
+    footerNote: ignore,
+    text: L(
+      "Validez votre espace parent TutorSphere : {{ConfirmationUrl}}",
+      "Validate your TutorSphere parent space: {{ConfirmationUrl}}",
+      "Valide su espacio de padres TutorSphere: {{ConfirmationUrl}}",
+      "Bestätigen Sie Ihren TutorSphere-Elternbereich: {{ConfirmationUrl}}",
+      "Valide o seu espaço de responsável TutorSphere: {{ConfirmationUrl}}",
+      "验证您的 TutorSphere 家长空间：{{ConfirmationUrl}}",
+      "أكد مساحة ولي الأمر في TutorSphere: {{ConfirmationUrl}}"
+    )
   },
   {
     code: "CONFIRM_EMAIL",
@@ -201,7 +229,7 @@ const templates = [
       "سجّل الدخول إلى مساحتك لعرض التقرير الكامل."
     ),
     btn: L("Voir le rapport", "View report", "Ver informe", "Bericht ansehen", "Ver relatório", "查看报告", "عرض التقرير"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Rapport de cours pour {{StudentName}} avec {{TutorName}}.", "Lesson report for {{StudentName}} with {{TutorName}}.", "Informe de clase de {{StudentName}} con {{TutorName}}.", "Unterrichtsbericht für {{StudentName}} mit {{TutorName}}.", "Relatório de aula de {{StudentName}} com {{TutorName}}.", "{{StudentName}} 与 {{TutorName}} 的课程报告。", "تقرير الحصة لـ {{StudentName}} مع {{TutorName}}.")
   },
   {
@@ -303,7 +331,7 @@ const templates = [
       "إذا لم تقم بهذا التغيير، فاتصل بالدعم فورًا."
     ),
     btn: L("Se connecter", "Sign in", "Iniciar sesión", "Anmelden", "Iniciar sessão", "登录", "تسجيل الدخول"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Bonjour {{FirstName}}, votre mot de passe TutorSphere a été modifié.", "Hi {{FirstName}}, your TutorSphere password was changed.", "Hola {{FirstName}}, su contraseña de TutorSphere fue cambiada.", "Hallo {{FirstName}}, Ihr TutorSphere-Passwort wurde geändert.", "Olá {{FirstName}}, a sua palavra-passe TutorSphere foi alterada.", "{{FirstName}}，您好，您的 TutorSphere 密码已更改。", "مرحبًا {{FirstName}}، تم تغيير كلمة مرور TutorSphere.")
   },
   {
@@ -331,7 +359,7 @@ const templates = [
       "استفد من جميع الميزات لإدارة دروسك وطلابك ومدفوعاتك."
     ),
     btn: L("Accéder à mon tableau de bord", "Go to my dashboard", "Ir a mi panel", "Zum Dashboard", "Ir ao meu painel", "前往我的仪表板", "الانتقال إلى لوحة التحكم"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/dashboard",
+    btnUrl: "https://tutorsphere.gisebs.com/dashboard",
     text: L("Bonjour {{FirstName}}, votre essai gratuit TutorSphere a commencé.", "Hi {{FirstName}}, your TutorSphere free trial has started.", "Hola {{FirstName}}, su prueba gratuita de TutorSphere ha comenzado.", "Hallo {{FirstName}}, Ihre TutorSphere-Testversion hat begonnen.", "Olá {{FirstName}}, a sua avaliação gratuita TutorSphere começou.", "{{FirstName}}，您好，您的 TutorSphere 免费试用已开始。", "مرحبًا {{FirstName}}، بدأت فترتك التجريبية في TutorSphere.")
   },
   {
@@ -379,7 +407,7 @@ const templates = [
       "تأكد من أن بيانات الدفع محدثة."
     ),
     btn: L("Gérer mon abonnement", "Manage my subscription", "Gestionar mi suscripción", "Abonnement verwalten", "Gerir a minha subscrição", "管理我的订阅", "إدارة اشتراكي"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/settings/billing",
+    btnUrl: "https://tutorsphere.gisebs.com/settings/billing",
     text: L("Votre abonnement TutorSphere se renouvelle le {{RenewalDate}}.", "Your TutorSphere subscription renews on {{RenewalDate}}.", "Su suscripción a TutorSphere se renueva el {{RenewalDate}}.", "Ihr TutorSphere-Abonnement wird am {{RenewalDate}} verlängert.", "A sua subscrição TutorSphere renova em {{RenewalDate}}.", "您的 TutorSphere 订阅将于 {{RenewalDate}} 续订。", "سيُجدَّد اشتراكك في TutorSphere في {{RenewalDate}}.")
   },
   {
@@ -408,7 +436,7 @@ const templates = [
       "يرجى تحديث بيانات الدفع لتجنب انقطاع الخدمة."
     ),
     btn: L("Mettre à jour mes informations", "Update my details", "Actualizar mis datos", "Daten aktualisieren", "Atualizar os meus dados", "更新我的信息", "تحديث بياناتي"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/settings/billing",
+    btnUrl: "https://tutorsphere.gisebs.com/settings/billing",
     text: L("Bonjour {{FirstName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.", "Hi {{FirstName}}, your TutorSphere payment failed. Please update your details.", "Hola {{FirstName}}, falló su pago de TutorSphere. Actualice sus datos.", "Hallo {{FirstName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.", "Olá {{FirstName}}, o pagamento TutorSphere falhou. Atualize os seus dados.", "{{FirstName}}，您好，您的 TutorSphere 付款失败。请更新信息。", "مرحبًا {{FirstName}}، فشل دفع TutorSphere. حدّث بياناتك.")
   },
   {
@@ -448,7 +476,7 @@ const templates = [
       "تم <strong>تفعيل</strong> حساب TutorSphere. يمكنك الآن تسجيل الدخول كالمعتاد."
     ),
     btn: L("Se connecter", "Sign in", "Iniciar sesión", "Anmelden", "Iniciar sessão", "登录", "تسجيل الدخول"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Bonjour {{FirstName}}, votre compte TutorSphere a été activé.", "Hi {{FirstName}}, your TutorSphere account was activated.", "Hola {{FirstName}}, su cuenta de TutorSphere fue activada.", "Hallo {{FirstName}}, Ihr TutorSphere-Konto wurde aktiviert.", "Olá {{FirstName}}, a sua conta TutorSphere foi ativada.", "{{FirstName}}，您好，您的 TutorSphere 帐户已激活。", "مرحبًا {{FirstName}}، تم تفعيل حسابك في TutorSphere.")
   },
   {
@@ -530,7 +558,7 @@ const templates = [
     },
     tableBg: "#f5f3ff",
     btn: L("Voir mon calendrier", "View my calendar", "Ver mi calendario", "Kalender ansehen", "Ver o meu calendário", "查看我的日历", "عرض تقويمي"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Cours planifié — {{Subject}} avec {{TutorName}} le {{LessonDate}}.", "Lesson scheduled — {{Subject}} with {{TutorName}} on {{LessonDate}}.", "Clase programada — {{Subject}} con {{TutorName}} el {{LessonDate}}.", "Unterricht geplant — {{Subject}} mit {{TutorName}} am {{LessonDate}}.", "Aula agendada — {{Subject}} com {{TutorName}} em {{LessonDate}}.", "课程已安排 — {{Subject}}，导师 {{TutorName}}，时间 {{LessonDate}}。", "حصة مجدولة — {{Subject}} مع {{TutorName}} في {{LessonDate}}.")
   },
   {
@@ -555,7 +583,7 @@ const templates = [
     },
     tableBg: "#f5f3ff",
     btn: L("Voir les détails", "View details", "Ver detalles", "Details ansehen", "Ver detalhes", "查看详情", "عرض التفاصيل"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Rappel : cours de {{Subject}} avec {{TutorName}} le {{LessonDate}}.", "Reminder: {{Subject}} lesson with {{TutorName}} on {{LessonDate}}.", "Recordatorio: clase de {{Subject}} con {{TutorName}} el {{LessonDate}}.", "Erinnerung: {{Subject}}-Unterricht mit {{TutorName}} am {{LessonDate}}.", "Lembrete: aula de {{Subject}} com {{TutorName}} em {{LessonDate}}.", "提醒：{{Subject}} 课程，导师 {{TutorName}}，时间 {{LessonDate}}。", "تذكير: حصة {{Subject}} مع {{TutorName}} في {{LessonDate}}.")
   },
   {
@@ -581,7 +609,7 @@ const templates = [
     },
     tableBg: "#fff5f5",
     btn: L("Consulter mon calendrier", "View my calendar", "Consultar mi calendario", "Kalender öffnen", "Consultar o meu calendário", "查看我的日历", "عرض تقويمي"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Cours annulé — {{Subject}} avec {{TutorName}} prévu le {{LessonDate}}.", "Lesson cancelled — {{Subject}} with {{TutorName}} scheduled for {{LessonDate}}.", "Clase cancelada — {{Subject}} con {{TutorName}} prevista el {{LessonDate}}.", "Unterricht abgesagt — {{Subject}} mit {{TutorName}} geplant am {{LessonDate}}.", "Aula cancelada — {{Subject}} com {{TutorName}} prevista para {{LessonDate}}.", "课程已取消 — {{Subject}}，导师 {{TutorName}}，原定 {{LessonDate}}。", "تم إلغاء الحصة — {{Subject}} مع {{TutorName}} المقررة في {{LessonDate}}.")
   },
   {
@@ -631,7 +659,7 @@ const templates = [
       "يرجى تحديث بيانات الدفع للحفاظ على الوصول إلى الحصص."
     ),
     btn: L("Mettre à jour mes informations", "Update my details", "Actualizar mis datos", "Daten aktualisieren", "Atualizar os meus dados", "更新我的信息", "تحديث بياناتي"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/settings/billing",
+    btnUrl: "https://tutorsphere.gisebs.com/settings/billing",
     text: L("Bonjour {{ParentName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.", "Hi {{ParentName}}, your TutorSphere payment failed. Please update your details.", "Hola {{ParentName}}, falló su pago de TutorSphere. Actualice sus datos.", "Hallo {{ParentName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.", "Olá {{ParentName}}, o pagamento TutorSphere falhou. Atualize os seus dados.", "{{ParentName}}，您好，您的 TutorSphere 付款失败。请更新信息。", "مرحبًا {{ParentName}}، فشل دفع TutorSphere. حدّث بياناتك.")
   },
   {
@@ -707,7 +735,7 @@ const templates = [
       "سجّل الدخول لقبول الطلب أو رفضه."
     ),
     btn: L("Gérer les inscriptions", "Manage enrollments", "Gestionar inscripciones", "Anmeldungen verwalten", "Gerir inscrições", "管理报名", "إدارة التسجيلات"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Demande d'inscription de {{StudentName}} au cours {{CourseTitle}}.", "Enrollment request from {{StudentName}} for {{CourseTitle}}.", "Solicitud de inscripción de {{StudentName}} al curso {{CourseTitle}}.", "Anmeldungsanfrage von {{StudentName}} für {{CourseTitle}}.", "Pedido de inscrição de {{StudentName}} no curso {{CourseTitle}}.", "{{StudentName}} 报名课程 {{CourseTitle}} 的请求。", "طلب تسجيل من {{StudentName}} في دورة {{CourseTitle}}.")
   },
   {
@@ -749,7 +777,7 @@ const templates = [
     ),
     amountLabel: L("Montant", "Amount", "Importe", "Betrag", "Montante", "金额", "المبلغ"),
     btn: L("Voir mon espace", "View my space", "Ver mi espacio", "Meinen Bereich öffnen", "Ver o meu espaço", "查看我的空间", "عرض مساحتي"),
-    btnUrl: "https://app.tutorsphere.gisebs.com/login",
+    btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Paiement reçu : {{Amount}} pour {{StudentName}} — {{CourseTitle}}.", "Payment received: {{Amount}} for {{StudentName}} — {{CourseTitle}}.", "Pago recibido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.", "Zahlung eingegangen: {{Amount}} für {{StudentName}} — {{CourseTitle}}.", "Pagamento recebido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.", "已收到付款：{{Amount}}，{{StudentName}} — {{CourseTitle}}。", "تم استلام الدفع: {{Amount}} لـ {{StudentName}} — {{CourseTitle}}.")
   },
   {
