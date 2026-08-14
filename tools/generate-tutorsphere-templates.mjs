@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 6;
+const REV = 7;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -1023,6 +1023,198 @@ const templates = [
       "{{FirstName}}，您好，{{ExpertName}}（{{GroupName}}）邀请您申请。{{PersonalMessage}} 链接：{{ApplyUrl}}",
       "مرحبًا {{FirstName}}، {{ExpertName}} ({{GroupName}}) يدعوك للتقديم. {{PersonalMessage}} الرابط: {{ApplyUrl}}"
     )
+  },
+  {
+    code: "EXPERT_MEMBERSHIP_INVITE",
+    name: L(
+      "TutorSphere — Invitation membre Expert",
+      "TutorSphere — Expert membership invite",
+      "TutorSphere — Invitación miembro experto",
+      "TutorSphere — Einladung Expertenmitglied",
+      "TutorSphere — Convite membro especialista",
+      "TutorSphere — 专家成员邀请",
+      "TutorSphere — دعوة عضوية خبير"
+    ),
+    subject: L(
+      "{{InviterName}} vous invite à rejoindre le groupe {{GroupName}}",
+      "{{InviterName}} invites you to join {{GroupName}}",
+      "{{InviterName}} le invita a unirse a {{GroupName}}",
+      "{{InviterName}} lädt Sie ein, {{GroupName}} beizutreten",
+      "{{InviterName}} convida-o a juntar-se a {{GroupName}}",
+      "{{InviterName}} 邀请您加入 {{GroupName}}",
+      "{{InviterName}} يدعوك للانضمام إلى {{GroupName}}"
+    ),
+    title: L(
+      "Invitation à rejoindre un groupe d'experts",
+      "Invitation to join an expert group",
+      "Invitación a unirse a un grupo de expertos",
+      "Einladung zur Expertengruppe",
+      "Convite para juntar-se a um grupo de especialistas",
+      "加入专家组邀请",
+      "دعوة للانضمام إلى مجموعة خبراء"
+    ),
+    hello: true,
+    body: L(
+      "<strong>{{InviterName}}</strong> vous invite à rejoindre le groupe d'experts <strong>{{GroupName}}</strong> sur TutorSphere.",
+      "<strong>{{InviterName}}</strong> invites you to join the expert group <strong>{{GroupName}}</strong> on TutorSphere.",
+      "<strong>{{InviterName}}</strong> le invita a unirse al grupo de expertos <strong>{{GroupName}}</strong> en TutorSphere.",
+      "<strong>{{InviterName}}</strong> lädt Sie ein, der Expertengruppe <strong>{{GroupName}}</strong> auf TutorSphere beizutreten.",
+      "<strong>{{InviterName}}</strong> convida-o a juntar-se ao grupo de especialistas <strong>{{GroupName}}</strong> no TutorSphere.",
+      "<strong>{{InviterName}}</strong> 邀请您加入 TutorSphere 专家组 <strong>{{GroupName}}</strong>。",
+      "<strong>{{InviterName}}</strong> يدعوك للانضمام إلى مجموعة الخبراء <strong>{{GroupName}}</strong> على TutorSphere."
+    ),
+    membershipLabels: {
+      group: L("Groupe", "Group", "Grupo", "Gruppe", "Grupo", "小组", "المجموعة"),
+      inviter: L("Invité par", "Invited by", "Invitado por", "Eingeladen von", "Convidado por", "邀请人", "بدعوة من")
+    },
+    note: L("{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}"),
+    body2: L(
+      "Pour accepter ou refuser cette invitation, utilisez le bouton ci-dessous. Votre candidature pourra ensuite être soumise au vote des membres du groupe.",
+      "To accept or decline this invitation, use the button below. Your application may then be submitted to a vote by group members.",
+      "Para aceptar o rechazar esta invitación, use el botón de abajo. Su candidatura podrá luego someterse a votación de los miembros del grupo.",
+      "Nutzen Sie die Schaltfläche unten, um die Einladung anzunehmen oder abzulehnen. Ihre Bewerbung kann anschließend von den Gruppenmitgliedern abgestimmt werden.",
+      "Para aceitar ou recusar este convite, use o botão abaixo. A sua candidatura poderá depois ser submetida a votação pelos membros do grupo.",
+      "请使用下方按钮接受或拒绝此邀请。您的申请随后可能提交给小组成员投票。",
+      "لقبول هذه الدعوة أو رفضها، استخدم الزر أدناه. قد تُعرض ترشيحك بعد ذلك على تصويت أعضاء المجموعة."
+    ),
+    btn: L(
+      "Voir mon invitation",
+      "View my invitation",
+      "Ver mi invitación",
+      "Einladung ansehen",
+      "Ver o meu convite",
+      "查看我的邀请",
+      "عرض دعوتي"
+    ),
+    btnUrl: "{{JoinUrl}}",
+    text: L(
+      "Bonjour {{FirstName}}, {{InviterName}} vous invite à rejoindre {{GroupName}}. {{PersonalMessage}} Lien : {{JoinUrl}}",
+      "Hello {{FirstName}}, {{InviterName}} invites you to join {{GroupName}}. {{PersonalMessage}} Link: {{JoinUrl}}",
+      "Hola {{FirstName}}, {{InviterName}} le invita a unirse a {{GroupName}}. {{PersonalMessage}} Enlace: {{JoinUrl}}",
+      "Hallo {{FirstName}}, {{InviterName}} lädt Sie ein, {{GroupName}} beizutreten. {{PersonalMessage}} Link: {{JoinUrl}}",
+      "Olá {{FirstName}}, {{InviterName}} convida-o a juntar-se a {{GroupName}}. {{PersonalMessage}} Link: {{JoinUrl}}",
+      "{{FirstName}}，您好，{{InviterName}} 邀请您加入 {{GroupName}}。{{PersonalMessage}} 链接：{{JoinUrl}}",
+      "مرحبًا {{FirstName}}، {{InviterName}} يدعوك للانضمام إلى {{GroupName}}. {{PersonalMessage}} الرابط: {{JoinUrl}}"
+    )
+  },
+  {
+    code: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+    name: L(
+      "TutorSphere — Vote d'admission Expert",
+      "TutorSphere — Expert admission vote",
+      "TutorSphere — Voto de admisión experto",
+      "TutorSphere — Expertenaufnahme-Abstimmung",
+      "TutorSphere — Votação de admissão especialista",
+      "TutorSphere — 专家入组投票",
+      "TutorSphere — تصويت قبول خبير"
+    ),
+    subject: L(
+      "Vote ouvert : candidature de {{CandidateName}} — {{GroupName}}",
+      "Vote open: {{CandidateName}} application — {{GroupName}}",
+      "Voto abierto: candidatura de {{CandidateName}} — {{GroupName}}",
+      "Abstimmung offen: Bewerbung von {{CandidateName}} — {{GroupName}}",
+      "Votação aberta: candidatura de {{CandidateName}} — {{GroupName}}",
+      "投票已开启：{{CandidateName}} 的申请 — {{GroupName}}",
+      "التصويت مفتوح: ترشيح {{CandidateName}} — {{GroupName}}"
+    ),
+    title: L(
+      "Un vote d'admission est ouvert",
+      "An admission vote is open",
+      "Hay un voto de admisión abierto",
+      "Eine Aufnahmeabstimmung ist geöffnet",
+      "Uma votação de admissão está aberta",
+      "入组投票已开启",
+      "تصويت القبول مفتوح"
+    ),
+    hello: true,
+    body: L(
+      "La candidature de <strong>{{CandidateName}}</strong> pour rejoindre le groupe <strong>{{GroupName}}</strong> est ouverte au vote des membres.",
+      "The application of <strong>{{CandidateName}}</strong> to join <strong>{{GroupName}}</strong> is open for member voting.",
+      "La candidatura de <strong>{{CandidateName}}</strong> para unirse a <strong>{{GroupName}}</strong> está abierta a la votación de los miembros.",
+      "Die Bewerbung von <strong>{{CandidateName}}</strong> für <strong>{{GroupName}}</strong> steht zur Abstimmung der Mitglieder.",
+      "A candidatura de <strong>{{CandidateName}}</strong> para juntar-se a <strong>{{GroupName}}</strong> está aberta à votação dos membros.",
+      "<strong>{{CandidateName}}</strong> 申请加入 <strong>{{GroupName}}</strong>，现已开放成员投票。",
+      "ترشيح <strong>{{CandidateName}}</strong> للانضمام إلى <strong>{{GroupName}}</strong> مفتوح لتصويت الأعضاء."
+    ),
+    body2: L(
+      "Merci de voter dès que possible. L'admission nécessite l'accord d'au moins 75&nbsp;% des autres membres actifs.",
+      "Please vote as soon as possible. Admission requires approval from at least 75% of the other active members.",
+      "Vote lo antes posible. La admisión requiere la aprobación de al menos el 75&nbsp;% de los demás miembros activos.",
+      "Bitte stimmen Sie möglichst bald ab. Die Aufnahme erfordert die Zustimmung von mindestens 75&nbsp;% der anderen aktiven Mitglieder.",
+      "Vote o mais cedo possível. A admissão exige a aprovação de pelo menos 75&nbsp;% dos outros membros ativos.",
+      "请尽快投票。入组需获得至少 75% 其他活跃成员的同意。",
+      "يُرجى التصويت في أقرب وقت. يتطلب القبول موافقة 75٪ على الأقل من الأعضاء النشطين الآخرين."
+    ),
+    btn: L(
+      "Ouvrir les admissions",
+      "Open admissions",
+      "Abrir admisiones",
+      "Aufnahmen öffnen",
+      "Abrir admissões",
+      "打开录取页",
+      "فتح القبولات"
+    ),
+    btnUrl: "{{VoteUrl}}",
+    text: L(
+      "Bonjour {{FirstName}}, vote ouvert pour {{CandidateName}} ({{GroupName}}). Lien : {{VoteUrl}}",
+      "Hello {{FirstName}}, vote open for {{CandidateName}} ({{GroupName}}). Link: {{VoteUrl}}",
+      "Hola {{FirstName}}, voto abierto para {{CandidateName}} ({{GroupName}}). Enlace: {{VoteUrl}}",
+      "Hallo {{FirstName}}, Abstimmung offen für {{CandidateName}} ({{GroupName}}). Link: {{VoteUrl}}",
+      "Olá {{FirstName}}, votação aberta para {{CandidateName}} ({{GroupName}}). Link: {{VoteUrl}}",
+      "{{FirstName}}，您好，{{CandidateName}}（{{GroupName}}）的投票已开启。链接：{{VoteUrl}}",
+      "مرحبًا {{FirstName}}، التصويت مفتوح لـ {{CandidateName}} ({{GroupName}}). الرابط: {{VoteUrl}}"
+    )
+  },
+  {
+    code: "EXPERT_MEMBERSHIP_REJECTED",
+    name: L(
+      "TutorSphere — Candidature Expert non retenue",
+      "TutorSphere — Expert application not retained",
+      "TutorSphere — Candidatura de experto no retenida",
+      "TutorSphere — Expertenbewerbung nicht angenommen",
+      "TutorSphere — Candidatura de especialista não retida",
+      "TutorSphere — 专家申请未通过",
+      "TutorSphere — لم تُقبل ترشيح الخبير"
+    ),
+    subject: L(
+      "Votre candidature Expert n'a pas été retenue — TutorSphere",
+      "Your Expert application was not retained — TutorSphere",
+      "Su candidatura de experto no fue retenida — TutorSphere",
+      "Ihre Expertenbewerbung wurde nicht angenommen — TutorSphere",
+      "A sua candidatura de especialista não foi retida — TutorSphere",
+      "您的专家申请未获通过 — TutorSphere",
+      "لم تُقبل ترشيحك كخبير — TutorSphere"
+    ),
+    title: L(
+      "Candidature non retenue",
+      "Application not retained",
+      "Candidatura no retenida",
+      "Bewerbung nicht angenommen",
+      "Candidatura não retida",
+      "申请未通过",
+      "لم تُقبل الترشيح"
+    ),
+    titleColor: "#dc2626",
+    hello: true,
+    body: L(
+      "Après examen, votre candidature pour rejoindre un groupe d'experts TutorSphere n'a pas été retenue.",
+      "After review, your application to join a TutorSphere expert group was not retained.",
+      "Tras la revisión, su candidatura para unirse a un grupo de expertos TutorSphere no fue retenida.",
+      "Nach Prüfung wurde Ihre Bewerbung für eine TutorSphere-Expertengruppe nicht angenommen.",
+      "Após análise, a sua candidatura para juntar-se a um grupo de especialistas TutorSphere não foi retida.",
+      "经审核，您加入 TutorSphere 专家组的申请未获通过。",
+      "بعد المراجعة، لم تُقبل ترشيحك للانضمام إلى مجموعة خبراء TutorSphere."
+    ),
+    reasonLabel: L("Motif", "Reason", "Motivo", "Grund", "Motivo", "原因", "السبب"),
+    text: L(
+      "Bonjour {{FirstName}}, votre candidature Expert n'a pas été retenue. Motif : {{Reason}}",
+      "Hello {{FirstName}}, your Expert application was not retained. Reason: {{Reason}}",
+      "Hola {{FirstName}}, su candidatura de experto no fue retenida. Motivo: {{Reason}}",
+      "Hallo {{FirstName}}, Ihre Expertenbewerbung wurde nicht angenommen. Grund: {{Reason}}",
+      "Olá {{FirstName}}, a sua candidatura de especialista não foi retida. Motivo: {{Reason}}",
+      "{{FirstName}}，您好，您的专家申请未获通过。原因：{{Reason}}",
+      "مرحبًا {{FirstName}}، لم تُقبل ترشيحك كخبير. السبب: {{Reason}}"
+    )
   }
 ];
 
@@ -1083,6 +1275,13 @@ function buildHtml(tpl, lang) {
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.email, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
+                </table>`);
+  }
+  if (tpl.membershipLabels) {
+    const bg = tpl.tableBg || "#f5f3ff";
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.membershipLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">${t(tpl.membershipLabels.inviter, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
                 </table>`);
   }
   if (tpl.decisionLabels) {

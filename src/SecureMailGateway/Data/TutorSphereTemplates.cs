@@ -30,11 +30,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bienvenue {{FirstName}} sur TutorSphere.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_CONFIRM_ACCESS",
@@ -59,11 +59,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Validez votre espace parent TutorSphere : {{ConfirmationUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -88,11 +88,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirmez votre e-mail : {{ConfirmationUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -117,11 +117,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Rapport de cours pour {{StudentName}} avec {{TutorName}}.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -145,11 +145,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "École {{SchoolName}} enregistrée, en attente de validation.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -174,11 +174,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirmez votre e-mail : {{ConfirmationUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -203,11 +203,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Réinitialisez votre mot de passe : {{ResetUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -232,11 +232,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre mot de passe TutorSphere a été modifié.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -261,11 +261,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre essai gratuit TutorSphere a commencé.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -292,11 +292,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Reçu de paiement {{Amount}}. Facture : {{InvoiceUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -321,11 +321,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Votre abonnement TutorSphere se renouvelle le {{RenewalDate}}.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -350,11 +350,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -379,11 +379,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre abonnement TutorSphere a été annulé.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -407,11 +407,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre compte TutorSphere a été activé.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -436,11 +436,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre compte a été désactivé. Motif : {{Reason}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -465,11 +465,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre école {{SchoolName}} est approuvée. Connexion : {{LoginUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -498,11 +498,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Cours planifié — {{Subject}} avec {{TutorName}} le {{LessonDate}}.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -531,11 +531,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Rappel : cours de {{Subject}} avec {{TutorName}} le {{LessonDate}}.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -564,11 +564,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Cours annulé — {{Subject}} avec {{TutorName}} prévu le {{LessonDate}}.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -596,11 +596,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Reçu de paiement pour {{StudentName}} — {{Amount}}. Facture : {{InvoiceUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -625,11 +625,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{ParentName}}, votre paiement TutorSphere a échoué. Mettez vos informations à jour.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -653,11 +653,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{ParentName}}, votre facture TutorSphere est disponible : {{InvoiceUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -682,11 +682,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Rappel : paiement en retard pour {{StudentName}} — {{CourseTitle}}. Payer : {{PayUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -711,11 +711,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Demande d'inscription de {{StudentName}} au cours {{CourseTitle}}.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -740,11 +740,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Inscription de {{StudentName}} à {{CourseTitle}} acceptée. {{StatusNote}} {{ActionUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -771,11 +771,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Paiement reçu : {{Amount}} pour {{StudentName}} — {{CourseTitle}}.",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_PENDING",
@@ -804,11 +804,11 @@ public static class TutorSphereTemplates
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{ExpertFirstName}}, demande enseignant à valider — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_INVITE",
@@ -855,11 +855,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, invitation expert {{GroupName}}. E-mail : {{Email}}. Mot de passe temporaire : {{TemporaryPassword}}. Changez ce mot de passe à la première connexion. Connexion expert : {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS : https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -887,11 +887,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, vous avez été ajouté(e) au groupe {{GroupName}} (compte {{Email}}). Connexion : {{LoginUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPROVED",
@@ -921,11 +921,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre profil {{SchoolName}} a été approuvé par {{GroupName}}. Commentaire : {{Notes}}. Connexion : {{LoginUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_REJECTED",
@@ -955,11 +955,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, votre demande {{SchoolName}} n'a pas été approuvée par {{GroupName}}. Motif : {{Notes}}. Connexion : {{LoginUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
@@ -985,11 +985,102 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bonjour {{FirstName}}, {{ExpertName}} ({{GroupName}}) vous invite à candidater. {{PersonalMessage}} Lien : {{ApplyUrl}}",
             Language: "fr",
-            SeedRevision: 6),
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_INVITE",
+            Name: "TutorSphere — Invitation membre Expert",
+            SubjectTemplate: "{{InviterName}} vous invite à rejoindre le groupe {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitation à rejoindre un groupe d'experts</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p><strong>{{InviterName}}</strong> vous invite à rejoindre le groupe d'experts <strong>{{GroupName}}</strong> sur TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Groupe</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Invité par</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>Pour accepter ou refuser cette invitation, utilisez le bouton ci-dessous. Votre candidature pourra ensuite être soumise au vote des membres du groupe.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Voir mon invitation</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, {{InviterName}} vous invite à rejoindre {{GroupName}}. {{PersonalMessage}} Lien : {{JoinUrl}}",
+            Language: "fr",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+            Name: "TutorSphere — Vote d'admission Expert",
+            SubjectTemplate: "Vote ouvert : candidature de {{CandidateName}} — {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Un vote d'admission est ouvert</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>La candidature de <strong>{{CandidateName}}</strong> pour rejoindre le groupe <strong>{{GroupName}}</strong> est ouverte au vote des membres.</p>
+                <p>Merci de voter dès que possible. L'admission nécessite l'accord d'au moins 75&nbsp;% des autres membres actifs.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{VoteUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Ouvrir les admissions</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, vote ouvert pour {{CandidateName}} ({{GroupName}}). Lien : {{VoteUrl}}",
+            Language: "fr",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_REJECTED",
+            Name: "TutorSphere — Candidature Expert non retenue",
+            SubjectTemplate: "Votre candidature Expert n'a pas été retenue — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Candidature non retenue</h2>
+                <p>Bonjour {{FirstName}},</p>
+                <p>Après examen, votre candidature pour rejoindre un groupe d'experts TutorSphere n'a pas été retenue.</p>
+                <p><strong>Motif :</strong> {{Reason}}</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Bonjour {{FirstName}}, votre candidature Expert n'a pas été retenue. Motif : {{Reason}}",
+            Language: "fr",
+            SeedRevision: 7),
 
         new(
             TemplateCode: "WELCOME",
@@ -1012,11 +1103,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Welcome {{FirstName}} to TutorSphere.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_CONFIRM_ACCESS",
@@ -1041,11 +1132,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Validate your TutorSphere parent space: {{ConfirmationUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -1070,11 +1161,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirm your email: {{ConfirmationUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -1099,11 +1190,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Lesson report for {{StudentName}} with {{TutorName}}.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -1127,11 +1218,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "School {{SchoolName}} registered, awaiting approval.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -1156,11 +1247,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirm your email: {{ConfirmationUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -1185,11 +1276,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Reset your password: {{ResetUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -1214,11 +1305,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere password was changed.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -1243,11 +1334,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere free trial has started.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -1274,11 +1365,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Payment receipt {{Amount}}. Invoice: {{InvoiceUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -1303,11 +1394,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Your TutorSphere subscription renews on {{RenewalDate}}.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -1332,11 +1423,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere payment failed. Please update your details.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -1361,11 +1452,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere subscription was cancelled.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -1389,11 +1480,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{FirstName}}, your TutorSphere account was activated.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -1418,11 +1509,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{FirstName}}, your account was deactivated. Reason: {{Reason}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -1447,11 +1538,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{FirstName}}, your school {{SchoolName}} is approved. Sign in: {{LoginUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -1480,11 +1571,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Lesson scheduled — {{Subject}} with {{TutorName}} on {{LessonDate}}.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -1513,11 +1604,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Reminder: {{Subject}} lesson with {{TutorName}} on {{LessonDate}}.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -1546,11 +1637,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Lesson cancelled — {{Subject}} with {{TutorName}} scheduled for {{LessonDate}}.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -1578,11 +1669,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Payment receipt for {{StudentName}} — {{Amount}}. Invoice: {{InvoiceUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -1607,11 +1698,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{ParentName}}, your TutorSphere payment failed. Please update your details.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -1635,11 +1726,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hi {{ParentName}}, your TutorSphere invoice is ready: {{InvoiceUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -1664,11 +1755,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Reminder: overdue payment for {{StudentName}} — {{CourseTitle}}. Pay: {{PayUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -1693,11 +1784,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Enrollment request from {{StudentName}} for {{CourseTitle}}.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -1722,11 +1813,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Enrollment of {{StudentName}} in {{CourseTitle}} accepted. {{StatusNote}} {{ActionUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -1753,11 +1844,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Payment received: {{Amount}} for {{StudentName}} — {{CourseTitle}}.",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_PENDING",
@@ -1786,11 +1877,11 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hello {{ExpertFirstName}}, teacher application to review — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_INVITE",
@@ -1837,11 +1928,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hello {{FirstName}}, expert invite {{GroupName}}. Email: {{Email}}. Temporary password: {{TemporaryPassword}}. Change this password on first login. Expert login: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -1869,11 +1960,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hello {{FirstName}}, you were added to group {{GroupName}} (account {{Email}}). Login: {{LoginUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPROVED",
@@ -1903,11 +1994,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hello {{FirstName}}, your profile {{SchoolName}} was approved by {{GroupName}}. Comment: {{Notes}}. Login: {{LoginUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_REJECTED",
@@ -1937,11 +2028,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hello {{FirstName}}, your application {{SchoolName}} was not approved by {{GroupName}}. Reason: {{Notes}}. Login: {{LoginUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
@@ -1967,11 +2058,102 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hello {{FirstName}}, {{ExpertName}} ({{GroupName}}) invites you to apply. {{PersonalMessage}} Link: {{ApplyUrl}}",
             Language: "en",
-            SeedRevision: 6),
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_INVITE",
+            Name: "TutorSphere — Expert membership invite",
+            SubjectTemplate: "{{InviterName}} invites you to join {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitation to join an expert group</h2>
+                <p>Hello {{FirstName}},</p>
+                <p><strong>{{InviterName}}</strong> invites you to join the expert group <strong>{{GroupName}}</strong> on TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Group</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Invited by</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>To accept or decline this invitation, use the button below. Your application may then be submitted to a vote by group members.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">View my invitation</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hello {{FirstName}}, {{InviterName}} invites you to join {{GroupName}}. {{PersonalMessage}} Link: {{JoinUrl}}",
+            Language: "en",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+            Name: "TutorSphere — Expert admission vote",
+            SubjectTemplate: "Vote open: {{CandidateName}} application — {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">An admission vote is open</h2>
+                <p>Hello {{FirstName}},</p>
+                <p>The application of <strong>{{CandidateName}}</strong> to join <strong>{{GroupName}}</strong> is open for member voting.</p>
+                <p>Please vote as soon as possible. Admission requires approval from at least 75% of the other active members.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{VoteUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Open admissions</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hello {{FirstName}}, vote open for {{CandidateName}} ({{GroupName}}). Link: {{VoteUrl}}",
+            Language: "en",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_REJECTED",
+            Name: "TutorSphere — Expert application not retained",
+            SubjectTemplate: "Your Expert application was not retained — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Application not retained</h2>
+                <p>Hello {{FirstName}},</p>
+                <p>After review, your application to join a TutorSphere expert group was not retained.</p>
+                <p><strong>Reason :</strong> {{Reason}}</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hello {{FirstName}}, your Expert application was not retained. Reason: {{Reason}}",
+            Language: "en",
+            SeedRevision: 7),
 
         new(
             TemplateCode: "WELCOME",
@@ -1994,11 +2176,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bienvenido/a {{FirstName}} a TutorSphere.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_CONFIRM_ACCESS",
@@ -2023,11 +2205,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Valide su espacio de padres TutorSphere: {{ConfirmationUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -2052,11 +2234,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirme su correo: {{ConfirmationUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -2081,11 +2263,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Informe de clase de {{StudentName}} con {{TutorName}}.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -2109,11 +2291,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Escuela {{SchoolName}} registrada, pendiente de aprobación.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -2138,11 +2320,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirme su correo: {{ConfirmationUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -2167,11 +2349,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Restablezca su contraseña: {{ResetUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -2196,11 +2378,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su contraseña de TutorSphere fue cambiada.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -2225,11 +2407,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su prueba gratuita de TutorSphere ha comenzado.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -2256,11 +2438,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Recibo de pago {{Amount}}. Factura: {{InvoiceUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -2285,11 +2467,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Su suscripción a TutorSphere se renueva el {{RenewalDate}}.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -2314,11 +2496,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, falló su pago de TutorSphere. Actualice sus datos.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -2343,11 +2525,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su suscripción a TutorSphere fue cancelada.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -2371,11 +2553,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su cuenta de TutorSphere fue activada.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -2400,11 +2582,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su cuenta fue desactivada. Motivo: {{Reason}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -2429,11 +2611,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su escuela {{SchoolName}} está aprobada. Acceso: {{LoginUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -2462,11 +2644,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Clase programada — {{Subject}} con {{TutorName}} el {{LessonDate}}.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -2495,11 +2677,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Recordatorio: clase de {{Subject}} con {{TutorName}} el {{LessonDate}}.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -2528,11 +2710,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Clase cancelada — {{Subject}} con {{TutorName}} prevista el {{LessonDate}}.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -2560,11 +2742,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Recibo de pago de {{StudentName}} — {{Amount}}. Factura: {{InvoiceUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -2589,11 +2771,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{ParentName}}, falló su pago de TutorSphere. Actualice sus datos.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -2617,11 +2799,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{ParentName}}, su factura de TutorSphere está disponible: {{InvoiceUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -2646,11 +2828,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Recordatorio: pago atrasado de {{StudentName}} — {{CourseTitle}}. Pagar: {{PayUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -2675,11 +2857,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Solicitud de inscripción de {{StudentName}} al curso {{CourseTitle}}.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -2704,11 +2886,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Inscripción de {{StudentName}} en {{CourseTitle}} aceptada. {{StatusNote}} {{ActionUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -2735,11 +2917,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Pago recibido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_PENDING",
@@ -2768,11 +2950,11 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{ExpertFirstName}}, solicitud de profesor por revisar — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_INVITE",
@@ -2819,11 +3001,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, invitación experto {{GroupName}}. Correo: {{Email}}. Contraseña temporal: {{TemporaryPassword}}. Cambie esta contraseña en el primer acceso. Acceso experto: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -2851,11 +3033,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, ha sido añadido/a al grupo {{GroupName}} (cuenta {{Email}}). Acceso: {{LoginUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPROVED",
@@ -2885,11 +3067,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su perfil {{SchoolName}} fue aprobado por {{GroupName}}. Comentario: {{Notes}}. Acceso: {{LoginUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_REJECTED",
@@ -2919,11 +3101,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, su solicitud {{SchoolName}} no fue aprobada por {{GroupName}}. Motivo: {{Notes}}. Acceso: {{LoginUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
@@ -2949,11 +3131,102 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hola {{FirstName}}, {{ExpertName}} ({{GroupName}}) le invita a postular. {{PersonalMessage}} Enlace: {{ApplyUrl}}",
             Language: "es",
-            SeedRevision: 6),
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_INVITE",
+            Name: "TutorSphere — Invitación miembro experto",
+            SubjectTemplate: "{{InviterName}} le invita a unirse a {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitación a unirse a un grupo de expertos</h2>
+                <p>Hola {{FirstName}},</p>
+                <p><strong>{{InviterName}}</strong> le invita a unirse al grupo de expertos <strong>{{GroupName}}</strong> en TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Grupo</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Invitado por</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>Para aceptar o rechazar esta invitación, use el botón de abajo. Su candidatura podrá luego someterse a votación de los miembros del grupo.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Ver mi invitación</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hola {{FirstName}}, {{InviterName}} le invita a unirse a {{GroupName}}. {{PersonalMessage}} Enlace: {{JoinUrl}}",
+            Language: "es",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+            Name: "TutorSphere — Voto de admisión experto",
+            SubjectTemplate: "Voto abierto: candidatura de {{CandidateName}} — {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Hay un voto de admisión abierto</h2>
+                <p>Hola {{FirstName}},</p>
+                <p>La candidatura de <strong>{{CandidateName}}</strong> para unirse a <strong>{{GroupName}}</strong> está abierta a la votación de los miembros.</p>
+                <p>Vote lo antes posible. La admisión requiere la aprobación de al menos el 75&nbsp;% de los demás miembros activos.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{VoteUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Abrir admisiones</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hola {{FirstName}}, voto abierto para {{CandidateName}} ({{GroupName}}). Enlace: {{VoteUrl}}",
+            Language: "es",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_REJECTED",
+            Name: "TutorSphere — Candidatura de experto no retenida",
+            SubjectTemplate: "Su candidatura de experto no fue retenida — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Candidatura no retenida</h2>
+                <p>Hola {{FirstName}},</p>
+                <p>Tras la revisión, su candidatura para unirse a un grupo de expertos TutorSphere no fue retenida.</p>
+                <p><strong>Motivo :</strong> {{Reason}}</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hola {{FirstName}}, su candidatura de experto no fue retenida. Motivo: {{Reason}}",
+            Language: "es",
+            SeedRevision: 7),
 
         new(
             TemplateCode: "WELCOME",
@@ -2976,11 +3249,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Willkommen {{FirstName}} bei TutorSphere.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_CONFIRM_ACCESS",
@@ -3005,11 +3278,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bestätigen Sie Ihren TutorSphere-Elternbereich: {{ConfirmationUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -3034,11 +3307,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bestätigen Sie Ihre E-Mail: {{ConfirmationUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -3063,11 +3336,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Unterrichtsbericht für {{StudentName}} mit {{TutorName}}.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -3091,11 +3364,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Schule {{SchoolName}} registriert, Freigabe ausstehend.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -3120,11 +3393,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bestätigen Sie Ihre E-Mail: {{ConfirmationUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -3149,11 +3422,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Passwort zurücksetzen: {{ResetUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -3178,11 +3451,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr TutorSphere-Passwort wurde geändert.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -3207,11 +3480,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihre TutorSphere-Testversion hat begonnen.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -3238,11 +3511,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Zahlungsbeleg {{Amount}}. Rechnung: {{InvoiceUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -3267,11 +3540,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Ihr TutorSphere-Abonnement wird am {{RenewalDate}} verlängert.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -3296,11 +3569,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -3325,11 +3598,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr TutorSphere-Abonnement wurde gekündigt.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -3353,11 +3626,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr TutorSphere-Konto wurde aktiviert.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -3382,11 +3655,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr Konto wurde deaktiviert. Grund: {{Reason}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -3411,11 +3684,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihre Schule {{SchoolName}} ist genehmigt. Anmeldung: {{LoginUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -3444,11 +3717,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Unterricht geplant — {{Subject}} mit {{TutorName}} am {{LessonDate}}.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -3477,11 +3750,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Erinnerung: {{Subject}}-Unterricht mit {{TutorName}} am {{LessonDate}}.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -3510,11 +3783,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Unterricht abgesagt — {{Subject}} mit {{TutorName}} geplant am {{LessonDate}}.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -3542,11 +3815,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Zahlungsbeleg für {{StudentName}} — {{Amount}}. Rechnung: {{InvoiceUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -3571,11 +3844,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{ParentName}}, Ihre TutorSphere-Zahlung ist fehlgeschlagen. Bitte aktualisieren Sie Ihre Daten.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -3599,11 +3872,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{ParentName}}, Ihre TutorSphere-Rechnung ist verfügbar: {{InvoiceUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -3628,11 +3901,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Erinnerung: überfällige Zahlung für {{StudentName}} — {{CourseTitle}}. Zahlen: {{PayUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -3657,11 +3930,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Anmeldungsanfrage von {{StudentName}} für {{CourseTitle}}.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -3686,11 +3959,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Anmeldung von {{StudentName}} für {{CourseTitle}} angenommen. {{StatusNote}} {{ActionUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -3717,11 +3990,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Zahlung eingegangen: {{Amount}} für {{StudentName}} — {{CourseTitle}}.",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_PENDING",
@@ -3750,11 +4023,11 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{ExpertFirstName}}, Lehrerantrag zur Prüfung — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_INVITE",
@@ -3801,11 +4074,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Experten-Einladung {{GroupName}}. E-Mail: {{Email}}. Temporäres Passwort: {{TemporaryPassword}}. Ändern Sie dieses Passwort bei der ersten Anmeldung. Experten-Login: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -3833,11 +4106,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Sie wurden der Gruppe {{GroupName}} hinzugefügt (Konto {{Email}}). Anmeldung: {{LoginUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPROVED",
@@ -3867,11 +4140,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr Profil {{SchoolName}} wurde von {{GroupName}} genehmigt. Kommentar: {{Notes}}. Anmeldung: {{LoginUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_REJECTED",
@@ -3901,11 +4174,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihr Antrag {{SchoolName}} wurde von {{GroupName}} nicht genehmigt. Grund: {{Notes}}. Anmeldung: {{LoginUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
@@ -3931,11 +4204,102 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Hallo {{FirstName}}, {{ExpertName}} ({{GroupName}}) lädt Sie zur Bewerbung ein. {{PersonalMessage}} Link: {{ApplyUrl}}",
             Language: "de",
-            SeedRevision: 6),
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_INVITE",
+            Name: "TutorSphere — Einladung Expertenmitglied",
+            SubjectTemplate: "{{InviterName}} lädt Sie ein, {{GroupName}} beizutreten",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Einladung zur Expertengruppe</h2>
+                <p>Hallo {{FirstName}},</p>
+                <p><strong>{{InviterName}}</strong> lädt Sie ein, der Expertengruppe <strong>{{GroupName}}</strong> auf TutorSphere beizutreten.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Gruppe</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Eingeladen von</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>Nutzen Sie die Schaltfläche unten, um die Einladung anzunehmen oder abzulehnen. Ihre Bewerbung kann anschließend von den Gruppenmitgliedern abgestimmt werden.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Einladung ansehen</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hallo {{FirstName}}, {{InviterName}} lädt Sie ein, {{GroupName}} beizutreten. {{PersonalMessage}} Link: {{JoinUrl}}",
+            Language: "de",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+            Name: "TutorSphere — Expertenaufnahme-Abstimmung",
+            SubjectTemplate: "Abstimmung offen: Bewerbung von {{CandidateName}} — {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Eine Aufnahmeabstimmung ist geöffnet</h2>
+                <p>Hallo {{FirstName}},</p>
+                <p>Die Bewerbung von <strong>{{CandidateName}}</strong> für <strong>{{GroupName}}</strong> steht zur Abstimmung der Mitglieder.</p>
+                <p>Bitte stimmen Sie möglichst bald ab. Die Aufnahme erfordert die Zustimmung von mindestens 75&nbsp;% der anderen aktiven Mitglieder.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{VoteUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Aufnahmen öffnen</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hallo {{FirstName}}, Abstimmung offen für {{CandidateName}} ({{GroupName}}). Link: {{VoteUrl}}",
+            Language: "de",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_REJECTED",
+            Name: "TutorSphere — Expertenbewerbung nicht angenommen",
+            SubjectTemplate: "Ihre Expertenbewerbung wurde nicht angenommen — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Bewerbung nicht angenommen</h2>
+                <p>Hallo {{FirstName}},</p>
+                <p>Nach Prüfung wurde Ihre Bewerbung für eine TutorSphere-Expertengruppe nicht angenommen.</p>
+                <p><strong>Grund :</strong> {{Reason}}</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Hallo {{FirstName}}, Ihre Expertenbewerbung wurde nicht angenommen. Grund: {{Reason}}",
+            Language: "de",
+            SeedRevision: 7),
 
         new(
             TemplateCode: "WELCOME",
@@ -3958,11 +4322,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Bem-vindo(a) {{FirstName}} ao TutorSphere.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_CONFIRM_ACCESS",
@@ -3987,11 +4351,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Valide o seu espaço de responsável TutorSphere: {{ConfirmationUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -4016,11 +4380,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirme o seu e-mail: {{ConfirmationUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -4045,11 +4409,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Relatório de aula de {{StudentName}} com {{TutorName}}.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -4073,11 +4437,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Escola {{SchoolName}} registada, aguarda aprovação.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -4102,11 +4466,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Confirme o seu e-mail: {{ConfirmationUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -4131,11 +4495,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Redefina a sua palavra-passe: {{ResetUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -4160,11 +4524,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua palavra-passe TutorSphere foi alterada.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -4189,11 +4553,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua avaliação gratuita TutorSphere começou.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -4220,11 +4584,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Recibo de pagamento {{Amount}}. Fatura: {{InvoiceUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -4249,11 +4613,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "A sua subscrição TutorSphere renova em {{RenewalDate}}.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -4278,11 +4642,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, o pagamento TutorSphere falhou. Atualize os seus dados.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -4307,11 +4671,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua subscrição TutorSphere foi cancelada.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -4335,11 +4699,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua conta TutorSphere foi ativada.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -4364,11 +4728,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua conta foi desativada. Motivo: {{Reason}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -4393,11 +4757,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, a sua escola {{SchoolName}} foi aprovada. Acesso: {{LoginUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -4426,11 +4790,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Aula agendada — {{Subject}} com {{TutorName}} em {{LessonDate}}.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -4459,11 +4823,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Lembrete: aula de {{Subject}} com {{TutorName}} em {{LessonDate}}.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -4492,11 +4856,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Aula cancelada — {{Subject}} com {{TutorName}} prevista para {{LessonDate}}.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -4524,11 +4888,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Recibo de pagamento de {{StudentName}} — {{Amount}}. Fatura: {{InvoiceUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -4553,11 +4917,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{ParentName}}, o pagamento TutorSphere falhou. Atualize os seus dados.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -4581,11 +4945,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{ParentName}}, a sua fatura TutorSphere está disponível: {{InvoiceUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -4610,11 +4974,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Lembrete: pagamento em atraso de {{StudentName}} — {{CourseTitle}}. Pagar: {{PayUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -4639,11 +5003,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Pedido de inscrição de {{StudentName}} no curso {{CourseTitle}}.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -4668,11 +5032,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Inscrição de {{StudentName}} em {{CourseTitle}} aceite. {{StatusNote}} {{ActionUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -4699,11 +5063,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Pagamento recebido: {{Amount}} por {{StudentName}} — {{CourseTitle}}.",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_PENDING",
@@ -4732,11 +5096,11 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{ExpertFirstName}}, pedido de professor para rever — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_INVITE",
@@ -4783,11 +5147,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, convite especialista {{GroupName}}. E-mail: {{Email}}. Palavra-passe temporária: {{TemporaryPassword}}. Altere esta palavra-passe no primeiro acesso. Acesso especialista: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com | TutorSphere | Agentia | CogniDoc | GISEBoutique | ComptaDoc",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -4815,11 +5179,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, foi adicionado(a) ao grupo {{GroupName}} (conta {{Email}}). Acesso: {{LoginUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPROVED",
@@ -4849,11 +5213,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, o seu perfil {{SchoolName}} foi aprovado por {{GroupName}}. Comentário: {{Notes}}. Acesso: {{LoginUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_REJECTED",
@@ -4883,11 +5247,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, o seu pedido {{SchoolName}} não foi aprovado por {{GroupName}}. Motivo: {{Notes}}. Acesso: {{LoginUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
@@ -4913,11 +5277,102 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "Olá {{FirstName}}, {{ExpertName}} ({{GroupName}}) convida-o a candidatar-se. {{PersonalMessage}} Link: {{ApplyUrl}}",
             Language: "pt",
-            SeedRevision: 6),
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_INVITE",
+            Name: "TutorSphere — Convite membro especialista",
+            SubjectTemplate: "{{InviterName}} convida-o a juntar-se a {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Convite para juntar-se a um grupo de especialistas</h2>
+                <p>Olá {{FirstName}},</p>
+                <p><strong>{{InviterName}}</strong> convida-o a juntar-se ao grupo de especialistas <strong>{{GroupName}}</strong> no TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Grupo</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Convidado por</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>Para aceitar ou recusar este convite, use o botão abaixo. A sua candidatura poderá depois ser submetida a votação pelos membros do grupo.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Ver o meu convite</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Olá {{FirstName}}, {{InviterName}} convida-o a juntar-se a {{GroupName}}. {{PersonalMessage}} Link: {{JoinUrl}}",
+            Language: "pt",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+            Name: "TutorSphere — Votação de admissão especialista",
+            SubjectTemplate: "Votação aberta: candidatura de {{CandidateName}} — {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Uma votação de admissão está aberta</h2>
+                <p>Olá {{FirstName}},</p>
+                <p>A candidatura de <strong>{{CandidateName}}</strong> para juntar-se a <strong>{{GroupName}}</strong> está aberta à votação dos membros.</p>
+                <p>Vote o mais cedo possível. A admissão exige a aprovação de pelo menos 75&nbsp;% dos outros membros ativos.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{VoteUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">Abrir admissões</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Olá {{FirstName}}, votação aberta para {{CandidateName}} ({{GroupName}}). Link: {{VoteUrl}}",
+            Language: "pt",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_REJECTED",
+            Name: "TutorSphere — Candidatura de especialista não retida",
+            SubjectTemplate: "A sua candidatura de especialista não foi retida — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Candidatura não retida</h2>
+                <p>Olá {{FirstName}},</p>
+                <p>Após análise, a sua candidatura para juntar-se a um grupo de especialistas TutorSphere não foi retida.</p>
+                <p><strong>Motivo :</strong> {{Reason}}</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "Olá {{FirstName}}, a sua candidatura de especialista não foi retida. Motivo: {{Reason}}",
+            Language: "pt",
+            SeedRevision: 7),
 
         new(
             TemplateCode: "WELCOME",
@@ -4940,11 +5395,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "欢迎 {{FirstName}} 加入 TutorSphere。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_CONFIRM_ACCESS",
@@ -4969,11 +5424,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "验证您的 TutorSphere 家长空间：{{ConfirmationUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -4998,11 +5453,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "确认您的电子邮件：{{ConfirmationUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -5027,11 +5482,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{StudentName}} 与 {{TutorName}} 的课程报告。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -5055,11 +5510,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "学校 {{SchoolName}} 已登记，等待审核。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -5084,11 +5539,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "确认您的电子邮件：{{ConfirmationUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -5113,11 +5568,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "重置密码：{{ResetUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -5142,11 +5597,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 密码已更改。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -5171,11 +5626,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 免费试用已开始。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -5202,11 +5657,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "付款收据 {{Amount}}。发票：{{InvoiceUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -5231,11 +5686,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "您的 TutorSphere 订阅将于 {{RenewalDate}} 续订。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -5260,11 +5715,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 付款失败。请更新信息。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -5289,11 +5744,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 订阅已取消。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -5317,11 +5772,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的 TutorSphere 帐户已激活。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -5346,11 +5801,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的帐户已停用。原因：{{Reason}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -5375,11 +5830,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的学校 {{SchoolName}} 已获批准。登录：{{LoginUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -5408,11 +5863,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "课程已安排 — {{Subject}}，导师 {{TutorName}}，时间 {{LessonDate}}。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -5441,11 +5896,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "提醒：{{Subject}} 课程，导师 {{TutorName}}，时间 {{LessonDate}}。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -5474,11 +5929,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "课程已取消 — {{Subject}}，导师 {{TutorName}}，原定 {{LessonDate}}。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -5506,11 +5961,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{StudentName}} 的付款收据 — {{Amount}}。发票：{{InvoiceUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -5535,11 +5990,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{ParentName}}，您好，您的 TutorSphere 付款失败。请更新信息。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -5563,11 +6018,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{ParentName}}，您好，您的 TutorSphere 发票已就绪：{{InvoiceUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -5592,11 +6047,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "提醒：{{StudentName}} — {{CourseTitle}} 逾期付款。付款：{{PayUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -5621,11 +6076,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{StudentName}} 报名课程 {{CourseTitle}} 的请求。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -5650,11 +6105,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{StudentName}} 报名 {{CourseTitle}} 已接受。{{StatusNote}} {{ActionUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -5681,11 +6136,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "已收到付款：{{Amount}}，{{StudentName}} — {{CourseTitle}}。",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_PENDING",
@@ -5714,11 +6169,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{ExpertFirstName}}，您好，待审教师申请 — {{SchoolName}}（{{Country}}）。{{ReviewUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_INVITE",
@@ -5765,11 +6220,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，专家邀请 {{GroupName}}。电子邮件：{{Email}}。临时密码：{{TemporaryPassword}}。请在首次登录时更改密码。专家登录：{{LoginUrl}}（https://tutorsphere.gisebs.com/login/expert）。GISEBS：https://gisebs.com",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -5797,11 +6252,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您已加入小组 {{GroupName}}（帐户 {{Email}}）。登录：{{LoginUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPROVED",
@@ -5831,11 +6286,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的资料 {{SchoolName}} 已由 {{GroupName}} 批准。备注：{{Notes}}。登录：{{LoginUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_REJECTED",
@@ -5865,11 +6320,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，您的申请 {{SchoolName}} 未获 {{GroupName}} 批准。原因：{{Notes}}。登录：{{LoginUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
@@ -5895,11 +6350,102 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "{{FirstName}}，您好，{{ExpertName}}（{{GroupName}}）邀请您申请。{{PersonalMessage}} 链接：{{ApplyUrl}}",
             Language: "zh-Hans",
-            SeedRevision: 6),
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_INVITE",
+            Name: "TutorSphere — 专家成员邀请",
+            SubjectTemplate: "{{InviterName}} 邀请您加入 {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">加入专家组邀请</h2>
+                <p>{{FirstName}}，您好，</p>
+                <p><strong>{{InviterName}}</strong> 邀请您加入 TutorSphere 专家组 <strong>{{GroupName}}</strong>。</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">小组</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">邀请人</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>请使用下方按钮接受或拒绝此邀请。您的申请随后可能提交给小组成员投票。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">查看我的邀请</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "{{FirstName}}，您好，{{InviterName}} 邀请您加入 {{GroupName}}。{{PersonalMessage}} 链接：{{JoinUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+            Name: "TutorSphere — 专家入组投票",
+            SubjectTemplate: "投票已开启：{{CandidateName}} 的申请 — {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">入组投票已开启</h2>
+                <p>{{FirstName}}，您好，</p>
+                <p><strong>{{CandidateName}}</strong> 申请加入 <strong>{{GroupName}}</strong>，现已开放成员投票。</p>
+                <p>请尽快投票。入组需获得至少 75% 其他活跃成员的同意。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{VoteUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">打开录取页</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "{{FirstName}}，您好，{{CandidateName}}（{{GroupName}}）的投票已开启。链接：{{VoteUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_REJECTED",
+            Name: "TutorSphere — 专家申请未通过",
+            SubjectTemplate: "您的专家申请未获通过 — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">申请未通过</h2>
+                <p>{{FirstName}}，您好，</p>
+                <p>经审核，您加入 TutorSphere 专家组的申请未获通过。</p>
+                <p><strong>原因 :</strong> {{Reason}}</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "{{FirstName}}，您好，您的专家申请未获通过。原因：{{Reason}}",
+            Language: "zh-Hans",
+            SeedRevision: 7),
 
         new(
             TemplateCode: "WELCOME",
@@ -5922,11 +6468,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}} في TutorSphere.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_CONFIRM_ACCESS",
@@ -5951,11 +6497,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "أكد مساحة ولي الأمر في TutorSphere: {{ConfirmationUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL",
@@ -5980,11 +6526,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "أكد بريدك: {{ConfirmationUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REPORT",
@@ -6009,11 +6555,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "تقرير الحصة لـ {{StudentName}} مع {{TutorName}}.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_CREATED",
@@ -6037,11 +6583,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "تم تسجيل المدرسة {{SchoolName}} وبانتظار الموافقة.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "CONFIRM_EMAIL_SIMPLE",
@@ -6066,11 +6612,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "أكد بريدك: {{ConfirmationUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "RESET_PASSWORD",
@@ -6095,11 +6641,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "أعد تعيين كلمة المرور: {{ResetUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PASSWORD_CHANGED",
@@ -6124,11 +6670,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم تغيير كلمة مرور TutorSphere.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_TRIAL_STARTED",
@@ -6153,11 +6699,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، بدأت فترتك التجريبية في TutorSphere.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_RECEIPT",
@@ -6184,11 +6730,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "إيصال دفع {{Amount}}. الفاتورة: {{InvoiceUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_RENEWAL_REMINDER",
@@ -6213,11 +6759,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "سيُجدَّد اشتراكك في TutorSphere في {{RenewalDate}}.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_PAYMENT_FAILED",
@@ -6242,11 +6788,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، فشل دفع TutorSphere. حدّث بياناتك.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_SUB_CANCELLED",
@@ -6271,11 +6817,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم إلغاء اشتراكك في TutorSphere.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_ACTIVATED",
@@ -6299,11 +6845,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم تفعيل حسابك في TutorSphere.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "ACCOUNT_DEACTIVATED",
@@ -6328,11 +6874,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تم تعطيل حسابك. السبب: {{Reason}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "SCHOOL_APPROVED",
@@ -6357,11 +6903,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تمت الموافقة على مدرستك {{SchoolName}}. الدخول: {{LoginUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_SCHEDULED",
@@ -6390,11 +6936,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "حصة مجدولة — {{Subject}} مع {{TutorName}} في {{LessonDate}}.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_REMINDER",
@@ -6423,11 +6969,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "تذكير: حصة {{Subject}} مع {{TutorName}} في {{LessonDate}}.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "LESSON_CANCELLED",
@@ -6456,11 +7002,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "تم إلغاء الحصة — {{Subject}} مع {{TutorName}} المقررة في {{LessonDate}}.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_RECEIPT",
@@ -6488,11 +7034,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "إيصال دفع لـ {{StudentName}} — {{Amount}}. الفاتورة: {{InvoiceUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_FAILED",
@@ -6517,11 +7063,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{ParentName}}، فشل دفع TutorSphere. حدّث بياناتك.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "INVOICE_READY",
@@ -6545,11 +7091,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{ParentName}}، فاتورة TutorSphere جاهزة: {{InvoiceUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "PARENT_PAYMENT_OVERDUE",
@@ -6574,11 +7120,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "تذكير: دفعة متأخرة لـ {{StudentName}} — {{CourseTitle}}. ادفع: {{PayUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_REQUEST",
@@ -6603,11 +7149,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "طلب تسجيل من {{StudentName}} في دورة {{CourseTitle}}.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "COURSE_ENROLLMENT_ACCEPTED",
@@ -6632,11 +7178,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "تم قبول تسجيل {{StudentName}} في {{CourseTitle}}. {{StatusNote}} {{ActionUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "TUTOR_STUDENT_PAYMENT_RECEIVED",
@@ -6663,11 +7209,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "تم استلام الدفع: {{Amount}} لـ {{StudentName}} — {{CourseTitle}}.",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_PENDING",
@@ -6696,11 +7242,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{ExpertFirstName}}، طلب معلم للمراجعة — {{SchoolName}} ({{Country}}). {{ReviewUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_INVITE",
@@ -6747,11 +7293,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، دعوة خبير {{GroupName}}. البريد: {{Email}}. كلمة المرور المؤقتة: {{TemporaryPassword}}. غيّر كلمة المرور عند أول دخول. دخول الخبير: {{LoginUrl}} (https://tutorsphere.gisebs.com/login/expert). GISEBS: https://gisebs.com",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_ADDED_TO_GROUP",
@@ -6779,11 +7325,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تمت إضافتك إلى المجموعة {{GroupName}} (الحساب {{Email}}). الدخول: {{LoginUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPROVED",
@@ -6813,11 +7359,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، تمت الموافقة على ملفك {{SchoolName}} من {{GroupName}}. التعليق: {{Notes}}. الدخول: {{LoginUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_REJECTED",
@@ -6847,11 +7393,11 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، لم تتم الموافقة على طلبك {{SchoolName}} من {{GroupName}}. السبب: {{Notes}}. الدخول: {{LoginUrl}}",
             Language: "ar",
-            SeedRevision: 6),
+            SeedRevision: 7),
 
         new(
             TemplateCode: "EXPERT_TEACHER_APPLY_INVITE",
@@ -6877,10 +7423,101 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             </div>
           </div>
         </div>
-        <!-- tutorsphere-seed:6 -->
+        <!-- tutorsphere-seed:7 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، {{ExpertName}} ({{GroupName}}) يدعوك للتقديم. {{PersonalMessage}} الرابط: {{ApplyUrl}}",
             Language: "ar",
-            SeedRevision: 6)
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_INVITE",
+            Name: "TutorSphere — دعوة عضوية خبير",
+            SubjectTemplate: "{{InviterName}} يدعوك للانضمام إلى {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">دعوة للانضمام إلى مجموعة خبراء</h2>
+                <p>مرحبًا {{FirstName}}،</p>
+                <p><strong>{{InviterName}}</strong> يدعوك للانضمام إلى مجموعة الخبراء <strong>{{GroupName}}</strong> على TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">المجموعة</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">بدعوة من</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{PersonalMessage}}</p>
+                <p>لقبول هذه الدعوة أو رفضها، استخدم الزر أدناه. قد تُعرض ترشيحك بعد ذلك على تصويت أعضاء المجموعة.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">عرض دعوتي</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "مرحبًا {{FirstName}}، {{InviterName}} يدعوك للانضمام إلى {{GroupName}}. {{PersonalMessage}} الرابط: {{JoinUrl}}",
+            Language: "ar",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_VOTE_OPENED",
+            Name: "TutorSphere — تصويت قبول خبير",
+            SubjectTemplate: "التصويت مفتوح: ترشيح {{CandidateName}} — {{GroupName}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">تصويت القبول مفتوح</h2>
+                <p>مرحبًا {{FirstName}}،</p>
+                <p>ترشيح <strong>{{CandidateName}}</strong> للانضمام إلى <strong>{{GroupName}}</strong> مفتوح لتصويت الأعضاء.</p>
+                <p>يُرجى التصويت في أقرب وقت. يتطلب القبول موافقة 75٪ على الأقل من الأعضاء النشطين الآخرين.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{VoteUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">فتح القبولات</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "مرحبًا {{FirstName}}، التصويت مفتوح لـ {{CandidateName}} ({{GroupName}}). الرابط: {{VoteUrl}}",
+            Language: "ar",
+            SeedRevision: 7),
+
+        new(
+            TemplateCode: "EXPERT_MEMBERSHIP_REJECTED",
+            Name: "TutorSphere — لم تُقبل ترشيح الخبير",
+            SubjectTemplate: "لم تُقبل ترشيحك كخبير — TutorSphere",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">لم تُقبل الترشيح</h2>
+                <p>مرحبًا {{FirstName}}،</p>
+                <p>بعد المراجعة، لم تُقبل ترشيحك للانضمام إلى مجموعة خبراء TutorSphere.</p>
+                <p><strong>السبب :</strong> {{Reason}}</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:7 -->
+""",
+            TextBody: "مرحبًا {{FirstName}}، لم تُقبل ترشيحك كخبير. السبب: {{Reason}}",
+            Language: "ar",
+            SeedRevision: 7)
     ];
 }
