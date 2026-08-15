@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 8;
+const REV = 9;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -632,6 +632,27 @@ const templates = [
     btn: L("Voir ma facture", "View my invoice", "Ver mi factura", "Rechnung ansehen", "Ver a minha fatura", "查看我的发票", "عرض فاتورتي"),
     btnUrl: "{{InvoiceUrl}}",
     text: L("Reçu de paiement pour {{StudentName}} — {{Amount}}. Facture : {{InvoiceUrl}}", "Payment receipt for {{StudentName}} — {{Amount}}. Invoice: {{InvoiceUrl}}", "Recibo de pago de {{StudentName}} — {{Amount}}. Factura: {{InvoiceUrl}}", "Zahlungsbeleg für {{StudentName}} — {{Amount}}. Rechnung: {{InvoiceUrl}}", "Recibo de pagamento de {{StudentName}} — {{Amount}}. Fatura: {{InvoiceUrl}}", "{{StudentName}} 的付款收据 — {{Amount}}。发票：{{InvoiceUrl}}", "إيصال دفع لـ {{StudentName}} — {{Amount}}. الفاتورة: {{InvoiceUrl}}")
+  },
+  {
+    code: "PARENT_PAYMENT_REFUNDED",
+    name: L("TutorSphere — Remboursement parent", "TutorSphere — Parent refund", "TutorSphere — Reembolso al padre", "TutorSphere — Eltern-Erstattung", "TutorSphere — Reembolso ao responsável", "TutorSphere — 家长退款", "TutorSphere — استرداد ولي الأمر"),
+    subject: L("Remboursement pour {{StudentName}} — TutorSphere", "Refund for {{StudentName}} — TutorSphere", "Reembolso de {{StudentName}} — TutorSphere", "Erstattung für {{StudentName}} — TutorSphere", "Reembolso de {{StudentName}} — TutorSphere", "{{StudentName}} 的退款 — TutorSphere", "استرداد لـ {{StudentName}} — TutorSphere"),
+    title: L("Paiement remboursé", "Payment refunded", "Pago reembolsado", "Zahlung erstattet", "Pagamento reembolsado", "付款已退还", "تم استرداد الدفعة"),
+    helloParentName: true,
+    body: L(
+      "Le profil de l'enseignant <strong>{{TutorName}}</strong> a été retiré. Les cours programmés sont annulés. Votre paiement pour <strong>{{StudentName}}</strong> a été <strong>remboursé</strong> — aucune action de votre part n'est requise.",
+      "Teacher profile <strong>{{TutorName}}</strong> has been removed. Scheduled lessons are cancelled. Your payment for <strong>{{StudentName}}</strong> has been <strong>refunded</strong> — no action is required from you.",
+      "El perfil del docente <strong>{{TutorName}}</strong> ha sido retirado. Las clases programadas quedan canceladas. Su pago por <strong>{{StudentName}}</strong> ha sido <strong>reembolsado</strong> — no se requiere ninguna acción.",
+      "Das Lehrerprofil <strong>{{TutorName}}</strong> wurde entfernt. Geplante Unterrichtsstunden sind abgesagt. Ihre Zahlung für <strong>{{StudentName}}</strong> wurde <strong>erstattet</strong> — Sie müssen nichts tun.",
+      "O perfil do professor <strong>{{TutorName}}</strong> foi removido. As aulas programadas foram canceladas. O seu pagamento para <strong>{{StudentName}}</strong> foi <strong>reembolsado</strong> — não é necessária qualquer ação.",
+      "教师资料 <strong>{{TutorName}}</strong> 已移除。已安排的课程均已取消。您为 <strong>{{StudentName}}</strong> 支付的款项已<strong>退还</strong>——您无需采取任何操作。",
+      "تمت إزالة ملف المعلم <strong>{{TutorName}}</strong>. الحصص المبرمجة أُلغيت. دفعتك لـ <strong>{{StudentName}}</strong> تم <strong>استردادها</strong> — لا يلزم أي إجراء منك."
+    ),
+    studentLabel: L("Élève", "Student", "Alumno/a", "Schüler/in", "Aluno/a", "学生", "الطالب"),
+    amountLabel: L("Montant remboursé", "Refunded amount", "Importe reembolsado", "Erstatteter Betrag", "Montante reembolsado", "退款金额", "المبلغ المسترد"),
+    btn: L("Ouvrir mon espace", "Open my account", "Abrir mi espacio", "Konto öffnen", "Abrir o meu espaço", "打开我的账户", "فتح مساحتي"),
+    btnUrl: "https://tutorsphere.gisebs.com/login",
+    text: L("Remboursement {{Amount}} pour {{StudentName}} (enseignant {{TutorName}}). Les cours programmés sont annulés.", "Refund {{Amount}} for {{StudentName}} (teacher {{TutorName}}). Scheduled lessons are cancelled.", "Reembolso {{Amount}} de {{StudentName}} (docente {{TutorName}}). Clases programadas canceladas.", "Erstattung {{Amount}} für {{StudentName}} (Lehrkraft {{TutorName}}). Geplante Stunden abgesagt.", "Reembolso {{Amount}} de {{StudentName}} (professor {{TutorName}}). Aulas programadas canceladas.", "退款 {{Amount}}（学生 {{StudentName}}，教师 {{TutorName}}）。已安排课程已取消。", "استرداد {{Amount}} لـ {{StudentName}} (المعلم {{TutorName}}). الحصص المبرمجة أُلغيت.")
   },
   {
     code: "PARENT_PAYMENT_FAILED",
