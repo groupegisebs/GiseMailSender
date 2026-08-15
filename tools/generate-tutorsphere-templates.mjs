@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 7;
+const REV = 8;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -1036,65 +1036,77 @@ const templates = [
       "TutorSphere — دعوة عضوية خبير"
     ),
     subject: L(
-      "{{InviterName}} vous invite à rejoindre le groupe {{GroupName}}",
-      "{{InviterName}} invites you to join {{GroupName}}",
-      "{{InviterName}} le invita a unirse a {{GroupName}}",
-      "{{InviterName}} lädt Sie ein, {{GroupName}} beizutreten",
-      "{{InviterName}} convida-o a juntar-se a {{GroupName}}",
-      "{{InviterName}} 邀请您加入 {{GroupName}}",
-      "{{InviterName}} يدعوك للانضمام إلى {{GroupName}}"
+      "{{InviterName}} vous invite dans le groupe {{GroupName}} — TutorSphere Expert",
+      "{{InviterName}} invites you to {{GroupName}} — TutorSphere Expert",
+      "{{InviterName}} le invita a {{GroupName}} — TutorSphere Expert",
+      "{{InviterName}} lädt Sie zu {{GroupName}} ein — TutorSphere Expert",
+      "{{InviterName}} convida-o para {{GroupName}} — TutorSphere Expert",
+      "{{InviterName}} 邀请您加入 {{GroupName}} — TutorSphere Expert",
+      "{{InviterName}} يدعوك إلى {{GroupName}} — TutorSphere Expert"
     ),
     title: L(
-      "Invitation à rejoindre un groupe d'experts",
-      "Invitation to join an expert group",
-      "Invitación a unirse a un grupo de expertos",
-      "Einladung zur Expertengruppe",
-      "Convite para juntar-se a um grupo de especialistas",
-      "加入专家组邀请",
-      "دعوة للانضمام إلى مجموعة خبراء"
+      "Rejoignez le groupe {{GroupName}}",
+      "Join the {{GroupName}} group",
+      "Únase al grupo {{GroupName}}",
+      "Treten Sie der Gruppe {{GroupName}} bei",
+      "Junte-se ao grupo {{GroupName}}",
+      "加入 {{GroupName}} 专家组",
+      "انضم إلى مجموعة {{GroupName}}"
     ),
+    theme: {
+      accent: "#2563EB",
+      pageBg: "#eff6ff",
+      shadow: "rgba(37,99,235,0.12)",
+      hr: "#dbeafe",
+      badge: L("Espace Expert", "Expert space", "Espacio experto", "Expertenbereich", "Espaço especialista", "专家空间", "مساحة الخبير")
+    },
+    tableBg: "#eff6ff",
     hello: true,
     body: L(
-      "<strong>{{InviterName}}</strong> vous invite à rejoindre le groupe d'experts <strong>{{GroupName}}</strong> sur TutorSphere.",
-      "<strong>{{InviterName}}</strong> invites you to join the expert group <strong>{{GroupName}}</strong> on TutorSphere.",
-      "<strong>{{InviterName}}</strong> le invita a unirse al grupo de expertos <strong>{{GroupName}}</strong> en TutorSphere.",
-      "<strong>{{InviterName}}</strong> lädt Sie ein, der Expertengruppe <strong>{{GroupName}}</strong> auf TutorSphere beizutreten.",
-      "<strong>{{InviterName}}</strong> convida-o a juntar-se ao grupo de especialistas <strong>{{GroupName}}</strong> no TutorSphere.",
-      "<strong>{{InviterName}}</strong> 邀请您加入 TutorSphere 专家组 <strong>{{GroupName}}</strong>。",
-      "<strong>{{InviterName}}</strong> يدعوك للانضمام إلى مجموعة الخبراء <strong>{{GroupName}}</strong> على TutorSphere."
+      "Le Responsable <strong>{{InviterName}}</strong> vous invite à devenir <strong>expert</strong> du groupe <strong>{{GroupName}}</strong> sur TutorSphere.",
+      "Group manager <strong>{{InviterName}}</strong> invites you to become an <strong>expert</strong> in <strong>{{GroupName}}</strong> on TutorSphere.",
+      "El responsable <strong>{{InviterName}}</strong> le invita a convertirse en <strong>experto</strong> del grupo <strong>{{GroupName}}</strong> en TutorSphere.",
+      "Der Gruppenleiter <strong>{{InviterName}}</strong> lädt Sie ein, <strong>Experte</strong> der Gruppe <strong>{{GroupName}}</strong> auf TutorSphere zu werden.",
+      "O responsável <strong>{{InviterName}}</strong> convida-o a tornar-se <strong>especialista</strong> do grupo <strong>{{GroupName}}</strong> no TutorSphere.",
+      "负责人 <strong>{{InviterName}}</strong> 邀请您成为 TutorSphere 专家组 <strong>{{GroupName}}</strong> 的<strong>专家</strong>。",
+      "يدعوك المسؤول <strong>{{InviterName}}</strong> لتصبح <strong>خبيرًا</strong> في مجموعة <strong>{{GroupName}}</strong> على TutorSphere."
     ),
     membershipLabels: {
       group: L("Groupe", "Group", "Grupo", "Gruppe", "Grupo", "小组", "المجموعة"),
-      inviter: L("Invité par", "Invited by", "Invitado por", "Eingeladen von", "Convidado por", "邀请人", "بدعوة من")
+      inviter: L("Responsable", "Group manager", "Responsable", "Gruppenleiter", "Responsável", "负责人", "المسؤول"),
+      role: L("Rôle proposé", "Proposed role", "Rol propuesto", "Vorgeschlagene Rolle", "Função proposta", "拟任角色", "الدور المقترح"),
+      validity: L("Validité", "Validity", "Validez", "Gültigkeit", "Validade", "有效期", "الصلاحية"),
+      message: L("Message", "Message", "Mensaje", "Nachricht", "Mensagem", "留言", "رسالة")
     },
-    note: L("{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}", "{{PersonalMessage}}"),
+    roleValue: L("Expert", "Expert", "Experto", "Experte", "Especialista", "专家", "خبير"),
+    validityValue: L("30 jours", "30 days", "30 días", "30 Tage", "30 dias", "30 天", "30 يومًا"),
     body2: L(
-      "Pour accepter ou refuser cette invitation, utilisez le bouton ci-dessous. Votre candidature pourra ensuite être soumise au vote des membres du groupe.",
-      "To accept or decline this invitation, use the button below. Your application may then be submitted to a vote by group members.",
-      "Para aceptar o rechazar esta invitación, use el botón de abajo. Su candidatura podrá luego someterse a votación de los miembros del grupo.",
-      "Nutzen Sie die Schaltfläche unten, um die Einladung anzunehmen oder abzulehnen. Ihre Bewerbung kann anschließend von den Gruppenmitgliedern abgestimmt werden.",
-      "Para aceitar ou recusar este convite, use o botão abaixo. A sua candidatura poderá depois ser submetida a votação pelos membros do grupo.",
-      "请使用下方按钮接受或拒绝此邀请。您的申请随后可能提交给小组成员投票。",
-      "لقبول هذه الدعوة أو رفضها، استخدم الزر أدناه. قد تُعرض ترشيحك بعد ذلك على تصويت أعضاء المجموعة."
+      "<strong>Prochaines étapes</strong><br/>1. Ouvrez le lien sécurisé ci-dessous.<br/>2. Acceptez ou refusez l'invitation.<br/>3. Selon le groupe, votre admission peut ensuite être soumise au vote des membres.",
+      "<strong>Next steps</strong><br/>1. Open the secure link below.<br/>2. Accept or decline the invitation.<br/>3. Depending on the group, your admission may then go to a member vote.",
+      "<strong>Próximos pasos</strong><br/>1. Abra el enlace seguro de abajo.<br/>2. Acepte o rechace la invitación.<br/>3. Según el grupo, su admisión podrá someterse a votación de los miembros.",
+      "<strong>Nächste Schritte</strong><br/>1. Öffnen Sie den sicheren Link unten.<br/>2. Nehmen Sie die Einladung an oder lehnen Sie sie ab.<br/>3. Je nach Gruppe kann die Aufnahme danach von den Mitgliedern abgestimmt werden.",
+      "<strong>Próximos passos</strong><br/>1. Abra o link seguro abaixo.<br/>2. Aceite ou recuse o convite.<br/>3. Consoante o grupo, a sua admissão pode depois ser submetida a votação.",
+      "<strong>下一步</strong><br/>1. 打开下方安全链接。<br/>2. 接受或拒绝邀请。<br/>3. 视小组规则，入组可能还需成员投票。",
+      "<strong>الخطوات التالية</strong><br/>1. افتح الرابط الآمن أدناه.<br/>2. اقبل الدعوة أو ارفضها.<br/>3. حسب المجموعة، قد تُعرض عضويتك على تصويت الأعضاء."
     ),
     btn: L(
-      "Voir mon invitation",
-      "View my invitation",
-      "Ver mi invitación",
-      "Einladung ansehen",
-      "Ver o meu convite",
-      "查看我的邀请",
-      "عرض دعوتي"
+      "Répondre à l'invitation",
+      "Respond to the invitation",
+      "Responder a la invitación",
+      "Auf die Einladung antworten",
+      "Responder ao convite",
+      "回复邀请",
+      "الرد على الدعوة"
     ),
     btnUrl: "{{JoinUrl}}",
     text: L(
-      "Bonjour {{FirstName}}, {{InviterName}} vous invite à rejoindre {{GroupName}}. {{PersonalMessage}} Lien : {{JoinUrl}}",
-      "Hello {{FirstName}}, {{InviterName}} invites you to join {{GroupName}}. {{PersonalMessage}} Link: {{JoinUrl}}",
-      "Hola {{FirstName}}, {{InviterName}} le invita a unirse a {{GroupName}}. {{PersonalMessage}} Enlace: {{JoinUrl}}",
-      "Hallo {{FirstName}}, {{InviterName}} lädt Sie ein, {{GroupName}} beizutreten. {{PersonalMessage}} Link: {{JoinUrl}}",
-      "Olá {{FirstName}}, {{InviterName}} convida-o a juntar-se a {{GroupName}}. {{PersonalMessage}} Link: {{JoinUrl}}",
-      "{{FirstName}}，您好，{{InviterName}} 邀请您加入 {{GroupName}}。{{PersonalMessage}} 链接：{{JoinUrl}}",
-      "مرحبًا {{FirstName}}، {{InviterName}} يدعوك للانضمام إلى {{GroupName}}. {{PersonalMessage}} الرابط: {{JoinUrl}}"
+      "Bonjour {{FirstName}}, le Responsable {{InviterName}} vous invite à rejoindre le groupe d'experts {{GroupName}} sur TutorSphere. {{PersonalMessage}} Répondre : {{JoinUrl}} (valable 30 jours).",
+      "Hello {{FirstName}}, group manager {{InviterName}} invites you to join expert group {{GroupName}} on TutorSphere. {{PersonalMessage}} Reply: {{JoinUrl}} (valid 30 days).",
+      "Hola {{FirstName}}, el responsable {{InviterName}} le invita a unirse al grupo de expertos {{GroupName}} en TutorSphere. {{PersonalMessage}} Responder: {{JoinUrl}} (válido 30 días).",
+      "Hallo {{FirstName}}, der Gruppenleiter {{InviterName}} lädt Sie in die Expertengruppe {{GroupName}} auf TutorSphere ein. {{PersonalMessage}} Antworten: {{JoinUrl}} (30 Tage gültig).",
+      "Olá {{FirstName}}, o responsável {{InviterName}} convida-o a juntar-se ao grupo {{GroupName}} no TutorSphere. {{PersonalMessage}} Responder: {{JoinUrl}} (válido 30 dias).",
+      "{{FirstName}}，您好，负责人 {{InviterName}} 邀请您加入 TutorSphere 专家组 {{GroupName}}。{{PersonalMessage}} 回复：{{JoinUrl}}（30 天有效）。",
+      "مرحبًا {{FirstName}}، يدعوك المسؤول {{InviterName}} للانضمام إلى مجموعة الخبراء {{GroupName}} على TutorSphere. {{PersonalMessage}} الرد: {{JoinUrl}} (صالحة 30 يومًا)."
     )
   },
   {
@@ -1230,12 +1242,24 @@ function esc(s) {
   return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
 
-function btn(url, label) {
-  return `<p style="text-align:center;margin:28px 0;"><a href="${url}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;">${label}</a></p>`;
+function btn(url, label, accent = "#5831E0") {
+  return `<p style="text-align:center;margin:28px 0;"><a href="${url}" style="background:${accent};color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">${label}</a></p>`;
+}
+
+function themeOf(tpl) {
+  return tpl.theme || {};
+}
+
+function accentOf(tpl) {
+  return themeOf(tpl).accent || tpl.titleColor || "#5831E0";
+}
+
+function tableBgOf(tpl) {
+  return tpl.tableBg || themeOf(tpl).pageBg || "#f5f3ff";
 }
 
 function buildHtml(tpl, lang) {
-  const color = tpl.titleColor || "#5831E0";
+  const color = accentOf(tpl);
   const parts = [];
   parts.push(`<h1 style="color:${color};margin:0 0 12px;font-size:24px;">${t(tpl.title, lang)}</h1>`.replace("h1", tpl.code === "WELCOME" ? "h1" : "h2").replace("font-size:24px;", tpl.code === "WELCOME" ? "font-size:24px;" : ""));
   // fix: use h2 for non-welcome
@@ -1252,14 +1276,14 @@ function buildHtml(tpl, lang) {
   if (tpl.helloExpert) parts.push(`<p>${t(helloExpert, lang)}</p>`);
   if (tpl.body) parts.push(`<p>${t(tpl.body, lang)}</p>`);
   if (tpl.expertLabels) {
-    const bg = tpl.tableBg || "#f5f3ff";
+    const bg = tableBgOf(tpl);
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.expertLabels.school, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.expertLabels.country, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Country}}</td></tr>
                 </table>`);
   }
   if (tpl.inviteLabels) {
-    const bg = tpl.tableBg || "#f5f3ff";
+    const bg = tableBgOf(tpl);
     const loginRow = tpl.inviteLabels.loginUrl
       ? `<tr><td style="padding:10px 14px;color:#555;">${t(tpl.inviteLabels.loginUrl, lang)}</td><td style="padding:10px 14px;font-weight:600;word-break:break-all;"><a href="{{LoginUrl}}" style="color:#5831E0;">{{LoginUrl}}</a></td></tr>`
       : "";
@@ -1271,21 +1295,33 @@ function buildHtml(tpl, lang) {
                 </table>`);
   }
   if (tpl.addedLabels) {
-    const bg = tpl.tableBg || "#f5f3ff";
+    const bg = tableBgOf(tpl);
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.addedLabels.email, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Email}}</td></tr>
                 </table>`);
   }
   if (tpl.membershipLabels) {
-    const bg = tpl.tableBg || "#f5f3ff";
+    const bg = tableBgOf(tpl);
+    const roleRow = tpl.membershipLabels.role && tpl.roleValue
+      ? `<tr><td style="padding:10px 14px;color:#555;">${t(tpl.membershipLabels.role, lang)}</td><td style="padding:10px 14px;font-weight:600;">${t(tpl.roleValue, lang)}</td></tr>`
+      : "";
+    const validityRow = tpl.membershipLabels.validity && tpl.validityValue
+      ? `<tr><td style="padding:10px 14px;color:#555;">${t(tpl.membershipLabels.validity, lang)}</td><td style="padding:10px 14px;font-weight:600;">${t(tpl.validityValue, lang)}</td></tr>`
+      : "";
+    const messageRow = tpl.membershipLabels.message
+      ? `<tr><td style="padding:10px 14px;color:#555;">${t(tpl.membershipLabels.message, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{PersonalMessage}}</td></tr>`
+      : "";
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.membershipLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.membershipLabels.inviter, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{InviterName}}</td></tr>
+                  ${roleRow}
+                  ${validityRow}
+                  ${messageRow}
                 </table>`);
   }
   if (tpl.decisionLabels) {
-    const bg = tpl.tableBg || "#f5f3ff";
+    const bg = tableBgOf(tpl);
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.decisionLabels.school, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{SchoolName}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.decisionLabels.group, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{GroupName}}</td></tr>
@@ -1293,7 +1329,9 @@ function buildHtml(tpl, lang) {
                 </table>`);
   }
   if (tpl.note) {
-    parts.push(`<p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">${t(tpl.note, lang)}</p>`);
+    const noteBg = tableBgOf(tpl);
+    const noteAccent = accentOf(tpl);
+    parts.push(`<p style="background:${noteBg};border-left:4px solid ${noteAccent};padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">${t(tpl.note, lang)}</p>`);
   }
   if (tpl.body2) parts.push(`<p>${t(tpl.body2, lang)}</p>`);
   if (tpl.reasonLabel) {
@@ -1303,7 +1341,7 @@ function buildHtml(tpl, lang) {
     parts.push(`<p>{{StatusNote}}</p>`);
   }
   if (tpl.labels) {
-    const bg = tpl.tableBg || "#f5f3ff";
+    const bg = tableBgOf(tpl);
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.labels.subject, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Subject}}</td></tr>
                   <tr><td style="padding:10px 14px;color:#555;">${t(tpl.labels.tutor, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{TutorName}}</td></tr>
@@ -1320,7 +1358,7 @@ function buildHtml(tpl, lang) {
                   <tr><td style="padding:8px 0;color:#555;">${t(tpl.amountLabel, lang)}</td><td style="padding:8px 0;font-weight:600;text-align:right;">{{Amount}}</td></tr>
                 </table>`);
   }
-  if (tpl.btn) parts.push(btn(tpl.btnUrl, t(tpl.btn, lang)));
+  if (tpl.btn) parts.push(btn(tpl.btnUrl, t(tpl.btn, lang), accentOf(tpl)));
   if (tpl.code === "EXPERT_INVITE") {
     parts.push(`<p style="margin:20px 0 0;padding:14px 16px;background:#f5f3ff;border:1px solid #ede9fb;border-radius:8px;font-size:14px;color:#333;">
                   <strong style="display:block;margin-bottom:6px;color:#5831E0;">${t(tpl.inviteLabels.loginUrl, lang)}</strong>
@@ -1331,15 +1369,22 @@ function buildHtml(tpl, lang) {
   return parts.join("\n                ");
 }
 
-function wrap(bodyHtml, footerHtml, seedRevision) {
-  return `<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
-          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
-            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
-          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+function wrap(bodyHtml, footerHtml, seedRevision, theme = {}) {
+  const accent = theme.accent || "#5831E0";
+  const pageBg = theme.pageBg || "#f5f3ff";
+  const shadow = theme.shadow || "rgba(88,49,224,0.08)";
+  const hr = theme.hr || "#ede9fb";
+  const badge = theme.badge
+    ? `<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">${theme.badge}</span>`
+    : "";
+  return `<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:${pageBg};padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px ${shadow};">
+            <div style="background:${accent};padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere${badge}</p>
         </div>
             <div style="padding:32px 32px 24px;">
               ${bodyHtml}
-              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+              <hr style="border:none;border-top:1px solid ${hr};margin:32px 0 16px;" />
         <p style="font-size:12px;color:#888;margin:0;">
           ${footerHtml}
         </p>
@@ -1352,7 +1397,9 @@ function wrap(bodyHtml, footerHtml, seedRevision) {
 let seeds = [];
 for (const lang of LANGS) {
   for (const tpl of templates) {
-    const html = wrap(buildHtml(tpl, lang), t(tpl.footer || footer, lang), REV);
+    const theme = { ...(tpl.theme || {}) };
+    if (theme.badge && typeof theme.badge === "object") theme.badge = t(theme.badge, lang);
+    const html = wrap(buildHtml(tpl, lang), t(tpl.footer || footer, lang), REV, theme);
     const name = esc(t(tpl.name, lang));
     const subject = esc(t(tpl.subject, lang));
     const text = esc(t(tpl.text, lang));
