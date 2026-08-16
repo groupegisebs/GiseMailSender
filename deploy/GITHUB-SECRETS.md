@@ -49,6 +49,32 @@ Pour héberger sur le serveur les images insérées dans les templates :
 
 ---
 
+## Canal WhatsApp (optionnel)
+
+Canal additionnel : l'envoi de courriels ne dépend d'aucune de ces valeurs.
+
+| Nom | Type | Contenu |
+|-----|------|---------|
+| `WHATSAPP_PHONE_NUMBER_ID` | Secret/Variable | *Phone number ID* du numéro expéditeur (console Meta → WhatsApp → API Setup) |
+| `WHATSAPP_ACCESS_TOKEN` | Secret | Jeton d'accès. Le jeton de test expire en 24 h : utiliser un jeton d'utilisateur système permanent en production |
+| `WHATSAPP_APP_SECRET` | Secret | *App secret* de l'application Meta. Sans lui, la signature des webhooks n'est pas vérifiée |
+| `WHATSAPP_VERIFY_TOKEN` | Secret | Chaîne libre, à saisir à l'identique dans la console Meta lors de l'abonnement au webhook |
+| `WHATSAPP_BUSINESS_ACCOUNT_ID` | Secret/Variable | *WhatsApp Business Account ID* (optionnel) |
+| `WHATSAPP_DISPLAY_PHONE_NUMBER` | Variable | Numéro affiché aux destinataires (informatif) |
+| `WHATSAPP_DEFAULT_COUNTRY_CODE` | Variable | Indicatif appliqué aux numéros saisis sans indicatif (ex. `237`) |
+| `WHATSAPP_API_VERSION` | Variable | Version de l'API Graph (défaut `v21.0`) |
+
+> `app.env` est régénéré à chaque déploiement : une valeur ajoutée manuellement sur le serveur
+> disparaît au déploiement suivant. Ces secrets sont la seule façon durable de configurer le canal
+> par variables d'environnement. Alternative : renseigner la configuration en base via l'écran
+> d'administration, qui a priorité sur l'environnement.
+>
+> Vérification : `GET /api/whatsapp/diagnostics` renvoie la source retenue (`configuration` ou
+> `database`) sans exposer les secrets. Webhook à déclarer chez Meta :
+> `https://gisemailsender.gisebs.com/api/whatsapp/webhook`.
+
+---
+
 ## Host / User — pas besoin de secrets
 
 Le workflow utilise par défaut :

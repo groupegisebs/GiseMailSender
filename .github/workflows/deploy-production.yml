@@ -93,6 +93,16 @@ jobs:
           UPLOADS_PUBLIC_BASE_URL_VAR: ${{ vars.UPLOADS_PUBLIC_BASE_URL }}
           UPLOADS_PUBLIC_BASE_URL_SECRET: ${{ secrets.UPLOADS_PUBLIC_BASE_URL }}
           UPLOADS_PATH_VAR: ${{ vars.UPLOADS_PATH }}
+          WA_PHONE_ID_SECRET: ${{ secrets.WHATSAPP_PHONE_NUMBER_ID }}
+          WA_PHONE_ID_VAR: ${{ vars.WHATSAPP_PHONE_NUMBER_ID }}
+          WA_TOKEN_SECRET: ${{ secrets.WHATSAPP_ACCESS_TOKEN }}
+          WA_APP_SECRET_SECRET: ${{ secrets.WHATSAPP_APP_SECRET }}
+          WA_VERIFY_TOKEN_SECRET: ${{ secrets.WHATSAPP_VERIFY_TOKEN }}
+          WA_WABA_SECRET: ${{ secrets.WHATSAPP_BUSINESS_ACCOUNT_ID }}
+          WA_WABA_VAR: ${{ vars.WHATSAPP_BUSINESS_ACCOUNT_ID }}
+          WA_DISPLAY_VAR: ${{ vars.WHATSAPP_DISPLAY_PHONE_NUMBER }}
+          WA_COUNTRY_VAR: ${{ vars.WHATSAPP_DEFAULT_COUNTRY_CODE }}
+          WA_API_VERSION_VAR: ${{ vars.WHATSAPP_API_VERSION }}
         run: |
           source deploy/gha-env.sh
 
@@ -120,6 +130,8 @@ jobs:
           OPENAI_TIMEOUT_RAW=$(pick_first "$OPENAI_TIMEOUT_VAR" "$OPENAI_TIMEOUT_SECRET") || true
           UPLOADS_PUBLIC_BASE_URL_RAW=$(pick_first "$UPLOADS_PUBLIC_BASE_URL_VAR" "$UPLOADS_PUBLIC_BASE_URL_SECRET") || true
           UPLOADS_PATH_RAW=$(pick_first "$UPLOADS_PATH_VAR") || true
+          WA_PHONE_ID_RAW=$(pick_first "$WA_PHONE_ID_SECRET" "$WA_PHONE_ID_VAR") || true
+          WA_WABA_RAW=$(pick_first "$WA_WABA_SECRET" "$WA_WABA_VAR") || true
 
           missing=0
           if [ -z "$SSH_PRIVATE_KEY" ]; then
@@ -172,6 +184,29 @@ jobs:
           if [ -n "$UPLOADS_PATH" ]; then
             gha_write_env UPLOADS_PATH "$UPLOADS_PATH"
           fi
+
+          # Canal WhatsApp : chaque valeur absente est simplement omise, le courriel n'en dépend pas.
+          wa_export() {
+            value=$(gha_sanitize "$2")
+            if [ -n "$value" ]; then
+              gha_write_env "$1" "$value"
+            fi
+          }
+          wa_export WHATSAPP_PHONE_NUMBER_ID "$WA_PHONE_ID_RAW"
+          wa_export WHATSAPP_ACCESS_TOKEN "$WA_TOKEN_SECRET"
+          wa_export WHATSAPP_APP_SECRET "$WA_APP_SECRET_SECRET"
+          wa_export WHATSAPP_VERIFY_TOKEN "$WA_VERIFY_TOKEN_SECRET"
+          wa_export WHATSAPP_BUSINESS_ACCOUNT_ID "$WA_WABA_RAW"
+          wa_export WHATSAPP_DISPLAY_PHONE_NUMBER "$WA_DISPLAY_VAR"
+          wa_export WHATSAPP_DEFAULT_COUNTRY_CODE "$WA_COUNTRY_VAR"
+          wa_export WHATSAPP_API_VERSION "$WA_API_VERSION_VAR"
+
+          if [ -n "$WA_PHONE_ID_RAW" ]; then
+            echo "Canal WhatsApp : identifiants transmis au serveur."
+          else
+            echo "Canal WhatsApp : aucun identifiant fourni, seul le courriel sera actif."
+          fi
+
           echo "OK → ${SSH_USER}@${SSH_HOST}:${SSH_PORT} service=${SERVICE_NAME}"
 
       - name: Setup SSH key

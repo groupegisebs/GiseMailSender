@@ -63,6 +63,16 @@ OpenAI (optionnel, pour les fonctionnalités IA de l'application) :
   - `OPENAI_BASE_URL`
   - `OPENAI_TIMEOUT_SECONDS` (défaut: `45`)
 
+WhatsApp (optionnel, canal additionnel ; sans ces valeurs seul le courriel est actif). Le fichier
+`app.env` étant réécrit à chaque déploiement, ces identifiants doivent être des secrets GitHub et
+non une modification manuelle sur le serveur :
+- Secrets : `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_APP_SECRET`,
+  `WHATSAPP_VERIFY_TOKEN`, `WHATSAPP_BUSINESS_ACCOUNT_ID`
+- Variables optionnelles : `WHATSAPP_DISPLAY_PHONE_NUMBER`, `WHATSAPP_DEFAULT_COUNTRY_CODE`,
+  `WHATSAPP_API_VERSION` (défaut: `v21.0`)
+- Vérification après déploiement : `GET /api/whatsapp/diagnostics` indique la source retenue
+  (`configuration` = variables d'environnement, `database` = écran d'administration).
+
 Guide : [`deploy/servers/ubuntu1.md`](servers/ubuntu1.md)  
 Environnement optionnel : **`deploy-ubuntu1`** (approbation manuelle).
 

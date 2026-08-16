@@ -20,6 +20,15 @@ set -euo pipefail
 : "${OPENAI_TIMEOUT_SECONDS:=45}"
 : "${UPLOADS_PATH:=}"
 : "${UPLOADS_PUBLIC_BASE_URL:=}"
+# Canal WhatsApp : facultatif. Sans ces valeurs, seul le courriel fonctionne.
+: "${WHATSAPP_PHONE_NUMBER_ID:=}"
+: "${WHATSAPP_ACCESS_TOKEN:=}"
+: "${WHATSAPP_APP_SECRET:=}"
+: "${WHATSAPP_VERIFY_TOKEN:=}"
+: "${WHATSAPP_BUSINESS_ACCOUNT_ID:=}"
+: "${WHATSAPP_DISPLAY_PHONE_NUMBER:=}"
+: "${WHATSAPP_DEFAULT_COUNTRY_CODE:=}"
+: "${WHATSAPP_API_VERSION:=}"
 
 sanitize() {
   printf '%s' "$1" | tr -d '\r\n\t' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//"
@@ -41,6 +50,14 @@ OPENAI_BASE_URL=$(sanitize "${OPENAI_BASE_URL}")
 OPENAI_TIMEOUT_SECONDS=$(sanitize "${OPENAI_TIMEOUT_SECONDS}")
 UPLOADS_PATH=$(sanitize "${UPLOADS_PATH}")
 UPLOADS_PUBLIC_BASE_URL=$(sanitize "${UPLOADS_PUBLIC_BASE_URL}")
+WHATSAPP_PHONE_NUMBER_ID=$(sanitize "${WHATSAPP_PHONE_NUMBER_ID}")
+WHATSAPP_ACCESS_TOKEN=$(sanitize "${WHATSAPP_ACCESS_TOKEN}")
+WHATSAPP_APP_SECRET=$(sanitize "${WHATSAPP_APP_SECRET}")
+WHATSAPP_VERIFY_TOKEN=$(sanitize "${WHATSAPP_VERIFY_TOKEN}")
+WHATSAPP_BUSINESS_ACCOUNT_ID=$(sanitize "${WHATSAPP_BUSINESS_ACCOUNT_ID}")
+WHATSAPP_DISPLAY_PHONE_NUMBER=$(sanitize "${WHATSAPP_DISPLAY_PHONE_NUMBER}")
+WHATSAPP_DEFAULT_COUNTRY_CODE=$(sanitize "${WHATSAPP_DEFAULT_COUNTRY_CODE}")
+WHATSAPP_API_VERSION=$(sanitize "${WHATSAPP_API_VERSION}")
 
 # Persistent uploads directory: defaults to a sibling of the app dir so it survives the
 # rsync --delete that only targets ${APP_DIR}.
@@ -106,6 +123,32 @@ ENV_FILE="$(mktemp)"
   printf 'Uploads__Path=%s\n' "${UPLOADS_PATH}"
   if [[ -n "${UPLOADS_PUBLIC_BASE_URL}" ]]; then
     printf 'Uploads__PublicBaseUrl=%s\n' "${UPLOADS_PUBLIC_BASE_URL}"
+  fi
+  # Identifiants WhatsApp : écrits à chaque déploiement pour qu'ils survivent à la
+  # régénération de app.env, contrairement à un ajout manuel sur le serveur.
+  if [[ -n "${WHATSAPP_PHONE_NUMBER_ID}" ]]; then
+    printf 'WHATSAPP_PHONE_NUMBER_ID=%s\n' "${WHATSAPP_PHONE_NUMBER_ID}"
+  fi
+  if [[ -n "${WHATSAPP_ACCESS_TOKEN}" ]]; then
+    printf 'WHATSAPP_ACCESS_TOKEN=%s\n' "${WHATSAPP_ACCESS_TOKEN}"
+  fi
+  if [[ -n "${WHATSAPP_APP_SECRET}" ]]; then
+    printf 'WHATSAPP_APP_SECRET=%s\n' "${WHATSAPP_APP_SECRET}"
+  fi
+  if [[ -n "${WHATSAPP_VERIFY_TOKEN}" ]]; then
+    printf 'WHATSAPP_VERIFY_TOKEN=%s\n' "${WHATSAPP_VERIFY_TOKEN}"
+  fi
+  if [[ -n "${WHATSAPP_BUSINESS_ACCOUNT_ID}" ]]; then
+    printf 'WHATSAPP_BUSINESS_ACCOUNT_ID=%s\n' "${WHATSAPP_BUSINESS_ACCOUNT_ID}"
+  fi
+  if [[ -n "${WHATSAPP_DISPLAY_PHONE_NUMBER}" ]]; then
+    printf 'WHATSAPP_DISPLAY_PHONE_NUMBER=%s\n' "${WHATSAPP_DISPLAY_PHONE_NUMBER}"
+  fi
+  if [[ -n "${WHATSAPP_DEFAULT_COUNTRY_CODE}" ]]; then
+    printf 'WHATSAPP_DEFAULT_COUNTRY_CODE=%s\n' "${WHATSAPP_DEFAULT_COUNTRY_CODE}"
+  fi
+  if [[ -n "${WHATSAPP_API_VERSION}" ]]; then
+    printf 'WHATSAPP_API_VERSION=%s\n' "${WHATSAPP_API_VERSION}"
   fi
 } > "${ENV_FILE}"
 scp "${SCP_OPTS[@]}" "${ENV_FILE}" "${SSH_TARGET}:/tmp/${SERVICE_NAME}.app.env"
