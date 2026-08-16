@@ -1248,6 +1248,432 @@ const templates = [
       "{{FirstName}}，您好，您的专家申请未获通过。原因：{{Reason}}",
       "مرحبًا {{FirstName}}، لم تُقبل ترشيحك كخبير. السبب: {{Reason}}"
     )
+  },
+  {
+    code: "MEETING_INVITATION",
+    name: L(
+      "TutorSphere — Invitation réunion (membre)",
+      "TutorSphere — Meeting invitation (member)",
+      "TutorSphere — Invitación a reunión (miembro)",
+      "TutorSphere — Besprechungseinladung (Mitglied)",
+      "TutorSphere — Convite para reunião (membro)",
+      "TutorSphere — 会议邀请（成员）",
+      "TutorSphere — دعوة اجتماع (عضو)"
+    ),
+    subject: L(
+      "Réunion « {{Title}} » — {{StartLocal}}",
+      "Meeting “{{Title}}” — {{StartLocal}}",
+      "Reunión «{{Title}}» — {{StartLocal}}",
+      "Besprechung „{{Title}}“ — {{StartLocal}}",
+      "Reunião «{{Title}}» — {{StartLocal}}",
+      "会议《{{Title}}》— {{StartLocal}}",
+      "اجتماع «{{Title}}» — {{StartLocal}}"
+    ),
+    title: L(
+      "Invitation à une réunion du groupe",
+      "Invitation to a group meeting",
+      "Invitación a una reunión del grupo",
+      "Einladung zu einer Gruppenbesprechung",
+      "Convite para uma reunião do grupo",
+      "小组会议邀请",
+      "دعوة إلى اجتماع المجموعة"
+    ),
+    theme: {
+      accent: "#5831E0",
+      pageBg: "#f5f3ff",
+      shadow: "rgba(88,49,224,0.08)",
+      hr: "#ede9fb",
+      badge: L("Réunion du groupe", "Group meeting", "Reunión del grupo", "Gruppenbesprechung", "Reunião do grupo", "小组会议", "اجتماع المجموعة")
+    },
+    tableBg: "#f5f3ff",
+    helloRecipient: true,
+    body: L(
+      "<strong>{{OrganizerName}}</strong> vous invite à une réunion de travail sur TutorSphere.",
+      "<strong>{{OrganizerName}}</strong> invites you to a working meeting on TutorSphere.",
+      "<strong>{{OrganizerName}}</strong> le invita a una reunión de trabajo en TutorSphere.",
+      "<strong>{{OrganizerName}}</strong> lädt Sie zu einer Arbeitsbesprechung auf TutorSphere ein.",
+      "<strong>{{OrganizerName}}</strong> convida-o para uma reunião de trabalho no TutorSphere.",
+      "<strong>{{OrganizerName}}</strong> 邀请您参加 TutorSphere 上的工作会议。",
+      "يدعوك <strong>{{OrganizerName}}</strong> إلى اجتماع عمل على TutorSphere."
+    ),
+    meetingLabels: {
+      subject: L("Objet", "Subject", "Asunto", "Thema", "Assunto", "主题", "الموضوع"),
+      when: L("Date et heure", "Date and time", "Fecha y hora", "Datum und Uhrzeit", "Data e hora", "日期和时间", "التاريخ والوقت"),
+      organizer: L("Organisateur", "Organizer", "Organizador", "Organisator", "Organizador", "组织者", "المنظّم"),
+      agenda: L("Ordre du jour", "Agenda", "Orden del día", "Tagesordnung", "Ordem de trabalhos", "议程", "جدول الأعمال")
+    },
+    note: L("{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}"),
+    body2: L(
+      "Le bouton ouvre la salle dans <strong>votre espace expert</strong> : connectez-vous avec votre compte TutorSphere habituel. Réunion privée du groupe — ne transférez pas ce lien.",
+      "The button opens the room in <strong>your expert space</strong>: sign in with your usual TutorSphere account. This is a private group meeting — please do not forward this link.",
+      "El botón abre la sala en <strong>su espacio experto</strong>: inicie sesión con su cuenta habitual de TutorSphere. Reunión privada del grupo: no reenvíe este enlace.",
+      "Die Schaltfläche öffnet den Raum in <strong>Ihrem Expertenbereich</strong>: Melden Sie sich mit Ihrem gewohnten TutorSphere-Konto an. Private Gruppenbesprechung — bitte leiten Sie diesen Link nicht weiter.",
+      "O botão abre a sala no <strong>seu espaço de especialista</strong>: inicie sessão com a sua conta TutorSphere habitual. Reunião privada do grupo — não reencaminhe este link.",
+      "该按钮将在<strong>您的专家空间</strong>中打开会议室：请使用您常用的 TutorSphere 账户登录。这是小组内部会议，请勿转发此链接。",
+      "يفتح الزر الغرفة في <strong>مساحة الخبير الخاصة بك</strong>: سجّل الدخول بحسابك المعتاد على TutorSphere. اجتماع خاص بالمجموعة — يُرجى عدم تحويل هذا الرابط."
+    ),
+    btn: L(
+      "Rejoindre la réunion",
+      "Join the meeting",
+      "Unirse a la reunión",
+      "An der Besprechung teilnehmen",
+      "Entrar na reunião",
+      "加入会议",
+      "الانضمام إلى الاجتماع"
+    ),
+    btnUrl: "{{JoinUrl}}",
+    text: L(
+      "Bonjour {{RecipientName}}, {{OrganizerName}} vous invite à la réunion « {{Title}} » le {{StartLocal}} ({{TimeZone}}). Ordre du jour : {{Agenda}}. {{RecordingAndAi}} Rejoindre depuis votre espace expert : {{JoinUrl}}",
+      "Hello {{RecipientName}}, {{OrganizerName}} invites you to the meeting “{{Title}}” on {{StartLocal}} ({{TimeZone}}). Agenda: {{Agenda}}. {{RecordingAndAi}} Join from your expert space: {{JoinUrl}}",
+      "Hola {{RecipientName}}, {{OrganizerName}} le invita a la reunión «{{Title}}» el {{StartLocal}} ({{TimeZone}}). Orden del día: {{Agenda}}. {{RecordingAndAi}} Unirse desde su espacio experto: {{JoinUrl}}",
+      "Hallo {{RecipientName}}, {{OrganizerName}} lädt Sie zur Besprechung „{{Title}}“ am {{StartLocal}} ({{TimeZone}}) ein. Tagesordnung: {{Agenda}}. {{RecordingAndAi}} Teilnahme über Ihren Expertenbereich: {{JoinUrl}}",
+      "Olá {{RecipientName}}, {{OrganizerName}} convida-o para a reunião «{{Title}}» em {{StartLocal}} ({{TimeZone}}). Ordem de trabalhos: {{Agenda}}. {{RecordingAndAi}} Entrar pelo seu espaço de especialista: {{JoinUrl}}",
+      "{{RecipientName}}，您好，{{OrganizerName}} 邀请您参加会议《{{Title}}》，时间为 {{StartLocal}}（{{TimeZone}}）。议程：{{Agenda}}。{{RecordingAndAi}} 通过专家空间加入：{{JoinUrl}}",
+      "مرحبًا {{RecipientName}}، يدعوك {{OrganizerName}} إلى اجتماع «{{Title}}» في {{StartLocal}} ({{TimeZone}}). جدول الأعمال: {{Agenda}}. {{RecordingAndAi}} الانضمام من مساحة الخبير: {{JoinUrl}}"
+    )
+  },
+  {
+    code: "MEETING_INVITATION_GUEST",
+    name: L(
+      "TutorSphere — Invitation réunion (invité externe)",
+      "TutorSphere — Meeting invitation (external guest)",
+      "TutorSphere — Invitación a reunión (invitado externo)",
+      "TutorSphere — Besprechungseinladung (externer Gast)",
+      "TutorSphere — Convite para reunião (convidado externo)",
+      "TutorSphere — 会议邀请（外部嘉宾）",
+      "TutorSphere — دعوة اجتماع (ضيف خارجي)"
+    ),
+    subject: L(
+      "Vous êtes invité(e) à la réunion « {{Title}} » — {{StartLocal}}",
+      "You are invited to the meeting “{{Title}}” — {{StartLocal}}",
+      "Está invitado/a a la reunión «{{Title}}» — {{StartLocal}}",
+      "Sie sind zur Besprechung „{{Title}}“ eingeladen — {{StartLocal}}",
+      "Está convidado(a) para a reunião «{{Title}}» — {{StartLocal}}",
+      "邀请您参加会议《{{Title}}》— {{StartLocal}}",
+      "أنت مدعو إلى اجتماع «{{Title}}» — {{StartLocal}}"
+    ),
+    title: L(
+      "Invitation à une réunion",
+      "Invitation to a meeting",
+      "Invitación a una reunión",
+      "Einladung zu einer Besprechung",
+      "Convite para uma reunião",
+      "会议邀请",
+      "دعوة إلى اجتماع"
+    ),
+    theme: {
+      accent: "#0D9488",
+      pageBg: "#f0fdfa",
+      shadow: "rgba(13,148,136,0.12)",
+      hr: "#ccfbf1",
+      badge: L("Invité externe", "External guest", "Invitado externo", "Externer Gast", "Convidado externo", "外部嘉宾", "ضيف خارجي")
+    },
+    tableBg: "#f0fdfa",
+    helloRecipient: true,
+    body: L(
+      "<strong>{{OrganizerName}}</strong> vous invite à participer à une réunion en ligne organisée sur TutorSphere. <strong>Aucun compte n'est nécessaire</strong> : votre lien d'accès personnel est ci-dessous.",
+      "<strong>{{OrganizerName}}</strong> invites you to join an online meeting hosted on TutorSphere. <strong>No account is required</strong>: your personal access link is below.",
+      "<strong>{{OrganizerName}}</strong> le invita a participar en una reunión en línea organizada en TutorSphere. <strong>No necesita ninguna cuenta</strong>: su enlace de acceso personal está abajo.",
+      "<strong>{{OrganizerName}}</strong> lädt Sie zu einer Online-Besprechung auf TutorSphere ein. <strong>Kein Konto erforderlich</strong>: Ihr persönlicher Zugangslink steht unten.",
+      "<strong>{{OrganizerName}}</strong> convida-o a participar numa reunião online no TutorSphere. <strong>Não é necessária qualquer conta</strong>: o seu link de acesso pessoal está abaixo.",
+      "<strong>{{OrganizerName}}</strong> 邀请您参加在 TutorSphere 上举办的线上会议。<strong>无需注册账户</strong>：您的个人访问链接见下方。",
+      "يدعوك <strong>{{OrganizerName}}</strong> للمشاركة في اجتماع عبر الإنترنت على TutorSphere. <strong>لا حاجة إلى أي حساب</strong>: رابط الدخول الخاص بك أدناه."
+    ),
+    meetingLabels: {
+      subject: L("Objet", "Subject", "Asunto", "Thema", "Assunto", "主题", "الموضوع"),
+      when: L("Date et heure", "Date and time", "Fecha y hora", "Datum und Uhrzeit", "Data e hora", "日期和时间", "التاريخ والوقت"),
+      organizer: L("Organisateur", "Organizer", "Organizador", "Organisator", "Organizador", "组织者", "المنظّم"),
+      agenda: L("Ordre du jour", "Agenda", "Orden del día", "Tagesordnung", "Ordem de trabalhos", "议程", "جدول الأعمال"),
+      validity: L("Lien valable jusqu'au", "Link valid until", "Enlace válido hasta", "Link gültig bis", "Link válido até", "链接有效期至", "الرابط صالح حتى")
+    },
+    note: L("{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}"),
+    body2: L(
+      "<strong>Comment rejoindre</strong><br/>1. Cliquez sur le bouton ci-dessous.<br/>2. Saisissez le code à 6 chiffres qui vous sera envoyé par e-mail pour confirmer votre adresse.<br/>3. Patientez dans la salle d'attente : l'organisateur vous admettra.",
+      "<strong>How to join</strong><br/>1. Click the button below.<br/>2. Enter the 6-digit code emailed to you to confirm your address.<br/>3. Wait in the waiting room: the organizer will let you in.",
+      "<strong>Cómo unirse</strong><br/>1. Haga clic en el botón de abajo.<br/>2. Introduzca el código de 6 dígitos que recibirá por correo para confirmar su dirección.<br/>3. Espere en la sala de espera: el organizador le admitirá.",
+      "<strong>So nehmen Sie teil</strong><br/>1. Klicken Sie auf die Schaltfläche unten.<br/>2. Geben Sie den 6-stelligen Code ein, den Sie per E-Mail erhalten, um Ihre Adresse zu bestätigen.<br/>3. Warten Sie im Warteraum: Der Organisator lässt Sie ein.",
+      "<strong>Como entrar</strong><br/>1. Clique no botão abaixo.<br/>2. Introduza o código de 6 dígitos enviado por e-mail para confirmar o seu endereço.<br/>3. Aguarde na sala de espera: o organizador irá admiti-lo.",
+      "<strong>如何加入</strong><br/>1. 点击下方按钮。<br/>2. 输入邮件收到的 6 位验证码以确认您的邮箱。<br/>3. 在等候室稍候，组织者将允许您进入。",
+      "<strong>كيفية الانضمام</strong><br/>1. اضغط الزر أدناه.<br/>2. أدخل الرمز المكوّن من 6 أرقام المُرسل إلى بريدك لتأكيد عنوانك.<br/>3. انتظر في غرفة الانتظار: سيسمح لك المنظّم بالدخول."
+    ),
+    btn: L(
+      "Rejoindre la réunion",
+      "Join the meeting",
+      "Unirse a la reunión",
+      "An der Besprechung teilnehmen",
+      "Entrar na reunião",
+      "加入会议",
+      "الانضمام إلى الاجتماع"
+    ),
+    btnUrl: "{{JoinUrl}}",
+    footerNote: L(
+      "Ce lien est personnel, temporaire et non transférable. Il ne donne accès qu'à cette réunion, pas au reste de TutorSphere. Si vous n'attendiez pas cette invitation, ignorez ce message.",
+      "This link is personal, temporary and non-transferable. It only grants access to this meeting, not to the rest of TutorSphere. If you were not expecting this invitation, please ignore this message.",
+      "Este enlace es personal, temporal e intransferible. Solo da acceso a esta reunión, no al resto de TutorSphere. Si no esperaba esta invitación, ignore este mensaje.",
+      "Dieser Link ist persönlich, zeitlich begrenzt und nicht übertragbar. Er gewährt nur Zugang zu dieser Besprechung, nicht zum übrigen TutorSphere. Falls Sie diese Einladung nicht erwartet haben, ignorieren Sie diese Nachricht.",
+      "Este link é pessoal, temporário e não transferível. Dá acesso apenas a esta reunião, não ao resto do TutorSphere. Se não esperava este convite, ignore esta mensagem.",
+      "此链接为个人专用、临时且不可转让，仅可进入本次会议，不能访问 TutorSphere 的其他功能。如果您并未预期收到此邀请，请忽略本邮件。",
+      "هذا الرابط شخصي ومؤقت وغير قابل للتحويل. يمنح الوصول إلى هذا الاجتماع فقط وليس إلى بقية TutorSphere. إذا لم تكن تتوقع هذه الدعوة، فتجاهل هذه الرسالة."
+    ),
+    text: L(
+      "Bonjour {{RecipientName}}, {{OrganizerName}} vous invite à la réunion « {{Title}} » le {{StartLocal}} ({{TimeZone}}). Ordre du jour : {{Agenda}}. {{RecordingAndAi}} Lien personnel valable jusqu'au {{LinkValidity}} : {{JoinUrl}} — un code à 6 chiffres vous sera demandé pour confirmer votre adresse e-mail. Ne transférez pas ce lien.",
+      "Hello {{RecipientName}}, {{OrganizerName}} invites you to the meeting “{{Title}}” on {{StartLocal}} ({{TimeZone}}). Agenda: {{Agenda}}. {{RecordingAndAi}} Personal link valid until {{LinkValidity}}: {{JoinUrl}} — a 6-digit code will be requested to confirm your email address. Please do not forward this link.",
+      "Hola {{RecipientName}}, {{OrganizerName}} le invita a la reunión «{{Title}}» el {{StartLocal}} ({{TimeZone}}). Orden del día: {{Agenda}}. {{RecordingAndAi}} Enlace personal válido hasta {{LinkValidity}}: {{JoinUrl}} — se le pedirá un código de 6 dígitos para confirmar su correo. No reenvíe este enlace.",
+      "Hallo {{RecipientName}}, {{OrganizerName}} lädt Sie zur Besprechung „{{Title}}“ am {{StartLocal}} ({{TimeZone}}) ein. Tagesordnung: {{Agenda}}. {{RecordingAndAi}} Persönlicher Link gültig bis {{LinkValidity}}: {{JoinUrl}} — zur Bestätigung Ihrer E-Mail-Adresse wird ein 6-stelliger Code verlangt. Bitte nicht weiterleiten.",
+      "Olá {{RecipientName}}, {{OrganizerName}} convida-o para a reunião «{{Title}}» em {{StartLocal}} ({{TimeZone}}). Ordem de trabalhos: {{Agenda}}. {{RecordingAndAi}} Link pessoal válido até {{LinkValidity}}: {{JoinUrl}} — será pedido um código de 6 dígitos para confirmar o seu e-mail. Não reencaminhe este link.",
+      "{{RecipientName}}，您好，{{OrganizerName}} 邀请您参加会议《{{Title}}》，时间为 {{StartLocal}}（{{TimeZone}}）。议程：{{Agenda}}。{{RecordingAndAi}} 个人链接有效期至 {{LinkValidity}}：{{JoinUrl}} — 系统会要求输入 6 位验证码以确认您的邮箱。请勿转发此链接。",
+      "مرحبًا {{RecipientName}}، يدعوك {{OrganizerName}} إلى اجتماع «{{Title}}» في {{StartLocal}} ({{TimeZone}}). جدول الأعمال: {{Agenda}}. {{RecordingAndAi}} رابط شخصي صالح حتى {{LinkValidity}}: {{JoinUrl}} — سيُطلب رمز من 6 أرقام لتأكيد بريدك. لا تُحوّل هذا الرابط."
+    )
+  },
+  {
+    code: "MEETING_GUEST_CODE",
+    name: L(
+      "TutorSphere — Code de vérification invité",
+      "TutorSphere — Guest verification code",
+      "TutorSphere — Código de verificación de invitado",
+      "TutorSphere — Gast-Bestätigungscode",
+      "TutorSphere — Código de verificação de convidado",
+      "TutorSphere — 嘉宾验证码",
+      "TutorSphere — رمز تحقق الضيف"
+    ),
+    subject: L(
+      "Votre code d'accès à la réunion « {{Title}} »",
+      "Your access code for the meeting “{{Title}}”",
+      "Su código de acceso a la reunión «{{Title}}»",
+      "Ihr Zugangscode für die Besprechung „{{Title}}“",
+      "O seu código de acesso à reunião «{{Title}}»",
+      "您参加会议《{{Title}}》的验证码",
+      "رمز دخولك إلى اجتماع «{{Title}}»"
+    ),
+    title: L(
+      "Votre code de vérification",
+      "Your verification code",
+      "Su código de verificación",
+      "Ihr Bestätigungscode",
+      "O seu código de verificação",
+      "您的验证码",
+      "رمز التحقق الخاص بك"
+    ),
+    theme: {
+      accent: "#0D9488",
+      pageBg: "#f0fdfa",
+      shadow: "rgba(13,148,136,0.12)",
+      hr: "#ccfbf1",
+      badge: L("Invité externe", "External guest", "Invitado externo", "Externer Gast", "Convidado externo", "外部嘉宾", "ضيف خارجي")
+    },
+    tableBg: "#f0fdfa",
+    helloRecipient: true,
+    body: L(
+      "Saisissez ce code dans la page d'accès pour confirmer votre adresse e-mail et rejoindre la réunion <strong>{{Title}}</strong>.",
+      "Enter this code on the access page to confirm your email address and join the meeting <strong>{{Title}}</strong>.",
+      "Introduzca este código en la página de acceso para confirmar su correo y unirse a la reunión <strong>{{Title}}</strong>.",
+      "Geben Sie diesen Code auf der Zugangsseite ein, um Ihre E-Mail-Adresse zu bestätigen und an der Besprechung <strong>{{Title}}</strong> teilzunehmen.",
+      "Introduza este código na página de acesso para confirmar o seu e-mail e entrar na reunião <strong>{{Title}}</strong>.",
+      "请在访问页面输入此验证码，以确认您的邮箱并加入会议<strong>{{Title}}</strong>。",
+      "أدخل هذا الرمز في صفحة الدخول لتأكيد بريدك والانضمام إلى اجتماع <strong>{{Title}}</strong>."
+    ),
+    codeBlock: true,
+    footerNote: L(
+      "Ce code est valable pour cette seule session. Ne le communiquez à personne.",
+      "This code is valid for this session only. Do not share it with anyone.",
+      "Este código solo es válido para esta sesión. No lo comparta con nadie.",
+      "Dieser Code gilt nur für diese Sitzung. Geben Sie ihn nicht weiter.",
+      "Este código é válido apenas para esta sessão. Não o partilhe com ninguém.",
+      "此验证码仅对本次会话有效，请勿转告他人。",
+      "هذا الرمز صالح لهذه الجلسة فقط. لا تشاركه مع أي شخص."
+    ),
+    text: L(
+      "Bonjour {{RecipientName}}, votre code de vérification pour la réunion « {{Title}} » est {{Code}}. Ne le communiquez à personne.",
+      "Hello {{RecipientName}}, your verification code for the meeting “{{Title}}” is {{Code}}. Do not share it.",
+      "Hola {{RecipientName}}, su código de verificación para la reunión «{{Title}}» es {{Code}}. No lo comparta.",
+      "Hallo {{RecipientName}}, Ihr Bestätigungscode für die Besprechung „{{Title}}“ lautet {{Code}}. Nicht weitergeben.",
+      "Olá {{RecipientName}}, o seu código de verificação para a reunião «{{Title}}» é {{Code}}. Não o partilhe.",
+      "{{RecipientName}}，您好，会议《{{Title}}》的验证码为 {{Code}}，请勿告知他人。",
+      "مرحبًا {{RecipientName}}، رمز التحقق لاجتماع «{{Title}}» هو {{Code}}. لا تشاركه."
+    )
+  },
+  {
+    code: "MEETING_REMINDER",
+    name: L(
+      "TutorSphere — Rappel de réunion",
+      "TutorSphere — Meeting reminder",
+      "TutorSphere — Recordatorio de reunión",
+      "TutorSphere — Besprechungserinnerung",
+      "TutorSphere — Lembrete de reunião",
+      "TutorSphere — 会议提醒",
+      "TutorSphere — تذكير بالاجتماع"
+    ),
+    subject: L(
+      "Rappel : réunion « {{Title}} » le {{StartLocal}}",
+      "Reminder: meeting “{{Title}}” on {{StartLocal}}",
+      "Recordatorio: reunión «{{Title}}» el {{StartLocal}}",
+      "Erinnerung: Besprechung „{{Title}}“ am {{StartLocal}}",
+      "Lembrete: reunião «{{Title}}» em {{StartLocal}}",
+      "提醒：会议《{{Title}}》将于 {{StartLocal}} 举行",
+      "تذكير: اجتماع «{{Title}}» في {{StartLocal}}"
+    ),
+    title: L(
+      "Votre réunion approche",
+      "Your meeting is coming up",
+      "Su reunión se acerca",
+      "Ihre Besprechung steht bevor",
+      "A sua reunião aproxima-se",
+      "您的会议即将开始",
+      "اجتماعك يقترب"
+    ),
+    theme: {
+      accent: "#5831E0",
+      pageBg: "#f5f3ff",
+      shadow: "rgba(88,49,224,0.08)",
+      hr: "#ede9fb",
+      badge: L("Rappel", "Reminder", "Recordatorio", "Erinnerung", "Lembrete", "提醒", "تذكير")
+    },
+    helloRecipient: true,
+    body: L(
+      "La réunion <strong>{{Title}}</strong> est prévue le <strong>{{StartLocal}}</strong>. Pensez à tester votre micro et votre caméra avant de rejoindre.",
+      "The meeting <strong>{{Title}}</strong> is scheduled for <strong>{{StartLocal}}</strong>. Remember to test your microphone and camera before joining.",
+      "La reunión <strong>{{Title}}</strong> está prevista para el <strong>{{StartLocal}}</strong>. Recuerde probar su micrófono y su cámara antes de unirse.",
+      "Die Besprechung <strong>{{Title}}</strong> ist für <strong>{{StartLocal}}</strong> geplant. Testen Sie vorher Mikrofon und Kamera.",
+      "A reunião <strong>{{Title}}</strong> está prevista para <strong>{{StartLocal}}</strong>. Não se esqueça de testar o microfone e a câmara antes de entrar.",
+      "会议<strong>{{Title}}</strong>将于 <strong>{{StartLocal}}</strong> 举行。加入前请先测试麦克风与摄像头。",
+      "اجتماع <strong>{{Title}}</strong> مقرر في <strong>{{StartLocal}}</strong>. تذكّر اختبار الميكروفون والكاميرا قبل الانضمام."
+    ),
+    btn: L(
+      "Rejoindre la réunion",
+      "Join the meeting",
+      "Unirse a la reunión",
+      "An der Besprechung teilnehmen",
+      "Entrar na reunião",
+      "加入会议",
+      "الانضمام إلى الاجتماع"
+    ),
+    btnUrl: "{{JoinUrl}}",
+    text: L(
+      "Bonjour {{RecipientName}}, rappel : la réunion « {{Title}} » a lieu le {{StartLocal}}. Rejoindre : {{JoinUrl}}",
+      "Hello {{RecipientName}}, reminder: the meeting “{{Title}}” takes place on {{StartLocal}}. Join: {{JoinUrl}}",
+      "Hola {{RecipientName}}, recordatorio: la reunión «{{Title}}» es el {{StartLocal}}. Unirse: {{JoinUrl}}",
+      "Hallo {{RecipientName}}, Erinnerung: Die Besprechung „{{Title}}“ findet am {{StartLocal}} statt. Teilnehmen: {{JoinUrl}}",
+      "Olá {{RecipientName}}, lembrete: a reunião «{{Title}}» é em {{StartLocal}}. Entrar: {{JoinUrl}}",
+      "{{RecipientName}}，您好，提醒您：会议《{{Title}}》将于 {{StartLocal}} 举行。加入：{{JoinUrl}}",
+      "مرحبًا {{RecipientName}}، تذكير: اجتماع «{{Title}}» في {{StartLocal}}. الانضمام: {{JoinUrl}}"
+    )
+  },
+  {
+    code: "MEETING_CANCELLED",
+    name: L(
+      "TutorSphere — Réunion annulée",
+      "TutorSphere — Meeting cancelled",
+      "TutorSphere — Reunión cancelada",
+      "TutorSphere — Besprechung abgesagt",
+      "TutorSphere — Reunião cancelada",
+      "TutorSphere — 会议已取消",
+      "TutorSphere — تم إلغاء الاجتماع"
+    ),
+    subject: L(
+      "Annulation : réunion « {{Title}} » du {{StartLocal}}",
+      "Cancelled: meeting “{{Title}}” of {{StartLocal}}",
+      "Cancelada: reunión «{{Title}}» del {{StartLocal}}",
+      "Abgesagt: Besprechung „{{Title}}“ vom {{StartLocal}}",
+      "Cancelada: reunião «{{Title}}» de {{StartLocal}}",
+      "已取消：{{StartLocal}} 的会议《{{Title}}》",
+      "إلغاء: اجتماع «{{Title}}» بتاريخ {{StartLocal}}"
+    ),
+    title: L(
+      "Réunion annulée",
+      "Meeting cancelled",
+      "Reunión cancelada",
+      "Besprechung abgesagt",
+      "Reunião cancelada",
+      "会议已取消",
+      "تم إلغاء الاجتماع"
+    ),
+    titleColor: "#dc2626",
+    body: L(
+      "La réunion <strong>{{Title}}</strong> prévue le <strong>{{StartLocal}}</strong> a été annulée par l'organisateur. Le lien d'accès n'est plus valable.",
+      "The meeting <strong>{{Title}}</strong> scheduled for <strong>{{StartLocal}}</strong> was cancelled by the organizer. The access link is no longer valid.",
+      "La reunión <strong>{{Title}}</strong> prevista para el <strong>{{StartLocal}}</strong> ha sido cancelada por el organizador. El enlace de acceso ya no es válido.",
+      "Die für <strong>{{StartLocal}}</strong> geplante Besprechung <strong>{{Title}}</strong> wurde vom Organisator abgesagt. Der Zugangslink ist nicht mehr gültig.",
+      "A reunião <strong>{{Title}}</strong> prevista para <strong>{{StartLocal}}</strong> foi cancelada pelo organizador. O link de acesso já não é válido.",
+      "原定于 <strong>{{StartLocal}}</strong> 的会议<strong>{{Title}}</strong>已被组织者取消，访问链接失效。",
+      "تم إلغاء اجتماع <strong>{{Title}}</strong> المقرر في <strong>{{StartLocal}}</strong> من قِبل المنظّم. لم يعد رابط الدخول صالحًا."
+    ),
+    body2: L(
+      "Si une nouvelle date est fixée, vous recevrez une nouvelle invitation.",
+      "If a new date is set, you will receive a new invitation.",
+      "Si se fija una nueva fecha, recibirá una nueva invitación.",
+      "Wird ein neuer Termin festgelegt, erhalten Sie eine neue Einladung.",
+      "Se for definida uma nova data, receberá um novo convite.",
+      "如另行安排时间，您将收到新的邀请。",
+      "إذا تم تحديد موعد جديد، فستتلقى دعوة جديدة."
+    ),
+    text: L(
+      "La réunion « {{Title}} » prévue le {{StartLocal}} a été annulée.",
+      "The meeting “{{Title}}” scheduled for {{StartLocal}} was cancelled.",
+      "La reunión «{{Title}}» prevista para el {{StartLocal}} ha sido cancelada.",
+      "Die Besprechung „{{Title}}“ am {{StartLocal}} wurde abgesagt.",
+      "A reunião «{{Title}}» prevista para {{StartLocal}} foi cancelada.",
+      "原定于 {{StartLocal}} 的会议《{{Title}}》已取消。",
+      "تم إلغاء اجتماع «{{Title}}» المقرر في {{StartLocal}}."
+    )
+  },
+  {
+    code: "MEETING_MINUTES",
+    name: L(
+      "TutorSphere — Compte rendu de réunion",
+      "TutorSphere — Meeting minutes",
+      "TutorSphere — Acta de reunión",
+      "TutorSphere — Besprechungsprotokoll",
+      "TutorSphere — Ata da reunião",
+      "TutorSphere — 会议记录",
+      "TutorSphere — محضر الاجتماع"
+    ),
+    subject: L(
+      "Compte rendu de la réunion « {{Title}} »",
+      "Minutes of the meeting “{{Title}}”",
+      "Acta de la reunión «{{Title}}»",
+      "Protokoll der Besprechung „{{Title}}“",
+      "Ata da reunião «{{Title}}»",
+      "会议《{{Title}}》的会议记录",
+      "محضر اجتماع «{{Title}}»"
+    ),
+    title: L(
+      "Le compte rendu est disponible",
+      "The minutes are available",
+      "El acta está disponible",
+      "Das Protokoll ist verfügbar",
+      "A ata está disponível",
+      "会议记录已生成",
+      "المحضر متاح الآن"
+    ),
+    helloRecipient: true,
+    body: L(
+      "Le compte rendu de la réunion <strong>{{Title}}</strong> est disponible. Relisez-le et signalez toute correction nécessaire à l'organisateur.",
+      "The minutes of the meeting <strong>{{Title}}</strong> are available. Please review them and report any needed correction to the organizer.",
+      "El acta de la reunión <strong>{{Title}}</strong> está disponible. Revísela e informe al organizador de cualquier corrección necesaria.",
+      "Das Protokoll der Besprechung <strong>{{Title}}</strong> ist verfügbar. Bitte prüfen Sie es und melden Sie Korrekturen dem Organisator.",
+      "A ata da reunião <strong>{{Title}}</strong> está disponível. Reveja-a e comunique ao organizador qualquer correção necessária.",
+      "会议<strong>{{Title}}</strong>的会议记录已生成。请查阅，如需更正请告知组织者。",
+      "محضر اجتماع <strong>{{Title}}</strong> متاح. يُرجى مراجعته وإبلاغ المنظّم بأي تصحيح لازم."
+    ),
+    btn: L(
+      "Ouvrir le compte rendu",
+      "Open the minutes",
+      "Abrir el acta",
+      "Protokoll öffnen",
+      "Abrir a ata",
+      "查看会议记录",
+      "فتح المحضر"
+    ),
+    btnUrl: "{{MinutesUrl}}",
+    text: L(
+      "Bonjour {{RecipientName}}, le compte rendu de la réunion « {{Title}} » est disponible : {{MinutesUrl}}",
+      "Hello {{RecipientName}}, the minutes of the meeting “{{Title}}” are available: {{MinutesUrl}}",
+      "Hola {{RecipientName}}, el acta de la reunión «{{Title}}» está disponible: {{MinutesUrl}}",
+      "Hallo {{RecipientName}}, das Protokoll der Besprechung „{{Title}}“ ist verfügbar: {{MinutesUrl}}",
+      "Olá {{RecipientName}}, a ata da reunião «{{Title}}» está disponível: {{MinutesUrl}}",
+      "{{RecipientName}}，您好，会议《{{Title}}》的会议记录已生成：{{MinutesUrl}}",
+      "مرحبًا {{RecipientName}}، محضر اجتماع «{{Title}}» متاح: {{MinutesUrl}}"
+    )
   }
 ];
 
@@ -1340,6 +1766,28 @@ function buildHtml(tpl, lang) {
                   ${validityRow}
                   ${messageRow}
                 </table>`);
+  }
+  if (tpl.meetingLabels) {
+    const bg = tableBgOf(tpl);
+    const m = tpl.meetingLabels;
+    const rows = [
+      `<tr><td style="padding:10px 14px;color:#555;">${t(m.subject, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>`,
+      `<tr><td style="padding:10px 14px;color:#555;">${t(m.when, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>`,
+      `<tr><td style="padding:10px 14px;color:#555;">${t(m.organizer, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>`,
+      `<tr><td style="padding:10px 14px;color:#555;">${t(m.agenda, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>`
+    ];
+    if (m.validity) {
+      rows.push(`<tr><td style="padding:10px 14px;color:#555;">${t(m.validity, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>`);
+    }
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  ${rows.join("\n                  ")}
+                </table>`);
+  }
+  if (tpl.codeBlock) {
+    const accent = accentOf(tpl);
+    parts.push(`<p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed ${accent};border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:${accent};">{{Code}}</span>
+                </p>`);
   }
   if (tpl.decisionLabels) {
     const bg = tableBgOf(tpl);

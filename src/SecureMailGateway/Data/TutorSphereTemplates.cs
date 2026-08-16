@@ -1117,6 +1117,194 @@ Cet e-mail a été envoyé par TutorSphere (GISEBS). Ne répondez pas directemen
             SeedRevision: 9),
 
         new(
+            TemplateCode: "MEETING_INVITATION",
+            Name: "TutorSphere — Invitation réunion (membre)",
+            SubjectTemplate: "Réunion « {{Title}} » — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Réunion du groupe</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitation à une réunion du groupe</h2>
+                <p>Bonjour {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> vous invite à une réunion de travail sur TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Objet</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Date et heure</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organisateur</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Ordre du jour</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p>Le bouton ouvre la salle dans <strong>votre espace expert</strong> : connectez-vous avec votre compte TutorSphere habituel. Réunion privée du groupe — ne transférez pas ce lien.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Rejoindre la réunion</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Bonjour {{RecipientName}}, {{OrganizerName}} vous invite à la réunion « {{Title}} » le {{StartLocal}} ({{TimeZone}}). Ordre du jour : {{Agenda}}. {{RecordingAndAi}} Rejoindre depuis votre espace expert : {{JoinUrl}}",
+            Language: "fr",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION_GUEST",
+            Name: "TutorSphere — Invitation réunion (invité externe)",
+            SubjectTemplate: "Vous êtes invité(e) à la réunion « {{Title}} » — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Invité externe</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Invitation à une réunion</h2>
+                <p>Bonjour {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> vous invite à participer à une réunion en ligne organisée sur TutorSphere. <strong>Aucun compte n'est nécessaire</strong> : votre lien d'accès personnel est ci-dessous.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f0fdfa;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Objet</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Date et heure</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organisateur</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Ordre du jour</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Lien valable jusqu'au</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>
+                </table>
+                <p style="background:#f0fdfa;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p><strong>Comment rejoindre</strong><br/>1. Cliquez sur le bouton ci-dessous.<br/>2. Saisissez le code à 6 chiffres qui vous sera envoyé par e-mail pour confirmer votre adresse.<br/>3. Patientez dans la salle d'attente : l'organisateur vous admettra.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#0D9488;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Rejoindre la réunion</a></p>
+                <p style="font-size:13px;color:#888;">Ce lien est personnel, temporaire et non transférable. Il ne donne accès qu'à cette réunion, pas au reste de TutorSphere. Si vous n'attendiez pas cette invitation, ignorez ce message.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Bonjour {{RecipientName}}, {{OrganizerName}} vous invite à la réunion « {{Title}} » le {{StartLocal}} ({{TimeZone}}). Ordre du jour : {{Agenda}}. {{RecordingAndAi}} Lien personnel valable jusqu'au {{LinkValidity}} : {{JoinUrl}} — un code à 6 chiffres vous sera demandé pour confirmer votre adresse e-mail. Ne transférez pas ce lien.",
+            Language: "fr",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_GUEST_CODE",
+            Name: "TutorSphere — Code de vérification invité",
+            SubjectTemplate: "Votre code d'accès à la réunion « {{Title}} »",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Invité externe</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Votre code de vérification</h2>
+                <p>Bonjour {{RecipientName}},</p>
+                <p>Saisissez ce code dans la page d'accès pour confirmer votre adresse e-mail et rejoindre la réunion <strong>{{Title}}</strong>.</p>
+                <p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed #0D9488;border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:#0D9488;">{{Code}}</span>
+                </p>
+                <p style="font-size:13px;color:#888;">Ce code est valable pour cette seule session. Ne le communiquez à personne.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Bonjour {{RecipientName}}, votre code de vérification pour la réunion « {{Title}} » est {{Code}}. Ne le communiquez à personne.",
+            Language: "fr",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_REMINDER",
+            Name: "TutorSphere — Rappel de réunion",
+            SubjectTemplate: "Rappel : réunion « {{Title}} » le {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Rappel</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Votre réunion approche</h2>
+                <p>Bonjour {{RecipientName}},</p>
+                <p>La réunion <strong>{{Title}}</strong> est prévue le <strong>{{StartLocal}}</strong>. Pensez à tester votre micro et votre caméra avant de rejoindre.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Rejoindre la réunion</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Bonjour {{RecipientName}}, rappel : la réunion « {{Title}} » a lieu le {{StartLocal}}. Rejoindre : {{JoinUrl}}",
+            Language: "fr",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_CANCELLED",
+            Name: "TutorSphere — Réunion annulée",
+            SubjectTemplate: "Annulation : réunion « {{Title}} » du {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Réunion annulée</h2>
+                <p>La réunion <strong>{{Title}}</strong> prévue le <strong>{{StartLocal}}</strong> a été annulée par l'organisateur. Le lien d'accès n'est plus valable.</p>
+                <p>Si une nouvelle date est fixée, vous recevrez une nouvelle invitation.</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "La réunion « {{Title}} » prévue le {{StartLocal}} a été annulée.",
+            Language: "fr",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_MINUTES",
+            Name: "TutorSphere — Compte rendu de réunion",
+            SubjectTemplate: "Compte rendu de la réunion « {{Title}} »",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Le compte rendu est disponible</h2>
+                <p>Bonjour {{RecipientName}},</p>
+                <p>Le compte rendu de la réunion <strong>{{Title}}</strong> est disponible. Relisez-le et signalez toute correction nécessaire à l'organisateur.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{MinutesUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Ouvrir le compte rendu</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Cet e-mail a été envoyé par TutorSphere. Ne répondez pas directement à ce message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Bonjour {{RecipientName}}, le compte rendu de la réunion « {{Title}} » est disponible : {{MinutesUrl}}",
+            Language: "fr",
+            SeedRevision: 9),
+
+        new(
             TemplateCode: "WELCOME",
             Name: "TutorSphere — Welcome",
             SubjectTemplate: "Welcome {{FirstName}} to TutorSphere!",
@@ -2220,6 +2408,194 @@ This email was sent by TutorSphere (GISEBS). Please do not reply directly.<br/>�
         <!-- tutorsphere-seed:9 -->
 """,
             TextBody: "Hello {{FirstName}}, your Expert application was not retained. Reason: {{Reason}}",
+            Language: "en",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION",
+            Name: "TutorSphere — Meeting invitation (member)",
+            SubjectTemplate: "Meeting “{{Title}}” — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Group meeting</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitation to a group meeting</h2>
+                <p>Hello {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> invites you to a working meeting on TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Subject</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Date and time</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organizer</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Agenda</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p>The button opens the room in <strong>your expert space</strong>: sign in with your usual TutorSphere account. This is a private group meeting — please do not forward this link.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Join the meeting</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hello {{RecipientName}}, {{OrganizerName}} invites you to the meeting “{{Title}}” on {{StartLocal}} ({{TimeZone}}). Agenda: {{Agenda}}. {{RecordingAndAi}} Join from your expert space: {{JoinUrl}}",
+            Language: "en",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION_GUEST",
+            Name: "TutorSphere — Meeting invitation (external guest)",
+            SubjectTemplate: "You are invited to the meeting “{{Title}}” — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">External guest</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Invitation to a meeting</h2>
+                <p>Hello {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> invites you to join an online meeting hosted on TutorSphere. <strong>No account is required</strong>: your personal access link is below.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f0fdfa;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Subject</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Date and time</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organizer</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Agenda</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Link valid until</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>
+                </table>
+                <p style="background:#f0fdfa;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p><strong>How to join</strong><br/>1. Click the button below.<br/>2. Enter the 6-digit code emailed to you to confirm your address.<br/>3. Wait in the waiting room: the organizer will let you in.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#0D9488;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Join the meeting</a></p>
+                <p style="font-size:13px;color:#888;">This link is personal, temporary and non-transferable. It only grants access to this meeting, not to the rest of TutorSphere. If you were not expecting this invitation, please ignore this message.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hello {{RecipientName}}, {{OrganizerName}} invites you to the meeting “{{Title}}” on {{StartLocal}} ({{TimeZone}}). Agenda: {{Agenda}}. {{RecordingAndAi}} Personal link valid until {{LinkValidity}}: {{JoinUrl}} — a 6-digit code will be requested to confirm your email address. Please do not forward this link.",
+            Language: "en",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_GUEST_CODE",
+            Name: "TutorSphere — Guest verification code",
+            SubjectTemplate: "Your access code for the meeting “{{Title}}”",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">External guest</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Your verification code</h2>
+                <p>Hello {{RecipientName}},</p>
+                <p>Enter this code on the access page to confirm your email address and join the meeting <strong>{{Title}}</strong>.</p>
+                <p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed #0D9488;border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:#0D9488;">{{Code}}</span>
+                </p>
+                <p style="font-size:13px;color:#888;">This code is valid for this session only. Do not share it with anyone.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hello {{RecipientName}}, your verification code for the meeting “{{Title}}” is {{Code}}. Do not share it.",
+            Language: "en",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_REMINDER",
+            Name: "TutorSphere — Meeting reminder",
+            SubjectTemplate: "Reminder: meeting “{{Title}}” on {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Reminder</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Your meeting is coming up</h2>
+                <p>Hello {{RecipientName}},</p>
+                <p>The meeting <strong>{{Title}}</strong> is scheduled for <strong>{{StartLocal}}</strong>. Remember to test your microphone and camera before joining.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Join the meeting</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hello {{RecipientName}}, reminder: the meeting “{{Title}}” takes place on {{StartLocal}}. Join: {{JoinUrl}}",
+            Language: "en",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_CANCELLED",
+            Name: "TutorSphere — Meeting cancelled",
+            SubjectTemplate: "Cancelled: meeting “{{Title}}” of {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Meeting cancelled</h2>
+                <p>The meeting <strong>{{Title}}</strong> scheduled for <strong>{{StartLocal}}</strong> was cancelled by the organizer. The access link is no longer valid.</p>
+                <p>If a new date is set, you will receive a new invitation.</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "The meeting “{{Title}}” scheduled for {{StartLocal}} was cancelled.",
+            Language: "en",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_MINUTES",
+            Name: "TutorSphere — Meeting minutes",
+            SubjectTemplate: "Minutes of the meeting “{{Title}}”",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">The minutes are available</h2>
+                <p>Hello {{RecipientName}},</p>
+                <p>The minutes of the meeting <strong>{{Title}}</strong> are available. Please review them and report any needed correction to the organizer.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{MinutesUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Open the minutes</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          This email was sent by TutorSphere. Please do not reply directly to this message.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hello {{RecipientName}}, the minutes of the meeting “{{Title}}” are available: {{MinutesUrl}}",
             Language: "en",
             SeedRevision: 9),
 
@@ -3331,6 +3707,194 @@ Este correo fue enviado por TutorSphere (GISEBS). No responda directamente.<br/>
             SeedRevision: 9),
 
         new(
+            TemplateCode: "MEETING_INVITATION",
+            Name: "TutorSphere — Invitación a reunión (miembro)",
+            SubjectTemplate: "Reunión «{{Title}}» — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Reunión del grupo</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Invitación a una reunión del grupo</h2>
+                <p>Hola {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> le invita a una reunión de trabajo en TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Asunto</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Fecha y hora</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organizador</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Orden del día</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p>El botón abre la sala en <strong>su espacio experto</strong>: inicie sesión con su cuenta habitual de TutorSphere. Reunión privada del grupo: no reenvíe este enlace.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Unirse a la reunión</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hola {{RecipientName}}, {{OrganizerName}} le invita a la reunión «{{Title}}» el {{StartLocal}} ({{TimeZone}}). Orden del día: {{Agenda}}. {{RecordingAndAi}} Unirse desde su espacio experto: {{JoinUrl}}",
+            Language: "es",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION_GUEST",
+            Name: "TutorSphere — Invitación a reunión (invitado externo)",
+            SubjectTemplate: "Está invitado/a a la reunión «{{Title}}» — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Invitado externo</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Invitación a una reunión</h2>
+                <p>Hola {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> le invita a participar en una reunión en línea organizada en TutorSphere. <strong>No necesita ninguna cuenta</strong>: su enlace de acceso personal está abajo.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f0fdfa;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Asunto</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Fecha y hora</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organizador</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Orden del día</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Enlace válido hasta</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>
+                </table>
+                <p style="background:#f0fdfa;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p><strong>Cómo unirse</strong><br/>1. Haga clic en el botón de abajo.<br/>2. Introduzca el código de 6 dígitos que recibirá por correo para confirmar su dirección.<br/>3. Espere en la sala de espera: el organizador le admitirá.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#0D9488;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Unirse a la reunión</a></p>
+                <p style="font-size:13px;color:#888;">Este enlace es personal, temporal e intransferible. Solo da acceso a esta reunión, no al resto de TutorSphere. Si no esperaba esta invitación, ignore este mensaje.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hola {{RecipientName}}, {{OrganizerName}} le invita a la reunión «{{Title}}» el {{StartLocal}} ({{TimeZone}}). Orden del día: {{Agenda}}. {{RecordingAndAi}} Enlace personal válido hasta {{LinkValidity}}: {{JoinUrl}} — se le pedirá un código de 6 dígitos para confirmar su correo. No reenvíe este enlace.",
+            Language: "es",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_GUEST_CODE",
+            Name: "TutorSphere — Código de verificación de invitado",
+            SubjectTemplate: "Su código de acceso a la reunión «{{Title}}»",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Invitado externo</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Su código de verificación</h2>
+                <p>Hola {{RecipientName}},</p>
+                <p>Introduzca este código en la página de acceso para confirmar su correo y unirse a la reunión <strong>{{Title}}</strong>.</p>
+                <p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed #0D9488;border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:#0D9488;">{{Code}}</span>
+                </p>
+                <p style="font-size:13px;color:#888;">Este código solo es válido para esta sesión. No lo comparta con nadie.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hola {{RecipientName}}, su código de verificación para la reunión «{{Title}}» es {{Code}}. No lo comparta.",
+            Language: "es",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_REMINDER",
+            Name: "TutorSphere — Recordatorio de reunión",
+            SubjectTemplate: "Recordatorio: reunión «{{Title}}» el {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Recordatorio</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Su reunión se acerca</h2>
+                <p>Hola {{RecipientName}},</p>
+                <p>La reunión <strong>{{Title}}</strong> está prevista para el <strong>{{StartLocal}}</strong>. Recuerde probar su micrófono y su cámara antes de unirse.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Unirse a la reunión</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hola {{RecipientName}}, recordatorio: la reunión «{{Title}}» es el {{StartLocal}}. Unirse: {{JoinUrl}}",
+            Language: "es",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_CANCELLED",
+            Name: "TutorSphere — Reunión cancelada",
+            SubjectTemplate: "Cancelada: reunión «{{Title}}» del {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Reunión cancelada</h2>
+                <p>La reunión <strong>{{Title}}</strong> prevista para el <strong>{{StartLocal}}</strong> ha sido cancelada por el organizador. El enlace de acceso ya no es válido.</p>
+                <p>Si se fija una nueva fecha, recibirá una nueva invitación.</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "La reunión «{{Title}}» prevista para el {{StartLocal}} ha sido cancelada.",
+            Language: "es",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_MINUTES",
+            Name: "TutorSphere — Acta de reunión",
+            SubjectTemplate: "Acta de la reunión «{{Title}}»",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">El acta está disponible</h2>
+                <p>Hola {{RecipientName}},</p>
+                <p>El acta de la reunión <strong>{{Title}}</strong> está disponible. Revísela e informe al organizador de cualquier corrección necesaria.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{MinutesUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Abrir el acta</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este correo fue enviado por TutorSphere. No responda directamente a este mensaje.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hola {{RecipientName}}, el acta de la reunión «{{Title}}» está disponible: {{MinutesUrl}}",
+            Language: "es",
+            SeedRevision: 9),
+
+        new(
             TemplateCode: "WELCOME",
             Name: "TutorSphere — Willkommen",
             SubjectTemplate: "Willkommen {{FirstName}} bei TutorSphere!",
@@ -4434,6 +4998,194 @@ Diese E-Mail wurde von TutorSphere (GISEBS) gesendet. Bitte nicht direkt antwort
         <!-- tutorsphere-seed:9 -->
 """,
             TextBody: "Hallo {{FirstName}}, Ihre Expertenbewerbung wurde nicht angenommen. Grund: {{Reason}}",
+            Language: "de",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION",
+            Name: "TutorSphere — Besprechungseinladung (Mitglied)",
+            SubjectTemplate: "Besprechung „{{Title}}“ — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Gruppenbesprechung</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Einladung zu einer Gruppenbesprechung</h2>
+                <p>Hallo {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> lädt Sie zu einer Arbeitsbesprechung auf TutorSphere ein.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Thema</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Datum und Uhrzeit</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organisator</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Tagesordnung</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p>Die Schaltfläche öffnet den Raum in <strong>Ihrem Expertenbereich</strong>: Melden Sie sich mit Ihrem gewohnten TutorSphere-Konto an. Private Gruppenbesprechung — bitte leiten Sie diesen Link nicht weiter.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">An der Besprechung teilnehmen</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hallo {{RecipientName}}, {{OrganizerName}} lädt Sie zur Besprechung „{{Title}}“ am {{StartLocal}} ({{TimeZone}}) ein. Tagesordnung: {{Agenda}}. {{RecordingAndAi}} Teilnahme über Ihren Expertenbereich: {{JoinUrl}}",
+            Language: "de",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION_GUEST",
+            Name: "TutorSphere — Besprechungseinladung (externer Gast)",
+            SubjectTemplate: "Sie sind zur Besprechung „{{Title}}“ eingeladen — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Externer Gast</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Einladung zu einer Besprechung</h2>
+                <p>Hallo {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> lädt Sie zu einer Online-Besprechung auf TutorSphere ein. <strong>Kein Konto erforderlich</strong>: Ihr persönlicher Zugangslink steht unten.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f0fdfa;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Thema</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Datum und Uhrzeit</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organisator</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Tagesordnung</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Link gültig bis</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>
+                </table>
+                <p style="background:#f0fdfa;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p><strong>So nehmen Sie teil</strong><br/>1. Klicken Sie auf die Schaltfläche unten.<br/>2. Geben Sie den 6-stelligen Code ein, den Sie per E-Mail erhalten, um Ihre Adresse zu bestätigen.<br/>3. Warten Sie im Warteraum: Der Organisator lässt Sie ein.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#0D9488;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">An der Besprechung teilnehmen</a></p>
+                <p style="font-size:13px;color:#888;">Dieser Link ist persönlich, zeitlich begrenzt und nicht übertragbar. Er gewährt nur Zugang zu dieser Besprechung, nicht zum übrigen TutorSphere. Falls Sie diese Einladung nicht erwartet haben, ignorieren Sie diese Nachricht.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hallo {{RecipientName}}, {{OrganizerName}} lädt Sie zur Besprechung „{{Title}}“ am {{StartLocal}} ({{TimeZone}}) ein. Tagesordnung: {{Agenda}}. {{RecordingAndAi}} Persönlicher Link gültig bis {{LinkValidity}}: {{JoinUrl}} — zur Bestätigung Ihrer E-Mail-Adresse wird ein 6-stelliger Code verlangt. Bitte nicht weiterleiten.",
+            Language: "de",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_GUEST_CODE",
+            Name: "TutorSphere — Gast-Bestätigungscode",
+            SubjectTemplate: "Ihr Zugangscode für die Besprechung „{{Title}}“",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Externer Gast</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Ihr Bestätigungscode</h2>
+                <p>Hallo {{RecipientName}},</p>
+                <p>Geben Sie diesen Code auf der Zugangsseite ein, um Ihre E-Mail-Adresse zu bestätigen und an der Besprechung <strong>{{Title}}</strong> teilzunehmen.</p>
+                <p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed #0D9488;border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:#0D9488;">{{Code}}</span>
+                </p>
+                <p style="font-size:13px;color:#888;">Dieser Code gilt nur für diese Sitzung. Geben Sie ihn nicht weiter.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hallo {{RecipientName}}, Ihr Bestätigungscode für die Besprechung „{{Title}}“ lautet {{Code}}. Nicht weitergeben.",
+            Language: "de",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_REMINDER",
+            Name: "TutorSphere — Besprechungserinnerung",
+            SubjectTemplate: "Erinnerung: Besprechung „{{Title}}“ am {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Erinnerung</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Ihre Besprechung steht bevor</h2>
+                <p>Hallo {{RecipientName}},</p>
+                <p>Die Besprechung <strong>{{Title}}</strong> ist für <strong>{{StartLocal}}</strong> geplant. Testen Sie vorher Mikrofon und Kamera.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">An der Besprechung teilnehmen</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hallo {{RecipientName}}, Erinnerung: Die Besprechung „{{Title}}“ findet am {{StartLocal}} statt. Teilnehmen: {{JoinUrl}}",
+            Language: "de",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_CANCELLED",
+            Name: "TutorSphere — Besprechung abgesagt",
+            SubjectTemplate: "Abgesagt: Besprechung „{{Title}}“ vom {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Besprechung abgesagt</h2>
+                <p>Die für <strong>{{StartLocal}}</strong> geplante Besprechung <strong>{{Title}}</strong> wurde vom Organisator abgesagt. Der Zugangslink ist nicht mehr gültig.</p>
+                <p>Wird ein neuer Termin festgelegt, erhalten Sie eine neue Einladung.</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Die Besprechung „{{Title}}“ am {{StartLocal}} wurde abgesagt.",
+            Language: "de",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_MINUTES",
+            Name: "TutorSphere — Besprechungsprotokoll",
+            SubjectTemplate: "Protokoll der Besprechung „{{Title}}“",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Das Protokoll ist verfügbar</h2>
+                <p>Hallo {{RecipientName}},</p>
+                <p>Das Protokoll der Besprechung <strong>{{Title}}</strong> ist verfügbar. Bitte prüfen Sie es und melden Sie Korrekturen dem Organisator.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{MinutesUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Protokoll öffnen</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Diese E-Mail wurde von TutorSphere gesendet. Bitte antworten Sie nicht direkt auf diese Nachricht.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Hallo {{RecipientName}}, das Protokoll der Besprechung „{{Title}}“ ist verfügbar: {{MinutesUrl}}",
             Language: "de",
             SeedRevision: 9),
 
@@ -5545,6 +6297,194 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             SeedRevision: 9),
 
         new(
+            TemplateCode: "MEETING_INVITATION",
+            Name: "TutorSphere — Convite para reunião (membro)",
+            SubjectTemplate: "Reunião «{{Title}}» — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Reunião do grupo</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">Convite para uma reunião do grupo</h2>
+                <p>Olá {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> convida-o para uma reunião de trabalho no TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Assunto</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Data e hora</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organizador</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Ordem de trabalhos</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p>O botão abre a sala no <strong>seu espaço de especialista</strong>: inicie sessão com a sua conta TutorSphere habitual. Reunião privada do grupo — não reencaminhe este link.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Entrar na reunião</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Olá {{RecipientName}}, {{OrganizerName}} convida-o para a reunião «{{Title}}» em {{StartLocal}} ({{TimeZone}}). Ordem de trabalhos: {{Agenda}}. {{RecordingAndAi}} Entrar pelo seu espaço de especialista: {{JoinUrl}}",
+            Language: "pt",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION_GUEST",
+            Name: "TutorSphere — Convite para reunião (convidado externo)",
+            SubjectTemplate: "Está convidado(a) para a reunião «{{Title}}» — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Convidado externo</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">Convite para uma reunião</h2>
+                <p>Olá {{RecipientName}},</p>
+                <p><strong>{{OrganizerName}}</strong> convida-o a participar numa reunião online no TutorSphere. <strong>Não é necessária qualquer conta</strong>: o seu link de acesso pessoal está abaixo.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f0fdfa;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">Assunto</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Data e hora</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Organizador</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Ordem de trabalhos</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">Link válido até</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>
+                </table>
+                <p style="background:#f0fdfa;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p><strong>Como entrar</strong><br/>1. Clique no botão abaixo.<br/>2. Introduza o código de 6 dígitos enviado por e-mail para confirmar o seu endereço.<br/>3. Aguarde na sala de espera: o organizador irá admiti-lo.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#0D9488;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Entrar na reunião</a></p>
+                <p style="font-size:13px;color:#888;">Este link é pessoal, temporário e não transferível. Dá acesso apenas a esta reunião, não ao resto do TutorSphere. Se não esperava este convite, ignore esta mensagem.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Olá {{RecipientName}}, {{OrganizerName}} convida-o para a reunião «{{Title}}» em {{StartLocal}} ({{TimeZone}}). Ordem de trabalhos: {{Agenda}}. {{RecordingAndAi}} Link pessoal válido até {{LinkValidity}}: {{JoinUrl}} — será pedido um código de 6 dígitos para confirmar o seu e-mail. Não reencaminhe este link.",
+            Language: "pt",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_GUEST_CODE",
+            Name: "TutorSphere — Código de verificação de convidado",
+            SubjectTemplate: "O seu código de acesso à reunião «{{Title}}»",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Convidado externo</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">O seu código de verificação</h2>
+                <p>Olá {{RecipientName}},</p>
+                <p>Introduza este código na página de acesso para confirmar o seu e-mail e entrar na reunião <strong>{{Title}}</strong>.</p>
+                <p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed #0D9488;border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:#0D9488;">{{Code}}</span>
+                </p>
+                <p style="font-size:13px;color:#888;">Este código é válido apenas para esta sessão. Não o partilhe com ninguém.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Olá {{RecipientName}}, o seu código de verificação para a reunião «{{Title}}» é {{Code}}. Não o partilhe.",
+            Language: "pt",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_REMINDER",
+            Name: "TutorSphere — Lembrete de reunião",
+            SubjectTemplate: "Lembrete: reunião «{{Title}}» em {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">Lembrete</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">A sua reunião aproxima-se</h2>
+                <p>Olá {{RecipientName}},</p>
+                <p>A reunião <strong>{{Title}}</strong> está prevista para <strong>{{StartLocal}}</strong>. Não se esqueça de testar o microfone e a câmara antes de entrar.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Entrar na reunião</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Olá {{RecipientName}}, lembrete: a reunião «{{Title}}» é em {{StartLocal}}. Entrar: {{JoinUrl}}",
+            Language: "pt",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_CANCELLED",
+            Name: "TutorSphere — Reunião cancelada",
+            SubjectTemplate: "Cancelada: reunião «{{Title}}» de {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">Reunião cancelada</h2>
+                <p>A reunião <strong>{{Title}}</strong> prevista para <strong>{{StartLocal}}</strong> foi cancelada pelo organizador. O link de acesso já não é válido.</p>
+                <p>Se for definida uma nova data, receberá um novo convite.</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "A reunião «{{Title}}» prevista para {{StartLocal}} foi cancelada.",
+            Language: "pt",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_MINUTES",
+            Name: "TutorSphere — Ata da reunião",
+            SubjectTemplate: "Ata da reunião «{{Title}}»",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">A ata está disponível</h2>
+                <p>Olá {{RecipientName}},</p>
+                <p>A ata da reunião <strong>{{Title}}</strong> está disponível. Reveja-a e comunique ao organizador qualquer correção necessária.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{MinutesUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">Abrir a ata</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          Este e-mail foi enviado pelo TutorSphere. Não responda diretamente a esta mensagem.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "Olá {{RecipientName}}, a ata da reunião «{{Title}}» está disponível: {{MinutesUrl}}",
+            Language: "pt",
+            SeedRevision: 9),
+
+        new(
             TemplateCode: "WELCOME",
             Name: "TutorSphere — 欢迎",
             SubjectTemplate: "欢迎 {{FirstName}} 加入 TutorSphere！",
@@ -6652,6 +7592,194 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
             SeedRevision: 9),
 
         new(
+            TemplateCode: "MEETING_INVITATION",
+            Name: "TutorSphere — 会议邀请（成员）",
+            SubjectTemplate: "会议《{{Title}}》— {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">小组会议</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">小组会议邀请</h2>
+                <p>{{RecipientName}}，您好，</p>
+                <p><strong>{{OrganizerName}}</strong> 邀请您参加 TutorSphere 上的工作会议。</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">主题</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">日期和时间</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">组织者</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">议程</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p>该按钮将在<strong>您的专家空间</strong>中打开会议室：请使用您常用的 TutorSphere 账户登录。这是小组内部会议，请勿转发此链接。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">加入会议</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "{{RecipientName}}，您好，{{OrganizerName}} 邀请您参加会议《{{Title}}》，时间为 {{StartLocal}}（{{TimeZone}}）。议程：{{Agenda}}。{{RecordingAndAi}} 通过专家空间加入：{{JoinUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION_GUEST",
+            Name: "TutorSphere — 会议邀请（外部嘉宾）",
+            SubjectTemplate: "邀请您参加会议《{{Title}}》— {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">外部嘉宾</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">会议邀请</h2>
+                <p>{{RecipientName}}，您好，</p>
+                <p><strong>{{OrganizerName}}</strong> 邀请您参加在 TutorSphere 上举办的线上会议。<strong>无需注册账户</strong>：您的个人访问链接见下方。</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f0fdfa;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">主题</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">日期和时间</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">组织者</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">议程</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">链接有效期至</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>
+                </table>
+                <p style="background:#f0fdfa;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p><strong>如何加入</strong><br/>1. 点击下方按钮。<br/>2. 输入邮件收到的 6 位验证码以确认您的邮箱。<br/>3. 在等候室稍候，组织者将允许您进入。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#0D9488;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">加入会议</a></p>
+                <p style="font-size:13px;color:#888;">此链接为个人专用、临时且不可转让，仅可进入本次会议，不能访问 TutorSphere 的其他功能。如果您并未预期收到此邀请，请忽略本邮件。</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "{{RecipientName}}，您好，{{OrganizerName}} 邀请您参加会议《{{Title}}》，时间为 {{StartLocal}}（{{TimeZone}}）。议程：{{Agenda}}。{{RecordingAndAi}} 个人链接有效期至 {{LinkValidity}}：{{JoinUrl}} — 系统会要求输入 6 位验证码以确认您的邮箱。请勿转发此链接。",
+            Language: "zh-Hans",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_GUEST_CODE",
+            Name: "TutorSphere — 嘉宾验证码",
+            SubjectTemplate: "您参加会议《{{Title}}》的验证码",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">外部嘉宾</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">您的验证码</h2>
+                <p>{{RecipientName}}，您好，</p>
+                <p>请在访问页面输入此验证码，以确认您的邮箱并加入会议<strong>{{Title}}</strong>。</p>
+                <p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed #0D9488;border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:#0D9488;">{{Code}}</span>
+                </p>
+                <p style="font-size:13px;color:#888;">此验证码仅对本次会话有效，请勿转告他人。</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "{{RecipientName}}，您好，会议《{{Title}}》的验证码为 {{Code}}，请勿告知他人。",
+            Language: "zh-Hans",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_REMINDER",
+            Name: "TutorSphere — 会议提醒",
+            SubjectTemplate: "提醒：会议《{{Title}}》将于 {{StartLocal}} 举行",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">提醒</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">您的会议即将开始</h2>
+                <p>{{RecipientName}}，您好，</p>
+                <p>会议<strong>{{Title}}</strong>将于 <strong>{{StartLocal}}</strong> 举行。加入前请先测试麦克风与摄像头。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">加入会议</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "{{RecipientName}}，您好，提醒您：会议《{{Title}}》将于 {{StartLocal}} 举行。加入：{{JoinUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_CANCELLED",
+            Name: "TutorSphere — 会议已取消",
+            SubjectTemplate: "已取消：{{StartLocal}} 的会议《{{Title}}》",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">会议已取消</h2>
+                <p>原定于 <strong>{{StartLocal}}</strong> 的会议<strong>{{Title}}</strong>已被组织者取消，访问链接失效。</p>
+                <p>如另行安排时间，您将收到新的邀请。</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "原定于 {{StartLocal}} 的会议《{{Title}}》已取消。",
+            Language: "zh-Hans",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_MINUTES",
+            Name: "TutorSphere — 会议记录",
+            SubjectTemplate: "会议《{{Title}}》的会议记录",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">会议记录已生成</h2>
+                <p>{{RecipientName}}，您好，</p>
+                <p>会议<strong>{{Title}}</strong>的会议记录已生成。请查阅，如需更正请告知组织者。</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{MinutesUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">查看会议记录</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          此邮件由 TutorSphere 发送。请勿直接回复此消息。<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "{{RecipientName}}，您好，会议《{{Title}}》的会议记录已生成：{{MinutesUrl}}",
+            Language: "zh-Hans",
+            SeedRevision: 9),
+
+        new(
             TemplateCode: "WELCOME",
             Name: "TutorSphere — مرحبًا",
             SubjectTemplate: "مرحبًا {{FirstName}} في TutorSphere!",
@@ -7755,6 +8883,194 @@ Este e-mail foi enviado pelo TutorSphere (GISEBS). Não responda diretamente.<br
         <!-- tutorsphere-seed:9 -->
 """,
             TextBody: "مرحبًا {{FirstName}}، لم تُقبل ترشيحك كخبير. السبب: {{Reason}}",
+            Language: "ar",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION",
+            Name: "TutorSphere — دعوة اجتماع (عضو)",
+            SubjectTemplate: "اجتماع «{{Title}}» — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">اجتماع المجموعة</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">دعوة إلى اجتماع المجموعة</h2>
+                <p>مرحبًا {{RecipientName}}،</p>
+                <p>يدعوك <strong>{{OrganizerName}}</strong> إلى اجتماع عمل على TutorSphere.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f5f3ff;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">الموضوع</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">التاريخ والوقت</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">المنظّم</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">جدول الأعمال</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                </table>
+                <p style="background:#f5f3ff;border-left:4px solid #5831E0;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p>يفتح الزر الغرفة في <strong>مساحة الخبير الخاصة بك</strong>: سجّل الدخول بحسابك المعتاد على TutorSphere. اجتماع خاص بالمجموعة — يُرجى عدم تحويل هذا الرابط.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">الانضمام إلى الاجتماع</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "مرحبًا {{RecipientName}}، يدعوك {{OrganizerName}} إلى اجتماع «{{Title}}» في {{StartLocal}} ({{TimeZone}}). جدول الأعمال: {{Agenda}}. {{RecordingAndAi}} الانضمام من مساحة الخبير: {{JoinUrl}}",
+            Language: "ar",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_INVITATION_GUEST",
+            Name: "TutorSphere — دعوة اجتماع (ضيف خارجي)",
+            SubjectTemplate: "أنت مدعو إلى اجتماع «{{Title}}» — {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">ضيف خارجي</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">دعوة إلى اجتماع</h2>
+                <p>مرحبًا {{RecipientName}}،</p>
+                <p>يدعوك <strong>{{OrganizerName}}</strong> للمشاركة في اجتماع عبر الإنترنت على TutorSphere. <strong>لا حاجة إلى أي حساب</strong>: رابط الدخول الخاص بك أدناه.</p>
+                <table style="width:100%;border-collapse:collapse;margin:16px 0;background:#f0fdfa;border-radius:6px;">
+                  <tr><td style="padding:10px 14px;color:#555;">الموضوع</td><td style="padding:10px 14px;font-weight:600;">{{Title}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">التاريخ والوقت</td><td style="padding:10px 14px;font-weight:600;">{{StartLocal}} ({{TimeZone}})</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">المنظّم</td><td style="padding:10px 14px;font-weight:600;">{{OrganizerName}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">جدول الأعمال</td><td style="padding:10px 14px;font-weight:600;">{{Agenda}}</td></tr>
+                  <tr><td style="padding:10px 14px;color:#555;">الرابط صالح حتى</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>
+                </table>
+                <p style="background:#f0fdfa;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;font-size:14px;color:#444;">{{RecordingAndAi}}</p>
+                <p><strong>كيفية الانضمام</strong><br/>1. اضغط الزر أدناه.<br/>2. أدخل الرمز المكوّن من 6 أرقام المُرسل إلى بريدك لتأكيد عنوانك.<br/>3. انتظر في غرفة الانتظار: سيسمح لك المنظّم بالدخول.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#0D9488;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">الانضمام إلى الاجتماع</a></p>
+                <p style="font-size:13px;color:#888;">هذا الرابط شخصي ومؤقت وغير قابل للتحويل. يمنح الوصول إلى هذا الاجتماع فقط وليس إلى بقية TutorSphere. إذا لم تكن تتوقع هذه الدعوة، فتجاهل هذه الرسالة.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "مرحبًا {{RecipientName}}، يدعوك {{OrganizerName}} إلى اجتماع «{{Title}}» في {{StartLocal}} ({{TimeZone}}). جدول الأعمال: {{Agenda}}. {{RecordingAndAi}} رابط شخصي صالح حتى {{LinkValidity}}: {{JoinUrl}} — سيُطلب رمز من 6 أرقام لتأكيد بريدك. لا تُحوّل هذا الرابط.",
+            Language: "ar",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_GUEST_CODE",
+            Name: "TutorSphere — رمز تحقق الضيف",
+            SubjectTemplate: "رمز دخولك إلى اجتماع «{{Title}}»",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f0fdfa;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(13,148,136,0.12);">
+            <div style="background:#0D9488;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">ضيف خارجي</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#0D9488;margin:0 0 12px;">رمز التحقق الخاص بك</h2>
+                <p>مرحبًا {{RecipientName}}،</p>
+                <p>أدخل هذا الرمز في صفحة الدخول لتأكيد بريدك والانضمام إلى اجتماع <strong>{{Title}}</strong>.</p>
+                <p style="text-align:center;margin:24px 0;">
+                  <span style="display:inline-block;padding:14px 28px;border:1px dashed #0D9488;border-radius:8px;font-family:monospace;font-size:26px;font-weight:700;letter-spacing:6px;color:#0D9488;">{{Code}}</span>
+                </p>
+                <p style="font-size:13px;color:#888;">هذا الرمز صالح لهذه الجلسة فقط. لا تشاركه مع أي شخص.</p>
+              <hr style="border:none;border-top:1px solid #ccfbf1;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "مرحبًا {{RecipientName}}، رمز التحقق لاجتماع «{{Title}}» هو {{Code}}. لا تشاركه.",
+            Language: "ar",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_REMINDER",
+            Name: "TutorSphere — تذكير بالاجتماع",
+            SubjectTemplate: "تذكير: اجتماع «{{Title}}» في {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.22);color:#ffffff;vertical-align:middle;">تذكير</span></p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">اجتماعك يقترب</h2>
+                <p>مرحبًا {{RecipientName}}،</p>
+                <p>اجتماع <strong>{{Title}}</strong> مقرر في <strong>{{StartLocal}}</strong>. تذكّر اختبار الميكروفون والكاميرا قبل الانضمام.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{JoinUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">الانضمام إلى الاجتماع</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "مرحبًا {{RecipientName}}، تذكير: اجتماع «{{Title}}» في {{StartLocal}}. الانضمام: {{JoinUrl}}",
+            Language: "ar",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_CANCELLED",
+            Name: "TutorSphere — تم إلغاء الاجتماع",
+            SubjectTemplate: "إلغاء: اجتماع «{{Title}}» بتاريخ {{StartLocal}}",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#dc2626;margin:0 0 12px;">تم إلغاء الاجتماع</h2>
+                <p>تم إلغاء اجتماع <strong>{{Title}}</strong> المقرر في <strong>{{StartLocal}}</strong> من قِبل المنظّم. لم يعد رابط الدخول صالحًا.</p>
+                <p>إذا تم تحديد موعد جديد، فستتلقى دعوة جديدة.</p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "تم إلغاء اجتماع «{{Title}}» المقرر في {{StartLocal}}.",
+            Language: "ar",
+            SeedRevision: 9),
+
+        new(
+            TemplateCode: "MEETING_MINUTES",
+            Name: "TutorSphere — محضر الاجتماع",
+            SubjectTemplate: "محضر اجتماع «{{Title}}»",
+            HtmlBody: """
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f3ff;padding:32px 16px;min-height:100vh;">
+          <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(88,49,224,0.08);">
+            <div style="background:#5831E0;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;letter-spacing:-0.5px;">TutorSphere</p>
+        </div>
+            <div style="padding:32px 32px 24px;">
+              <h2 style="color:#5831E0;margin:0 0 12px;">المحضر متاح الآن</h2>
+                <p>مرحبًا {{RecipientName}}،</p>
+                <p>محضر اجتماع <strong>{{Title}}</strong> متاح. يُرجى مراجعته وإبلاغ المنظّم بأي تصحيح لازم.</p>
+                <p style="text-align:center;margin:28px 0;"><a href="{{MinutesUrl}}" style="background:#5831E0;color:#ffffff;padding:12px 28px;text-decoration:none;border-radius:6px;font-weight:600;font-size:15px;display:inline-block;">فتح المحضر</a></p>
+              <hr style="border:none;border-top:1px solid #ede9fb;margin:32px 0 16px;" />
+        <p style="font-size:12px;color:#888;margin:0;">
+          تم إرسال هذا البريد بواسطة TutorSphere. يُرجى عدم الرد مباشرة على هذه الرسالة.<br/>© 2026 TutorSphere — <a href="https://tutorsphere.gisebs.com" style="color:#5831E0;text-decoration:none;">tutorsphere.gisebs.com</a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <!-- tutorsphere-seed:9 -->
+""",
+            TextBody: "مرحبًا {{RecipientName}}، محضر اجتماع «{{Title}}» متاح: {{MinutesUrl}}",
             Language: "ar",
             SeedRevision: 9)
     ];
