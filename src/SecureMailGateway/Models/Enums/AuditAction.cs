@@ -19,5 +19,9 @@ public enum AuditAction
     SmtpConfigUpdated,
     UserLogin,
     UserLoginFailed,
-    UserLocked
+    UserLocked,
+    WhatsAppQueued,
+    WhatsAppSent,
+    WhatsAppFailed,
+    WhatsAppConfigUpdated
 }

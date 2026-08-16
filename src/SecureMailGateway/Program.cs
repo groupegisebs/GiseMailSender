@@ -44,6 +44,29 @@ try
             opt.Model = envModel;
     });
 
+    builder.Services.Configure<WhatsAppOptions>(
+        builder.Configuration.GetSection(WhatsAppOptions.SectionName));
+    // Honorer les variables WHATSAPP_* simples en plus des WhatsApp__* mappées par ASP.NET :
+    // les secrets restent hors de appsettings.json.
+    builder.Services.PostConfigure<WhatsAppOptions>(opt =>
+    {
+        opt.PhoneNumberId = Pick(opt.PhoneNumberId, "WHATSAPP_PHONE_NUMBER_ID");
+        opt.BusinessAccountId = Pick(opt.BusinessAccountId, "WHATSAPP_BUSINESS_ACCOUNT_ID");
+        opt.DisplayPhoneNumber = Pick(opt.DisplayPhoneNumber, "WHATSAPP_DISPLAY_PHONE_NUMBER");
+        opt.AccessToken = Pick(opt.AccessToken, "WHATSAPP_ACCESS_TOKEN");
+        opt.AppSecret = Pick(opt.AppSecret, "WHATSAPP_APP_SECRET");
+        opt.WebhookVerifyToken = Pick(opt.WebhookVerifyToken, "WHATSAPP_VERIFY_TOKEN");
+        opt.DefaultCountryCode = Pick(opt.DefaultCountryCode, "WHATSAPP_DEFAULT_COUNTRY_CODE");
+
+        var version = Environment.GetEnvironmentVariable("WHATSAPP_API_VERSION");
+        if (!string.IsNullOrWhiteSpace(version)) opt.ApiVersion = version;
+
+        static string? Pick(string? current, string variable) =>
+            string.IsNullOrWhiteSpace(current)
+                ? Environment.GetEnvironmentVariable(variable)
+                : current;
+    });
+
     builder.Services.Configure<UploadsOptions>(
         builder.Configuration.GetSection(UploadsOptions.SectionName));
     // Honor plain UPLOADS_PATH / UPLOADS_PUBLIC_BASE_URL env vars in addition to the
@@ -108,6 +131,9 @@ try
 
     builder.Services.AddHttpContextAccessor();
     builder.Services.AddHttpClient("callback", c => c.Timeout = TimeSpan.FromSeconds(10));
+    builder.Services.AddHttpClient(MetaCloudWhatsAppProvider.HttpClientName, (sp, c) =>
+        c.Timeout = TimeSpan.FromSeconds(
+            Math.Clamp(sp.GetRequiredService<IOptions<WhatsAppOptions>>().Value.TimeoutSeconds, 5, 120)));
     builder.Services.AddHttpClient<OpenAiTemplateService>();
 
     builder.Services.AddScoped<ITokenHashService, TokenHashService>();
@@ -118,6 +144,14 @@ try
     builder.Services.AddScoped<IMailCodeGenerator, MailCodeGenerator>();
     builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
     builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
+    builder.Services.AddScoped<IWhatsAppCodeGenerator, WhatsAppCodeGenerator>();
+    builder.Services.AddScoped<IWhatsAppSettingsProvider, WhatsAppSettingsProvider>();
+    builder.Services.AddScoped<IWhatsAppProvider, MetaCloudWhatsAppProvider>();
+    builder.Services.AddScoped<IWhatsAppCallbackNotifier, WhatsAppCallbackNotifier>();
+    builder.Services.AddScoped<IWhatsAppQueueService, WhatsAppQueueService>();
+    builder.Services.AddScoped<IWhatsAppSenderService, WhatsAppSenderService>();
+    builder.Services.AddScoped<IWhatsAppWebhookService, WhatsAppWebhookService>();
+    builder.Services.AddSingleton<IPhoneNumberNormalizer, PhoneNumberNormalizer>();
     builder.Services.AddScoped<IAuditService, AuditService>();
     builder.Services.AddScoped<IApiCallLogService, ApiCallLogService>();
     builder.Services.AddScoped<IApiTokenService, ApiTokenService>();

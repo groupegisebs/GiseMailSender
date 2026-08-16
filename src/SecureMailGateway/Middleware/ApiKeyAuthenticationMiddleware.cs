@@ -17,7 +17,10 @@ public class ApiKeyAuthenticationMiddleware(RequestDelegate next)
             return;
         }
 
+        // Le webhook WhatsApp est appelé par Meta, qui ne peut présenter aucune clé d'API :
+        // son authenticité est établie par le jeton de vérification puis la signature HMAC du corps.
         if (context.Request.Path.StartsWithSegments("/api/health") ||
+            context.Request.Path.StartsWithSegments("/api/whatsapp/webhook") ||
             context.Request.Path.StartsWithSegments("/health") ||
             context.Request.Path.StartsWithSegments("/metrics"))
         {

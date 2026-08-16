@@ -19,6 +19,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<ApiCallLog> ApiCallLogs => Set<ApiCallLog>();
     public DbSet<MailCodeSequence> MailCodeSequences => Set<MailCodeSequence>();
 
+    // Canal WhatsApp : tables distinctes du courriel, qui continue de fonctionner à l'identique.
+    public DbSet<WhatsAppConfiguration> WhatsAppConfigurations => Set<WhatsAppConfiguration>();
+    public DbSet<WhatsAppTemplate> WhatsAppTemplates => Set<WhatsAppTemplate>();
+    public DbSet<WhatsAppMessage> WhatsAppMessages => Set<WhatsAppMessage>();
+    public DbSet<WhatsAppSendLog> WhatsAppSendLogs => Set<WhatsAppSendLog>();
+    public DbSet<WhatsAppInboundMessage> WhatsAppInboundMessages => Set<WhatsAppInboundMessage>();
+    public DbSet<WhatsAppCodeSequence> WhatsAppCodeSequences => Set<WhatsAppCodeSequence>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -98,6 +106,54 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<SmtpConfiguration>(e =>
         {
             e.HasIndex(x => x.IsDefault);
+        });
+
+        builder.Entity<WhatsAppConfiguration>(e =>
+        {
+            e.HasIndex(x => x.IsDefault);
+        });
+
+        builder.Entity<WhatsAppTemplate>(e =>
+        {
+            // Une correspondance par code, langue et application (null = catalogue partagé).
+            e.HasIndex(x => new { x.TemplateCode, x.Language, x.ClientApplicationId }).IsUnique();
+            e.HasOne(x => x.ClientApplication)
+                .WithMany()
+                .HasForeignKey(x => x.ClientApplicationId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        builder.Entity<WhatsAppMessage>(e =>
+        {
+            e.HasIndex(x => x.MessageCode).IsUnique();
+            e.HasIndex(x => x.Status);
+            e.HasIndex(x => x.QueuedAt);
+            // Les webhooks de statut ne portent que l'identifiant opérateur : il doit être indexé.
+            e.HasIndex(x => x.ProviderMessageId);
+            e.HasOne(x => x.ClientApplication)
+                .WithMany()
+                .HasForeignKey(x => x.ClientApplicationId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        builder.Entity<WhatsAppSendLog>(e =>
+        {
+            e.HasOne(x => x.WhatsAppMessage)
+                .WithMany(x => x.SendLogs)
+                .HasForeignKey(x => x.WhatsAppMessageId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        builder.Entity<WhatsAppInboundMessage>(e =>
+        {
+            // La fenêtre de 24 h se calcule sur ce couple.
+            e.HasIndex(x => new { x.FromPhone, x.ReceivedAt });
+            e.HasIndex(x => x.ProviderMessageId);
+        });
+
+        builder.Entity<WhatsAppCodeSequence>(e =>
+        {
+            e.HasKey(x => x.Year);
         });
     }
 }
