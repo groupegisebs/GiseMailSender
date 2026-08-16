@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 12;
+const REV = 13;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -611,6 +611,152 @@ const templates = [
     btn: L("Consulter mon calendrier", "View my calendar", "Consultar mi calendario", "Kalender öffnen", "Consultar o meu calendário", "查看我的日历", "عرض تقويمي"),
     btnUrl: "https://tutorsphere.gisebs.com/login",
     text: L("Cours annulé — {{Subject}} avec {{TutorName}} prévu le {{LessonDate}}.", "Lesson cancelled — {{Subject}} with {{TutorName}} scheduled for {{LessonDate}}.", "Clase cancelada — {{Subject}} con {{TutorName}} prevista el {{LessonDate}}.", "Unterricht abgesagt — {{Subject}} mit {{TutorName}} geplant am {{LessonDate}}.", "Aula cancelada — {{Subject}} com {{TutorName}} prevista para {{LessonDate}}.", "课程已取消 — {{Subject}}，导师 {{TutorName}}，原定 {{LessonDate}}。", "تم إلغاء الحصة — {{Subject}} مع {{TutorName}} المقررة في {{LessonDate}}.")
+  },
+  {
+    code: "LESSON_COVERAGE_PROPOSED",
+    name: L("TutorSphere — Suppléant proposé", "TutorSphere — Substitute proposed", "TutorSphere — Suplente propuesto", "TutorSphere — Ersatzlehrkraft vorgeschlagen", "TutorSphere — Substituto proposto", "TutorSphere — 已提议代课教师", "TutorSphere — تم اقتراح معلم بديل"),
+    subject: L("Votre accord est demandé : suppléant pour {{LessonTitle}}", "Your approval is needed: substitute for {{LessonTitle}}", "Se solicita su aprobación: suplente para {{LessonTitle}}", "Ihre Zustimmung wird benötigt: Ersatz für {{LessonTitle}}", "É necessária a sua aprovação: substituto para {{LessonTitle}}", "需要您的同意：{{LessonTitle}} 的代课教师", "مطلوب موافقتك: معلم بديل لـ {{LessonTitle}}"),
+    title: L("Un suppléant est proposé", "A substitute is proposed", "Se propone un suplente", "Eine Ersatzlehrkraft wird vorgeschlagen", "Foi proposto um substituto", "已为您提议代课教师", "تم اقتراح معلم بديل"),
+    helloRecipient: true,
+    body: L(
+      "<strong>{{OriginalTeacherName}}</strong> ne pourra pas assurer la séance ci-dessous. <strong>{{SubstituteTeacherName}}</strong>, enseignant du même groupe, peut la prendre en charge : <strong>votre accord est nécessaire</strong>.",
+      "<strong>{{OriginalTeacherName}}</strong> cannot teach the session below. <strong>{{SubstituteTeacherName}}</strong>, a teacher from the same group, can take it over: <strong>your approval is required</strong>.",
+      "<strong>{{OriginalTeacherName}}</strong> no podrá dar la sesión indicada. <strong>{{SubstituteTeacherName}}</strong>, profesor del mismo grupo, puede asumirla: <strong>se requiere su aprobación</strong>.",
+      "<strong>{{OriginalTeacherName}}</strong> kann die unten genannte Sitzung nicht halten. <strong>{{SubstituteTeacherName}}</strong> aus derselben Gruppe kann sie übernehmen: <strong>Ihre Zustimmung ist erforderlich</strong>.",
+      "<strong>{{OriginalTeacherName}}</strong> não poderá dar a sessão abaixo. <strong>{{SubstituteTeacherName}}</strong>, professor do mesmo grupo, pode assumi-la: <strong>é necessária a sua aprovação</strong>.",
+      "<strong>{{OriginalTeacherName}}</strong> 无法讲授下列课程。同组教师 <strong>{{SubstituteTeacherName}}</strong> 可以代课：<strong>需要您的同意</strong>。",
+      "لن يتمكن <strong>{{OriginalTeacherName}}</strong> من تقديم الحصة التالية. يمكن للمعلم <strong>{{SubstituteTeacherName}}</strong> من المجموعة نفسها تولّيها: <strong>موافقتك مطلوبة</strong>."
+    ),
+    coverageLabels: {
+      lesson: L("Séance", "Lesson", "Sesión", "Sitzung", "Sessão", "课程", "الحصة"),
+      when: L("Date prévue", "Scheduled date", "Fecha prevista", "Geplantes Datum", "Data prevista", "预定时间", "التاريخ المقرر"),
+      student: L("Élève", "Student", "Alumno", "Schüler", "Aluno", "学生", "الطالب"),
+      original: L("Enseignant initial", "Original teacher", "Profesor titular", "Ursprüngliche Lehrkraft", "Professor titular", "原任教师", "المعلم الأصلي"),
+      substitute: L("Suppléant", "Substitute", "Suplente", "Ersatzlehrkraft", "Substituto", "代课教师", "المعلم البديل")
+    },
+    reasonLabel: L("Motif de l'absence", "Reason for the absence", "Motivo de la ausencia", "Grund der Abwesenheit", "Motivo da ausência", "缺席原因", "سبب الغياب"),
+    body2: L(
+      "Sans réponse de votre part avant l'heure prévue, la séance reste au nom de l'enseignant initial et pourra être reportée.",
+      "Without your answer before the scheduled time, the session stays with the original teacher and may be postponed.",
+      "Si no responde antes de la hora prevista, la sesión permanece con el profesor titular y podría posponerse.",
+      "Ohne Ihre Antwort vor dem geplanten Termin bleibt die Sitzung bei der ursprünglichen Lehrkraft und kann verschoben werden.",
+      "Sem a sua resposta antes da hora prevista, a sessão mantém-se com o professor titular e poderá ser adiada.",
+      "若您在预定时间前未作答复，该课程仍归原任教师，并可能延期。",
+      "في حال عدم ردّك قبل الموعد المقرر، تبقى الحصة باسم المعلم الأصلي وقد تُؤجَّل."
+    ),
+    btn: L("Accepter ou refuser", "Accept or decline", "Aceptar o rechazar", "Annehmen oder ablehnen", "Aceitar ou recusar", "接受或拒绝", "الموافقة أو الرفض"),
+    btnUrl: "{{ActionUrl}}",
+    text: L(
+      "{{OriginalTeacherName}} est indisponible pour {{LessonTitle}} le {{LessonDate}}. Suppléant proposé : {{SubstituteTeacherName}}. Votre accord : {{ActionUrl}}",
+      "{{OriginalTeacherName}} is unavailable for {{LessonTitle}} on {{LessonDate}}. Proposed substitute: {{SubstituteTeacherName}}. Your approval: {{ActionUrl}}",
+      "{{OriginalTeacherName}} no está disponible para {{LessonTitle}} el {{LessonDate}}. Suplente propuesto: {{SubstituteTeacherName}}. Su aprobación: {{ActionUrl}}",
+      "{{OriginalTeacherName}} ist am {{LessonDate}} für {{LessonTitle}} nicht verfügbar. Vorgeschlagener Ersatz: {{SubstituteTeacherName}}. Ihre Zustimmung: {{ActionUrl}}",
+      "{{OriginalTeacherName}} não está disponível para {{LessonTitle}} em {{LessonDate}}. Substituto proposto: {{SubstituteTeacherName}}. A sua aprovação: {{ActionUrl}}",
+      "{{OriginalTeacherName}} 在 {{LessonDate}} 无法讲授 {{LessonTitle}}。建议代课教师：{{SubstituteTeacherName}}。请确认：{{ActionUrl}}",
+      "{{OriginalTeacherName}} غير متاح لحصة {{LessonTitle}} في {{LessonDate}}. البديل المقترح: {{SubstituteTeacherName}}. موافقتك: {{ActionUrl}}"
+    )
+  },
+  {
+    code: "LESSON_COVERAGE_SUBSTITUTE",
+    name: L("TutorSphere — Proposition de suppléance", "TutorSphere — Substitution request", "TutorSphere — Propuesta de suplencia", "TutorSphere — Vertretungsanfrage", "TutorSphere — Proposta de substituição", "TutorSphere — 代课邀请", "TutorSphere — طلب نيابة"),
+    subject: L("Suppléance proposée : {{LessonCount}} séance(s) de {{OriginalTeacherName}}", "Substitution proposed: {{LessonCount}} session(s) of {{OriginalTeacherName}}", "Suplencia propuesta: {{LessonCount}} sesión(es) de {{OriginalTeacherName}}", "Vertretung vorgeschlagen: {{LessonCount}} Sitzung(en) von {{OriginalTeacherName}}", "Substituição proposta: {{LessonCount}} sessão(ões) de {{OriginalTeacherName}}", "代课提议：{{OriginalTeacherName}} 的 {{LessonCount}} 节课", "نيابة مقترحة: {{LessonCount}} حصة عن {{OriginalTeacherName}}"),
+    title: L("Vous êtes proposé comme suppléant", "You are proposed as substitute", "Se le propone como suplente", "Sie werden als Vertretung vorgeschlagen", "Foi proposto como substituto", "您被提议担任代课教师", "تم اقتراحك معلمًا بديلًا"),
+    helloRecipient: true,
+    body: L(
+      "Le groupe vous propose d'assurer les séances de <strong>{{OriginalTeacherName}}</strong>, indisponible. Chaque famille doit donner son accord ; les séances acceptées apparaissent ensuite dans votre agenda.",
+      "The group is proposing that you take over the sessions of <strong>{{OriginalTeacherName}}</strong>, who is unavailable. Each family must approve; accepted sessions then appear in your calendar.",
+      "El grupo le propone asumir las sesiones de <strong>{{OriginalTeacherName}}</strong>, que no está disponible. Cada familia debe dar su acuerdo; las sesiones aceptadas aparecerán en su calendario.",
+      "Die Gruppe schlägt vor, dass Sie die Sitzungen von <strong>{{OriginalTeacherName}}</strong> übernehmen, der/die nicht verfügbar ist. Jede Familie muss zustimmen; angenommene Sitzungen erscheinen danach in Ihrem Kalender.",
+      "O grupo propõe que assuma as sessões de <strong>{{OriginalTeacherName}}</strong>, que está indisponível. Cada família deve concordar; as sessões aceites passam a constar no seu calendário.",
+      "小组提议由您接替暂时无法授课的 <strong>{{OriginalTeacherName}}</strong>。每个家庭须先同意，获同意的课程随后会出现在您的日历中。",
+      "تقترح المجموعة أن تتولّى حصص <strong>{{OriginalTeacherName}}</strong> غير المتاح. على كل أسرة الموافقة أولًا، ثم تظهر الحصص المقبولة في تقويمك."
+    ),
+    coverageLabels: {
+      original: L("Enseignant remplacé", "Teacher being covered", "Profesor sustituido", "Vertretene Lehrkraft", "Professor substituído", "被代课教师", "المعلم المستبدل"),
+      count: L("Séances concernées", "Sessions involved", "Sesiones afectadas", "Betroffene Sitzungen", "Sessões envolvidas", "涉及课程数", "الحصص المعنية"),
+      when: L("Première séance", "First session", "Primera sesión", "Erste Sitzung", "Primeira sessão", "首节课程", "الحصة الأولى")
+    },
+    reasonLabel: L("Motif de l'absence", "Reason for the absence", "Motivo de la ausencia", "Grund der Abwesenheit", "Motivo da ausência", "缺席原因", "سبب الغياب"),
+    btn: L("Voir mon agenda", "View my calendar", "Ver mi calendario", "Kalender ansehen", "Ver o meu calendário", "查看我的日历", "عرض تقويمي"),
+    btnUrl: "{{ActionUrl}}",
+    text: L(
+      "Suppléance proposée : {{LessonCount}} séance(s) de {{OriginalTeacherName}}, à partir du {{LessonDate}}. Agenda : {{ActionUrl}}",
+      "Substitution proposed: {{LessonCount}} session(s) of {{OriginalTeacherName}}, from {{LessonDate}}. Calendar: {{ActionUrl}}",
+      "Suplencia propuesta: {{LessonCount}} sesión(es) de {{OriginalTeacherName}}, desde el {{LessonDate}}. Calendario: {{ActionUrl}}",
+      "Vertretung vorgeschlagen: {{LessonCount}} Sitzung(en) von {{OriginalTeacherName}}, ab {{LessonDate}}. Kalender: {{ActionUrl}}",
+      "Substituição proposta: {{LessonCount}} sessão(ões) de {{OriginalTeacherName}}, a partir de {{LessonDate}}. Calendário: {{ActionUrl}}",
+      "代课提议：{{OriginalTeacherName}} 的 {{LessonCount}} 节课，自 {{LessonDate}} 起。日历：{{ActionUrl}}",
+      "نيابة مقترحة: {{LessonCount}} حصة عن {{OriginalTeacherName}} بدءًا من {{LessonDate}}. التقويم: {{ActionUrl}}"
+    )
+  },
+  {
+    code: "LESSON_COVERAGE_APPROVED",
+    name: L("TutorSphere — Remplacement accepté", "TutorSphere — Substitution accepted", "TutorSphere — Suplencia aceptada", "TutorSphere — Vertretung angenommen", "TutorSphere — Substituição aceite", "TutorSphere — 代课已接受", "TutorSphere — تم قبول النيابة"),
+    subject: L("Remplacement accepté — {{LessonTitle}}", "Substitution accepted — {{LessonTitle}}", "Suplencia aceptada — {{LessonTitle}}", "Vertretung angenommen — {{LessonTitle}}", "Substituição aceite — {{LessonTitle}}", "代课已接受 — {{LessonTitle}}", "تم قبول النيابة — {{LessonTitle}}"),
+    title: L("Remplacement accepté", "Substitution accepted", "Suplencia aceptada", "Vertretung angenommen", "Substituição aceite", "代课已接受", "تم قبول النيابة"),
+    titleColor: "#16a34a",
+    helloRecipient: true,
+    body: L(
+      "La famille a <strong>accepté</strong> le remplacement : <strong>{{SubstituteTeacherName}}</strong> assurera la séance à la place de <strong>{{OriginalTeacherName}}</strong>.",
+      "The family has <strong>accepted</strong> the substitution: <strong>{{SubstituteTeacherName}}</strong> will teach the session instead of <strong>{{OriginalTeacherName}}</strong>.",
+      "La familia ha <strong>aceptado</strong> la suplencia: <strong>{{SubstituteTeacherName}}</strong> dará la sesión en lugar de <strong>{{OriginalTeacherName}}</strong>.",
+      "Die Familie hat die Vertretung <strong>angenommen</strong>: <strong>{{SubstituteTeacherName}}</strong> hält die Sitzung anstelle von <strong>{{OriginalTeacherName}}</strong>.",
+      "A família <strong>aceitou</strong> a substituição: <strong>{{SubstituteTeacherName}}</strong> dará a sessão em vez de <strong>{{OriginalTeacherName}}</strong>.",
+      "家庭已<strong>接受</strong>代课安排：将由 <strong>{{SubstituteTeacherName}}</strong> 代替 <strong>{{OriginalTeacherName}}</strong> 授课。",
+      "وافقت الأسرة على النيابة: سيتولّى <strong>{{SubstituteTeacherName}}</strong> الحصة بدلًا من <strong>{{OriginalTeacherName}}</strong>."
+    ),
+    coverageLabels: {
+      lesson: L("Séance", "Lesson", "Sesión", "Sitzung", "Sessão", "课程", "الحصة"),
+      when: L("Date prévue", "Scheduled date", "Fecha prevista", "Geplantes Datum", "Data prevista", "预定时间", "التاريخ المقرر"),
+      original: L("Enseignant initial", "Original teacher", "Profesor titular", "Ursprüngliche Lehrkraft", "Professor titular", "原任教师", "المعلم الأصلي"),
+      substitute: L("Suppléant", "Substitute", "Suplente", "Ersatzlehrkraft", "Substituto", "代课教师", "المعلم البديل")
+    },
+    tableBg: "#f0fdf4",
+    btn: L("Voir mon agenda", "View my calendar", "Ver mi calendario", "Kalender ansehen", "Ver o meu calendário", "查看我的日历", "عرض تقويمي"),
+    btnUrl: "{{ActionUrl}}",
+    text: L(
+      "Remplacement accepté : {{SubstituteTeacherName}} assure {{LessonTitle}} le {{LessonDate}} à la place de {{OriginalTeacherName}}.",
+      "Substitution accepted: {{SubstituteTeacherName}} will teach {{LessonTitle}} on {{LessonDate}} instead of {{OriginalTeacherName}}.",
+      "Suplencia aceptada: {{SubstituteTeacherName}} dará {{LessonTitle}} el {{LessonDate}} en lugar de {{OriginalTeacherName}}.",
+      "Vertretung angenommen: {{SubstituteTeacherName}} hält {{LessonTitle}} am {{LessonDate}} anstelle von {{OriginalTeacherName}}.",
+      "Substituição aceite: {{SubstituteTeacherName}} dará {{LessonTitle}} em {{LessonDate}} em vez de {{OriginalTeacherName}}.",
+      "代课已接受：{{SubstituteTeacherName}} 将于 {{LessonDate}} 代替 {{OriginalTeacherName}} 讲授 {{LessonTitle}}。",
+      "تم قبول النيابة: سيقدّم {{SubstituteTeacherName}} حصة {{LessonTitle}} في {{LessonDate}} بدلًا من {{OriginalTeacherName}}."
+    )
+  },
+  {
+    code: "LESSON_COVERAGE_REJECTED",
+    name: L("TutorSphere — Remplacement refusé", "TutorSphere — Substitution declined", "TutorSphere — Suplencia rechazada", "TutorSphere — Vertretung abgelehnt", "TutorSphere — Substituição recusada", "TutorSphere — 代课被拒绝", "TutorSphere — تم رفض النيابة"),
+    subject: L("Remplacement refusé — {{LessonTitle}}", "Substitution declined — {{LessonTitle}}", "Suplencia rechazada — {{LessonTitle}}", "Vertretung abgelehnt — {{LessonTitle}}", "Substituição recusada — {{LessonTitle}}", "代课被拒绝 — {{LessonTitle}}", "تم رفض النيابة — {{LessonTitle}}"),
+    title: L("Remplacement refusé", "Substitution declined", "Suplencia rechazada", "Vertretung abgelehnt", "Substituição recusada", "代课被拒绝", "تم رفض النيابة"),
+    titleColor: "#dc2626",
+    helloRecipient: true,
+    body: L(
+      "La famille a <strong>refusé</strong> le remplacement : la séance reste au nom de <strong>{{OriginalTeacherName}}</strong>. Si l'absence est confirmée, la séance devra être reportée ou annulée.",
+      "The family has <strong>declined</strong> the substitution: the session stays with <strong>{{OriginalTeacherName}}</strong>. If the absence is confirmed, the session will have to be rescheduled or cancelled.",
+      "La familia ha <strong>rechazado</strong> la suplencia: la sesión permanece con <strong>{{OriginalTeacherName}}</strong>. Si se confirma la ausencia, habrá que reprogramar o cancelar la sesión.",
+      "Die Familie hat die Vertretung <strong>abgelehnt</strong>: Die Sitzung bleibt bei <strong>{{OriginalTeacherName}}</strong>. Wird die Abwesenheit bestätigt, muss die Sitzung verlegt oder abgesagt werden.",
+      "A família <strong>recusou</strong> a substituição: a sessão mantém-se com <strong>{{OriginalTeacherName}}</strong>. Se a ausência se confirmar, a sessão terá de ser reagendada ou cancelada.",
+      "家庭<strong>拒绝</strong>了代课安排：课程仍归 <strong>{{OriginalTeacherName}}</strong>。若确认缺席，该课程需改期或取消。",
+      "رفضت الأسرة النيابة: تبقى الحصة باسم <strong>{{OriginalTeacherName}}</strong>. وإذا تأكّد الغياب، فيجب تأجيل الحصة أو إلغاؤها."
+    ),
+    coverageLabels: {
+      lesson: L("Séance", "Lesson", "Sesión", "Sitzung", "Sessão", "课程", "الحصة"),
+      when: L("Date prévue", "Scheduled date", "Fecha prevista", "Geplantes Datum", "Data prevista", "预定时间", "التاريخ المقرر"),
+      substitute: L("Suppléant proposé", "Proposed substitute", "Suplente propuesto", "Vorgeschlagene Vertretung", "Substituto proposto", "建议代课教师", "البديل المقترح")
+    },
+    tableBg: "#fff5f5",
+    btn: L("Voir mon agenda", "View my calendar", "Ver mi calendario", "Kalender ansehen", "Ver o meu calendário", "查看我的日历", "عرض تقويمي"),
+    btnUrl: "{{ActionUrl}}",
+    text: L(
+      "Remplacement refusé : {{LessonTitle}} du {{LessonDate}} reste au nom de {{OriginalTeacherName}}.",
+      "Substitution declined: {{LessonTitle}} on {{LessonDate}} stays with {{OriginalTeacherName}}.",
+      "Suplencia rechazada: {{LessonTitle}} del {{LessonDate}} permanece con {{OriginalTeacherName}}.",
+      "Vertretung abgelehnt: {{LessonTitle}} am {{LessonDate}} bleibt bei {{OriginalTeacherName}}.",
+      "Substituição recusada: {{LessonTitle}} de {{LessonDate}} mantém-se com {{OriginalTeacherName}}.",
+      "代课被拒绝：{{LessonDate}} 的 {{LessonTitle}} 仍归 {{OriginalTeacherName}}。",
+      "تم رفض النيابة: تبقى حصة {{LessonTitle}} في {{LessonDate}} باسم {{OriginalTeacherName}}."
+    )
   },
   {
     code: "PARENT_PAYMENT_RECEIPT",
@@ -1785,6 +1931,22 @@ function buildHtml(tpl, lang) {
     if (m.validity) {
       rows.push(`<tr><td style="padding:10px 14px;color:#555;">${t(m.validity, lang)}</td><td style="padding:10px 14px;font-weight:600;">{{LinkValidity}}</td></tr>`);
     }
+    parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
+                  ${rows.join("\n                  ")}
+                </table>`);
+  }
+  if (tpl.coverageLabels) {
+    const bg = tableBgOf(tpl);
+    const c = tpl.coverageLabels;
+    const cell = (label, value) =>
+      `<tr><td style="padding:10px 14px;color:#555;">${t(label, lang)}</td><td style="padding:10px 14px;font-weight:600;">${value}</td></tr>`;
+    const rows = [];
+    if (c.lesson) rows.push(cell(c.lesson, "{{LessonTitle}}"));
+    if (c.when) rows.push(cell(c.when, "{{LessonDate}}"));
+    if (c.student) rows.push(cell(c.student, "{{StudentName}}"));
+    if (c.original) rows.push(cell(c.original, "{{OriginalTeacherName}}"));
+    if (c.substitute) rows.push(cell(c.substitute, "{{SubstituteTeacherName}}"));
+    if (c.count) rows.push(cell(c.count, "{{LessonCount}}"));
     parts.push(`<table style="width:100%;border-collapse:collapse;margin:16px 0;background:${bg};border-radius:6px;">
                   ${rows.join("\n                  ")}
                 </table>`);
