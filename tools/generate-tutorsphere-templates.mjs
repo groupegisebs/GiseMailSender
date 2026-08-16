@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 10;
+const REV = 11;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -1390,13 +1390,13 @@ const templates = [
     },
     note: L("{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}", "{{RecordingAndAi}}"),
     body2: L(
-      "<strong>Comment rejoindre</strong><br/>1. Cliquez sur le bouton ci-dessous.<br/>2. Saisissez le code de la réunion indiqué ci-dessus.<br/>3. Saisissez le code à 6 chiffres qui vous sera envoyé par e-mail pour confirmer votre adresse.<br/>4. Patientez dans la salle d'attente : l'organisateur vous admettra.",
-      "<strong>How to join</strong><br/>1. Click the button below.<br/>2. Enter the meeting code shown above.<br/>3. Enter the 6-digit code emailed to you to confirm your address.<br/>4. Wait in the waiting room: the organizer will let you in.",
-      "<strong>Cómo unirse</strong><br/>1. Haga clic en el botón de abajo.<br/>2. Introduzca el código de la reunión indicado arriba.<br/>3. Introduzca el código de 6 dígitos que recibirá por correo para confirmar su dirección.<br/>4. Espere en la sala de espera: el organizador le admitirá.",
-      "<strong>So nehmen Sie teil</strong><br/>1. Klicken Sie auf die Schaltfläche unten.<br/>2. Geben Sie den oben genannten Besprechungscode ein.<br/>3. Geben Sie den 6-stelligen Code ein, den Sie per E-Mail erhalten, um Ihre Adresse zu bestätigen.<br/>4. Warten Sie im Warteraum: Der Organisator lässt Sie ein.",
-      "<strong>Como entrar</strong><br/>1. Clique no botão abaixo.<br/>2. Introduza o código da reunião indicado acima.<br/>3. Introduza o código de 6 dígitos enviado por e-mail para confirmar o seu endereço.<br/>4. Aguarde na sala de espera: o organizador irá admiti-lo.",
-      "<strong>如何加入</strong><br/>1. 点击下方按钮。<br/>2. 输入上方的会议密码。<br/>3. 输入邮件收到的 6 位验证码以确认您的邮箱。<br/>4. 在等候室稍候，组织者将允许您进入。",
-      "<strong>كيفية الانضمام</strong><br/>1. اضغط الزر أدناه.<br/>2. أدخل رمز الاجتماع الموضّح أعلاه.<br/>3. أدخل الرمز المكوّن من 6 أرقام المُرسل إلى بريدك لتأكيد عنوانك.<br/>4. انتظر في غرفة الانتظار: سيسمح لك المنظّم بالدخول."
+      "<strong>Comment rejoindre</strong><br/>1. Cliquez sur le bouton ci-dessous.<br/>2. Indiquez votre nom et saisissez votre code d'invitation ci-dessus : c'est la seule vérification demandée.<br/>3. Patientez dans la salle d'attente : l'organisateur vous admettra.",
+      "<strong>How to join</strong><br/>1. Click the button below.<br/>2. Enter your name and your invitation code shown above: this is the only check required.<br/>3. Wait in the waiting room: the organizer will let you in.",
+      "<strong>Cómo unirse</strong><br/>1. Haga clic en el botón de abajo.<br/>2. Indique su nombre e introduzca su código de invitación indicado arriba: es la única verificación necesaria.<br/>3. Espere en la sala de espera: el organizador le admitirá.",
+      "<strong>So nehmen Sie teil</strong><br/>1. Klicken Sie auf die Schaltfläche unten.<br/>2. Geben Sie Ihren Namen und Ihren oben genannten Einladungscode ein — das ist die einzige Prüfung.<br/>3. Warten Sie im Warteraum: Der Organisator lässt Sie ein.",
+      "<strong>Como entrar</strong><br/>1. Clique no botão abaixo.<br/>2. Indique o seu nome e introduza o seu código de convite indicado acima: é a única verificação pedida.<br/>3. Aguarde na sala de espera: o organizador irá admiti-lo.",
+      "<strong>如何加入</strong><br/>1. 点击下方按钮。<br/>2. 填写姓名并输入上方的邀请码，这是唯一需要的验证。<br/>3. 在等候室稍候，组织者将允许您进入。",
+      "<strong>كيفية الانضمام</strong><br/>1. اضغط الزر أدناه.<br/>2. أدخل اسمك ورمز دعوتك الموضّح أعلاه: هذا هو التحقق الوحيد المطلوب.<br/>3. انتظر في غرفة الانتظار: سيسمح لك المنظّم بالدخول."
     ),
     btn: L(
       "Rejoindre la réunion",
@@ -1418,13 +1418,13 @@ const templates = [
       "هذا الرابط شخصي ومؤقت وغير قابل للتحويل. يمنح الوصول إلى هذا الاجتماع فقط وليس إلى بقية TutorSphere. إذا لم تكن تتوقع هذه الدعوة، فتجاهل هذه الرسالة."
     ),
     text: L(
-      "Bonjour {{RecipientName}}, {{OrganizerName}} vous invite à la réunion « {{Title}} » le {{StartLocal}} ({{TimeZone}}). Ordre du jour : {{Agenda}}. {{RecordingAndAi}} Code de la réunion : {{AccessCode}}. Lien personnel valable jusqu'au {{LinkValidity}} : {{JoinUrl}} — un code à 6 chiffres vous sera aussi demandé pour confirmer votre adresse e-mail. Ne transférez ni ce lien ni ce code.",
-      "Hello {{RecipientName}}, {{OrganizerName}} invites you to the meeting “{{Title}}” on {{StartLocal}} ({{TimeZone}}). Agenda: {{Agenda}}. {{RecordingAndAi}} Meeting code: {{AccessCode}}. Personal link valid until {{LinkValidity}}: {{JoinUrl}} — a 6-digit code will also be requested to confirm your email address. Please do not forward this link or code.",
-      "Hola {{RecipientName}}, {{OrganizerName}} le invita a la reunión «{{Title}}» el {{StartLocal}} ({{TimeZone}}). Orden del día: {{Agenda}}. {{RecordingAndAi}} Código de la reunión: {{AccessCode}}. Enlace personal válido hasta {{LinkValidity}}: {{JoinUrl}} — también se le pedirá un código de 6 dígitos para confirmar su correo. No reenvíe este enlace ni este código.",
-      "Hallo {{RecipientName}}, {{OrganizerName}} lädt Sie zur Besprechung „{{Title}}“ am {{StartLocal}} ({{TimeZone}}) ein. Tagesordnung: {{Agenda}}. {{RecordingAndAi}} Besprechungscode: {{AccessCode}}. Persönlicher Link gültig bis {{LinkValidity}}: {{JoinUrl}} — zusätzlich wird ein 6-stelliger Code zur Bestätigung Ihrer E-Mail-Adresse verlangt. Bitte weder Link noch Code weiterleiten.",
-      "Olá {{RecipientName}}, {{OrganizerName}} convida-o para a reunião «{{Title}}» em {{StartLocal}} ({{TimeZone}}). Ordem de trabalhos: {{Agenda}}. {{RecordingAndAi}} Código da reunião: {{AccessCode}}. Link pessoal válido até {{LinkValidity}}: {{JoinUrl}} — será também pedido um código de 6 dígitos para confirmar o seu e-mail. Não reencaminhe este link nem este código.",
-      "{{RecipientName}}，您好，{{OrganizerName}} 邀请您参加会议《{{Title}}》，时间为 {{StartLocal}}（{{TimeZone}}）。议程：{{Agenda}}。{{RecordingAndAi}} 会议密码：{{AccessCode}}。个人链接有效期至 {{LinkValidity}}：{{JoinUrl}} — 系统还会要求输入 6 位验证码以确认您的邮箱。请勿转发此链接或密码。",
-      "مرحبًا {{RecipientName}}، يدعوك {{OrganizerName}} إلى اجتماع «{{Title}}» في {{StartLocal}} ({{TimeZone}}). جدول الأعمال: {{Agenda}}. {{RecordingAndAi}} رمز الاجتماع: {{AccessCode}}. رابط شخصي صالح حتى {{LinkValidity}}: {{JoinUrl}} — سيُطلب أيضًا رمز من 6 أرقام لتأكيد بريدك. لا تُحوّل هذا الرابط أو الرمز."
+      "Bonjour {{RecipientName}}, {{OrganizerName}} vous invite à la réunion « {{Title}} » le {{StartLocal}} ({{TimeZone}}). Ordre du jour : {{Agenda}}. {{RecordingAndAi}} Votre code d'invitation personnel : {{AccessCode}} — c'est la seule vérification demandée. Lien personnel valable jusqu'au {{LinkValidity}} : {{JoinUrl}}. Ne transférez ni ce lien ni ce code.",
+      "Hello {{RecipientName}}, {{OrganizerName}} invites you to the meeting “{{Title}}” on {{StartLocal}} ({{TimeZone}}). Agenda: {{Agenda}}. {{RecordingAndAi}} Your personal invitation code: {{AccessCode}} — this is the only check required. Personal link valid until {{LinkValidity}}: {{JoinUrl}}. Please do not forward this link or code.",
+      "Hola {{RecipientName}}, {{OrganizerName}} le invita a la reunión «{{Title}}» el {{StartLocal}} ({{TimeZone}}). Orden del día: {{Agenda}}. {{RecordingAndAi}} Su código de invitación personal: {{AccessCode}} — es la única verificación necesaria. Enlace personal válido hasta {{LinkValidity}}: {{JoinUrl}}. No reenvíe este enlace ni este código.",
+      "Hallo {{RecipientName}}, {{OrganizerName}} lädt Sie zur Besprechung „{{Title}}“ am {{StartLocal}} ({{TimeZone}}) ein. Tagesordnung: {{Agenda}}. {{RecordingAndAi}} Ihr persönlicher Einladungscode: {{AccessCode}} — das ist die einzige Prüfung. Persönlicher Link gültig bis {{LinkValidity}}: {{JoinUrl}}. Bitte weder Link noch Code weiterleiten.",
+      "Olá {{RecipientName}}, {{OrganizerName}} convida-o para a reunião «{{Title}}» em {{StartLocal}} ({{TimeZone}}). Ordem de trabalhos: {{Agenda}}. {{RecordingAndAi}} O seu código de convite pessoal: {{AccessCode}} — é a única verificação pedida. Link pessoal válido até {{LinkValidity}}: {{JoinUrl}}. Não reencaminhe este link nem este código.",
+      "{{RecipientName}}，您好，{{OrganizerName}} 邀请您参加会议《{{Title}}》，时间为 {{StartLocal}}（{{TimeZone}}）。议程：{{Agenda}}。{{RecordingAndAi}} 您的个人邀请码：{{AccessCode}} — 这是唯一需要的验证。个人链接有效期至 {{LinkValidity}}：{{JoinUrl}}。请勿转发此链接或邀请码。",
+      "مرحبًا {{RecipientName}}، يدعوك {{OrganizerName}} إلى اجتماع «{{Title}}» في {{StartLocal}} ({{TimeZone}}). جدول الأعمال: {{Agenda}}. {{RecordingAndAi}} رمز دعوتك الشخصي: {{AccessCode}} — وهو التحقق الوحيد المطلوب. رابط شخصي صالح حتى {{LinkValidity}}: {{JoinUrl}}. لا تُحوّل هذا الرابط أو الرمز."
     )
   },
   {
