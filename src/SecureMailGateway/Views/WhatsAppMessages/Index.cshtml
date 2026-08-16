@@ -1,0 +1,83 @@
+@model IEnumerable<WhatsAppMessage>
+@{ ViewData["Title"] = "Messages WhatsApp envoyés"; }
+
+<h1 class="mb-3"><i class="bi bi-whatsapp"></i> Messages WhatsApp envoyés</h1>
+
+<ul class="nav nav-pills mb-4">
+    <li class="nav-item"><a class="nav-link active" asp-action="Index">Envoyés</a></li>
+    <li class="nav-item"><a class="nav-link" asp-action="Inbound">Reçus</a></li>
+    @if (User.IsInRole("Admin") || User.IsInRole("Developer"))
+    {
+        <li class="nav-item"><a class="nav-link" asp-action="Test">Test d'envoi</a></li>
+    }
+</ul>
+
+<form class="row g-2 mb-4" method="get">
+    <div class="col-md-3">
+        <select name="status" class="form-select">
+            <option value="">Tous les statuts</option>
+            @foreach (WhatsAppStatus s in Enum.GetValues<WhatsAppStatus>())
+            {
+                <option value="@s" selected="@(ViewBag.Status as string == s.ToString())">@s</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <input name="search" class="form-control" placeholder="Rechercher par code, numéro ou modèle" value="@ViewBag.Search" />
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" type="submit">Filtrer</button>
+    </div>
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-light border">
+        Aucun message WhatsApp pour le moment. Les envois arrivent par <code>POST /api/whatsapp/send</code>.
+    </div>
+}
+else
+{
+    <table class="table table-hover bg-white rounded shadow-sm table-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Code</th>
+                <th>Destinataire</th>
+                <th>Application</th>
+                <th>Modèle</th>
+                <th>Statut</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td><code>@m.MessageCode</code></td>
+                    <td>+@m.ToPhone</td>
+                    <td>@m.ClientApplication?.Name</td>
+                    <td class="text-truncate" style="max-width:200px">
+                        @if (m.Kind == WhatsAppMessageKind.Text)
+                        {
+                            <span class="badge bg-secondary">Texte libre</span>
+                        }
+                        else
+                        {
+                            @(m.MetaTemplateName ?? m.TemplateCode ?? "—")
+                        }
+                    </td>
+                    <td>
+                        <span class="badge badge-status-@m.Status">@m.Status</span>
+                        @if (m.RetryCount > 0)
+                        {
+                            <span class="badge bg-light text-dark" title="Tentatives déjà consommées">@m.RetryCount ×</span>
+                        }
+                    </td>
+                    <td class="small">@m.QueuedAt.LocalDateTime.ToString("g")</td>
+                    <td><a asp-action="Details" asp-route-id="@m.Id" class="btn btn-sm btn-outline-primary">Détails</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

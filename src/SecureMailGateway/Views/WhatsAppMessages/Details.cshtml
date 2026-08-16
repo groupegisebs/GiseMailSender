@@ -1,0 +1,95 @@
+@model WhatsAppMessage
+@{ ViewData["Title"] = $"WhatsApp {Model.MessageCode}"; }
+
+<h1 class="mb-2"><code>@Model.MessageCode</code></h1>
+<p class="text-muted">Tracking ID: @Model.Id</p>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card p-3">
+            <h5>Informations</h5>
+            <dl class="row mb-0">
+                <dt class="col-4">Statut</dt>
+                <dd class="col-8"><span class="badge badge-status-@Model.Status">@Model.Status</span></dd>
+                <dt class="col-4">Destinataire</dt>
+                <dd class="col-8">+@Model.ToPhone</dd>
+                <dt class="col-4">Application</dt>
+                <dd class="col-8">@Model.ClientApplication?.Name</dd>
+                <dt class="col-4">Type</dt>
+                <dd class="col-8">@(Model.Kind == WhatsAppMessageKind.Text ? "Texte libre (fenêtre de 24 h)" : "Modèle approuvé")</dd>
+                <dt class="col-4">Modèle</dt>
+                <dd class="col-8">@(Model.MetaTemplateName ?? Model.TemplateCode ?? "—")</dd>
+                <dt class="col-4">Langue</dt>
+                <dd class="col-8">@Model.Language</dd>
+                <dt class="col-4">Aperçu</dt>
+                <dd class="col-8">@(Model.BodyPreview ?? "—")</dd>
+                <dt class="col-4">File</dt>
+                <dd class="col-8">@Model.QueuedAt.LocalDateTime.ToString("g")</dd>
+                @if (Model.SentAt.HasValue)
+                {
+                    <dt class="col-4">Envoyé</dt>
+                    <dd class="col-8">@Model.SentAt.Value.LocalDateTime.ToString("g")</dd>
+                }
+                @if (Model.DeliveredAt.HasValue)
+                {
+                    <dt class="col-4">Remis</dt>
+                    <dd class="col-8">@Model.DeliveredAt.Value.LocalDateTime.ToString("g")</dd>
+                }
+                @if (Model.ReadAt.HasValue)
+                {
+                    <dt class="col-4">Lu</dt>
+                    <dd class="col-8">@Model.ReadAt.Value.LocalDateTime.ToString("g")</dd>
+                }
+                @if (Model.RetryCount > 0)
+                {
+                    <dt class="col-4">Tentatives</dt>
+                    <dd class="col-8">@Model.RetryCount</dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <dt class="col-4">Erreur</dt>
+                    <dd class="col-8 text-danger">
+                        @Model.ErrorMessage
+                        @if (Model.ErrorCode.HasValue) { <span class="badge bg-danger">code @Model.ErrorCode</span> }
+                    </dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.ProviderMessageId))
+                {
+                    <dt class="col-4">Réf. opérateur</dt>
+                    <dd class="col-8"><code class="small">@Model.ProviderMessageId</code></dd>
+                }
+            </dl>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3">
+            <h5>Journal d'envoi</h5>
+            <ul class="list-group list-group-flush">
+                @foreach (var log in Model.SendLogs)
+                {
+                    <li class="list-group-item px-0">
+                        <strong>@log.EventType</strong> — @log.CreatedAt.LocalDateTime.ToString("g")
+                        @if (!string.IsNullOrEmpty(log.Message)) { <br /><span class="small text-muted">@log.Message</span> }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card p-3">
+            <h5>Charge utile transmise à l'opérateur</h5>
+            <pre class="border rounded p-3 bg-white small mb-0" style="white-space:pre-wrap">@Model.PayloadJson</pre>
+        </div>
+    </div>
+    @if (!string.IsNullOrEmpty(Model.ProviderResponse))
+    {
+        <div class="col-12">
+            <div class="card p-3">
+                <h5>Réponse de l'opérateur</h5>
+                <pre class="border rounded p-3 bg-white small mb-0" style="white-space:pre-wrap">@Model.ProviderResponse</pre>
+            </div>
+        </div>
+    }
+</div>
+
+<a asp-action="Index" class="btn btn-outline-primary mt-3">Retour</a>

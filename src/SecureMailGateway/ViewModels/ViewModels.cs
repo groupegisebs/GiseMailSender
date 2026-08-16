@@ -90,6 +90,40 @@ public class TemplateTestRequest
     public Dictionary<string, string> SampleData { get; set; } = new();
 }
 
+/// <summary>Formulaire de l'écran « Test d'envoi » du canal WhatsApp.</summary>
+public class WhatsAppTestViewModel
+{
+    [Display(Name = "Application émettrice")]
+    public Guid ClientApplicationId { get; set; }
+
+    [Required]
+    [Display(Name = "Numéro du destinataire")]
+    public string To { get; set; } = string.Empty;
+
+    /// <summary>template ou text.</summary>
+    [Display(Name = "Type de message")]
+    public string Kind { get; set; } = "template";
+
+    [Display(Name = "Modèle approuvé (nom Meta)")]
+    public string? MetaTemplateName { get; set; } = "hello_world";
+
+    [Display(Name = "Langue du modèle")]
+    public string Language { get; set; } = "en_US";
+
+    /// <summary>Paramètres du corps, un par ligne, dans l'ordre des {{1}}, {{2}}… du modèle.</summary>
+    [Display(Name = "Paramètres du corps")]
+    public string? Parameters { get; set; }
+
+    [Display(Name = "Texte du message")]
+    public string? Text { get; set; }
+
+    // Contexte affiché autour du formulaire.
+    public IReadOnlyList<ClientApplication> Clients { get; set; } = [];
+    public WhatsAppSettings? Settings { get; set; }
+    public string? Error { get; set; }
+    public WhatsAppMessage? Result { get; set; }
+}
+
 public class SmtpConfigViewModel
 {
     public Guid? Id { get; set; }

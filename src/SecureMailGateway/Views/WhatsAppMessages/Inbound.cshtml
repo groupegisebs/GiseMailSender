@@ -1,0 +1,68 @@
+@model IEnumerable<WhatsAppInboundMessage>
+@{ ViewData["Title"] = "Messages WhatsApp reçus"; }
+
+<h1 class="mb-3"><i class="bi bi-whatsapp"></i> Messages WhatsApp reçus</h1>
+
+<ul class="nav nav-pills mb-4">
+    <li class="nav-item"><a class="nav-link" asp-action="Index">Envoyés</a></li>
+    <li class="nav-item"><a class="nav-link active" asp-action="Inbound">Reçus</a></li>
+    @if (User.IsInRole("Admin") || User.IsInRole("Developer"))
+    {
+        <li class="nav-item"><a class="nav-link" asp-action="Test">Test d'envoi</a></li>
+    }
+</ul>
+
+<form class="row g-2 mb-4" method="get">
+    <div class="col-md-4">
+        <input name="search" class="form-control" placeholder="Rechercher par numéro, nom ou texte" value="@ViewBag.Search" />
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" type="submit">Filtrer</button>
+    </div>
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-light border">
+        Aucun message reçu. Ces messages n'apparaissent que si le webhook est configuré côté Meta
+        vers <code>/api/whatsapp/webhook</code>.
+    </div>
+}
+else
+{
+    <table class="table table-hover bg-white rounded shadow-sm table-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Expéditeur</th>
+                <th>Nom du profil</th>
+                <th>Type</th>
+                <th>Message</th>
+                <th>Reçu</th>
+                <th>Fenêtre 24 h</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                var open = m.ReceivedAt >= DateTimeOffset.UtcNow.AddHours(-24);
+                <tr>
+                    <td>+@m.FromPhone</td>
+                    <td>@(m.ProfileName ?? "—")</td>
+                    <td><span class="badge bg-secondary">@m.MessageType</span></td>
+                    <td class="text-truncate" style="max-width:320px">@(m.Text ?? "—")</td>
+                    <td class="small">@m.ReceivedAt.LocalDateTime.ToString("g")</td>
+                    <td>
+                        @if (open)
+                        {
+                            <span class="badge bg-success">Ouverte</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-light text-dark">Fermée</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

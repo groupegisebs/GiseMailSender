@@ -9,8 +9,13 @@ namespace SecureMailGateway.Services;
 
 public interface IWhatsAppQueueService
 {
+    /// <param name="dispatchInBackground">
+    /// Faux pour que l'appelant expédie lui-même : l'écran de test affiche ainsi le verdict de
+    /// l'opérateur immédiatement, au lieu d'attendre la reprise du job Hangfire.
+    /// </param>
     Task<SendWhatsAppResponse> QueueAsync(
-        SendWhatsAppRequest request, Guid clientId, string? ip, CancellationToken ct = default);
+        SendWhatsAppRequest request, Guid clientId, string? ip, CancellationToken ct = default,
+        bool dispatchInBackground = true);
 }
 
 public class WhatsAppQueueService(
@@ -25,7 +30,8 @@ public class WhatsAppQueueService(
     private static readonly TimeSpan CustomerCareWindow = TimeSpan.FromHours(24);
 
     public async Task<SendWhatsAppResponse> QueueAsync(
-        SendWhatsAppRequest request, Guid clientId, string? ip, CancellationToken ct = default)
+        SendWhatsAppRequest request, Guid clientId, string? ip, CancellationToken ct = default,
+        bool dispatchInBackground = true)
     {
         var client = await db.ClientApplications.FindAsync([clientId], ct)
             ?? throw new InvalidOperationException("Client not found.");
@@ -95,7 +101,8 @@ public class WhatsAppQueueService(
             ipAddress: ip, details: new { message.MessageCode, message.TemplateCode, message.MetaTemplateName },
             ct: ct);
 
-        jobScheduler.EnqueueWhatsAppSend(message.Id);
+        if (dispatchInBackground)
+            jobScheduler.EnqueueWhatsAppSend(message.Id);
 
         return new SendWhatsAppResponse
         {

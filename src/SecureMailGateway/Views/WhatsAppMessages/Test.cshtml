@@ -1,0 +1,163 @@
+@model WhatsAppTestViewModel
+@{
+    ViewData["Title"] = "Test d'envoi WhatsApp";
+    var configured = Model.Settings?.IsUsable == true;
+}
+
+<h1 class="mb-3"><i class="bi bi-whatsapp"></i> Test d'envoi WhatsApp</h1>
+
+<ul class="nav nav-pills mb-4">
+    <li class="nav-item"><a class="nav-link" asp-action="Index">Envoyés</a></li>
+    <li class="nav-item"><a class="nav-link" asp-action="Inbound">Reçus</a></li>
+    <li class="nav-item"><a class="nav-link active" asp-action="Test">Test d'envoi</a></li>
+</ul>
+
+@if (!configured)
+{
+    <div class="alert alert-warning">
+        <strong>Canal non configuré.</strong> Renseignez le numéro expéditeur et le jeton d'accès
+        (variables <code>WHATSAPP_PHONE_NUMBER_ID</code> et <code>WHATSAPP_ACCESS_TOKEN</code>)
+        avant de tester.
+    </div>
+}
+else
+{
+    <div class="alert alert-light border small">
+        Expéditeur <code>@Model.Settings!.DisplayPhoneNumber</code> —
+        identifiants lus depuis <strong>@Model.Settings.Source</strong>,
+        API <code>@Model.Settings.ApiVersion</code>.
+        @if (string.IsNullOrWhiteSpace(Model.Settings.WebhookVerifyToken))
+        {
+            <span class="text-warning-emphasis">Webhook non configuré : le statut s'arrêtera à « Sent ».</span>
+        }
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Error))
+{
+    <div class="alert alert-danger">@Model.Error</div>
+}
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <form method="post" class="card p-3">
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="ClientApplicationId">Application émettrice</label>
+                <select class="form-select" asp-for="ClientApplicationId">
+                    @foreach (var c in Model.Clients)
+                    {
+                        <option value="@c.Id">@c.Name (@c.ClientCode)</option>
+                    }
+                </select>
+                <div class="form-text">Le message est compté dans le quota de cette application.</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="To">Numéro du destinataire</label>
+                <input class="form-control" asp-for="To" placeholder="+14185763462" />
+                <div class="form-text">
+                    Format international. Avec un numéro expéditeur de test Meta, le destinataire
+                    doit d'abord être vérifié dans la console Meta.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="Kind">Type de message</label>
+                <select class="form-select" asp-for="Kind" id="kindSelect">
+                    <option value="template">Modèle approuvé</option>
+                    <option value="text">Texte libre (fenêtre de 24 h)</option>
+                </select>
+            </div>
+
+            <div id="templateFields">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="MetaTemplateName">Modèle approuvé (nom Meta)</label>
+                    <input class="form-control" asp-for="MetaTemplateName" placeholder="hello_world" />
+                    <div class="form-text"><code>hello_world</code> est fourni d'office par Meta et n'attend aucun paramètre.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Language">Langue du modèle</label>
+                    <input class="form-control" asp-for="Language" placeholder="en_US" />
+                    <div class="form-text">Code attendu par Meta : <code>en_US</code> pour <code>hello_world</code>, <code>fr</code> pour un modèle francophone.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Parameters">Paramètres du corps</label>
+                    <textarea class="form-control" asp-for="Parameters" rows="3" placeholder="Une valeur par ligne"></textarea>
+                    <div class="form-text">Un paramètre par ligne, dans l'ordre des <code>{{1}}</code>, <code>{{2}}</code>… du modèle.</div>
+                </div>
+            </div>
+
+            <div id="textFields" class="d-none">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Text">Texte du message</label>
+                    <textarea class="form-control" asp-for="Text" rows="4"></textarea>
+                    <div class="form-text">
+                        Refusé si le destinataire ne vous a pas écrit dans les 24 dernières heures :
+                        c'est une règle de WhatsApp, pas une limite de la passerelle.
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" disabled="@(!configured)">
+                <i class="bi bi-send"></i> Envoyer le test
+            </button>
+        </form>
+    </div>
+
+    <div class="col-lg-5">
+        @if (Model.Result is { } result)
+        {
+            <div class="card p-3">
+                <h5>Résultat</h5>
+                <dl class="row mb-2">
+                    <dt class="col-5">Code</dt>
+                    <dd class="col-7"><code>@result.MessageCode</code></dd>
+                    <dt class="col-5">Statut</dt>
+                    <dd class="col-7"><span class="badge badge-status-@result.Status">@result.Status</span></dd>
+                    <dt class="col-5">Destinataire</dt>
+                    <dd class="col-7">+@result.ToPhone</dd>
+                    @if (!string.IsNullOrEmpty(result.ProviderMessageId))
+                    {
+                        <dt class="col-5">Réf. opérateur</dt>
+                        <dd class="col-7"><code class="small">@result.ProviderMessageId</code></dd>
+                    }
+                    @if (!string.IsNullOrEmpty(result.ErrorMessage))
+                    {
+                        <dt class="col-5">Erreur</dt>
+                        <dd class="col-7 text-danger">
+                            @result.ErrorMessage
+                            @if (result.ErrorCode.HasValue) { <span class="badge bg-danger">code @result.ErrorCode</span> }
+                        </dd>
+                    }
+                </dl>
+                <a asp-action="Details" asp-route-id="@result.Id" class="btn btn-sm btn-outline-primary">Voir le détail complet</a>
+            </div>
+        }
+        else
+        {
+            <div class="card p-3 text-muted small">
+                Le verdict de l'opérateur s'affichera ici : référence du message en cas d'acceptation,
+                message et code d'erreur Meta sinon.
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            var kind = document.getElementById('kindSelect');
+            var tpl = document.getElementById('templateFields');
+            var txt = document.getElementById('textFields');
+            function sync() {
+                var isText = kind.value === 'text';
+                tpl.classList.toggle('d-none', isText);
+                txt.classList.toggle('d-none', !isText);
+            }
+            kind.addEventListener('change', sync);
+            sync();
+        })();
+    </script>
+}

@@ -141,6 +141,10 @@
 .badge-status-Failed { background: #dc3545; }
 .badge-status-Cancelled { background: #ffc107; color: #000; }
 
+/* États propres à WhatsApp : l'opérateur signale aussi la remise et la lecture. */
+.badge-status-Delivered { background: #0f766e; }
+.badge-status-Read { background: #075e54; }
+
 /* --- Page de connexion --- */
 .login-page {
     min-height: 100vh;

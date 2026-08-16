@@ -24,9 +24,11 @@
                 <ul class="nav flex-column gap-1">
                     <li><a class="nav-link text-white-50" asp-controller="Dashboard" asp-action="Index"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
                     <li><a class="nav-link text-white-50" asp-controller="Emails" asp-action="Index"><i class="bi bi-envelope"></i> E-mails</a></li>
+                    <li><a class="nav-link text-white-50" asp-controller="WhatsAppMessages" asp-action="Index"><i class="bi bi-whatsapp"></i> WhatsApp</a></li>
                     <li><a class="nav-link text-white-50" asp-controller="Templates" asp-action="Index"><i class="bi bi-file-earmark-richtext"></i> Templates</a></li>
                     @if (User.IsInRole("Admin") || User.IsInRole("Developer"))
                     {
+                        <li><a class="nav-link text-white-50" asp-controller="WhatsAppMessages" asp-action="Test"><i class="bi bi-send-check"></i> Test d'envoi</a></li>
                         <li><a class="nav-link text-white-50" asp-controller="Clients" asp-action="Index"><i class="bi bi-app"></i> Applications</a></li>
                         <li><a class="nav-link text-white-50" asp-controller="Tokens" asp-action="Index"><i class="bi bi-key"></i> Tokens API</a></li>
                     }
