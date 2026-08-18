@@ -43,6 +43,10 @@ else
         <form method="post" class="card p-3">
             @Html.AntiForgeryToken()
 
+            @* Sans ce bloc, un champ obligatoire vide renvoyait la page inchangée : l'écran donnait
+               l'impression que le bouton ne faisait rien. *@
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
             <div class="mb-3">
                 <label class="form-label" asp-for="ClientApplicationId">Application émettrice</label>
                 <select class="form-select" asp-for="ClientApplicationId">
@@ -57,6 +61,7 @@ else
             <div class="mb-3">
                 <label class="form-label" asp-for="To">Numéro du destinataire</label>
                 <input class="form-control" asp-for="To" placeholder="+14185763462" />
+                <span asp-validation-for="To" class="text-danger small"></span>
                 <div class="form-text">
                     Format international. Avec un numéro expéditeur de test Meta, le destinataire
                     doit d'abord être vérifié dans la console Meta.
@@ -146,6 +151,7 @@ else
 </div>
 
 @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
     <script>
         (function () {
             var kind = document.getElementById('kindSelect');
