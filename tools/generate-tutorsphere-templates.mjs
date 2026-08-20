@@ -7,7 +7,7 @@ const outPath = path.join(__dirname, "../src/SecureMailGateway/Data/TutorSphereT
 
 const LANGS = ["fr", "en", "es", "de", "pt", "zh-Hans", "ar"];
 /** Incrémentez REV pour forcer l'upsert au démarrage (y compris écrasement des stubs AUTO). */
-const REV = 13;
+const REV = 14;
 
 /** @typedef {{fr:string,en:string,es:string,de:string,pt:string,zh:string,ar:string}} Loc */
 
@@ -1821,6 +1821,74 @@ const templates = [
       "Olá {{RecipientName}}, a ata da reunião «{{Title}}» está disponível: {{MinutesUrl}}",
       "{{RecipientName}}，您好，会议《{{Title}}》的会议记录已生成：{{MinutesUrl}}",
       "مرحبًا {{RecipientName}}، محضر اجتماع «{{Title}}» متاح: {{MinutesUrl}}"
+    )
+  },
+  {
+    code: "TEACHER_CONTRACT_SIGN",
+    name: L(
+      "TutorSphere — Contrat enseignant à signer",
+      "TutorSphere — Teacher contract to sign",
+      "TutorSphere — Contrato docente por firmar",
+      "TutorSphere — Lehrervertrag zur Unterschrift",
+      "TutorSphere — Contrato de professor para assinar",
+      "TutorSphere — 待签署的教师合同",
+      "TutorSphere — عقد المعلم للتوقيع"
+    ),
+    subject: L(
+      "Contrat {{ContractNumber}} à signer — {{GroupName}}",
+      "Contract {{ContractNumber}} to sign — {{GroupName}}",
+      "Contrato {{ContractNumber}} por firmar — {{GroupName}}",
+      "Vertrag {{ContractNumber}} zur Unterschrift — {{GroupName}}",
+      "Contrato {{ContractNumber}} para assinar — {{GroupName}}",
+      "待签署合同 {{ContractNumber}} — {{GroupName}}",
+      "العقد {{ContractNumber}} للتوقيع — {{GroupName}}"
+    ),
+    title: L(
+      "Votre contrat de collaboration",
+      "Your collaboration contract",
+      "Su contrato de colaboración",
+      "Ihr Kooperationsvertrag",
+      "O seu contrato de colaboração",
+      "您的合作合同",
+      "عقد التعاون الخاص بك"
+    ),
+    hello: true,
+    body: L(
+      "Le groupe <strong>{{GroupName}}</strong> vous a envoyé le contrat électronique <strong>{{ContractNumber}}</strong>. Lisez chaque section, approuvez-les, puis signez. Le lien est valable jusqu’au {{ExpiresAt}}.",
+      "The group <strong>{{GroupName}}</strong> has sent you electronic contract <strong>{{ContractNumber}}</strong>. Read each section, approve them, then sign. The link is valid until {{ExpiresAt}}.",
+      "El grupo <strong>{{GroupName}}</strong> le ha enviado el contrato electrónico <strong>{{ContractNumber}}</strong>. Lea cada sección, apruébelas y firme. El enlace es válido hasta {{ExpiresAt}}.",
+      "Die Gruppe <strong>{{GroupName}}</strong> hat Ihnen den elektronischen Vertrag <strong>{{ContractNumber}}</strong> gesendet. Lesen Sie jeden Abschnitt, bestätigen Sie ihn und unterzeichnen Sie. Der Link gilt bis {{ExpiresAt}}.",
+      "O grupo <strong>{{GroupName}}</strong> enviou-lhe o contrato eletrónico <strong>{{ContractNumber}}</strong>. Leia cada secção, aprove-as e assine. A ligação é válida até {{ExpiresAt}}.",
+      "专家组 <strong>{{GroupName}}</strong> 已向您发送电子合同 <strong>{{ContractNumber}}</strong>。请逐节阅读并确认，然后签署。链接有效期至 {{ExpiresAt}}。",
+      "أرسلت مجموعة <strong>{{GroupName}}</strong> إليك العقد الإلكتروني <strong>{{ContractNumber}}</strong>. اقرأ كل قسم ووافق عليه ثم وقّع. الرابط صالح حتى {{ExpiresAt}}."
+    ),
+    btn: L(
+      "Ouvrir et signer le contrat",
+      "Open and sign the contract",
+      "Abrir y firmar el contrato",
+      "Vertrag öffnen und unterzeichnen",
+      "Abrir e assinar o contrato",
+      "打开并签署合同",
+      "فتح العقد وتوقيعه"
+    ),
+    btnUrl: "{{SignUrl}}",
+    footerNote: L(
+      "Ce lien est personnel et expire après 14 jours. Ne le transmettez pas.",
+      "This link is personal and expires after 14 days. Do not share it.",
+      "Este enlace es personal y caduca a los 14 días. No lo comparta.",
+      "Dieser Link ist persönlich und läuft nach 14 Tagen ab. Geben Sie ihn nicht weiter.",
+      "Esta ligação é pessoal e expira após 14 dias. Não a partilhe.",
+      "此链接仅供本人使用，14 天后失效。请勿转发。",
+      "هذا الرابط شخصي وينتهي بعد 14 يومًا. لا تشاركه."
+    ),
+    text: L(
+      "Bonjour {{FirstName}}, le groupe {{GroupName}} vous a envoyé le contrat {{ContractNumber}} à signer avant {{ExpiresAt}} : {{SignUrl}}",
+      "Hello {{FirstName}}, the group {{GroupName}} sent you contract {{ContractNumber}} to sign before {{ExpiresAt}}: {{SignUrl}}",
+      "Hola {{FirstName}}, el grupo {{GroupName}} le envió el contrato {{ContractNumber}} para firmar antes del {{ExpiresAt}}: {{SignUrl}}",
+      "Hallo {{FirstName}}, die Gruppe {{GroupName}} hat Ihnen den Vertrag {{ContractNumber}} zur Unterschrift bis {{ExpiresAt}} gesendet: {{SignUrl}}",
+      "Olá {{FirstName}}, o grupo {{GroupName}} enviou-lhe o contrato {{ContractNumber}} para assinar até {{ExpiresAt}}: {{SignUrl}}",
+      "{{FirstName}}，您好，专家组 {{GroupName}} 已发送合同 {{ContractNumber}}，请在 {{ExpiresAt}} 前签署：{{SignUrl}}",
+      "مرحبًا {{FirstName}}، أرسلت مجموعة {{GroupName}} إليك العقد {{ContractNumber}} للتوقيع قبل {{ExpiresAt}}: {{SignUrl}}"
     )
   }
 ];
