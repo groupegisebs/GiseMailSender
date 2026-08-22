@@ -23,5 +23,6 @@ public enum AuditAction
     WhatsAppQueued,
     WhatsAppSent,
     WhatsAppFailed,
-    WhatsAppConfigUpdated
+    WhatsAppConfigUpdated,
+    EmailHistoryPurged
 }

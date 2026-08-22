@@ -193,3 +193,27 @@ public class TokenCreatedViewModel
     public string TokenPrefix { get; set; } = string.Empty;
     public string ClientName { get; set; } = string.Empty;
 }
+
+public class EmailsIndexViewModel
+{
+    public IReadOnlyList<EmailMessage> Emails { get; set; } = [];
+    public string? Status { get; set; }
+    public string? Search { get; set; }
+    public int CurrentPage { get; set; } = 1;
+    public int PageSize { get; set; } = 25;
+    public int TotalItems { get; set; }
+    public int TotalPages => Math.Max(1, (int)Math.Ceiling(TotalItems / (double)PageSize));
+    public int RetentionDays { get; set; } = 90;
+    public bool CanPurge { get; set; }
+
+    public IEnumerable<int> VisiblePages
+    {
+        get
+        {
+            var start = Math.Max(1, CurrentPage - 3);
+            var end = Math.Min(TotalPages, CurrentPage + 3);
+            for (var p = start; p <= end; p++)
+                yield return p;
+        }
+    }
+}

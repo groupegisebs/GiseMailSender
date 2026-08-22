@@ -69,6 +69,8 @@ try
 
     builder.Services.Configure<UploadsOptions>(
         builder.Configuration.GetSection(UploadsOptions.SectionName));
+    builder.Services.Configure<MailHistoryOptions>(
+        builder.Configuration.GetSection(MailHistoryOptions.SectionName));
     // Honor plain UPLOADS_PATH / UPLOADS_PUBLIC_BASE_URL env vars in addition to the
     // ASP.NET-mapped Uploads__Path / Uploads__PublicBaseUrl.
     builder.Services.PostConfigure<UploadsOptions>(opt =>
@@ -144,6 +146,7 @@ try
     builder.Services.AddScoped<IMailCodeGenerator, MailCodeGenerator>();
     builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
     builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
+    builder.Services.AddScoped<IEmailHistoryCleanupService, EmailHistoryCleanupService>();
     builder.Services.AddScoped<IWhatsAppCodeGenerator, WhatsAppCodeGenerator>();
     builder.Services.AddScoped<IWhatsAppSettingsProvider, WhatsAppSettingsProvider>();
     builder.Services.AddScoped<IWhatsAppProvider, MetaCloudWhatsAppProvider>();
@@ -216,6 +219,11 @@ try
     {
         Authorization = [new HangfireAuthFilter()]
     });
+
+    RecurringJob.AddOrUpdate<IEmailHistoryCleanupService>(
+        "email-history-cleanup",
+        s => s.PurgeExpiredAsync(CancellationToken.None),
+        Cron.Daily(3));
 
     app.UseHttpMetrics();
     app.MapMetrics("/metrics");
